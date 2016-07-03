@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: a6db8f4be7af2144eb3c19a6a65f65b8
-timeCreated: 1467536128
+timeCreated: 1467537926
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: sp_block_0
+    21300000: sp_innerwall
+    21300002: sp_wall
+    21300004: sp_block
+    21300006: sp_floor
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,11 +54,44 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: sp_block_0
+    - name: sp_innerwall
       rect:
         serializedVersion: 2
         x: 3
         y: 495
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_wall
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 495
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_block
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 455
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_floor
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 415
         width: 20
         height: 20
       alignment: 0
