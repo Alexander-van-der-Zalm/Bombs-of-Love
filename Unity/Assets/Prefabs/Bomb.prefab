@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11452432}
   - 212: {fileID: 21214102}
   - 95: {fileID: 9580486}
+  - 114: {fileID: 11445888}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -48,6 +49,21 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11445888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112064}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bd83583ae740b340aaf287a641c1a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Origin: {fileID: 0}
+  OrigLoc: 0
+  depthOffset: 0
+  isStatic: 1
 --- !u!114 &11452432
 MonoBehaviour:
   m_ObjectHideFlags: 1
