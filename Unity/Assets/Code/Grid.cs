@@ -68,6 +68,8 @@ public class Grid : MonoBehaviour
         Vector3 pos = new Vector3(x * GridWidth, y * GridHeight);
         GameObject newObj = GameObject.Instantiate(obj, pos, Quaternion.identity) as GameObject;
         gridArray[x, y] = newObj.GetComponent<GridElement>();
+        gridArray[x, y].x = x; //dunno if this is needed
+        gridArray[x, y].y = y;
         newObj.transform.parent = this.transform;
     }
 
