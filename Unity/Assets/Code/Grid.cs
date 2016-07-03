@@ -1,15 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class Grid : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+public class Grid : MonoBehaviour
+{
+    public GameObject Floor;
+    public GameObject Wall;
+    public GameObject InnerWall;
+    public GameObject Block;
 }
