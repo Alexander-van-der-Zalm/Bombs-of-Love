@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InputHandler : MonoBehaviour {
+[RequireComponent(typeof(MovementPhysics))]
+public class InputHandler : MonoBehaviour
+{
+    public KeyCode Left, Right, Up, Down;
+
+    private MovementPhysics physics;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+    {
+        physics = GetComponent<MovementPhysics>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+    {
+	    
 	}
 }
