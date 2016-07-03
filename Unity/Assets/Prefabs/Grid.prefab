@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 495070}
   - 114: {fileID: 11440450}
-  - 114: {fileID: 11468770}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -47,23 +46,6 @@ MonoBehaviour:
   Block: {fileID: 104530, guid: d811d19c2d928764fa828117c901558a, type: 2}
   rows: 6
   columns: 6
-  GridWidth: 1
-  GridHeight: 1
---- !u!114 &11468770
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 181824}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bd83583ae740b340aaf287a641c1a3c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Origin: {fileID: 0}
-  OrigLoc: 0
-  depthOffset: 0
-  isStatic: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

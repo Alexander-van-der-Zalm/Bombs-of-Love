@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 443548}
   - 114: {fileID: 11452432}
   - 212: {fileID: 21214102}
-  - 95: {fileID: 9580486}
   - 114: {fileID: 11445888}
+  - 95: {fileID: 9567220}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!95 &9580486
+--- !u!95 &9567220
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -55,15 +55,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112064}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bd83583ae740b340aaf287a641c1a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Origin: {fileID: 0}
+  Origin: {fileID: 443548}
   OrigLoc: 0
-  depthOffset: 0
-  isStatic: 1
+  depthOffset: 100
+  isStatic: 0
 --- !u!114 &11452432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,6 +75,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae8ce8df100e1240be8de4e017b278b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ExplosionPrefab: {fileID: 11491866, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+  BaseRange: 3
+  BaseDamage: 1
+  DetonateTime: 3
 --- !u!212 &21214102
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -100,7 +104,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -106
   m_Sprite: {fileID: 21300002, guid: 2add6908e9371584ba6de532625676fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

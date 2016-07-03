@@ -12,4 +12,5 @@ public class GridElement : MonoBehaviour
 
     public GridType Type;
     public int x, y;
+    public Grid ParentGrid;
 }

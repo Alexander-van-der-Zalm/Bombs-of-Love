@@ -5,6 +5,8 @@ using System;
 
 public class Grid : MonoBehaviour
 {
+    #region Fields
+
     public GameObject Floor;
     public GameObject Wall;
     public GameObject InnerWall;
@@ -12,10 +14,14 @@ public class Grid : MonoBehaviour
 
     public int rows = 6;
     public int columns = 6;
-    public float GridWidth = 1.0f;
-    public float GridHeight = 1.0f;
+    public static float GridWidth = 1.0f;
+    public static float GridHeight = 1.0f;
 
     private GridElement[,] gridArray;
+
+    #endregion
+
+    #region Generate
 
     public void GenerateGrid()
     {
@@ -70,8 +76,14 @@ public class Grid : MonoBehaviour
         gridArray[x, y] = newObj.GetComponent<GridElement>();
         gridArray[x, y].x = x; //dunno if this is needed
         gridArray[x, y].y = y;
+        gridArray[x, y].ParentGrid = this;
         newObj.transform.parent = this.transform;
+
     }
+
+    #endregion
+
+    #region Delete
 
     public void DeleteGrid()
     {
@@ -80,4 +92,32 @@ public class Grid : MonoBehaviour
         for(int i = 0; i < childCount; i++)
             GameObject.DestroyImmediate(transform.GetChild(0).gameObject);
     }
+
+    #endregion
+
+    #region Get
+
+    public Vector2 GetCurrentGridPos(Vector3 worldLocation)
+    {
+        Debug.Log("Need to calc actual pos");
+        // Calculate
+        return new Vector2();
+    }
+
+    //public static GridElement RayCastElement(Vector3 worldLocation)
+    //{
+
+    //}
+
+    public Vector3 GetGridWorldPos(int x, int y)
+    {
+        return gridArray[x, y].transform.position;
+    }
+
+    public GridElement GetGridElement(int x, int y)
+    {
+        return gridArray[x, y];
+    }
+
+    #endregion
 }
