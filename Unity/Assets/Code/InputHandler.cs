@@ -10,11 +10,12 @@ public class InputHandler : MonoBehaviour
     public KeyCode Down = KeyCode.S;
     public KeyCode Right = KeyCode.D;
 
-
+    public KeyCode DropBomb = KeyCode.Space;
 
     //public PlayerIndex XboxControllerIndex;
 
     private MovementPhysics physics;
+    private Bomber bomber;
     //private GamePadState prevState;
     //private GamePadState state;
 
@@ -22,7 +23,9 @@ public class InputHandler : MonoBehaviour
     void Start ()
     {
         physics = GetComponent<MovementPhysics>();
-	}
+        bomber = GetComponent<Bomber>();
+
+    }
 	
 	// Update is called once per frame
 	void FixedUpdate ()
@@ -41,6 +44,9 @@ public class InputHandler : MonoBehaviour
             hor--;
         if (Input.GetKey(Right))
             hor++;
+
+        if (Input.GetKeyUp(DropBomb))
+            bomber.DropBomb(transform.position);
 
         physics.SetMovementInput(hor, ver);
     }
