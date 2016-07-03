@@ -14,10 +14,10 @@ public class Bomber : MonoBehaviour
         //BombGO = newBomb.gameObject;
     }
 
-    public void DropBomb(Vector3 loc)
+    public void DropBomb(Grid grid, Vector3 loc)
     {
         GameObject droppedBomb = GameObject.Instantiate(bomb.gameObject, loc, Quaternion.identity) as GameObject;
         Bomb newBomb = droppedBomb.GetComponent<Bomb>();
-        newBomb.Detonate();
+        newBomb.Detonate(grid);
     }
 }

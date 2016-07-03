@@ -19,6 +19,9 @@ public class GridEditor :Editor
             grid.GenerateGrid();
         if (GUILayout.Button("Destroy Grid"))
             grid.DeleteGrid();
-
+        if (GUILayout.Button("Debug Grid"))
+            grid.DebugArray();
+        if (GUILayout.Button("Restore Grid"))
+            grid.RestoreGridArray();
     }
 }

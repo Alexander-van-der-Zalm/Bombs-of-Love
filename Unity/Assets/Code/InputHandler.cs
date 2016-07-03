@@ -5,6 +5,8 @@ using XInputDotNetPure;
 [RequireComponent(typeof(MovementPhysics))]
 public class InputHandler : MonoBehaviour
 {
+    
+
     public KeyCode Up = KeyCode.W;
     public KeyCode Left = KeyCode.A;
     public KeyCode Down = KeyCode.S;
@@ -16,6 +18,7 @@ public class InputHandler : MonoBehaviour
 
     private MovementPhysics physics;
     private Bomber bomber;
+    private Grid grid;
     //private GamePadState prevState;
     //private GamePadState state;
 
@@ -24,7 +27,7 @@ public class InputHandler : MonoBehaviour
     {
         physics = GetComponent<MovementPhysics>();
         bomber = GetComponent<Bomber>();
-
+        grid = GameObject.FindObjectOfType<Grid>();
     }
 	
 	// Update is called once per frame
@@ -46,7 +49,7 @@ public class InputHandler : MonoBehaviour
             hor++;
 
         if (Input.GetKeyUp(DropBomb))
-            bomber.DropBomb(transform.position);
+            bomber.DropBomb(grid, transform.position);
 
         physics.SetMovementInput(hor, ver);
     }

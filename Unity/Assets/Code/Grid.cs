@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class Grid : MonoBehaviour
 {
@@ -17,9 +18,15 @@ public class Grid : MonoBehaviour
     public static float GridWidth = 1.0f;
     public static float GridHeight = 1.0f;
 
-    private GridElement[,] gridArray;
+    [SerializeField]
+    public GridElement[,] gridArray;
 
     #endregion
+
+    public void Start()
+    {
+        RestoreGridArray();
+    }
 
     #region Generate
 
@@ -54,19 +61,49 @@ public class Grid : MonoBehaviour
         // Full floors
         for (int j = 1; j < height - 1; j++)
             for (int i = 1; i < width -1; i += 2)
-                Create(i, j, Floor);
+                Create(j, i, Floor);
 
         for (int j = 1; j < height - 1; j++)
             for (int i = 2; i < width - 2; i +=2)
             {
                 if(j%2==0)
-                    Create(i, j, InnerWall);
+                    Create(j, i, InnerWall);
                 else
-                    Create(i, j, Floor);
+                    Create(j, i, Floor);
             }
-                
+
 
         #endregion
+
+        DebugArray();
+    }
+
+    public void RestoreGridArray()
+    {
+        // Make a new grid
+        int height = 2 + rows * 2 + 1; // 2 rows of walls + 2 per row + 1 to finish
+        int width = 2 + columns * 2 + 1;
+
+        gridArray = new GridElement[width, height];
+
+        List<GridElement> elements = GetComponentsInChildren<GridElement>().ToList();
+        foreach (GridElement el in elements)
+        {
+            gridArray[el.x, el.y] = el;
+        }
+    }
+
+    public void DebugArray()
+    {
+        // Make a new grid
+        int height = 2 + rows * 2 + 1; // 2 rows of walls + 2 per row + 1 to finish
+        int width = 2 + columns * 2 + 1;
+
+        for (int x = 0; x < width; x++)
+            for (int y = 0; y < height; y++)
+            {
+                Debug.Log("x: " + x + " y: " + y + " named: " + gridArray[x, y].name);
+            }
     }
 
     private void Create(int x, int y, GameObject obj)
@@ -99,9 +136,8 @@ public class Grid : MonoBehaviour
 
     public Vector2 GetCurrentGridPos(Vector3 worldLocation)
     {
-        Debug.Log("Need to calc actual pos");
         // Calculate
-        return new Vector2();
+        return new Vector2(Mathf.Floor((worldLocation.x-this.transform.position.x)/GridWidth), Mathf.Floor((worldLocation.y - this.transform.position.y) / GridHeight));
     }
 
     //public static GridElement RayCastElement(Vector3 worldLocation)
@@ -116,6 +152,8 @@ public class Grid : MonoBehaviour
 
     public GridElement GetGridElement(int x, int y)
     {
+        Debug.Log("x: " + x + " y: " + y);
+        Debug.Log("element: " + gridArray[x, y]);
         return gridArray[x, y];
     }
 
