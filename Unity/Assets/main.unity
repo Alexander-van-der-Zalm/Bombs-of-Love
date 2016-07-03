@@ -146,6 +146,7 @@ MonoBehaviour:
   Type: 0
   x: 12
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!61 &3121413
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -255,6 +256,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &13751622
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -350,6 +352,7 @@ MonoBehaviour:
   Type: 1
   x: 4
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &16510957
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -441,6 +444,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!61 &18015130
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -550,6 +554,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &19804496
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -645,6 +650,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &21539792
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -740,6 +746,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &25857981
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -831,6 +838,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!61 &26638479
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -936,6 +944,7 @@ MonoBehaviour:
   Type: 0
   x: 4
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &33655827
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1045,6 +1054,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!212 &40216107
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1140,6 +1150,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &56358837
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1231,6 +1242,7 @@ MonoBehaviour:
   Type: 0
   x: 12
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!61 &60051602
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1340,6 +1352,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &66359941
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1431,6 +1444,7 @@ MonoBehaviour:
   Type: 0
   x: 4
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!61 &88917684
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1536,6 +1550,7 @@ MonoBehaviour:
   Type: 0
   x: 8
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!61 &90140145
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1645,6 +1660,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &94875750
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1736,6 +1752,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!61 &108546887
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1845,6 +1862,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!212 &120683646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1940,6 +1958,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!212 &123169149
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2035,6 +2054,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &124300355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2130,6 +2150,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &130030865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2221,6 +2242,7 @@ MonoBehaviour:
   Type: 0
   x: 6
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &130311111
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2326,6 +2348,7 @@ MonoBehaviour:
   Type: 0
   x: 4
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &132670786
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2435,6 +2458,7 @@ MonoBehaviour:
   Type: 1
   x: 4
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &148558974
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2530,6 +2554,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &149842840
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2625,6 +2650,7 @@ MonoBehaviour:
   Type: 1
   x: 4
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &155790017
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2716,6 +2742,7 @@ MonoBehaviour:
   Type: 0
   x: 6
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!61 &163877135
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2825,6 +2852,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!212 &167575469
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2916,6 +2944,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!61 &171826531
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3025,6 +3054,7 @@ MonoBehaviour:
   Type: 1
   x: 6
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &171842926
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3116,6 +3146,7 @@ MonoBehaviour:
   Type: 0
   x: 8
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!61 &173645357
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3225,6 +3256,7 @@ MonoBehaviour:
   Type: 1
   x: 2
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &185731244
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3320,6 +3352,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!212 &202133305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3415,6 +3448,7 @@ MonoBehaviour:
   Type: 1
   x: 2
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &202660945
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3510,6 +3544,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &216728373
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3605,6 +3640,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &239160502
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3696,6 +3732,7 @@ MonoBehaviour:
   Type: 0
   x: 11
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &239219834
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3801,6 +3838,7 @@ MonoBehaviour:
   Type: 0
   x: 6
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &256922458
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3906,6 +3944,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!61 &259293604
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4011,6 +4050,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!61 &261006224
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4120,6 +4160,7 @@ MonoBehaviour:
   Type: 1
   x: 2
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &263737215
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4211,6 +4252,7 @@ MonoBehaviour:
   Type: 0
   x: 1
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &268863490
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4316,6 +4358,7 @@ MonoBehaviour:
   Type: 0
   x: 12
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!61 &270223190
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4425,6 +4468,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!212 &271052168
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4520,6 +4564,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!212 &276028129
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4615,6 +4660,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!212 &278104131
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4710,6 +4756,7 @@ MonoBehaviour:
   Type: 1
   x: 2
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &278255707
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4740,27 +4787,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &289006211 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 112064, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-  m_PrefabInternal: {fileID: 679173064}
---- !u!95 &289006212
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 289006211}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0d9ca8451be5d7f4eb530ac95dbc33bf, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &297033985
 GameObject:
   m_ObjectHideFlags: 0
@@ -4822,6 +4848,7 @@ MonoBehaviour:
   Type: 0
   x: 2
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!61 &297033989
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4866,6 +4893,44 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &301866376
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &306882555
 GameObject:
   m_ObjectHideFlags: 0
@@ -4931,6 +4996,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &306882559
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5026,6 +5092,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!212 &307183833
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5117,6 +5184,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!61 &307188439
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5222,6 +5290,7 @@ MonoBehaviour:
   Type: 0
   x: 5
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &332786599
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5331,6 +5400,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &346839719
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5422,6 +5492,7 @@ MonoBehaviour:
   Type: 0
   x: 5
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &361758660
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5618,6 +5689,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!212 &376184411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5713,6 +5785,7 @@ MonoBehaviour:
   Type: 1
   x: 4
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &390935485
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5808,6 +5881,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!212 &415356455
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5899,7 +5973,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!1 &439533269
 GameObject:
   m_ObjectHideFlags: 0
@@ -5965,6 +6039,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!212 &439533273
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6060,6 +6135,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &452650829
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6155,6 +6231,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!212 &496190581
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6250,6 +6327,7 @@ MonoBehaviour:
   Type: 1
   x: 6
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &499822914
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6345,6 +6423,7 @@ MonoBehaviour:
   Type: 1
   x: 12
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &501221795
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6440,6 +6519,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!212 &518403246
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6535,6 +6615,7 @@ MonoBehaviour:
   Type: 1
   x: 2
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &542339949
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6626,6 +6707,7 @@ MonoBehaviour:
   Type: 0
   x: 8
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!61 &542791989
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6731,6 +6813,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!61 &569323847
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6836,6 +6919,7 @@ MonoBehaviour:
   Type: 0
   x: 3
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &569758887
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6945,6 +7029,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &570792234
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7036,6 +7121,7 @@ MonoBehaviour:
   Type: 0
   x: 6
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!61 &576623265
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7141,6 +7227,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!61 &578377267
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7246,6 +7333,7 @@ MonoBehaviour:
   Type: 0
   x: 12
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &578731612
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7355,6 +7443,7 @@ MonoBehaviour:
   Type: 1
   x: 12
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &589638120
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7450,6 +7539,7 @@ MonoBehaviour:
   Type: 1
   x: 6
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &593772409
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7545,6 +7635,7 @@ MonoBehaviour:
   Type: 1
   x: 6
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &596122194
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7636,6 +7727,7 @@ MonoBehaviour:
   Type: 0
   x: 10
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!61 &609421028
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7741,6 +7833,7 @@ MonoBehaviour:
   Type: 0
   x: 2
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!61 &611737555
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7846,6 +7939,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!61 &626628038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7955,6 +8049,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!212 &655346011
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8050,6 +8145,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &671890079
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8145,6 +8241,7 @@ MonoBehaviour:
   Type: 1
   x: 10
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &673487103
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8175,48 +8272,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1001 &679173064
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &699095773
 GameObject:
   m_ObjectHideFlags: 0
@@ -8282,6 +8337,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!212 &699095777
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8377,6 +8433,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!212 &711658504
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8472,6 +8529,7 @@ MonoBehaviour:
   Type: 1
   x: 10
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &715931612
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8567,6 +8625,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!212 &718526050
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8658,6 +8717,7 @@ MonoBehaviour:
   Type: 0
   x: 2
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &741538092
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8763,6 +8823,7 @@ MonoBehaviour:
   Type: 0
   x: 8
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &755447238
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8872,6 +8933,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!212 &761573309
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8967,6 +9029,7 @@ MonoBehaviour:
   Type: 1
   x: 6
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &772696646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9062,6 +9125,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!212 &823731540
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9157,6 +9221,7 @@ MonoBehaviour:
   Type: 1
   x: 4
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &829011056
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9248,6 +9313,7 @@ MonoBehaviour:
   Type: 0
   x: 8
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!61 &842495011
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9357,6 +9423,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!212 &851574180
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9452,6 +9519,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &856365419
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9543,6 +9611,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!61 &864060480
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9652,6 +9721,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &868243400
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9682,6 +9752,28 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1 &886513202 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 136832, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+  m_PrefabInternal: {fileID: 1973308354}
+--- !u!4 &886513207 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+  m_PrefabInternal: {fileID: 1973308354}
+--- !u!114 &886513208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 886513202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc4571d40190dd40baa4dbdde84b072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rotation: 0
+  Type: 0
+  Damage: 0
 --- !u!1 &890023418
 GameObject:
   m_ObjectHideFlags: 0
@@ -9747,6 +9839,7 @@ MonoBehaviour:
   Type: 1
   x: 8
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &890023422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9842,6 +9935,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!212 &895388257
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9937,6 +10031,7 @@ MonoBehaviour:
   Type: 1
   x: 8
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &899064600
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10032,6 +10127,7 @@ MonoBehaviour:
   Type: 1
   x: 12
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &904696496
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10123,6 +10219,7 @@ MonoBehaviour:
   Type: 0
   x: 10
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &924500871
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10228,6 +10325,7 @@ MonoBehaviour:
   Type: 0
   x: 1
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &925781206
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10333,6 +10431,7 @@ MonoBehaviour:
   Type: 0
   x: 9
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &930395586
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10438,6 +10537,7 @@ MonoBehaviour:
   Type: 0
   x: 6
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!61 &930755754
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10547,6 +10647,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &942535618
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10642,6 +10743,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &966882110
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10733,6 +10835,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &969007056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10842,6 +10945,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!212 &978628060
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10933,6 +11037,7 @@ MonoBehaviour:
   Type: 0
   x: 4
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!61 &984449979
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11042,6 +11147,7 @@ MonoBehaviour:
   Type: 1
   x: 12
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &984749734
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11133,6 +11239,7 @@ MonoBehaviour:
   Type: 0
   x: 10
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!61 &989103671
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11238,6 +11345,7 @@ MonoBehaviour:
   Type: 0
   x: 6
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!61 &991318750
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11343,6 +11451,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!61 &991696074
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11448,6 +11557,7 @@ MonoBehaviour:
   Type: 0
   x: 6
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!61 &993417845
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11557,6 +11667,7 @@ MonoBehaviour:
   Type: 1
   x: 6
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &998883572
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11648,6 +11759,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!61 &1009999585
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11757,6 +11869,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &1016149944
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11852,6 +11965,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!212 &1049019264
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11947,6 +12061,7 @@ MonoBehaviour:
   Type: 1
   x: 12
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &1050962265
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12042,6 +12157,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &1063003453
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12137,6 +12253,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!212 &1070457097
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12232,6 +12349,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &1086845371
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12327,6 +12445,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &1087279286
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12418,6 +12537,7 @@ MonoBehaviour:
   Type: 0
   x: 12
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!61 &1088099859
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12523,6 +12643,7 @@ MonoBehaviour:
   Type: 0
   x: 12
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &1140935886
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12628,6 +12749,7 @@ MonoBehaviour:
   Type: 0
   x: 8
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!61 &1155185203
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12737,6 +12859,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!212 &1161757422
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12828,6 +12951,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!61 &1165267624
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12937,6 +13061,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &1168112553
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13032,6 +13157,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!212 &1171239582
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13123,6 +13249,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!61 &1179295774
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13232,6 +13359,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &1182448011
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13327,6 +13455,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &1201124395
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13422,6 +13551,7 @@ MonoBehaviour:
   Type: 1
   x: 6
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &1208320197
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13517,6 +13647,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &1219883350
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13612,6 +13743,7 @@ MonoBehaviour:
   Type: 1
   x: 8
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &1228281215
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13703,6 +13835,7 @@ MonoBehaviour:
   Type: 0
   x: 13
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &1255121948
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13812,6 +13945,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &1266121596
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13903,6 +14037,7 @@ MonoBehaviour:
   Type: 0
   x: 11
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &1273022548
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14012,6 +14147,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!212 &1277671948
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14107,6 +14243,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!212 &1281861145
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14198,6 +14335,7 @@ MonoBehaviour:
   Type: 0
   x: 10
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &1300515431
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14307,6 +14445,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &1310744523
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14392,7 +14531,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 409596, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.73
+      value: 2.04
       objectReference: {fileID: 0}
     - target: {fileID: 409596, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
       propertyPath: m_LocalPosition.z
@@ -14417,6 +14556,10 @@ Prefab:
     - target: {fileID: 409596, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21276906, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
+      propertyPath: m_SortingOrder
+      value: -103
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
@@ -14486,6 +14629,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!212 &1356984183
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14577,6 +14721,7 @@ MonoBehaviour:
   Type: 0
   x: 2
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!61 &1361168395
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14682,6 +14827,7 @@ MonoBehaviour:
   Type: 0
   x: 4
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!61 &1369015684
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14791,6 +14937,7 @@ MonoBehaviour:
   Type: 1
   x: 10
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &1370822153
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14882,6 +15029,7 @@ MonoBehaviour:
   Type: 0
   x: 2
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!61 &1371828544
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14987,6 +15135,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!61 &1386537840
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15092,6 +15241,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &1409532249
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15201,6 +15351,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!212 &1423142047
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15292,6 +15443,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!61 &1456840149
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15401,6 +15553,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!212 &1485637851
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15496,6 +15649,7 @@ MonoBehaviour:
   Type: 1
   x: 12
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &1488964020
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15591,6 +15745,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!212 &1516260041
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15682,6 +15837,7 @@ MonoBehaviour:
   Type: 0
   x: 2
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!61 &1527671813
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15791,6 +15947,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &1530243188
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15882,6 +16039,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &1541167038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15991,6 +16149,7 @@ MonoBehaviour:
   Type: 1
   x: 10
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &1552669274
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16086,6 +16245,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &1554469708
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16177,6 +16337,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!61 &1570358642
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16286,6 +16447,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!212 &1571856028
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16377,6 +16539,7 @@ MonoBehaviour:
   Type: 0
   x: 2
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &1572198751
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16486,6 +16649,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!212 &1579385148
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16577,6 +16741,7 @@ MonoBehaviour:
   Type: 0
   x: 4
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!61 &1606365208
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16682,6 +16847,7 @@ MonoBehaviour:
   Type: 0
   x: 10
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!61 &1619430242
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16787,6 +16953,7 @@ MonoBehaviour:
   Type: 0
   x: 13
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &1620840020
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16892,6 +17059,7 @@ MonoBehaviour:
   Type: 0
   x: 7
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &1625868926
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16997,6 +17165,7 @@ MonoBehaviour:
   Type: 0
   x: 12
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!61 &1654366195
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17106,6 +17275,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &1665968196
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17201,6 +17371,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &1666538868
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17296,6 +17467,7 @@ MonoBehaviour:
   Type: 1
   x: 10
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &1668297978
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17387,6 +17559,7 @@ MonoBehaviour:
   Type: 0
   x: 2
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!61 &1676105993
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17496,6 +17669,7 @@ MonoBehaviour:
   Type: 0
   x: 10
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!61 &1682455121
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17605,6 +17779,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!212 &1687496177
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17700,6 +17875,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &1706012787
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17795,6 +17971,7 @@ MonoBehaviour:
   Type: 1
   x: 10
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &1712749719
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -17886,6 +18063,7 @@ MonoBehaviour:
   Type: 0
   x: 7
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &1722004051
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17995,6 +18173,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &1722050045
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18090,6 +18269,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &1727423397
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18185,6 +18365,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!212 &1745164121
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18276,6 +18457,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 12
+  ParentGrid: {fileID: 0}
 --- !u!61 &1772628997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18381,6 +18563,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 4
+  ParentGrid: {fileID: 0}
 --- !u!61 &1773573056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18490,6 +18673,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 1
+  ParentGrid: {fileID: 0}
 --- !u!212 &1819016375
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18581,6 +18765,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!61 &1853149052
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18690,6 +18875,7 @@ MonoBehaviour:
   Type: 1
   x: 2
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &1857100399
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18785,6 +18971,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &1857357557
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18880,6 +19067,7 @@ MonoBehaviour:
   Type: 1
   x: 12
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &1870284515
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18971,6 +19159,7 @@ MonoBehaviour:
   Type: 0
   x: 6
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!61 &1881713455
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19080,6 +19269,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &1882580439
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19175,6 +19365,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!212 &1893074855
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19270,6 +19461,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!212 &1894282491
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19361,6 +19553,7 @@ MonoBehaviour:
   Type: 0
   x: 4
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!61 &1901964182
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19470,6 +19663,7 @@ MonoBehaviour:
   Type: 1
   x: 8
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &1907097083
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19565,6 +19759,7 @@ MonoBehaviour:
   Type: 1
   x: 8
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &1907418503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19660,6 +19855,7 @@ MonoBehaviour:
   Type: 1
   x: 4
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &1914738021
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19755,6 +19951,7 @@ MonoBehaviour:
   Type: 1
   x: 9
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!212 &1915833728
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19846,6 +20043,7 @@ MonoBehaviour:
   Type: 0
   x: 10
   y: 10
+  ParentGrid: {fileID: 0}
 --- !u!61 &1931634041
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19955,6 +20153,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &1938276646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20050,6 +20249,7 @@ MonoBehaviour:
   Type: 1
   x: 11
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &1947554316
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20141,6 +20341,7 @@ MonoBehaviour:
   Type: 0
   x: 4
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!61 &1948126879
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20250,6 +20451,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!212 &1950653048
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20345,6 +20547,7 @@ MonoBehaviour:
   Type: 1
   x: 7
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &1965064960
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20440,6 +20643,7 @@ MonoBehaviour:
   Type: 1
   x: 10
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!212 &1969117033
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20470,6 +20674,69 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &1973308354
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.7907245
+      objectReference: {fileID: 0}
+    - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.446029
+      objectReference: {fileID: 0}
+    - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 21258098, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_SortingOrder
+      value: -244
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415956, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: Origin
+      value: 
+      objectReference: {fileID: 886513207}
+    - target: {fileID: 6158708, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6158708, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_Offset.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9525370, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c107180ef04d14446aa4103dd94d419c, type: 2}
+    m_RemovedComponents:
+    - {fileID: 11491866, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1974840970
 GameObject:
   m_ObjectHideFlags: 0
@@ -20531,6 +20798,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!61 &1974840974
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20640,6 +20908,7 @@ MonoBehaviour:
   Type: 1
   x: 4
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &1978956708
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20735,6 +21004,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!212 &1979427106
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20830,6 +21100,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 11
+  ParentGrid: {fileID: 0}
 --- !u!212 &1985059588
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20925,6 +21196,7 @@ MonoBehaviour:
   Type: 1
   x: 5
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &1990702930
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21016,6 +21288,7 @@ MonoBehaviour:
   Type: 0
   x: 10
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!61 &1995415120
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21125,6 +21398,7 @@ MonoBehaviour:
   Type: 1
   x: 3
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &1999058752
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21220,6 +21494,7 @@ MonoBehaviour:
   Type: 1
   x: 13
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &2024368986
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21311,6 +21586,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &2024790442
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21416,6 +21692,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!61 &2028772772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21521,6 +21798,7 @@ MonoBehaviour:
   Type: 0
   x: 3
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &2034984910
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21626,6 +21904,7 @@ MonoBehaviour:
   Type: 0
   x: 12
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!61 &2035433462
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21731,6 +22010,7 @@ MonoBehaviour:
   Type: 0
   x: 8
   y: 0
+  ParentGrid: {fileID: 0}
 --- !u!61 &2044577930
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21840,6 +22120,7 @@ MonoBehaviour:
   Type: 1
   x: 8
   y: 5
+  ParentGrid: {fileID: 0}
 --- !u!212 &2048032327
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21931,6 +22212,7 @@ MonoBehaviour:
   Type: 0
   x: 9
   y: 14
+  ParentGrid: {fileID: 0}
 --- !u!61 &2052901043
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22040,6 +22322,7 @@ MonoBehaviour:
   Type: 1
   x: 8
   y: 9
+  ParentGrid: {fileID: 0}
 --- !u!212 &2055953148
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22131,6 +22414,7 @@ MonoBehaviour:
   Type: 0
   x: 0
   y: 8
+  ParentGrid: {fileID: 0}
 --- !u!61 &2059666721
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22240,6 +22524,7 @@ MonoBehaviour:
   Type: 1
   x: 2
   y: 3
+  ParentGrid: {fileID: 0}
 --- !u!212 &2062557034
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22331,6 +22616,7 @@ MonoBehaviour:
   Type: 0
   x: 8
   y: 6
+  ParentGrid: {fileID: 0}
 --- !u!61 &2062839576
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22436,6 +22722,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 7
+  ParentGrid: {fileID: 0}
 --- !u!61 &2071637434
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22545,6 +22832,7 @@ MonoBehaviour:
   Type: 1
   x: 1
   y: 2
+  ParentGrid: {fileID: 0}
 --- !u!212 &2085698215
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22636,6 +22924,7 @@ MonoBehaviour:
   Type: 0
   x: 14
   y: 13
+  ParentGrid: {fileID: 0}
 --- !u!61 &2144257596
 BoxCollider2D:
   m_ObjectHideFlags: 0

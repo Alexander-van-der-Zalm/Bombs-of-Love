@@ -14,6 +14,9 @@ public class Bomb : MonoBehaviour
     private Animator anim;
     private int animExplode = Animator.StringToHash("Explode");
     
+
+
+
     public void Awake()
     {
         anim = GetComponent<Animator>();
@@ -42,6 +45,11 @@ public class Bomb : MonoBehaviour
         {
 
         }
+
+        // Wait to destroy Self
+
+        //// Destroy Self
+        //GameObject.Destroy(this);
     }
 
     private void Spawn(Explosion explosion, Vector3 position, int damage, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
