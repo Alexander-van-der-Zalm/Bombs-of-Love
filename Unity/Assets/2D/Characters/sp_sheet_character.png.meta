@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2add6908e9371584ba6de532625676fc
-timeCreated: 1467552362
+timeCreated: 1467577106
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,7 +9,7 @@ TextureImporter:
     21300004: sp_explosion_1
     21300006: sp_bomb_1
     21300008: sp_bomb_2
-    21300010: sp_eplosion_0
+    21300010: sp_explosion_0
     21300012: sp_explosion_2
     21300014: sp_explosion_3
     21300016: sp_player_walk_down_0
@@ -34,6 +34,22 @@ TextureImporter:
     21300054: sp_bomb_explode_4
     21300056: sp_bomb_explode_5
     21300058: sp_bomb_explode_6
+    21300060: sp_explosion_sideend_0
+    21300062: sp_explosion_sideend_1
+    21300064: sp_explosion_sideend_2
+    21300066: sp_explosion_sideend_3
+    21300068: sp_explosion_sidemid_0
+    21300070: sp_explosion_sidemid_1
+    21300072: sp_explosion_sidemid_2
+    21300074: sp_explosion_sidemid_3
+    21300076: sp_explosion_end_0
+    21300078: sp_explosion_end_1
+    21300080: sp_explosion_end_2
+    21300082: sp_explosion_end_3
+    21300084: sp_explosion_mid_1
+    21300086: sp_explosion_mid_0
+    21300088: sp_explosion_mid_3
+    21300090: sp_explosion_mid_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -135,7 +151,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: sp_eplosion_0
+    - name: sp_explosion_0
       rect:
         serializedVersion: 2
         x: 69
@@ -404,6 +420,182 @@ TextureImporter:
         serializedVersion: 2
         x: 183
         y: 331
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_sideend_0
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 279
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_sideend_1
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 279
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_sideend_2
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 279
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_sideend_3
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 279
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_sidemid_0
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 234
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_sidemid_1
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 234
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_sidemid_2
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 234
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_sidemid_3
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 234
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_end_0
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 234
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_end_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 234
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_end_2
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 233
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_end_3
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 233
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_mid_1
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 209
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_mid_0
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 209
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_mid_3
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 209
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_mid_2
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 209
         width: 20
         height: 20
       alignment: 7
