@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a6db8f4be7af2144eb3c19a6a65f65b8
-timeCreated: 1467552954
+timeCreated: 1467579947
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,11 @@ TextureImporter:
     21300002: sp_wall
     21300004: sp_block
     21300006: sp_floor
+    21300008: sp_block_explode_0
+    21300010: sp_block_explode_1
+    21300012: sp_block_explode_2
+    21300014: sp_block_explode_3
+    21300016: sp_block_explode_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,7 +78,7 @@ TextureImporter:
         width: 20
         height: 20
       alignment: 6
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: sp_block
@@ -84,7 +89,7 @@ TextureImporter:
         width: 20
         height: 20
       alignment: 6
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     - name: sp_floor
@@ -95,7 +100,62 @@ TextureImporter:
         width: 20
         height: 20
       alignment: 6
-      pivot: {x: 0.5, y: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_block_explode_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 455
+        width: 20
+        height: 20
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_block_explode_1
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 455
+        width: 20
+        height: 20
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_block_explode_2
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 455
+        width: 20
+        height: 20
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_block_explode_3
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 455
+        width: 20
+        height: 20
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_block_explode_4
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 455
+        width: 20
+        height: 20
+      alignment: 6
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []
