@@ -17,6 +17,8 @@ public class GridEditor :Editor
         base.OnInspectorGUI();
         if (GUILayout.Button("Generate Grid"))
             grid.GenerateGrid();
+        if (GUILayout.Button("Destroy Grid"))
+            grid.DeleteGrid();
 
     }
 }

@@ -44,6 +44,10 @@ MonoBehaviour:
   Wall: {fileID: 136316, guid: df081fb85aba61a45a5b1a5f61cf48c7, type: 2}
   InnerWall: {fileID: 196590, guid: 209dbe04ed30d6d429951ac9997d483d, type: 2}
   Block: {fileID: 104530, guid: d811d19c2d928764fa828117c901558a, type: 2}
+  rows: 6
+  columns: 6
+  GridWidth: 1
+  GridHeight: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
