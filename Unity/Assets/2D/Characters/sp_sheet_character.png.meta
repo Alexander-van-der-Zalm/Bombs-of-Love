@@ -1,12 +1,39 @@
 fileFormatVersion: 2
 guid: 2add6908e9371584ba6de532625676fc
-timeCreated: 1467535935
+timeCreated: 1467547761
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: sp_character
-    21300002: sp_bomb
-    21300004: sp_explosion_0
+    21300000: sp_player_idle_down
+    21300002: sp_bomb_0
+    21300004: sp_explosion_1
+    21300006: sp_bomb_1
+    21300008: sp_bomb_2
+    21300010: sp_eplosion_0
+    21300012: sp_explosion_2
+    21300014: sp_explosion_3
+    21300016: sp_player_walk_down_0
+    21300018: sp_player_walk_down_1
+    21300020: sp_player_idle_left
+    21300022: sp_player_walk_left_0
+    21300024: sp_player_walk_left_1
+    21300026: sp_player_idle_up
+    21300028: sp_player_walk_up_0
+    21300030: sp_player_walk_up_1
+    21300032: sp_player_death_0
+    21300034: sp_player_death_1
+    21300036: sp_player_death_2
+    21300038: sp_player_death_3
+    21300040: sp_player_death_4
+    21300042: sp_player_death_5
+    21300044: sp_player_death_6
+    21300046: sp_bomb_explode_0
+    21300048: sp_bomb_explode_1
+    21300050: sp_bomb_explode_2
+    21300052: sp_bomb_explode_3
+    21300054: sp_bomb_explode_4
+    21300056: sp_bomb_explode_5
+    21300058: sp_bomb_explode_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -53,7 +80,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: sp_character
+    - name: sp_player_idle_down
       rect:
         serializedVersion: 2
         x: 2
@@ -64,7 +91,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: sp_bomb
+    - name: sp_bomb_0
       rect:
         serializedVersion: 2
         x: 2
@@ -75,11 +102,308 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: sp_explosion_0
+    - name: sp_explosion_1
       rect:
         serializedVersion: 2
         x: 47
         y: 279
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_bomb_1
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 331
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_bomb_2
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 331
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_eplosion_0
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 279
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_2
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 279
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_3
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 279
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_walk_down_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 425
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_walk_down_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 425
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_idle_left
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 425
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_walk_left_0
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 425
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_walk_left_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 425
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_idle_up
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 425
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_walk_up_0
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 425
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_walk_up_1
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 425
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_death_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 355
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_death_1
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 355
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_death_2
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 355
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_death_3
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 355
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_death_4
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 355
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_death_5
+      rect:
+        serializedVersion: 2
+        x: 113
+        y: 355
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_player_death_6
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 355
+        width: 20
+        height: 30
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_bomb_explode_0
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 331
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_bomb_explode_1
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 331
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_bomb_explode_2
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 331
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_bomb_explode_3
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 331
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_bomb_explode_4
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 331
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_bomb_explode_5
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 331
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_bomb_explode_6
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 331
         width: 20
         height: 20
       alignment: 0
