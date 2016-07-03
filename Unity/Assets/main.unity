@@ -4902,7 +4902,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.07
+      value: 2.04
       objectReference: {fileID: 0}
     - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4927,6 +4927,10 @@ Prefab:
     - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 443548, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.57
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
@@ -9755,10 +9759,6 @@ SpriteRenderer:
 --- !u!1 &886513202 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 136832, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
-  m_PrefabInternal: {fileID: 1973308354}
---- !u!4 &886513207 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
   m_PrefabInternal: {fileID: 1973308354}
 --- !u!114 &886513208
 MonoBehaviour:
@@ -20683,11 +20683,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.7907245
+      value: 1.51
       objectReference: {fileID: 0}
     - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.446029
+      value: 1.97
       objectReference: {fileID: 0}
     - target: {fileID: 408042, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
       propertyPath: m_LocalPosition.z
@@ -20717,10 +20717,6 @@ Prefab:
       propertyPath: m_SortingOrder
       value: -244
       objectReference: {fileID: 0}
-    - target: {fileID: 11415956, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
-      propertyPath: Origin
-      value: 
-      objectReference: {fileID: 886513207}
     - target: {fileID: 6158708, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
       propertyPath: m_IsTrigger
       value: 0

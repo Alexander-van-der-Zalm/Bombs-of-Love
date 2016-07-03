@@ -25,11 +25,20 @@ public class Explosion : MonoBehaviour
 
     public void SetType(ExplosionType type, ExplosionRotation rotation)
     {
-        Debug.Log("I am type: " + type);
+        Debug.Log("I am type: " + type + " rot " + rotation);
         Type = type;
         Rotation = rotation;
         // Set anim
     }
 
     // Trigger Enter
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        
+        Health health = other.GetComponent<Health>();
+        if(health != null)
+        {
+            health.DoDamge(Damage);
+        }
+    }
 }

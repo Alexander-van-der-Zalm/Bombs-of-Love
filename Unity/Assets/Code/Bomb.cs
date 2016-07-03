@@ -24,7 +24,7 @@ public class Bomb : MonoBehaviour
 
     public void Detonate(int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
     {
-        float detonateTime = DetonateOverride != 1 ? DetonateOverride : DetonateTime;
+        float detonateTime = DetonateOverride != -1 ? DetonateOverride : DetonateTime;
 
         StartCoroutine(DetonateCR(BaseRange + extraDamage, BaseDamage + extraDamage, detonateTime));
     }
@@ -32,8 +32,10 @@ public class Bomb : MonoBehaviour
     private IEnumerator DetonateCR(int range, int damage, float detonateTime)
     {
         // Wait for detonation
+        Debug.Log(Time.time);
         yield return new WaitForSeconds(detonateTime);
-
+        Debug.Log(detonateTime);
+        Debug.Log(Time.time);
         // Set anim
         anim.SetTrigger(animExplode);
 
@@ -54,7 +56,8 @@ public class Bomb : MonoBehaviour
 
     private void Spawn(Explosion explosion, Vector3 position, int damage, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
     {
-        Explosion newExplode = (GameObject.Instantiate(explosion, position, Quaternion.identity) as GameObject).GetComponent<Explosion>();
+        GameObject go = (GameObject.Instantiate(explosion.gameObject, position, Quaternion.identity) as GameObject);
+        Explosion newExplode = go.GetComponent<Explosion>();
         newExplode.SetType(type, rotation);
         newExplode.Damage = damage;
     }
