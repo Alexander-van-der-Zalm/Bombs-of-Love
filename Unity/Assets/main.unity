@@ -14418,34 +14418,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11404076, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11404076, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: Origin
-      value: 
-      objectReference: {fileID: 2074598851}
-    - target: {fileID: 11404076, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: isStatic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 21276906, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: m_SortingOrder
-      value: 106
-      objectReference: {fileID: 0}
-    - target: {fileID: 11404076, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: depthOffset
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5811648, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: m_Offset.y
-      value: 0.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 5811648, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: m_Radius
-      value: 0.23
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
   m_IsPrefabParent: 0
@@ -22508,10 +22480,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!4 &2074598851 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 409596, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-  m_PrefabInternal: {fileID: 1354464997}
 --- !u!1 &2085698211
 GameObject:
   m_ObjectHideFlags: 0

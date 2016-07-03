@@ -23,15 +23,14 @@ public class MovementPhysics : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
 
-        rb.velocity = new Vector2(InputHorizontal, InputVertical).normalized * Speed * Time.fixedDeltaTime * 100;
+        rb.velocity = new Vector2(InputHorizontal, InputVertical).normalized * Speed * Time.fixedDeltaTime * 50;
         //tr.position += new Vector3(InputHorizontal, InputVertical,0).normalized * Speed * Time.fixedDeltaTime;
 
         if (InputHorizontal == 0 && InputVertical == 0)
             rb.velocity = Vector2.zero;
-
     }
 
     public void SetMovementInput(float hor, float ver)

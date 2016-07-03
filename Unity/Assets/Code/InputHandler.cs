@@ -25,7 +25,7 @@ public class InputHandler : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
         //prevState = state;
         //state = GamePad.GetState(XboxControllerIndex);
