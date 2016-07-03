@@ -12,11 +12,11 @@ public class InputHandler : MonoBehaviour
 
 
 
-    public PlayerIndex XboxControllerIndex;
+    //public PlayerIndex XboxControllerIndex;
 
     private MovementPhysics physics;
-    private GamePadState prevState;
-    private GamePadState state;
+    //private GamePadState prevState;
+    //private GamePadState state;
 
     // Use this for initialization
     void Start ()
@@ -27,8 +27,21 @@ public class InputHandler : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        prevState = state;
-        state = GamePad.GetState(XboxControllerIndex);
-        
+        //prevState = state;
+        //state = GamePad.GetState(XboxControllerIndex);
+
+        float hor = 0;
+        float ver = 0;
+
+        if (Input.GetKey(Up))
+            ver++;
+        if (Input.GetKey(Down))
+            ver--;
+        if (Input.GetKey(Left))
+            hor--;
+        if (Input.GetKey(Right))
+            hor++;
+
+        physics.SetMovementInput(hor, ver);
     }
 }

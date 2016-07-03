@@ -357,21 +357,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11420076, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: Left
-      value: 97
+    - target: {fileID: 5010610, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
+      propertyPath: m_AngularDrag
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11420076, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: Right
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 11420076, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: Up
-      value: 119
-      objectReference: {fileID: 0}
-    - target: {fileID: 11420076, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
-      propertyPath: Down
-      value: 115
+    - target: {fileID: 5010610, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
+      propertyPath: m_Constraints
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
