@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private PlayerAnimationHandler animationHandler;
     private Rigidbody2D rb;
     private Animator anim;
+    private Bomber bomber;
 
     private int animDeadHash = Animator.StringToHash("Dead");
 
@@ -26,6 +27,7 @@ public class Player : MonoBehaviour
         animationHandler = GetComponent<PlayerAnimationHandler>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        bomber = GetComponent<Bomber>();
 
         Respawn(false);
     }
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
             animationHandler.Respawn();
 
         health.Respawn();
+        bomber.OnBomb = false;
 
         //rb.isKinematic = true;
         rb.velocity = Vector2.zero;
