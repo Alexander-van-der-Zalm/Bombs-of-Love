@@ -126,7 +126,7 @@ public class Bomb : MonoBehaviour
     {
         //Debug.Log(gridPos);
 
-        if (gridPos.x < 0 || gridPos.y < 0 || gridPos.x >= grid.GridColumns || gridPos.y >= grid.GridRows)
+        if (gridPos.x < 0 || gridPos.y < 0 || gridPos.x >= grid.GridWidth || gridPos.y >= grid.GridHeight)
         {
             //Debug.Log("Explosion grid location not legal - out of range ");
             return false;
@@ -142,7 +142,7 @@ public class Bomb : MonoBehaviour
         }
 
         // Transform to worldpos
-        Vector3 worldPos = grid.GetGridWorldPos((int)gridPos.x, (int)gridPos.y) + new Vector3(Grid.GridWidth/2,0);
+        Vector3 worldPos = grid.GetGridWorldPos((int)gridPos.x, (int)gridPos.y) + new Vector3(Grid.TileWidth/2,0);
 
         // Spawn object
         Spawn(explosion, worldPos, rotation, type);

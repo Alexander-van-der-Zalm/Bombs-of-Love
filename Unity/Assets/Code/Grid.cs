@@ -20,14 +20,24 @@ public class Grid : MonoBehaviour
 
     public int rows = 6;
     public int columns = 6;
-    public static float GridWidth = 1.0f;
-    public static float GridHeight = 1.0f;
+
+    [Range(0.0f,1.0f)]
+    public float BlockChance = 0.3f;
+
+    public static float TileWidth = 1.0f;
+    public static float TileHeight = 1.0f;
 
     [SerializeField]
-    public GridElement[,] gridArray;
+    public GridElement[,] levelArray;
 
-    public int GridRows { get { return 2 + rows * 2 + 1; } }
-    public int GridColumns { get { return 2 + columns * 2 + 1; } }
+    [SerializeField]
+    private Array2D<GridElement> blockArray;
+
+    public int GridHeight { get { return 2 + rows * 2 + 1; } }
+    public int GridWidth { get { return 2 + columns * 2 + 1; } }
+
+    private GameObject levelContainer;
+    private GameObject blockContainer;
 
     #endregion
 
@@ -47,21 +57,21 @@ public class Grid : MonoBehaviour
         int height = 2 + rows * 2 + 1; // 2 rows of walls + 2 per row + 1 to finish
         int width = 2 + columns * 2 + 1;
 
-        gridArray = new GridElement[width, height];
+        levelArray = new GridElement[width, height];
 
         #region Walls
         // Top
         for(int i = 0; i < width; i++)
-            Create(i, 0, Wall);
+            Create(i, 0, Wall, levelContainer, "levelContainer");
         // Bottom
         for (int i = 0; i < width; i++)
-            Create(i, height-1, Wall);
+            Create(i, height-1, Wall, levelContainer, "levelContainer");
         // Side 1
         for (int i = 1; i < height-1; i++)
-            Create(0, i, Wall);
+            Create(0, i, Wall, levelContainer, "levelContainer");
         // Side 1
         for (int i = 1; i < height - 1; i++)
-            Create(width -1, i, Wall);
+            Create(width -1, i, Wall, levelContainer, "levelContainer");
         #endregion
 
         #region Floors & inner pillars
@@ -69,15 +79,15 @@ public class Grid : MonoBehaviour
         // Full floors
         for (int j = 1; j < height - 1; j++)
             for (int i = 1; i < width -1; i += 2)
-                Create(j, i, Floor);
+                Create(j, i, Floor, levelContainer, "levelContainer");
 
         for (int j = 1; j < height - 1; j++)
             for (int i = 2; i < width - 2; i +=2)
             {
                 if(j%2==0)
-                    Create(j, i, InnerWall);
+                    Create(j, i, InnerWall, levelContainer, "levelContainer");
                 else
-                    Create(j, i, Floor);
+                    Create(j, i, Floor, levelContainer, "levelContainer");
             }
 
 
@@ -86,18 +96,37 @@ public class Grid : MonoBehaviour
         DebugArray();
     }
 
+    public void GenerateBlocks()
+    {
+        // Loop randomly over the grid with a randomChance to fill the floor tiles with a destructable block
+        for(int y = 0; y < GridHeight; y++)
+            for (int x = 0; x < GridWidth; x++)
+            {
+                GridElement el = levelArray[x, y];
+                if (el.Type == GridElement.GridType.Floor 
+                    && UnityEngine.Random.Range(0f, 1.0f) <= BlockChance)
+                {
+                    Create(x, y, Block, blockContainer, "blockContainer");
+                }
+            }
+
+        // Clear near the corners
+
+    }
+
+
     public void RestoreGridArray()
     {
         // Make a new grid
         int height = 2 + rows * 2 + 1; // 2 rows of walls + 2 per row + 1 to finish
         int width = 2 + columns * 2 + 1;
 
-        gridArray = new GridElement[width, height];
+        levelArray = new GridElement[width, height];
 
         List<GridElement> elements = GetComponentsInChildren<GridElement>().ToList();
         foreach (GridElement el in elements)
         {
-            gridArray[el.x, el.y] = el;
+            levelArray[el.x, el.y] = el;
         }
     }
 
@@ -110,20 +139,27 @@ public class Grid : MonoBehaviour
         for (int x = 0; x < width; x++)
             for (int y = 0; y < height; y++)
             {
-                Debug.Log("x: " + x + " y: " + y + " named: " + gridArray[x, y].name);
+                Debug.Log("x: " + x + " y: " + y + " named: " + levelArray[x, y].name);
             }
     }
 
-    private void Create(int x, int y, GameObject obj)
+    private void Create(int x, int y, GameObject obj, GameObject container, string containerName)
     {
-        Vector3 pos = new Vector3(x * GridWidth, y * GridHeight) + transform.position;
+        Vector3 pos = new Vector3(x * TileWidth, y * TileHeight) + transform.position;
         GameObject newObj = GameObject.Instantiate(obj, pos, Quaternion.identity) as GameObject;
-        gridArray[x, y] = newObj.GetComponent<GridElement>();
-        gridArray[x, y].x = x; //dunno if this is needed
-        gridArray[x, y].y = y;
-        gridArray[x, y].ParentGrid = this;
-        newObj.transform.parent = this.transform;
+        levelArray[x, y] = newObj.GetComponent<GridElement>();
+        levelArray[x, y].x = x; //dunno if this is needed
+        levelArray[x, y].y = y;
+        levelArray[x, y].ParentGrid = this;
 
+        if(container == null)
+        {
+            container = new GameObject();
+            container.name = containerName;
+            container.transform.parent = this.transform;
+            container.transform.position = Vector3.zero;
+        }
+        newObj.transform.parent = levelContainer.transform;
     }
 
     #endregion
@@ -147,7 +183,7 @@ public class Grid : MonoBehaviour
     /// </summary>
     public Vector2 GetGridCoordinates(Vector3 worldLocation)
     {
-        return new Vector2(Mathf.Floor((worldLocation.x-this.transform.position.x)/GridWidth), Mathf.Floor((worldLocation.y - this.transform.position.y) / GridHeight));
+        return new Vector2(Mathf.Floor((worldLocation.x-this.transform.position.x)/TileWidth), Mathf.Floor((worldLocation.y - this.transform.position.y) / TileHeight));
     }
 
     //public Vector3 WorldToLeftBottomSnappedGridPos(Vector3 worldLocation)
@@ -172,7 +208,7 @@ public class Grid : MonoBehaviour
 
     public Vector3 GetGridWorldPos(int x, int y, SnapSpot offset = SnapSpot.Left)
     {
-        return gridArray[x, y].transform.position + SnapOffset(offset);
+        return levelArray[x, y].transform.position + SnapOffset(offset);
     }
 
     #region offset
@@ -186,10 +222,10 @@ public class Grid : MonoBehaviour
                 return Vector3.zero;
 
             case SnapSpot.Mid:
-                return new Vector3(GridWidth / 2, 0);
+                return new Vector3(TileWidth / 2, 0);
 
             case SnapSpot.Right:
-                return new Vector3(GridWidth, 0);
+                return new Vector3(TileWidth, 0);
         }
     }
 
@@ -200,17 +236,17 @@ public class Grid : MonoBehaviour
     public GridElement GetGridElementFromWorld(Vector3 worldPos)
     {
         Vector2 p = GetGridCoordinates(worldPos);
-        return gridArray[(int)p.x, (int)p.y];
+        return levelArray[(int)p.x, (int)p.y];
     }
 
     public GridElement GetGridElement(Vector2 gridCoord)
     {
-        return gridArray[(int)gridCoord.x, (int)gridCoord.y];
+        return levelArray[(int)gridCoord.x, (int)gridCoord.y];
     }
 
     public GridElement GetGridElement(int x, int y)
     {
-        return gridArray[x, y];
+        return levelArray[x, y];
     }
 
     #endregion
