@@ -24,7 +24,7 @@ public class Bomb : MonoBehaviour
     private Grid grid = null;
     private bool exploded = false;
 
-    private int bomberID = -1;
+    private Bomber bomber = null;
 
     #endregion
 
@@ -40,15 +40,16 @@ public class Bomb : MonoBehaviour
 
     #region Detonate
 
-    public void Detonate(Grid grid, int spawnerID, int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
+    public void Detonate(Grid grid, Bomber bomber, int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
     {
         // Set variables
         range = BaseRange + extraRange;
         damage = BaseDamage + extraDamage;
         detonateTime = DetonateOverride != -1 ? DetonateOverride : DetonateTime;
         this.grid = grid;
-        bomberID = spawnerID;
+        this.bomber = bomber;
 
+        // refresh some values
         collider.enabled = false;
         exploded = false;
         anim.SetTrigger(animRefresh);
@@ -96,23 +97,24 @@ public class Bomb : MonoBehaviour
         CleanUp();
     }
 
-    private IEnumerator CleanUpCR()
-    {
-        // Wait to destroy Self
-        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-        while (info.shortNameHash != animExplodedShortState)
-        {
-            info = anim.GetCurrentAnimatorStateInfo(0);
-            yield return null;
-        }
+    //private IEnumerator CleanUpCR()
+    //{
+    //    // Wait to destroy Self
+    //    AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+    //    while (info.shortNameHash != animExplodedShortState)
+    //    {
+    //        info = anim.GetCurrentAnimatorStateInfo(0);
+    //        yield return null;
+    //    }
 
-        CleanUp();
-    }
+    //    CleanUp();
+    //}
 
     private void CleanUp()
     {
-        //// Destroy Self
+        //// Destroy Self & make another bomb available
         StopAllCoroutines();
+        bomber.AvailableBombs++;
         GameObject.Destroy(this.gameObject);
     }
 
@@ -160,7 +162,7 @@ public class Bomb : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.GetInstanceID() == bomberID)
+        if (other.gameObject.GetInstanceID() == bomber.gameObject.GetInstanceID())
         {
             collider.enabled = true;
         }
