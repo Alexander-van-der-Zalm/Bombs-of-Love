@@ -19,6 +19,7 @@ GameObject:
   - 114: {fileID: 11404076}
   - 114: {fileID: 11457986}
   - 114: {fileID: 11469626}
+  - 114: {fileID: 11455518}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -141,7 +142,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ba481f6a671644e85c47d142b405d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxAmount: 1
   Amount: 1
+  IsDead: 0
+  Invulnerable: 0
+--- !u!114 &11455518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3847c89f30a14438bcdca047a63e23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MidAlpha: 0.65
+  RespawnInvulnerableTime: 3
+  Pulses: 8
 --- !u!114 &11457986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,6 +182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 254a1b31d06bce048931e430625b1dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Lives: 3
+  spawn: {fileID: 0}
+  RespawnInvulnerableTime: 3
+  InfiniteLives: 0
 --- !u!114 &11469626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,8 +198,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 11452432, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+  AvailableBombs: 2
+  MaxBombs: 2
   BonusRange: 0
   BonusDamage: 0
+  OnBomb: 0
 --- !u!212 &21276906
 SpriteRenderer:
   m_ObjectHideFlags: 1

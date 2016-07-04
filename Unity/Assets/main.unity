@@ -5621,6 +5621,10 @@ Prefab:
       propertyPath: DropBomb
       value: 305
       objectReference: {fileID: 0}
+    - target: {fileID: 11455518, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
+      propertyPath: MidAlpha
+      value: 0.55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
   m_IsPrefabParent: 0
@@ -6146,6 +6150,10 @@ Prefab:
     - target: {fileID: 11460536, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
       propertyPath: InfiniteLives
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21276906, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}
+      propertyPath: m_Color.a
+      value: 0.981
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc57a840a0cb9b041947c230c70c98bf, type: 2}

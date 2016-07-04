@@ -91,7 +91,7 @@ public class Explosion : MonoBehaviour
         Health health = other.GetComponent<Health>();
         if(health != null)
         {
-            health.DoDamge(Damage);
+            health.DoDamage(Damage);
         }
         //Bomb chain
         Bomb bomb = other.GetComponent<Bomb>();

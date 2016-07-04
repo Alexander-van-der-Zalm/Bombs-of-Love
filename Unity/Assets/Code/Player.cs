@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class Player : MonoBehaviour
 
     public int Lives = 3;
     public PlayerSpawner spawn;
+    public float RespawnInvulnerableTime = 3.0f;
     public bool InfiniteLives = false;
 
     private Health health;
@@ -14,6 +16,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private Bomber bomber;
+    private Invulnerability inv;
 
     private int animDeadHash = Animator.StringToHash("Dead");
 
@@ -28,8 +31,9 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         bomber = GetComponent<Bomber>();
+        inv = GetComponent<Invulnerability>();
 
-        Respawn(false);
+        Respawn(false,false);
     }
 
     #endregion
@@ -42,29 +46,39 @@ public class Player : MonoBehaviour
         Lives--;
         animationHandler.Die();
 
+        // Stop old invulner
+        inv.InvulnerableReset();
+        StopAllCoroutines();
+
+        // Respawn if there are still lives left
         if (Lives > 0 || InfiniteLives)
             StartCoroutine(WaitForRespawn());
         //else
-        //    GameOver();
+        //    GameOver(); ??
     }
 
     #endregion
 
     #region Respawn
 
-    private void Respawn(bool anim = true)
+    private void Respawn(bool anim = true, bool invul = true)
     {
         Debug.Log("Respawn");
         if(anim)
             animationHandler.Respawn();
 
+        // Reset health & bomber status
         health.Respawn();
         bomber.OnBomb = false;
 
-        //rb.isKinematic = true;
+        // Place rigidbody on right location
         rb.velocity = Vector2.zero;
         rb.angularVelocity = 0;
         rb.position = spawn.transform.position;
+
+        // Start invulnerability
+        if (invul)
+            inv.StartInvulnerability();
     }
 
     private IEnumerator WaitForRespawn()
