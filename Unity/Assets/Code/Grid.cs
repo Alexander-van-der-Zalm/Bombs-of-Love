@@ -309,6 +309,16 @@ public class Grid : MonoBehaviour
         return blockArray[x, y];
     }
 
+    public bool LegalBombLocation(Vector2 gridCoord)
+    {
+        return LegalBombLocation((int)gridCoord.x, (int)gridCoord.y);
+    }
+
+    public bool LegalBombLocation(int x, int y)
+    {
+        return levelArray[x, y].Type == GridElement.GridType.Floor && (blockArray[x, y] == null || blockArray[x, y].Type != GridElement.GridType.Block);
+    }
+
     #endregion
 
     #endregion
