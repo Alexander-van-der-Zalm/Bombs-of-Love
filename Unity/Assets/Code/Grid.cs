@@ -165,9 +165,9 @@ public class Grid : MonoBehaviour
         return GetGridWorldPos(GetGridCoordinates(worldLocation), offset);
     }
 
-    public Vector3 GetGridWorldPos(Vector2 gridPos, SnapSpot offset = SnapSpot.Left)
+    public Vector3 GetGridWorldPos(Vector2 gridCoord, SnapSpot offset = SnapSpot.Left)
     {
-        return GetGridWorldPos((int)gridPos.x, (int)gridPos.y, offset);// gridArray[(int)gridPos.x, (int)gridPos.y].transform.position + SnapOffset(offset);
+        return GetGridWorldPos((int)gridCoord.x, (int)gridCoord.y, offset);// gridArray[(int)gridPos.x, (int)gridPos.y].transform.position + SnapOffset(offset);
     }
 
     public Vector3 GetGridWorldPos(int x, int y, SnapSpot offset = SnapSpot.Left)
@@ -203,9 +203,9 @@ public class Grid : MonoBehaviour
         return gridArray[(int)p.x, (int)p.y];
     }
 
-    public GridElement GetGridElement(Vector2 gridPos)
+    public GridElement GetGridElement(Vector2 gridCoord)
     {
-        return gridArray[(int)gridPos.x, (int)gridPos.y];
+        return gridArray[(int)gridCoord.x, (int)gridCoord.y];
     }
 
     public GridElement GetGridElement(int x, int y)

@@ -39,7 +39,6 @@ public class Bomber : MonoBehaviour
             gridCoord += new Vector2(0, 1);
             if (grid.GetGridElement(gridCoord).Type != GridElement.GridType.Floor)
                 return;
-
         }
 
         // Check if there is already a bomb
