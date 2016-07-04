@@ -93,7 +93,6 @@ public class Explosion : MonoBehaviour
         {
             health.DoDamge(Damage);
         }
-        Debug.Log(other.name);
         //Bomb chain
         Bomb bomb = other.GetComponent<Bomb>();
         if (bomb != null)

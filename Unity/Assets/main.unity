@@ -7052,6 +7052,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &581713576 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11460536, guid: dc57a840a0cb9b041947c230c70c98bf,
+    type: 2}
+  m_PrefabInternal: {fileID: 1354464997}
+  m_Script: {fileID: 11500000, guid: 254a1b31d06bce048931e430625b1dd1, type: 3}
 --- !u!1 &584964964
 GameObject:
   m_ObjectHideFlags: 0
@@ -16915,6 +16921,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11463652, guid: b10c44217e4ecc24cbbda36fc6e5a49f, type: 2}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 581713576}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b10c44217e4ecc24cbbda36fc6e5a49f, type: 2}
   m_IsPrefabParent: 0

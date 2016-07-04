@@ -7,7 +7,13 @@ public class Health : MonoBehaviour
     public int Amount = 1;
     public bool IsDead = false;
 
-   
+    private Player player;
+
+    void Awake()
+    {
+        player = GetComponent<Player>();
+    }
+
     public void DoDamge(int damage)
     {
         Amount -= damage;
@@ -18,8 +24,9 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
-        Debug.Log("You Dead Son");
         IsDead = true;
+        if (player != null)
+            player.Death();
     }
 
     public void Respawn()

@@ -31,13 +31,13 @@ public class PlayerAnimationHandler : MonoBehaviour
         anim.SetFloat(velocityH_X, v.x);
         anim.SetFloat(velocityH_Y, v.y);
 
-        if(health.IsDead)
-        {
-            Death();
-        }
+        //if(health.IsDead)
+        //{
+        //    Death();
+        //}
     }
 
-    public void Death()
+    public void Die()
     {
         anim.SetTrigger(deathTriggerH);
     }
