@@ -7,11 +7,16 @@ using System.Linq;
 [ExecuteInEditMode]
 public class Grid : MonoBehaviour
 {
-    public enum SnapSpot
+    public enum SnapSpotHor
     {
-        Left,Mid,Right
+        Left, Mid, Right
     }
-    
+
+    public enum SnapSpotVer
+    {
+        Top, Mid, Bottom
+    }
+
     #region Fields
 
     public GameObject Floor;
@@ -212,9 +217,12 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Returns x & y grid coordinate
     /// </summary>
-    public Vector2 GetGridCoordinates(Vector3 worldLocation)
+    public Vector2 GetGridCoordinates(Vector3 worldLocation, SnapSpotVer ver = SnapSpotVer.Bottom, SnapSpotHor hor = SnapSpotHor.Left)
     {
-        return new Vector2(Mathf.Floor((worldLocation.x-this.transform.position.x)/TileWidth), Mathf.Floor((worldLocation.y - this.transform.position.y) / TileHeight));
+        Vector3 targetLoc = worldLocation - this.transform.position;
+        Vector3 offset = SnapOffset(ver) + SnapOffset(hor);
+        targetLoc += offset;
+        return new Vector2(Mathf.Floor((targetLoc.x)/TileWidth), Mathf.Floor((targetLoc.y) / TileHeight));
     }
 
     //public Vector3 WorldToLeftBottomSnappedGridPos(Vector3 worldLocation)
@@ -227,36 +235,52 @@ public class Grid : MonoBehaviour
     //    return GetGridWorldPos(GetGridPos(worldLocation)) + new Vector3(GridWidth/2,0);
     //}
 
-    public Vector3 WorldToSnappedGridPos(Vector3 worldLocation, SnapSpot offset = SnapSpot.Left)
+    public Vector3 WorldToSnappedGridPos(Vector3 worldLocation, SnapSpotHor offset = SnapSpotHor.Left)
     {
         return GetGridWorldPos(GetGridCoordinates(worldLocation), offset);
     }
 
-    public Vector3 GetGridWorldPos(Vector2 gridCoord, SnapSpot offset = SnapSpot.Left)
+    public Vector3 GetGridWorldPos(Vector2 gridCoord, SnapSpotHor offset = SnapSpotHor.Left)
     {
         return GetGridWorldPos((int)gridCoord.x, (int)gridCoord.y, offset);// gridArray[(int)gridPos.x, (int)gridPos.y].transform.position + SnapOffset(offset);
     }
 
-    public Vector3 GetGridWorldPos(int x, int y, SnapSpot offset = SnapSpot.Left)
+    public Vector3 GetGridWorldPos(int x, int y, SnapSpotHor offset = SnapSpotHor.Left)
     {
         return levelArray[x, y].transform.position + SnapOffset(offset);
     }
 
     #region offset
 
-    private Vector3 SnapOffset(SnapSpot offset)
+    private Vector3 SnapOffset(SnapSpotHor offset)
     {
         switch (offset)
         {
             default:
-            case SnapSpot.Left:
+            case SnapSpotHor.Left:
                 return Vector3.zero;
 
-            case SnapSpot.Mid:
+            case SnapSpotHor.Mid:
                 return new Vector3(TileWidth / 2, 0);
 
-            case SnapSpot.Right:
+            case SnapSpotHor.Right:
                 return new Vector3(TileWidth, 0);
+        }
+    }
+
+    private Vector3 SnapOffset(SnapSpotVer offset)
+    {
+        switch (offset)
+        {
+            default:
+            case SnapSpotVer.Bottom:
+                return Vector3.zero;
+
+            case SnapSpotVer.Mid:
+                return new Vector3(0, TileHeight / 2);
+
+            case SnapSpotVer.Top:
+                return new Vector3(0, TileHeight);
         }
     }
 

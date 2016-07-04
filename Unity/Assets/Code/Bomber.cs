@@ -51,7 +51,7 @@ public class Bomber : MonoBehaviour
         //Debug.Log("Drop bomb on loc: " + gridCoord);
 
         // Spawn a bomb on the grid middle location
-        loc = grid.GetGridWorldPos(gridCoord, Grid.SnapSpot.Mid);
+        loc = grid.GetGridWorldPos(gridCoord, Grid.SnapSpotHor.Mid);
         GameObject droppedBomb = GameObject.Instantiate(bomb.gameObject, loc, Quaternion.identity) as GameObject;
 
         // Detonate bombs

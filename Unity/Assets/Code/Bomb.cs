@@ -81,7 +81,7 @@ public class Bomb : MonoBehaviour
 
         // Spawn explosions
         // Center pos
-        Vector2 gridCoord = bombGridCoord;
+        Vector2 gridCoord = grid.GetGridCoordinates(transform.position, Grid.SnapSpotVer.Mid,Grid.SnapSpotHor.Left); //bombGridCoord; grid.GetGridCoordinates(transform.position);
         if (Spawn(ExplosionPrefab, grid, gridCoord, Explosion.ExplosionRotation.Center, Explosion.ExplosionType.Center))
         {
             // Spawn in four directions if initial blas is succesfull
