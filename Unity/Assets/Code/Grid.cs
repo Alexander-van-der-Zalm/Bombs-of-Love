@@ -6,6 +6,11 @@ using System.Linq;
 
 public class Grid : MonoBehaviour
 {
+    public enum SnapSpot
+    {
+        Left,Mid,Right
+    }
+    
     #region Fields
 
     public GameObject Floor;
@@ -137,35 +142,78 @@ public class Grid : MonoBehaviour
 
     #region Get
 
-    public Vector2 GetCurrentGridPos(Vector3 worldLocation)
+    /// <summary>
+    /// Returns x & y grid coordinate
+    /// </summary>
+    public Vector2 GetGridCoordinates(Vector3 worldLocation)
     {
         return new Vector2(Mathf.Floor((worldLocation.x-this.transform.position.x)/GridWidth), Mathf.Floor((worldLocation.y - this.transform.position.y) / GridHeight));
     }
 
-    public Vector3 WorldToLeftBottomSnappedGridPos(Vector3 worldLocation)
+    //public Vector3 WorldToLeftBottomSnappedGridPos(Vector3 worldLocation)
+    //{
+    //    return GetGridWorldPos(GetGridPos(worldLocation));
+    //}
+
+    //public Vector3 WorldToMidBottomSnappedGridPos(Vector3 worldLocation)
+    //{
+    //    return GetGridWorldPos(GetGridPos(worldLocation)) + new Vector3(GridWidth/2,0);
+    //}
+
+    public Vector3 WorldToSnappedGridPos(Vector3 worldLocation, SnapSpot offset = SnapSpot.Left)
     {
-        return GetGridWorldPos(GetCurrentGridPos(worldLocation));
+        return GetGridWorldPos(GetGridCoordinates(worldLocation), offset);
     }
 
-    public Vector3 WorldToMidBottomSnappedGridPos(Vector3 worldLocation)
+    public Vector3 GetGridWorldPos(Vector2 gridPos, SnapSpot offset = SnapSpot.Left)
     {
-        return GetGridWorldPos(GetCurrentGridPos(worldLocation)) + new Vector3(GridWidth/2,0);
+        return GetGridWorldPos((int)gridPos.x, (int)gridPos.y, offset);// gridArray[(int)gridPos.x, (int)gridPos.y].transform.position + SnapOffset(offset);
     }
 
-    public Vector3 GetGridWorldPos(Vector2 gridPos)
+    public Vector3 GetGridWorldPos(int x, int y, SnapSpot offset = SnapSpot.Left)
     {
-        return gridArray[(int)gridPos.x, (int)gridPos.y].transform.position;
+        return gridArray[x, y].transform.position + SnapOffset(offset);
     }
 
-    public Vector3 GetGridWorldPos(int x, int y)
+    #region offset
+
+    private Vector3 SnapOffset(SnapSpot offset)
     {
-        return gridArray[x, y].transform.position;
+        switch (offset)
+        {
+            default:
+            case SnapSpot.Left:
+                return Vector3.zero;
+
+            case SnapSpot.Mid:
+                return new Vector3(GridWidth / 2, 0);
+
+            case SnapSpot.Right:
+                return new Vector3(GridWidth, 0);
+        }
+    }
+
+    #endregion
+
+    #region Element
+
+    public GridElement GetGridElementFromWorld(Vector3 worldPos)
+    {
+        Vector2 p = GetGridCoordinates(worldPos);
+        return gridArray[(int)p.x, (int)p.y];
+    }
+
+    public GridElement GetGridElement(Vector2 gridPos)
+    {
+        return gridArray[(int)gridPos.x, (int)gridPos.y];
     }
 
     public GridElement GetGridElement(int x, int y)
     {
         return gridArray[x, y];
     }
+
+    #endregion
 
     #endregion
 }
