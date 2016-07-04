@@ -41,11 +41,16 @@ public class Explosion : MonoBehaviour
     // Trigger Enter
     public void OnTriggerEnter2D(Collider2D other)
     {
-        
         Health health = other.GetComponent<Health>();
         if(health != null)
         {
             health.DoDamge(Damage);
         }
+        // Bomb chain
+        //Bomb bomb = other.GetComponent<Bomb>();
+        //if(bomb != null)
+        //{
+        //    bomb.Detonate();
+        //}
     }
 }

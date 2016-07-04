@@ -39,7 +39,7 @@ public class Bomb : MonoBehaviour
         // Spawn explosions
         // Center pos
         Vector2 gridPos = grid.GetCurrentGridPos(transform.position);
-        Debug.Log("Initial pos: " + gridPos);
+        //Debug.Log("Initial pos: " + gridPos);
         Spawn(ExplosionPrefab, grid, gridPos, damage, Explosion.ExplosionRotation.Center, Explosion.ExplosionType.Center);
 
         // Spawn in four directions
@@ -55,12 +55,17 @@ public class Bomb : MonoBehaviour
         // Wait to destroy Self
 
         //// Destroy Self
-        //GameObject.Destroy(this);
+        GameObject.Destroy(this);
     }
+
+    //public void InstantDetonate()
+    //{
+
+    //}
 
     private void Spawn(Explosion explosion, Grid grid, Vector2 gridPos, int damage, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
     {
-        Debug.Log(gridPos);
+        //Debug.Log(gridPos);
 
         if (gridPos.x < 0 || gridPos.y < 0 || gridPos.x >= grid.GridColumns || gridPos.y >= grid.GridRows)
         {
@@ -79,8 +84,6 @@ public class Bomb : MonoBehaviour
 
         // Transform to worldpos
         Vector3 worldPos = grid.GetGridWorldPos((int)gridPos.x, (int)gridPos.y) + new Vector3(Grid.GridWidth/2,0);
-
-        
 
         // Spawn object
         Spawn(explosion, worldPos, damage, rotation, type);

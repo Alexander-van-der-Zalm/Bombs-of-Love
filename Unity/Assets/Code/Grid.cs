@@ -139,17 +139,23 @@ public class Grid : MonoBehaviour
 
     public Vector2 GetCurrentGridPos(Vector3 worldLocation)
     {
-        // Calculate
-        int x = (int) Mathf.Floor((worldLocation.x - this.transform.position.x) / GridWidth);
-        int y = (int)Mathf.Floor((worldLocation.y - this.transform.position.y) / GridHeight);
-
         return new Vector2(Mathf.Floor((worldLocation.x-this.transform.position.x)/GridWidth), Mathf.Floor((worldLocation.y - this.transform.position.y) / GridHeight));
     }
 
-    //public static GridElement RayCastElement(Vector3 worldLocation)
-    //{
+    public Vector3 WorldToLeftBottomSnappedGridPos(Vector3 worldLocation)
+    {
+        return GetGridWorldPos(GetCurrentGridPos(worldLocation));
+    }
 
-    //}
+    public Vector3 WorldToMidBottomSnappedGridPos(Vector3 worldLocation)
+    {
+        return GetGridWorldPos(GetCurrentGridPos(worldLocation)) + new Vector3(GridWidth/2,0);
+    }
+
+    public Vector3 GetGridWorldPos(Vector2 gridPos)
+    {
+        return gridArray[(int)gridPos.x, (int)gridPos.y].transform.position;
+    }
 
     public Vector3 GetGridWorldPos(int x, int y)
     {
@@ -158,8 +164,6 @@ public class Grid : MonoBehaviour
 
     public GridElement GetGridElement(int x, int y)
     {
-        //Debug.Log("x: " + x + " y: " + y);
-        //Debug.Log("element: " + gridArray[x, y]);
         return gridArray[x, y];
     }
 

@@ -16,8 +16,9 @@ public class Bomber : MonoBehaviour
 
     public void DropBomb(Grid grid, Vector3 loc)
     {
+        loc = grid.WorldToMidBottomSnappedGridPos(loc);
         GameObject droppedBomb = GameObject.Instantiate(bomb.gameObject, loc, Quaternion.identity) as GameObject;
         Bomb newBomb = droppedBomb.GetComponent<Bomb>();
-        newBomb.Detonate(grid);
+        newBomb.Detonate(grid,BonusRange,BonusDamage);
     }
 }
