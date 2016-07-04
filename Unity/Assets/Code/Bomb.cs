@@ -14,6 +14,8 @@ public class Bomb : MonoBehaviour
 
     private Animator anim;
     private int animExplode = Animator.StringToHash("Explode");
+    private int animRefresh = Animator.StringToHash("Refresh");
+    private int animExplodedShortState = Animator.StringToHash("Exploded");
 
     private int range = 0;
     private int damage = 0;
@@ -24,10 +26,16 @@ public class Bomb : MonoBehaviour
 
     #endregion
 
+    #region Awake
+
     public void Awake()
     {
         anim = GetComponent<Animator>();
     }
+
+    #endregion
+
+    #region Detonate
 
     public void Detonate(Grid grid, int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
     {
@@ -37,6 +45,7 @@ public class Bomb : MonoBehaviour
         detonateTime = DetonateOverride != -1 ? DetonateOverride : DetonateTime;
         this.grid = grid;
         exploded = false;
+        anim.SetTrigger(animRefresh);
 
         // Start Bomb Coroutine
         StartCoroutine(DetonateCR());
@@ -75,12 +84,33 @@ public class Bomb : MonoBehaviour
             if (left) left = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(-i, 0), Explosion.ExplosionRotation.Left, type);
         }
 
-        // Wait to destroy Self
-        StopAllCoroutines();
+        //StartCoroutine(CleanUpCR());
+        CleanUp();
+    }
 
+    private IEnumerator CleanUpCR()
+    {
+        // Wait to destroy Self
+        AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
+        while (info.shortNameHash != animExplodedShortState)
+        {
+            info = anim.GetCurrentAnimatorStateInfo(0);
+            yield return null;
+        }
+
+        CleanUp();
+    }
+
+    private void CleanUp()
+    {
         //// Destroy Self
+        StopAllCoroutines();
         GameObject.Destroy(this.gameObject);
     }
+
+    #endregion
+
+    #region Spawn
 
     private bool Spawn(Explosion explosion, Grid grid, Vector2 gridPos, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
     {
@@ -117,4 +147,6 @@ public class Bomb : MonoBehaviour
         newExplode.SetType(type, rotation);
         newExplode.Damage = damage;
     }
+
+    #endregion
 }
