@@ -7,7 +7,7 @@ public class Bomb : MonoBehaviour
     #region Fields
 
     public Explosion ExplosionPrefab;
-    public BoxCollider2D collider;
+    public Collider2D collider;
 
     public int BaseRange = 3;
     public int BaseDamage = 1;
@@ -26,6 +26,8 @@ public class Bomb : MonoBehaviour
 
     private Bomber bomber = null;
 
+    private Vector2 bombGridCoord = Vector2.zero;
+
     #endregion
 
     #region Awake
@@ -40,9 +42,10 @@ public class Bomb : MonoBehaviour
 
     #region Detonate
 
-    public void Detonate(Grid grid, Bomber bomber, int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
+    public void Detonate(Grid grid, Bomber bomber, Vector2 gridCoord, int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
     {
         // Set variables
+        bombGridCoord = gridCoord;
         range = BaseRange + extraRange;
         damage = BaseDamage + extraDamage;
         detonateTime = DetonateOverride != -1 ? DetonateOverride : DetonateTime;
@@ -78,18 +81,18 @@ public class Bomb : MonoBehaviour
 
         // Spawn explosions
         // Center pos
-        Vector2 gridPos = grid.GetGridCoordinates(transform.position);
-        if (Spawn(ExplosionPrefab, grid, gridPos, Explosion.ExplosionRotation.Center, Explosion.ExplosionType.Center))
+        Vector2 gridCoord = bombGridCoord;
+        if (Spawn(ExplosionPrefab, grid, gridCoord, Explosion.ExplosionRotation.Center, Explosion.ExplosionType.Center))
         {
             // Spawn in four directions if initial blas is succesfull
             bool left = true, right = true, top = true, bottom = true;
             for (int i = 1; i <= range; i++) // If one cannot spawn - stop it from happening
             {
                 Explosion.ExplosionType type = i == range ? Explosion.ExplosionType.End : Explosion.ExplosionType.Mid;
-                if (top) top = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0, i), Explosion.ExplosionRotation.Top, type);
-                if (bottom) bottom = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0, -i), Explosion.ExplosionRotation.Bottom, type);
-                if (right) right = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(i, 0), Explosion.ExplosionRotation.Right, type);
-                if (left) left = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(-i, 0), Explosion.ExplosionRotation.Left, type);
+                if (top) top = Spawn(ExplosionPrefab, grid, gridCoord + new Vector2(0, i), Explosion.ExplosionRotation.Top, type);
+                if (bottom) bottom = Spawn(ExplosionPrefab, grid, gridCoord + new Vector2(0, -i), Explosion.ExplosionRotation.Bottom, type);
+                if (right) right = Spawn(ExplosionPrefab, grid, gridCoord + new Vector2(i, 0), Explosion.ExplosionRotation.Right, type);
+                if (left) left = Spawn(ExplosionPrefab, grid, gridCoord + new Vector2(-i, 0), Explosion.ExplosionRotation.Left, type);
             }
         }
 
@@ -128,7 +131,7 @@ public class Bomb : MonoBehaviour
 
         if (gridPos.x < 0 || gridPos.y < 0 || gridPos.x >= grid.GridWidth || gridPos.y >= grid.GridHeight)
         {
-            //Debug.Log("Explosion grid location not legal - out of range ");
+            //Debug.Log("Explosion grid location not legal - out of range " + gridPos.x + " - " + gridPos.y);
             return false;
         }
         
@@ -137,7 +140,7 @@ public class Bomb : MonoBehaviour
         if(element.Type != GridElement.GridType.Floor)
         {
             // Not legal
-            //Debug.Log("Explosion grid location not legal " + element.Type);
+            //Debug.Log("Explosion grid location not legal " + element.Type + " pos: " + gridPos.x + " - " + gridPos.y);
             return false;
         }
 

@@ -147,7 +147,7 @@ public class Grid : MonoBehaviour
         foreach (GridElement el in elements)
         {
             array[el.x, el.y] = el;
-            Debug.Log(el.name + " x " + el.x + " y " + el.y);
+            //Debug.Log(el.name + " x " + el.x + " y " + el.y);
         }
 
         return array;

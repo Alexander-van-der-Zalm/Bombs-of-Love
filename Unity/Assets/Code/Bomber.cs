@@ -10,6 +10,7 @@ public class Bomber : MonoBehaviour
 
     public int BonusRange = 0;
     public int BonusDamage = 0;
+    public float DetonateOverride = -1.0f;
 
     public bool OnBomb = false;
 
@@ -47,13 +48,15 @@ public class Bomber : MonoBehaviour
         if (OnBomb)
             return;
 
+        //Debug.Log("Drop bomb on loc: " + gridCoord);
+
         // Spawn a bomb on the grid middle location
         loc = grid.GetGridWorldPos(gridCoord, Grid.SnapSpot.Mid);
         GameObject droppedBomb = GameObject.Instantiate(bomb.gameObject, loc, Quaternion.identity) as GameObject;
 
         // Detonate bombs
         Bomb newBomb = droppedBomb.GetComponent<Bomb>();
-        newBomb.Detonate(grid,this, BonusRange,BonusDamage);
+        newBomb.Detonate(grid,this, gridCoord, BonusRange,BonusDamage);
 
         // One less bomb available
         AvailableBombs--;
