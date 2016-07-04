@@ -46,11 +46,12 @@ public class Explosion : MonoBehaviour
         {
             health.DoDamge(Damage);
         }
-        // Bomb chain
-        //Bomb bomb = other.GetComponent<Bomb>();
-        //if(bomb != null)
-        //{
-        //    bomb.Detonate();
-        //}
+        Debug.Log(other.name);
+        //Bomb chain
+        Bomb bomb = other.GetComponent<Bomb>();
+        if (bomb != null)
+        {
+            bomb.DetonateNow();
+        }
     }
 }

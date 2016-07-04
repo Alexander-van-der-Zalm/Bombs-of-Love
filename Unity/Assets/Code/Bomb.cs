@@ -4,7 +4,8 @@ using System;
 
 public class Bomb : MonoBehaviour
 {
-    //public GameObject Explosion;
+    #region Fields
+
     public Explosion ExplosionPrefab;
 
     public int BaseRange = 3;
@@ -13,9 +14,15 @@ public class Bomb : MonoBehaviour
 
     private Animator anim;
     private int animExplode = Animator.StringToHash("Explode");
-    
+
+    private int range = 0;
+    private int damage = 0;
+    private float detonateTime = 0;
+    private Grid grid = null;
+    private bool exploded = false;
 
 
+    #endregion
 
     public void Awake()
     {
@@ -24,48 +31,58 @@ public class Bomb : MonoBehaviour
 
     public void Detonate(Grid grid, int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
     {
-        float detonateTime = DetonateOverride != -1 ? DetonateOverride : DetonateTime;
+        // Set variables
+        range = BaseRange + extraRange;
+        damage = BaseDamage + extraDamage;
+        detonateTime = DetonateOverride != -1 ? DetonateOverride : DetonateTime;
+        this.grid = grid;
+        exploded = false;
 
-        StartCoroutine(DetonateCR(grid, BaseRange + extraDamage, BaseDamage + extraDamage, detonateTime));
+        // Start Bomb Coroutine
+        StartCoroutine(DetonateCR());
     }
 
-    private IEnumerator DetonateCR(Grid grid, int range, int damage, float detonateTime)
+    private IEnumerator DetonateCR()
     {
         // Wait for detonation
         yield return new WaitForSeconds(detonateTime);
+
+        if (exploded)
+            yield break;
+
+        // Trigger spawning of explosion objects & cleanup
+        DetonateNow();
+    }
+
+    public void DetonateNow()
+    {
         // Set anim
         anim.SetTrigger(animExplode);
-        
+
         // Spawn explosions
         // Center pos
         Vector2 gridPos = grid.GetCurrentGridPos(transform.position);
-        //Debug.Log("Initial pos: " + gridPos);
-        Spawn(ExplosionPrefab, grid, gridPos, damage, Explosion.ExplosionRotation.Center, Explosion.ExplosionType.Center);
-
-        bool left = true, right = true, top = true, bottom = true;
+        Spawn(ExplosionPrefab, grid, gridPos, Explosion.ExplosionRotation.Center, Explosion.ExplosionType.Center);
 
         // Spawn in four directions
-        for(int i = 1; i <= range; i++) // If one cannot spawn - stop it from happening
+        bool left = true, right = true, top = true, bottom = true;
+        for (int i = 1; i <= range; i++) // If one cannot spawn - stop it from happening
         {
             Explosion.ExplosionType type = i == range ? Explosion.ExplosionType.End : Explosion.ExplosionType.Mid;
-            if (top) top        = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0,  i), damage, Explosion.ExplosionRotation.Top, type);
-            if (bottom) bottom  = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0, -i), damage, Explosion.ExplosionRotation.Bottom, type);
-            if (right) right    = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(i,  0), damage, Explosion.ExplosionRotation.Right, type);
-            if (left) left      = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(-i, 0), damage, Explosion.ExplosionRotation.Left, type);
+            if (top) top = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0, i), Explosion.ExplosionRotation.Top, type);
+            if (bottom) bottom = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0, -i), Explosion.ExplosionRotation.Bottom, type);
+            if (right) right = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(i, 0), Explosion.ExplosionRotation.Right, type);
+            if (left) left = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(-i, 0), Explosion.ExplosionRotation.Left, type);
         }
 
         // Wait to destroy Self
+        StopAllCoroutines();
 
         //// Destroy Self
-        GameObject.Destroy(this);
+        GameObject.Destroy(this.gameObject);
     }
 
-    //public void InstantDetonate()
-    //{
-
-    //}
-
-    private bool Spawn(Explosion explosion, Grid grid, Vector2 gridPos, int damage, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
+    private bool Spawn(Explosion explosion, Grid grid, Vector2 gridPos, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
     {
         //Debug.Log(gridPos);
 
@@ -88,11 +105,11 @@ public class Bomb : MonoBehaviour
         Vector3 worldPos = grid.GetGridWorldPos((int)gridPos.x, (int)gridPos.y) + new Vector3(Grid.GridWidth/2,0);
 
         // Spawn object
-        Spawn(explosion, worldPos, damage, rotation, type);
+        Spawn(explosion, worldPos, rotation, type);
         return true;
     }
 
-    private void Spawn(Explosion explosion, Vector3 position, int damage, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
+    private void Spawn(Explosion explosion, Vector3 position, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
     {
         // Spawn Object
         GameObject go = (GameObject.Instantiate(explosion.gameObject, position, Quaternion.identity) as GameObject);
