@@ -78,19 +78,19 @@ public class Bomb : MonoBehaviour
         // Spawn explosions
         // Center pos
         Vector2 gridPos = grid.GetCurrentGridPos(transform.position);
-        Spawn(ExplosionPrefab, grid, gridPos, Explosion.ExplosionRotation.Center, Explosion.ExplosionType.Center);
-
-        // Spawn in four directions
-        bool left = true, right = true, top = true, bottom = true;
-        for (int i = 1; i <= range; i++) // If one cannot spawn - stop it from happening
+        if (Spawn(ExplosionPrefab, grid, gridPos, Explosion.ExplosionRotation.Center, Explosion.ExplosionType.Center))
         {
-            Explosion.ExplosionType type = i == range ? Explosion.ExplosionType.End : Explosion.ExplosionType.Mid;
-            if (top) top = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0, i), Explosion.ExplosionRotation.Top, type);
-            if (bottom) bottom = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0, -i), Explosion.ExplosionRotation.Bottom, type);
-            if (right) right = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(i, 0), Explosion.ExplosionRotation.Right, type);
-            if (left) left = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(-i, 0), Explosion.ExplosionRotation.Left, type);
+            // Spawn in four directions if initial blas is succesfull
+            bool left = true, right = true, top = true, bottom = true;
+            for (int i = 1; i <= range; i++) // If one cannot spawn - stop it from happening
+            {
+                Explosion.ExplosionType type = i == range ? Explosion.ExplosionType.End : Explosion.ExplosionType.Mid;
+                if (top) top = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0, i), Explosion.ExplosionRotation.Top, type);
+                if (bottom) bottom = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0, -i), Explosion.ExplosionRotation.Bottom, type);
+                if (right) right = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(i, 0), Explosion.ExplosionRotation.Right, type);
+                if (left) left = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(-i, 0), Explosion.ExplosionRotation.Left, type);
+            }
         }
-        
 
         //StartCoroutine(CleanUpCR());
         CleanUp();
@@ -126,7 +126,7 @@ public class Bomb : MonoBehaviour
 
         if (gridPos.x < 0 || gridPos.y < 0 || gridPos.x >= grid.GridColumns || gridPos.y >= grid.GridRows)
         {
-            Debug.Log("Explosion grid location not legal - out of range ");
+            //Debug.Log("Explosion grid location not legal - out of range ");
             return false;
         }
         
@@ -135,7 +135,7 @@ public class Bomb : MonoBehaviour
         if(element.Type != GridElement.GridType.Floor)
         {
             // Not legal
-            Debug.Log("Explosion grid location not legal " + element.Type);
+            //Debug.Log("Explosion grid location not legal " + element.Type);
             return false;
         }
 
@@ -160,10 +160,8 @@ public class Bomb : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("exit ");
         if (other.gameObject.GetInstanceID() == bomberID)
         {
-            Debug.Log("IEXI T BOMBERMA" );
             collider.enabled = true;
         }
     }
