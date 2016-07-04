@@ -129,11 +129,14 @@ public class Grid : MonoBehaviour
 
     public void RestoreReferences()
     {
-        levelContainer = transform.GetChild(0).gameObject;
-        blockContainer = transform.GetChild(1).gameObject;
+        if (transform.childCount >= 1)
+            levelContainer = transform.GetChild(0).gameObject;
+        if (transform.childCount > 1)
+            blockContainer = transform.GetChild(1).gameObject;
 
         levelArray = RestoreArray(levelArray, levelContainer);
-        blockArray = RestoreArray(blockArray, blockContainer);
+        if(blockContainer != null)
+            blockArray = RestoreArray(blockArray, blockContainer);
     }
 
     private Array2D<GridElement> RestoreArray(Array2D<GridElement> array, GameObject container)
