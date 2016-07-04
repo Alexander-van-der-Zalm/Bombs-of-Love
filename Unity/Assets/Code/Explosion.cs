@@ -21,14 +21,21 @@ public class Explosion : MonoBehaviour
     private int animRotation = Animator.StringToHash("Rotation");
     private int animType = Animator.StringToHash("Type");
 
+    private Animator anim;
 
+    public void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
     public void SetType(ExplosionType type, ExplosionRotation rotation)
     {
-        Debug.Log("I am type: " + type + " rot " + rotation);
+        //Debug.Log("I am type: " + type + " rot " + rotation);
         Type = type;
         Rotation = rotation;
         // Set anim
+        anim.SetInteger(animRotation,(int)Rotation);
+        anim.SetInteger(animType, (int)Type);
     }
 
     // Trigger Enter

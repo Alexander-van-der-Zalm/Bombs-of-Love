@@ -21,6 +21,9 @@ public class Grid : MonoBehaviour
     [SerializeField]
     public GridElement[,] gridArray;
 
+    public int GridRows { get { return 2 + rows * 2 + 1; } }
+    public int GridColumns { get { return 2 + columns * 2 + 1; } }
+
     #endregion
 
     public void Start()
@@ -108,7 +111,7 @@ public class Grid : MonoBehaviour
 
     private void Create(int x, int y, GameObject obj)
     {
-        Vector3 pos = new Vector3(x * GridWidth, y * GridHeight);
+        Vector3 pos = new Vector3(x * GridWidth, y * GridHeight) + transform.position;
         GameObject newObj = GameObject.Instantiate(obj, pos, Quaternion.identity) as GameObject;
         gridArray[x, y] = newObj.GetComponent<GridElement>();
         gridArray[x, y].x = x; //dunno if this is needed
@@ -137,6 +140,9 @@ public class Grid : MonoBehaviour
     public Vector2 GetCurrentGridPos(Vector3 worldLocation)
     {
         // Calculate
+        int x = (int) Mathf.Floor((worldLocation.x - this.transform.position.x) / GridWidth);
+        int y = (int)Mathf.Floor((worldLocation.y - this.transform.position.y) / GridHeight);
+
         return new Vector2(Mathf.Floor((worldLocation.x-this.transform.position.x)/GridWidth), Mathf.Floor((worldLocation.y - this.transform.position.y) / GridHeight));
     }
 
@@ -152,8 +158,8 @@ public class Grid : MonoBehaviour
 
     public GridElement GetGridElement(int x, int y)
     {
-        Debug.Log("x: " + x + " y: " + y);
-        Debug.Log("element: " + gridArray[x, y]);
+        //Debug.Log("x: " + x + " y: " + y);
+        //Debug.Log("element: " + gridArray[x, y]);
         return gridArray[x, y];
     }
 

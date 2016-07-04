@@ -32,26 +32,24 @@ public class Bomb : MonoBehaviour
     private IEnumerator DetonateCR(Grid grid, int range, int damage, float detonateTime)
     {
         // Wait for detonation
-        Debug.Log(Time.time);
         yield return new WaitForSeconds(detonateTime);
-        Debug.Log(detonateTime);
-        Debug.Log(Time.time);
         // Set anim
         anim.SetTrigger(animExplode);
         
         // Spawn explosions
         // Center pos
         Vector2 gridPos = grid.GetCurrentGridPos(transform.position);
+        Debug.Log("Initial pos: " + gridPos);
         Spawn(ExplosionPrefab, grid, gridPos, damage, Explosion.ExplosionRotation.Center, Explosion.ExplosionType.Center);
 
         // Spawn in four directions
-        for(int i = 0; i < range; i++)
+        for(int i = 1; i < range; i++)
         {
             Explosion.ExplosionType type = i == range - 1 ? Explosion.ExplosionType.End : Explosion.ExplosionType.Mid;
-            Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0,i), damage, Explosion.ExplosionRotation.Right, type);
-            Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0,-i), damage, Explosion.ExplosionRotation.Left, type);
-            Spawn(ExplosionPrefab, grid, gridPos + new Vector2(i,0), damage, Explosion.ExplosionRotation.Top, type);
-            Spawn(ExplosionPrefab, grid, gridPos + new Vector2(-i,0), damage, Explosion.ExplosionRotation.Bottom, type);
+            Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0,i), damage, Explosion.ExplosionRotation.Top, type);
+            Spawn(ExplosionPrefab, grid, gridPos + new Vector2(0,-i), damage, Explosion.ExplosionRotation.Bottom, type);
+            Spawn(ExplosionPrefab, grid, gridPos + new Vector2(i,0), damage, Explosion.ExplosionRotation.Right, type);
+            Spawn(ExplosionPrefab, grid, gridPos + new Vector2(-i,0), damage, Explosion.ExplosionRotation.Left, type);
         }
 
         // Wait to destroy Self
@@ -62,6 +60,14 @@ public class Bomb : MonoBehaviour
 
     private void Spawn(Explosion explosion, Grid grid, Vector2 gridPos, int damage, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
     {
+        Debug.Log(gridPos);
+
+        if (gridPos.x < 0 || gridPos.y < 0 || gridPos.x >= grid.GridColumns || gridPos.y >= grid.GridRows)
+        {
+            Debug.Log("Explosion grid location not legal - out of range ");
+            return;
+        }
+        
         // Check if Legal - Take into account grid types
         GridElement element = grid.GetGridElement((int)gridPos.x, (int)gridPos.y);
         if(element.Type != GridElement.GridType.Floor)
@@ -72,8 +78,10 @@ public class Bomb : MonoBehaviour
         }
 
         // Transform to worldpos
-        Vector3 worldPos = grid.GetGridWorldPos((int)gridPos.x, (int)gridPos.y);
+        Vector3 worldPos = grid.GetGridWorldPos((int)gridPos.x, (int)gridPos.y) + new Vector3(Grid.GridWidth/2,0);
+
         
+
         // Spawn object
         Spawn(explosion, worldPos, damage, rotation, type);
     }
@@ -85,5 +93,6 @@ public class Bomb : MonoBehaviour
         Explosion newExplode = go.GetComponent<Explosion>();
         newExplode.SetType(type, rotation);
         newExplode.Damage = damage;
+        //Debug.Log("spawned pos " + go.transform.position); 
     }
 }
