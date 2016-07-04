@@ -134,13 +134,23 @@ public class Bomb : MonoBehaviour
             //Debug.Log("Explosion grid location not legal - out of range " + gridPos.x + " - " + gridPos.y);
             return false;
         }
-        
+
         // Check if Legal - Take into account grid types
+        // Not a floor
         GridElement element = grid.GetGridElement((int)gridPos.x, (int)gridPos.y);
-        if(element.Type != GridElement.GridType.Floor)
+        if (element.Type != GridElement.GridType.Floor)
         {
             // Not legal
             //Debug.Log("Explosion grid location not legal " + element.Type + " pos: " + gridPos.x + " - " + gridPos.y);
+            return false;
+        }
+
+        // A block
+        GridElement block = grid.GetBlockElement((int)gridPos.x, (int)gridPos.y);
+        if (block != null && block.Type == GridElement.GridType.Block)
+        {
+            // Trigger block destroy
+            Debug.Log("Destroy Block plz");
             return false;
         }
 

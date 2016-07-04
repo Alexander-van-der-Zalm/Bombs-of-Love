@@ -304,6 +304,11 @@ public class Grid : MonoBehaviour
         return levelArray[x, y];
     }
 
+    public GridElement GetBlockElement(int x, int y)
+    {
+        return blockArray[x, y];
+    }
+
     #endregion
 
     #endregion
