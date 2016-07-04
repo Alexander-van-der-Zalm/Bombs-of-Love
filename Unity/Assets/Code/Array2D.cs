@@ -15,14 +15,15 @@ public class Array2D<T>
 
     [SerializeField]
     private T[] array1D;
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private int width = 0;
-    [SerializeField]
+    [SerializeField, HideInInspector]
     private int height = 0;
 
     public Array2D(int width, int height)
     {
         this.width = width;
         this.height = height;
+        array1D = new T[width * height];
     }
 }

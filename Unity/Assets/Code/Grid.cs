@@ -28,10 +28,10 @@ public class Grid : MonoBehaviour
     public static float TileHeight = 1.0f;
 
     [SerializeField]
-    public GridElement[,] levelArray;
+    public Array2D<GridElement> levelArray;
 
     [SerializeField]
-    private Array2D<GridElement> blockArray;
+    public Array2D<GridElement> blockArray;
 
     public int GridHeight { get { return 2 + rows * 2 + 1; } }
     public int GridWidth { get { return 2 + columns * 2 + 1; } }
@@ -51,27 +51,28 @@ public class Grid : MonoBehaviour
     public void GenerateGrid()
     {
         // Destroy old grid
-        DeleteGrid();
+        DeleteChildren(this.transform);
 
         // Make a new grid
         int height = 2 + rows * 2 + 1; // 2 rows of walls + 2 per row + 1 to finish
         int width = 2 + columns * 2 + 1;
 
-        levelArray = new GridElement[width, height];
+        levelArray = new Array2D<GridElement>(width, height);
+        levelContainer = newContainer("levelContainer");
 
         #region Walls
         // Top
-        for(int i = 0; i < width; i++)
-            Create(i, 0, Wall, levelContainer, "levelContainer");
+        for (int i = 0; i < width; i++)
+            Create(i, 0, Wall, levelArray, levelContainer, "levelContainer");
         // Bottom
         for (int i = 0; i < width; i++)
-            Create(i, height-1, Wall, levelContainer, "levelContainer");
+            Create(i, height-1, Wall, levelArray, levelContainer, "levelContainer");
         // Side 1
         for (int i = 1; i < height-1; i++)
-            Create(0, i, Wall, levelContainer, "levelContainer");
+            Create(0, i, Wall, levelArray, levelContainer, "levelContainer");
         // Side 1
         for (int i = 1; i < height - 1; i++)
-            Create(width -1, i, Wall, levelContainer, "levelContainer");
+            Create(width -1, i, Wall, levelArray, levelContainer, "levelContainer");
         #endregion
 
         #region Floors & inner pillars
@@ -79,34 +80,39 @@ public class Grid : MonoBehaviour
         // Full floors
         for (int j = 1; j < height - 1; j++)
             for (int i = 1; i < width -1; i += 2)
-                Create(j, i, Floor, levelContainer, "levelContainer");
+                Create(j, i, Floor, levelArray, levelContainer, "levelContainer");
 
         for (int j = 1; j < height - 1; j++)
             for (int i = 2; i < width - 2; i +=2)
             {
                 if(j%2==0)
-                    Create(j, i, InnerWall, levelContainer, "levelContainer");
+                    Create(j, i, InnerWall, levelArray, levelContainer, "levelContainer");
                 else
-                    Create(j, i, Floor, levelContainer, "levelContainer");
+                    Create(j, i, Floor, levelArray, levelContainer, "levelContainer");
             }
 
-
         #endregion
-
-        DebugArray();
     }
 
     public void GenerateBlocks()
     {
+        blockArray = new Array2D<GridElement>(GridWidth, GridHeight);
+
+        // Destroy old blocks
+        if (blockContainer != null)
+            DeleteChildren(blockContainer.transform);
+        else
+            blockContainer = newContainer("blockContainer");
+
         // Loop randomly over the grid with a randomChance to fill the floor tiles with a destructable block
-        for(int y = 0; y < GridHeight; y++)
+        for (int y = 0; y < GridHeight; y++)
             for (int x = 0; x < GridWidth; x++)
             {
                 GridElement el = levelArray[x, y];
                 if (el.Type == GridElement.GridType.Floor 
                     && UnityEngine.Random.Range(0f, 1.0f) <= BlockChance)
                 {
-                    Create(x, y, Block, blockContainer, "blockContainer");
+                    Create(x, y, Block, blockArray, blockContainer, "blockContainer");
                 }
             }
 
@@ -121,7 +127,7 @@ public class Grid : MonoBehaviour
         int height = 2 + rows * 2 + 1; // 2 rows of walls + 2 per row + 1 to finish
         int width = 2 + columns * 2 + 1;
 
-        levelArray = new GridElement[width, height];
+        levelArray = new Array2D<GridElement>(width, height);
 
         List<GridElement> elements = GetComponentsInChildren<GridElement>().ToList();
         foreach (GridElement el in elements)
@@ -143,35 +149,44 @@ public class Grid : MonoBehaviour
             }
     }
 
-    private void Create(int x, int y, GameObject obj, GameObject container, string containerName)
+    private void Create(int x, int y, GameObject obj, Array2D<GridElement> array, GameObject container, string containerName)
     {
         Vector3 pos = new Vector3(x * TileWidth, y * TileHeight) + transform.position;
         GameObject newObj = GameObject.Instantiate(obj, pos, Quaternion.identity) as GameObject;
-        levelArray[x, y] = newObj.GetComponent<GridElement>();
-        levelArray[x, y].x = x; //dunno if this is needed
-        levelArray[x, y].y = y;
-        levelArray[x, y].ParentGrid = this;
+        array[x, y] = newObj.GetComponent<GridElement>();
+        array[x, y].x = x; //dunno if this is needed
+        array[x, y].y = y;
+        array[x, y].ParentGrid = this;
 
-        if(container == null)
+        if (container == null)
         {
-            container = new GameObject();
-            container.name = containerName;
-            container.transform.parent = this.transform;
-            container.transform.position = Vector3.zero;
+            container = newContainer(containerName);
         }
-        newObj.transform.parent = levelContainer.transform;
+        newObj.transform.parent = container.transform;
+    }
+
+    private GameObject newContainer(string name)
+    {
+        GameObject container = new GameObject();
+        container.name = name;
+        container.transform.parent = this.transform;
+        container.transform.position = Vector3.zero;
+        return container;
     }
 
     #endregion
 
     #region Delete
 
-    public void DeleteGrid()
+    public void DeleteChildren(Transform tr)
     {
-        int childCount = transform.childCount;
+        if (tr == null)
+            return;
+
+        int childCount = tr.childCount;
         
         for(int i = 0; i < childCount; i++)
-            GameObject.DestroyImmediate(transform.GetChild(0).gameObject);
+            GameObject.DestroyImmediate(tr.GetChild(0).gameObject);
     }
 
     #endregion
