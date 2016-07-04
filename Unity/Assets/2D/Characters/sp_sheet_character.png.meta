@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2add6908e9371584ba6de532625676fc
-timeCreated: 1467577106
+timeCreated: 1467619415
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -50,6 +50,10 @@ TextureImporter:
     21300086: sp_explosion_mid_0
     21300088: sp_explosion_mid_3
     21300090: sp_explosion_mid_2
+    21300092: sp_explosion_topend_3
+    21300094: sp_explosion_topend_2
+    21300096: sp_explosion_topend_0
+    21300098: sp_explosion_topend_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -596,6 +600,50 @@ TextureImporter:
         serializedVersion: 2
         x: 180
         y: 209
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_topend_3
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 255
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_topend_2
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 255
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_topend_0
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 254
+        width: 20
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_explosion_topend_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 254
         width: 20
         height: 20
       alignment: 7
