@@ -30,7 +30,7 @@ public class InputHandler : MonoBehaviour
         grid = GameObject.FindObjectOfType<Grid>();
     }
 	
-	// Update is called once per frame
+	// Physics
 	void FixedUpdate ()
     {
         //prevState = state;
@@ -48,9 +48,13 @@ public class InputHandler : MonoBehaviour
         if (Input.GetKey(Right))
             hor++;
 
+        physics.SetMovementInput(hor, ver);
+    }
+
+    // Actions
+    void Update()
+    {
         if (Input.GetKeyUp(DropBomb))
             bomber.DropBomb(grid, transform.position);
-
-        physics.SetMovementInput(hor, ver);
     }
 }
