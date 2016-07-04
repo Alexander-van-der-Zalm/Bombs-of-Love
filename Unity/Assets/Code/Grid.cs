@@ -109,7 +109,7 @@ public class Grid : MonoBehaviour
     public void GenerateBlocks()
     {
         blockArray = new Array2D<GridElement>(GridWidth, GridHeight);
-
+        
         // Destroy old blocks
         if (blockContainer != null)
             DeleteChildren(blockContainer.transform);
@@ -129,7 +129,30 @@ public class Grid : MonoBehaviour
             }
 
         // Clear near the corners
+        DestroyFromGridWithNeighbors(blockArray, 1, 1); // Bot Left
+        DestroyFromGridWithNeighbors(blockArray, 1, GridHeight -2);
+        DestroyFromGridWithNeighbors(blockArray, GridWidth - 2, GridHeight - 2); 
+        DestroyFromGridWithNeighbors(blockArray, GridWidth - 2, 1); 
+    }
 
+    private void DestroyFromGridWithNeighbors(Array2D<GridElement> array, int x, int y)
+    {
+        DestroyFromGridIfExisting(array, x, y);
+        DestroyFromGridIfExisting(array, x + 1, y);
+        DestroyFromGridIfExisting(array, x - 1, y);
+        DestroyFromGridIfExisting(array, x, y + 1);
+        DestroyFromGridIfExisting(array, x, y - 1);
+    }
+
+    private void DestroyFromGridIfExisting(Array2D<GridElement> array, int x, int y)
+    {
+        if (x < 0 || y < 0 || x >= array.Width || y >= array.Height)
+            return;
+
+        if (array[x, y] == null)
+            return;
+
+        GameObject.DestroyImmediate(array[x, y].gameObject);
     }
 
     public void RestoreReferences()
