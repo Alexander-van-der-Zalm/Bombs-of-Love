@@ -16,6 +16,6 @@ public class ShakeEditor :Editor
     {
         base.OnInspectorGUI();
         if (GUILayout.Button("ShakeMyBooty"))
-            shake.StartShake();
+            shake.StartShake(shake.recipe,shake.transform);
     }
 }
