@@ -7,6 +7,7 @@ public class Bomb : MonoBehaviour
     #region Fields
 
     public Explosion ExplosionPrefab;
+    public BoxCollider2D collider;
 
     public int BaseRange = 3;
     public int BaseDamage = 1;
@@ -23,6 +24,7 @@ public class Bomb : MonoBehaviour
     private Grid grid = null;
     private bool exploded = false;
 
+    private int bomberID = -1;
 
     #endregion
 
@@ -31,19 +33,23 @@ public class Bomb : MonoBehaviour
     public void Awake()
     {
         anim = GetComponent<Animator>();
+        collider.enabled = true;
     }
 
     #endregion
 
     #region Detonate
 
-    public void Detonate(Grid grid, int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
+    public void Detonate(Grid grid, int spawnerID, int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
     {
         // Set variables
         range = BaseRange + extraRange;
         damage = BaseDamage + extraDamage;
         detonateTime = DetonateOverride != -1 ? DetonateOverride : DetonateTime;
         this.grid = grid;
+        bomberID = spawnerID;
+
+        collider.enabled = false;
         exploded = false;
         anim.SetTrigger(animRefresh);
 
@@ -67,6 +73,7 @@ public class Bomb : MonoBehaviour
     {
         // Set anim
         anim.SetTrigger(animExplode);
+        exploded = true;
 
         // Spawn explosions
         // Center pos
@@ -83,6 +90,7 @@ public class Bomb : MonoBehaviour
             if (right) right = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(i, 0), Explosion.ExplosionRotation.Right, type);
             if (left) left = Spawn(ExplosionPrefab, grid, gridPos + new Vector2(-i, 0), Explosion.ExplosionRotation.Left, type);
         }
+        
 
         //StartCoroutine(CleanUpCR());
         CleanUp();
@@ -149,4 +157,14 @@ public class Bomb : MonoBehaviour
     }
 
     #endregion
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        Debug.Log("exit ");
+        if (other.gameObject.GetInstanceID() == bomberID)
+        {
+            Debug.Log("IEXI T BOMBERMA" );
+            collider.enabled = true;
+        }
+    }
 }
