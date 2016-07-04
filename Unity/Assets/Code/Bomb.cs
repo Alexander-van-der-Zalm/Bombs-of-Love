@@ -160,11 +160,26 @@ public class Bomb : MonoBehaviour
 
     #endregion
 
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Bomber colBomber = other.GetComponent<Bomber>();
+        if(colBomber != null)
+        {
+            colBomber.OnBomb = true;
+        }
+    }
+
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.GetInstanceID() == bomber.gameObject.GetInstanceID())
         {
             collider.enabled = true;
+        }
+
+        Bomber colBomber = other.GetComponent<Bomber>();
+        if (colBomber != null)
+        {
+            colBomber.OnBomb = false;
         }
     }
 }

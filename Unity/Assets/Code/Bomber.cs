@@ -11,6 +11,8 @@ public class Bomber : MonoBehaviour
     public int BonusRange = 0;
     public int BonusDamage = 0;
 
+    public bool OnBomb = false;
+
     public void ResetBombs()
     {
         AvailableBombs = MaxBombs;
@@ -42,6 +44,8 @@ public class Bomber : MonoBehaviour
         }
 
         // Check if there is already a bomb
+        if (OnBomb)
+            return;
 
         // Spawn a bomb on the grid middle location
         loc = grid.GetGridWorldPos(gridCoord, Grid.SnapSpot.Mid);
