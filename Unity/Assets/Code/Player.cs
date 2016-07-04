@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 
     public int Lives = 3;
     public PlayerSpawner spawn;
+    public bool InfiniteLives = false;
 
     private Health health;
     private PlayerAnimationHandler animationHandler;
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
         Lives--;
         animationHandler.Die();
 
-        if (Lives > 0)
+        if (Lives > 0 || InfiniteLives)
             StartCoroutine(WaitForRespawn());
         //else
         //    GameOver();
