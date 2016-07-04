@@ -79,6 +79,8 @@ public class Bomb : MonoBehaviour
         anim.SetTrigger(animExplode);
         exploded = true;
 
+        Camera.main.GetComponent<Shake>().StartShake();
+
         // Spawn explosions
         // Center pos
         Vector2 gridCoord = grid.GetGridCoordinates(transform.position, Grid.SnapSpotVer.Mid,Grid.SnapSpotHor.Left); //bombGridCoord; grid.GetGridCoordinates(transform.position);
