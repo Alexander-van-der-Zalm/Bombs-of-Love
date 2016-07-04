@@ -152,8 +152,8 @@ public class Bomb : MonoBehaviour
         // Spawn Object
         GameObject go = (GameObject.Instantiate(explosion.gameObject, position, Quaternion.identity) as GameObject);
         Explosion newExplode = go.GetComponent<Explosion>();
-        newExplode.SetType(type, rotation);
-        newExplode.Damage = damage;
+        
+        newExplode.Initiate(type, rotation, damage);
     }
 
     #endregion

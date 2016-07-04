@@ -11,8 +11,8 @@ GameObject:
   - 212: {fileID: 21258098}
   - 61: {fileID: 6158708}
   - 95: {fileID: 9525370}
-  - 114: {fileID: 11415956}
   - 114: {fileID: 11491866}
+  - 114: {fileID: 11415956}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
