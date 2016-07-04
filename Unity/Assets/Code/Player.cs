@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
         animationHandler = GetComponent<PlayerAnimationHandler>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        Respawn(false);
     }
 
     #endregion
@@ -48,10 +50,12 @@ public class Player : MonoBehaviour
 
     #region Respawn
 
-    private void Respawn()
+    private void Respawn(bool anim = true)
     {
         Debug.Log("Respawn");
-        animationHandler.Respawn();
+        if(anim)
+            animationHandler.Respawn();
+
         health.Respawn();
 
         //rb.isKinematic = true;

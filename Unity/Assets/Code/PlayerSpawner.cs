@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerSpawner : MonoBehaviour
 {
+    //public bool IsSafe
+    
     //public Player Player;
 	
     //void Awake()
