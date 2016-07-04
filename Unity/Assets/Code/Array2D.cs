@@ -15,9 +15,9 @@ public class Array2D<T>
 
     [SerializeField]
     private T[] array1D;
-    [SerializeField, HideInInspector]
+    [SerializeField]
     private int width = 0;
-    [SerializeField, HideInInspector]
+    [SerializeField]
     private int height = 0;
 
     public Array2D(int width, int height)

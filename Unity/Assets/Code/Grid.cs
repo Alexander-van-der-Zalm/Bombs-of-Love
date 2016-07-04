@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
+[ExecuteInEditMode]
 public class Grid : MonoBehaviour
 {
     public enum SnapSpot
@@ -36,15 +37,21 @@ public class Grid : MonoBehaviour
     public int GridHeight { get { return 2 + rows * 2 + 1; } }
     public int GridWidth { get { return 2 + columns * 2 + 1; } }
 
+    [SerializeField]
     private GameObject levelContainer;
+    [SerializeField]
     private GameObject blockContainer;
 
     #endregion
 
-    public void Start()
+    #region Awake
+
+    public void Awake()
     {
-        RestoreGridArray();
+        RestoreReferences();
     }
+
+    #endregion
 
     #region Generate
 
@@ -120,20 +127,27 @@ public class Grid : MonoBehaviour
 
     }
 
-
-    public void RestoreGridArray()
+    public void RestoreReferences()
     {
-        // Make a new grid
-        int height = 2 + rows * 2 + 1; // 2 rows of walls + 2 per row + 1 to finish
-        int width = 2 + columns * 2 + 1;
+        levelContainer = transform.GetChild(0).gameObject;
+        blockContainer = transform.GetChild(1).gameObject;
 
-        levelArray = new Array2D<GridElement>(width, height);
+        levelArray = RestoreArray(levelArray, levelContainer);
+        blockArray = RestoreArray(blockArray, blockContainer);
+    }
 
-        List<GridElement> elements = GetComponentsInChildren<GridElement>().ToList();
+    private Array2D<GridElement> RestoreArray(Array2D<GridElement> array, GameObject container)
+    {
+        array = new Array2D<GridElement>(GridWidth, GridHeight);
+
+        List<GridElement> elements = container.transform.GetComponentsInChildren<GridElement>().ToList();
         foreach (GridElement el in elements)
         {
-            levelArray[el.x, el.y] = el;
+            array[el.x, el.y] = el;
+            Debug.Log(el.name + " x " + el.x + " y " + el.y);
         }
+
+        return array;
     }
 
     public void DebugArray()
@@ -162,14 +176,13 @@ public class Grid : MonoBehaviour
         {
             container = newContainer(containerName);
         }
-        newObj.transform.parent = container.transform;
+        newObj.transform.SetParent(container.transform);
     }
 
     private GameObject newContainer(string name)
     {
-        GameObject container = new GameObject();
-        container.name = name;
-        container.transform.parent = this.transform;
+        GameObject container = new GameObject(name);
+        container.transform.SetParent(this.transform);
         container.transform.position = Vector3.zero;
         return container;
     }

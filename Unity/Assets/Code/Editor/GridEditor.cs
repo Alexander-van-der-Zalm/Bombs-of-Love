@@ -24,6 +24,6 @@ public class GridEditor :Editor
         if (GUILayout.Button("Debug Grid"))
             grid.DebugArray();
         if (GUILayout.Button("Restore Grid"))
-            grid.RestoreGridArray();
+            grid.RestoreReferences();
     }
 }
