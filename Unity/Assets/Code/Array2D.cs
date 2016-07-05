@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 [System.Serializable]
 public class Array2D<T>
@@ -26,4 +28,9 @@ public class Array2D<T>
         this.height = height;
         array1D = new T[width * height];
     }
+
+    //public void Remove(T element)
+    //{
+    //    array1D.Fi
+    //}
 }

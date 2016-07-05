@@ -47,6 +47,12 @@ public class Grid : MonoBehaviour
     [SerializeField]
     private GameObject blockContainer;
 
+    internal void RemoveMe(GridElement el)
+    {
+        if (levelArray[el.x, el.y] == el) levelArray[el.x, el.y] = null;
+        if (blockArray[el.x, el.y] == el) blockArray[el.x, el.y] = null;
+    }
+
     #endregion
 
     #region Awake
@@ -108,8 +114,12 @@ public class Grid : MonoBehaviour
 
     public void GenerateBlocks()
     {
+        RestoreReferences();
+
         blockArray = new Array2D<GridElement>(GridWidth, GridHeight);
-        
+
+        Block.GetComponent<Destructable>().RegisteredGrid = this;
+
         // Destroy old blocks
         if (blockContainer != null)
             DeleteChildren(blockContainer.transform);

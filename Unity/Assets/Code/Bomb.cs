@@ -153,6 +153,8 @@ public class Bomb : MonoBehaviour
         {
             // Trigger block destroy
             Debug.Log("Destroy Block plz");
+            block.GetComponent<Destructable>().StartDestruction();
+            
             return false;
         }
 
