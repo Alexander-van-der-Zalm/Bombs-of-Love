@@ -20,7 +20,7 @@ public class GridEditor :Editor
         if (GUILayout.Button("Generate Blocks"))
             grid.GenerateBlocks();
         if (GUILayout.Button("Destroy Grid"))
-            grid.DeleteChildren(grid.transform);
+            Grid.DeleteChildren(grid.transform);
         if (GUILayout.Button("Debug Grid"))
             grid.DebugArray();
         if (GUILayout.Button("Restore Grid"))

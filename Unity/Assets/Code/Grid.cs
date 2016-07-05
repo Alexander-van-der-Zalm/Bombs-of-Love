@@ -242,7 +242,7 @@ public class Grid : MonoBehaviour
 
     #region Delete
 
-    public void DeleteChildren(Transform tr)
+    public static void DeleteChildren(Transform tr)
     {
         if (tr == null)
             return;

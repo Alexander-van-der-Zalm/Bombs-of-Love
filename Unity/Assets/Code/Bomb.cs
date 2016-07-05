@@ -154,7 +154,7 @@ public class Bomb : MonoBehaviour
         if (block != null && block.Type == GridElement.GridType.Block)
         {
             // Trigger block destroy
-            Debug.Log("Destroy Block plz");
+            //Debug.Log("Destroy Block plz");
             block.GetComponent<Destructable>().StartDestruction();
             // Trigger explosion
             Spawn(explosion, worldPos, rotation, type);

@@ -282,8 +282,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22422248}
+  - 114: {fileID: 11408282}
   m_Layer: 0
-  m_Name: PlayerUI
+  m_Name: UI_Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -376,6 +377,24 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11408282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbdf01b45b784df43805674b3954b472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Lifes: {fileID: 11476098}
+  BombContainer: {fileID: 117104}
+  FullBomb: {fileID: 21300002, guid: 2add6908e9371584ba6de532625676fc, type: 3}
+  EmptyBomb: {fileID: 21300102, guid: 2add6908e9371584ba6de532625676fc, type: 3}
+  BombRange: {fileID: 11404254}
+  Speed: {fileID: 11444614}
 --- !u!114 &11409984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1027,10 +1046,10 @@ RectTransform:
   - {fileID: 22448662}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -177.20001, y: 0}
-  m_SizeDelta: {x: 184.6, y: 108.2}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -622.8, y: -333.3}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &22422488
 RectTransform:
