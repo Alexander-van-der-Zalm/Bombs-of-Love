@@ -15,7 +15,7 @@ public class MovementPhysics : MonoBehaviour
 
     public float InputHor { get { return InputHorizontal; } }
     public float InputVer { get { return InputVertical; } }
-
+    public Vector2 Input { get { return new Vector2(InputHorizontal, InputVertical); } }
     #endregion
 
     // Use this for initialization

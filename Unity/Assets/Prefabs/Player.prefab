@@ -70,7 +70,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0.31}
   serializedVersion: 2
-  m_Radius: 0.23
+  m_Radius: 0.4
 --- !u!95 &9542674
 Animator:
   serializedVersion: 3
@@ -202,6 +202,7 @@ MonoBehaviour:
   MaxBombs: 2
   BonusRange: 0
   BonusDamage: 0
+  DetonateOverride: -1
   OnBomb: 0
 --- !u!212 &21276906
 SpriteRenderer:

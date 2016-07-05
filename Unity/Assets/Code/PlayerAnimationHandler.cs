@@ -30,19 +30,16 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         Vector2 v = rb.velocity.normalized;
         float speed = rb.velocity.magnitude / physics.Speed;
+        
         anim.SetFloat(velocityH, speed);
-        anim.SetFloat(velocityH_X, v.x);
-        anim.SetFloat(velocityH_Y, v.y);
+        anim.SetFloat(velocityH_X, physics.InputHor);
+        anim.SetFloat(velocityH_Y, physics.InputVer);
 
         if (physics.InputHor !=0 || physics.InputVer != 0)
         {
             anim.SetFloat(facingH_X, physics.InputHor);
             anim.SetFloat(facingH_Y, physics.InputVer);
         }
-        //if(health.IsDead)
-        //{
-        //    Death();
-        //}
     }
 
     public void Die()
