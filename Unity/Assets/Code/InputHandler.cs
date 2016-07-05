@@ -19,6 +19,7 @@ public class InputHandler : MonoBehaviour
     private MovementPhysics physics;
     private Bomber bomber;
     private Grid grid;
+    private Health health;
     //private GamePadState prevState;
     //private GamePadState state;
 
@@ -28,6 +29,7 @@ public class InputHandler : MonoBehaviour
         physics = GetComponent<MovementPhysics>();
         bomber = GetComponent<Bomber>();
         grid = GameObject.FindObjectOfType<Grid>();
+        health = GetComponent<Health>();
     }
 	
 	// Physics
@@ -39,15 +41,17 @@ public class InputHandler : MonoBehaviour
         float hor = 0;
         float ver = 0;
 
-        if (Input.GetKey(Up))
-            ver++;
-        if (Input.GetKey(Down))
-            ver--;
-        if (Input.GetKey(Left))
-            hor--;
-        if (Input.GetKey(Right))
-            hor++;
-
+        if (!health.IsDead)
+        {
+            if (Input.GetKey(Up))
+                ver++;
+            if (Input.GetKey(Down))
+                ver--;
+            if (Input.GetKey(Left))
+                hor--;
+            if (Input.GetKey(Right))
+                hor++;
+        }
         physics.SetMovementInput(hor, ver);
     }
 
