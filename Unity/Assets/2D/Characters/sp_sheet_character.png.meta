@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2add6908e9371584ba6de532625676fc
-timeCreated: 1467619415
+timeCreated: 1467718541
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -54,6 +54,7 @@ TextureImporter:
     21300094: sp_explosion_topend_2
     21300096: sp_explosion_topend_0
     21300098: sp_explosion_topend_1
+    21300100: sp_UI_life
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -648,6 +649,17 @@ TextureImporter:
         height: 20
       alignment: 7
       pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_life
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 437
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []
