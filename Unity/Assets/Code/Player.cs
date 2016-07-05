@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
 
     public int Lives = 3;
     public PlayerSpawner spawn;
-    public float RespawnInvulnerableTime = 3.0f;
     public bool InfiniteLives = false;
 
     private Health health;
