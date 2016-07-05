@@ -8,11 +8,11 @@ public class Explosion : MonoBehaviour
 
     public enum ExplosionRotation
     {
-        Top,Bottom,Left,Right,Center
+        Top, Bottom, Left, Right, Center
     }
     public enum ExplosionType
     {
-        End,Mid,Center
+        End, Mid, Center
     }
 
     #endregion
@@ -49,7 +49,7 @@ public class Explosion : MonoBehaviour
         Damage = damage;
 
         // Set anim
-        anim.SetInteger(animRotation,(int)Rotation);
+        anim.SetInteger(animRotation, (int)Rotation);
         anim.SetInteger(animType, (int)Type);
 
         // Start CleanupCR
@@ -88,8 +88,9 @@ public class Explosion : MonoBehaviour
     // Trigger Enter
     public void OnTriggerEnter2D(Collider2D other)
     {
+        //Debug.Log("OntriggerEnter");
         Health health = other.GetComponent<Health>();
-        if(health != null)
+        if (health != null)
         {
             health.DoDamage(Damage);
         }
@@ -100,6 +101,11 @@ public class Explosion : MonoBehaviour
             bomb.DetonateNow();
         }
     }
+
+    //public void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    //Debug.Log("OnTriggerStay2D");
+    //}
 
     #endregion
 
