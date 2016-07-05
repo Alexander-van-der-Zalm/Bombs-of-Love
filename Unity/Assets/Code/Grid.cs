@@ -145,6 +145,12 @@ public class Grid : MonoBehaviour
         DestroyFromGridWithNeighbors(blockArray, GridWidth - 2, 1); 
     }
 
+    public void CreateBlock(Vector3 worldpos)
+    {
+        Vector2 g = GetGridCoordinates(worldpos);
+        Create((int)g.x, (int)g.y, Block, blockArray, blockContainer, "blockContainer");
+    }
+
     private void DestroyFromGridWithNeighbors(Array2D<GridElement> array, int x, int y)
     {
         DestroyFromGridIfExisting(array, x, y);
@@ -164,6 +170,8 @@ public class Grid : MonoBehaviour
 
         GameObject.DestroyImmediate(array[x, y].gameObject);
     }
+
+    #region Restor Reference
 
     public void RestoreReferences()
     {
@@ -203,6 +211,8 @@ public class Grid : MonoBehaviour
                 Debug.Log("x: " + x + " y: " + y + " named: " + levelArray[x, y].name);
             }
     }
+
+    #endregion
 
     private void Create(int x, int y, GameObject obj, Array2D<GridElement> array, GameObject container, string containerName)
     {

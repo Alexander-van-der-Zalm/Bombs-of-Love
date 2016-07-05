@@ -34,14 +34,14 @@ public class ClickCaster : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             // Create bomb
-            Debug.Log("Create bomb by click " + mousePos);
+            //Debug.Log("Create bomb by click " + mousePos);
             bomber.DropBomb(grid, mousePos);
         }
 
         if (Input.GetMouseButtonUp(1))
         {
             // Create wall
-
+            grid.CreateBlock(mousePos);
         }
     }
 }
