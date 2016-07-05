@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11485646}
   - 114: {fileID: 11461136}
   - 95: {fileID: 9575928}
+  - 114: {fileID: 11460480}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -64,6 +65,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11460480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa5e646d73312443baa3e57c0713649, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RegisteredGrid: {fileID: 0}
 --- !u!114 &11461136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Origin: {fileID: 453576}
   OrigLoc: 0
-  depthOffset: 0
+  depthOffset: 10
   isStatic: 1
 --- !u!114 &11485646
 MonoBehaviour:

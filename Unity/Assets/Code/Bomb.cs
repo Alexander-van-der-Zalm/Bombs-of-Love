@@ -147,24 +147,26 @@ public class Bomb : MonoBehaviour
             return false;
         }
 
-        // A block
+        // Transform to worldpos
+        Vector3 worldPos = grid.GetGridWorldPos((int)gridPos.x, (int)gridPos.y) + new Vector3(Grid.TileWidth / 2, 0);
+
+        // A block is a special case where it cannot continue afterwards, but still spawn an explosion
         GridElement block = grid.GetBlockElement((int)gridPos.x, (int)gridPos.y);
         if (block != null && block.Type == GridElement.GridType.Block)
         {
             // Trigger block destroy
             Debug.Log("Destroy Block plz");
             block.GetComponent<Destructable>().StartDestruction();
-            
+            // Trigger explosion
+            Spawn(explosion, worldPos, rotation, type);
             return false;
         }
-
-        // Transform to worldpos
-        Vector3 worldPos = grid.GetGridWorldPos((int)gridPos.x, (int)gridPos.y) + new Vector3(Grid.TileWidth/2,0);
 
         // Spawn object
         Spawn(explosion, worldPos, rotation, type);
         return true;
     }
+
 
     private void Spawn(Explosion explosion, Vector3 position, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
     {
