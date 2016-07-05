@@ -8,8 +8,17 @@ public class PowerUpDropper : MonoBehaviour
 {
     public List<PowerUpDropChance> PowerUps;
 
+    private bool isApplicationQuitting = false;
+
+    public void OnApplicationQuit()
+    {
+        isApplicationQuitting = true;
+    }
+
     public void OnDisable()
     {
+        if (isApplicationQuitting) return;
+
         List<PowerUpDropChance> dropped = new List<PowerUpDropChance>();
         foreach (PowerUpDropChance potentialDrop in PowerUps)
         {
@@ -27,7 +36,7 @@ public class PowerUpDropper : MonoBehaviour
     private void CreatePowerUp(PowerUpDropChance pow)
     {
         Debug.Log("Dropped:" + pow.PowerUp.name);
-        GameObject.Instantiate(pow.PowerUp.gameObject, transform.position + new Vector3(Grid.TileWidth*0.5f, 0.15f), Quaternion.identity);
+        GameObject.Instantiate(pow.PowerUp.gameObject, transform.position + new Vector3(Grid.TileWidth * 0.5f, 0.15f), Quaternion.identity);
     }
 }
 
