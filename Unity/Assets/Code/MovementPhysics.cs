@@ -13,6 +13,9 @@ public class MovementPhysics : MonoBehaviour
     private float InputHorizontal = 0;
     private float InputVertical = 0;
 
+    public float InputHor { get { return InputHorizontal; } }
+    public float InputVer { get { return InputVertical; } }
+
     #endregion
 
     // Use this for initialization

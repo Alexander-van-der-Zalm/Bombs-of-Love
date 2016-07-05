@@ -8,6 +8,8 @@ public class PlayerAnimationHandler : MonoBehaviour
     private int velocityH = Animator.StringToHash("Velocity");
     private int velocityH_X = Animator.StringToHash("Velocity_X");
     private int velocityH_Y = Animator.StringToHash("Velocity_Y");
+    private int facingH_X = Animator.StringToHash("LastFacing_X");
+    private int facingH_Y = Animator.StringToHash("LastFacing_Y");
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -27,10 +29,16 @@ public class PlayerAnimationHandler : MonoBehaviour
 	void Update ()
     {
         Vector2 v = rb.velocity.normalized;
-        anim.SetFloat(velocityH, rb.velocity.magnitude/physics.Speed);
+        float speed = rb.velocity.magnitude / physics.Speed;
+        anim.SetFloat(velocityH, speed);
         anim.SetFloat(velocityH_X, v.x);
         anim.SetFloat(velocityH_Y, v.y);
 
+        if (physics.InputHor !=0 || physics.InputVer != 0)
+        {
+            anim.SetFloat(facingH_X, physics.InputHor);
+            anim.SetFloat(facingH_Y, physics.InputVer);
+        }
         //if(health.IsDead)
         //{
         //    Death();
