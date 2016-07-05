@@ -7,7 +7,8 @@ public class PowerUp : MonoBehaviour
     public enum PowerUpTypes
     {
         BombRange,
-        MoreBombs
+        MoreBombs,
+        ExtraLife
     }
 
     public PowerUpTypes Type;
