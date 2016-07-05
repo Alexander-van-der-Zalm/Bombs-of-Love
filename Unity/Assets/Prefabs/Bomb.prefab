@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplosionPrefab: {fileID: 11491866, guid: f1c1c8171712cca41b1bc8ef63252c79, type: 2}
   collider: {fileID: 5861126}
-  BaseRange: 3
+  BaseRange: 1
   BaseDamage: 1
   DetonateTime: 3
 --- !u!212 &21214102

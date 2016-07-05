@@ -15,6 +15,7 @@ GameObject:
   - 95: {fileID: 9575928}
   - 114: {fileID: 11460480}
   - 58: {fileID: 5802294}
+  - 114: {fileID: 11443396}
   m_Layer: 0
   m_Name: Block
   m_TagString: Untagged
@@ -80,6 +81,30 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11443396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbaa474d7c850ef478c9ce4de939477b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerUps:
+  - PowerUp: {fileID: 11445600, guid: fa4268676903d124f8fa9c802f30b423, type: 2}
+    DropChance: 0.1
+    PriorityOnDrop: 1
+    DropPriority: 0
+  - PowerUp: {fileID: 11444252, guid: 9f300f8147b618a4ba3cf87d94b30d90, type: 2}
+    DropChance: 0.1
+    PriorityOnDrop: 1
+    DropPriority: 0
+  - PowerUp: {fileID: 11468416, guid: 507a06433d73dc247a940a95bf473e5f, type: 2}
+    DropChance: 0.05
+    PriorityOnDrop: 3
+    DropPriority: 0
 --- !u!114 &11460480
 MonoBehaviour:
   m_ObjectHideFlags: 1

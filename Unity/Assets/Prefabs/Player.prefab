@@ -184,7 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Lives: 3
   spawn: {fileID: 0}
-  RespawnInvulnerableTime: 3
   InfiniteLives: 0
 --- !u!114 &11469626
 MonoBehaviour:
@@ -198,8 +197,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 11452432, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
-  AvailableBombs: 2
-  MaxBombs: 2
+  AvailableBombs: 1
+  MaxBombs: 1
   BonusRange: 0
   BonusDamage: 0
   DetonateOverride: -1
