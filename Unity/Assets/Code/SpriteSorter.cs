@@ -17,7 +17,7 @@ public class SpriteSorter : MonoBehaviour
     public int depthOffset = 0;
     public bool isStatic = true;
 
-    private SpriteRenderer renderer;
+    private SpriteRenderer[] renderers;
     // private Sprite spr;
 
 
@@ -41,7 +41,10 @@ public class SpriteSorter : MonoBehaviour
 
     public void Sort()
     {
-        renderer.sortingOrder = (int)(-100 * (Origin.position.y + Offset(OrigLoc))) + depthOffset;
+        foreach (SpriteRenderer rnd in renderers)
+        {
+            rnd.sortingOrder = (int)(-100 * (Origin.position.y + Offset(rnd,OrigLoc))) + depthOffset;
+        }
     }
 
     private void Init()
@@ -49,13 +52,13 @@ public class SpriteSorter : MonoBehaviour
         if (Origin == null)
             Origin = this.transform;
 
-        renderer = GetComponent<SpriteRenderer>();
+        renderers = GetComponentsInChildren<SpriteRenderer>(true);
         init = true;
 
         Sort();
     }
 
-    private float Offset(OriginLocation loc)
+    private float Offset(SpriteRenderer renderer, OriginLocation loc)
     {
         switch(loc)
         {
