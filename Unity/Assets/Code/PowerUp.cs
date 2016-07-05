@@ -21,13 +21,17 @@ public class PowerUp : MonoBehaviour
 
         PowerUpPlayer(other.gameObject);
 
+        // Update UI
+
         CleanUp();
     }
 
-    private void PowerUpPlayer(GameObject player)
+    private void PowerUpPlayer(GameObject playerObj)
     {
-        Bomber bomber = player.GetComponent<Bomber>();
-        switch(Type)
+        Bomber bomber = playerObj.GetComponent<Bomber>();
+        Health health = playerObj.GetComponent<Health>();
+        Player player = playerObj.GetComponent<Player>();
+        switch (Type)
         {
             default:
             case PowerUpTypes.BombRange:
@@ -36,6 +40,9 @@ public class PowerUp : MonoBehaviour
             case PowerUpTypes.MoreBombs:
                 bomber.AvailableBombs++;
                 bomber.MaxBombs++;
+                return;
+            case PowerUpTypes.ExtraLife:
+                player.Lives++;
                 return;
         }
     }
