@@ -129,8 +129,7 @@ public class Bomb : MonoBehaviour
 
     private bool Spawn(Explosion explosion, Grid grid, Vector2 gridPos, Explosion.ExplosionRotation rotation, Explosion.ExplosionType type)
     {
-        //Debug.Log(gridPos);
-
+        // Out of grid range
         if (gridPos.x < 0 || gridPos.y < 0 || gridPos.x >= grid.GridWidth || gridPos.y >= grid.GridHeight)
         {
             //Debug.Log("Explosion grid location not legal - out of range " + gridPos.x + " - " + gridPos.y);

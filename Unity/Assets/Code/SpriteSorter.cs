@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 
 [ExecuteInEditMode]
-public class DepthSorter : MonoBehaviour
+public class SpriteSorter : MonoBehaviour
 {
     public enum OriginLocation
     {
@@ -39,7 +39,7 @@ public class DepthSorter : MonoBehaviour
             Sort();
 	}
 
-    private void Sort()
+    public void Sort()
     {
         renderer.sortingOrder = (int)(-100 * (Origin.position.y + Offset(OrigLoc))) + depthOffset;
     }
