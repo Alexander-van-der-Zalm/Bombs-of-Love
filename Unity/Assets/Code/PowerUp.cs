@@ -12,6 +12,7 @@ public class PowerUp : MonoBehaviour
     }
 
     public PowerUpTypes Type;
+    public AudioClip PickUpSound;
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,7 +22,7 @@ public class PowerUp : MonoBehaviour
 
         PowerUpPlayer(other.gameObject);
 
-        // Update UI
+        AudioSource.PlayClipAtPoint(PickUpSound, transform.position);
 
         CleanUp();
     }
@@ -31,6 +32,7 @@ public class PowerUp : MonoBehaviour
         Bomber bomber = playerObj.GetComponent<Bomber>();
         Health health = playerObj.GetComponent<Health>();
         Player player = playerObj.GetComponent<Player>();
+
         switch (Type)
         {
             default:

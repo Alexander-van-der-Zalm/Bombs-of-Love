@@ -13,6 +13,9 @@ public class Bomb : MonoBehaviour
     public int BaseDamage = 1;
     public float DetonateTime = 3.0f;
 
+    public AudioClip BombFX = null;
+
+    private AudioSource source;
     private Animator anim;
     private int animExplode = Animator.StringToHash("Explode");
     private int animRefresh = Animator.StringToHash("Refresh");
@@ -34,6 +37,7 @@ public class Bomb : MonoBehaviour
 
     public void Awake()
     {
+        source = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         collider.enabled = true;
     }
@@ -78,6 +82,7 @@ public class Bomb : MonoBehaviour
         // Set anim
         anim.SetTrigger(animExplode);
         exploded = true;
+        AudioSource.PlayClipAtPoint(BombFX, transform.position);
 
         Camera.main.GetComponent<Shake>().StartShake();
 
@@ -98,22 +103,8 @@ public class Bomb : MonoBehaviour
             }
         }
 
-        //StartCoroutine(CleanUpCR());
         CleanUp();
     }
-
-    //private IEnumerator CleanUpCR()
-    //{
-    //    // Wait to destroy Self
-    //    AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
-    //    while (info.shortNameHash != animExplodedShortState)
-    //    {
-    //        info = anim.GetCurrentAnimatorStateInfo(0);
-    //        yield return null;
-    //    }
-
-    //    CleanUp();
-    //}
 
     private void CleanUp()
     {
@@ -172,11 +163,15 @@ public class Bomb : MonoBehaviour
         // Spawn Object
         GameObject go = (GameObject.Instantiate(explosion.gameObject, position, Quaternion.identity) as GameObject);
         Explosion newExplode = go.GetComponent<Explosion>();
+
         
+
         newExplode.Initiate(type, rotation, damage);
     }
 
     #endregion
+
+    #region Triggers
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -200,4 +195,7 @@ public class Bomb : MonoBehaviour
             colBomber.OnBomb = false;
         }
     }
+
+    #endregion
+
 }

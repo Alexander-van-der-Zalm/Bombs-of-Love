@@ -7,6 +7,8 @@ using System.Linq;
 [ExecuteInEditMode]
 public class Grid : MonoBehaviour
 {
+    #region Enums 
+
     public enum SnapSpotHor
     {
         Left, Mid, Right
@@ -16,6 +18,8 @@ public class Grid : MonoBehaviour
     {
         Top, Mid, Bottom
     }
+
+    #endregion
 
     #region Fields
 
@@ -171,7 +175,9 @@ public class Grid : MonoBehaviour
         GameObject.DestroyImmediate(array[x, y].gameObject);
     }
 
-    #region Restor Reference
+    #endregion
+
+    #region Restore Reference
 
     public void RestoreReferences()
     {
@@ -214,6 +220,8 @@ public class Grid : MonoBehaviour
 
     #endregion
 
+    #region Create & Destroy
+
     private void Create(int x, int y, GameObject obj, Array2D<GridElement> array, GameObject container, string containerName)
     {
         Vector3 pos = new Vector3(x * TileWidth, y * TileHeight) + transform.position;
@@ -237,10 +245,6 @@ public class Grid : MonoBehaviour
         container.transform.position = Vector3.zero;
         return container;
     }
-
-    #endregion
-
-    #region Delete
 
     public static void DeleteChildren(Transform tr)
     {

@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RegisteredGrid: {fileID: 0}
+  DestructionSoundFX: {fileID: 8300000, guid: 9e6b0086a1f35be4296a1e3f95a23c03, type: 3}
+  MaxRandomAudioOffset: 0.15
 --- !u!114 &11461136
 MonoBehaviour:
   m_ObjectHideFlags: 1
