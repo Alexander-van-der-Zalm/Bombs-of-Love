@@ -15,7 +15,7 @@ public class PowerUpDropper : MonoBehaviour
         isApplicationQuitting = true;
     }
 
-    public void OnDisable()
+    public void OnDestroy()
     {
         if (isApplicationQuitting) return;
 
