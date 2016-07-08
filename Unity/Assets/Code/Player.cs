@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
         Lives--;
         animationHandler.Die();
         AudioSource.PlayClipAtPoint(OnDeathFX, transform.position);
-
+        
         // Stop old invulner
         inv.InvulnerableReset();
         StopAllCoroutines();

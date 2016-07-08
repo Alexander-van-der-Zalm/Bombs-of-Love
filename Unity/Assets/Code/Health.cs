@@ -15,9 +15,10 @@ public class Health : MonoBehaviour
         player = GetComponent<Player>();
     }
 
+    // ########## if working with hp remember owner of flame ##############
     public void DoDamage(int damage)
     {
-        if (Invulnerable)
+        if (Invulnerable || IsDead)
             return;
 
         Amount -= damage;
