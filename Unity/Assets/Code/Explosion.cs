@@ -10,7 +10,7 @@ public class Explosion : MonoBehaviour
     {
         Top, Bottom, Left, Right, Center
     }
-    public enum ExplosionType
+    public enum ExplosionSection
     {
         End, Mid, Center
     }
@@ -20,7 +20,7 @@ public class Explosion : MonoBehaviour
     #region Fields
 
     public ExplosionRotation Rotation;
-    public ExplosionType Type;
+    public ExplosionSection Section;
 
     public int Damage;
 
@@ -28,6 +28,9 @@ public class Explosion : MonoBehaviour
     private int animRotation = Animator.StringToHash("Rotation");
     private int animType = Animator.StringToHash("Type");
     private int animFinishedState = Animator.StringToHash("Finished");
+
+    private Bomb parentBomb;
+
     #endregion
 
     #region Awake
@@ -41,16 +44,17 @@ public class Explosion : MonoBehaviour
 
     #region Start
 
-    public void Initiate(ExplosionType type, ExplosionRotation rotation, int damage)
+    public void Initiate(ExplosionSection type, ExplosionRotation rotation, int damage, Bomb parentBomb = null)
     {
         //Debug.Log("I am type: " + type + " rot " + rotation);
-        Type = type;
+        Section = type;
         Rotation = rotation;
         Damage = damage;
+        this.parentBomb = parentBomb;
 
         // Set anim
         anim.SetInteger(animRotation, (int)Rotation);
-        anim.SetInteger(animType, (int)Type);
+        anim.SetInteger(animType, (int)Section);
 
         // Start CleanupCR
         StartCoroutine(CleanupCR());
@@ -62,7 +66,7 @@ public class Explosion : MonoBehaviour
 
         AnimatorStateInfo info = anim.GetCurrentAnimatorStateInfo(0);
 
-        // Wait to go out of finished
+        // Wait to go out of finished anim state (in case it is still in finished)
         while (info.shortNameHash == animFinishedState)
         {
             info = anim.GetCurrentAnimatorStateInfo(0);
@@ -70,7 +74,7 @@ public class Explosion : MonoBehaviour
             yield return null;
         }
 
-        // Then wait to go back to finished
+        // Then wait to go back to finished anim state
         while (info.shortNameHash != animFinishedState)
         {
             info = anim.GetCurrentAnimatorStateInfo(0);
@@ -102,17 +106,14 @@ public class Explosion : MonoBehaviour
         }
     }
 
-    //public void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    //Debug.Log("OnTriggerStay2D");
-    //}
-
     #endregion
 
     #region Cleanup
 
     public void CleanUp()
     {
+        if (parentBomb != null)
+            parentBomb.UnRegisterExplosion(this);
         StopAllCoroutines();
         GameObject.Destroy(this.gameObject);
     }
