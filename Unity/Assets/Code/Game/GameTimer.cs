@@ -22,7 +22,7 @@ public class GameTimer : Singleton<GameTimer>
     {
         StartCoroutine(Timer());
         // Subscribe to GameOver
-        GameState.Instance.OnGameOver.AddListener(StopRound);
+        GameState.Instance.EventHookups.OnGameOver.AddListener(StopRound);
     }
 
     public void StopRound()
