@@ -4,6 +4,8 @@ using System.Collections;
 
 public class GameState : Singleton<GameState>
 {
+    #region Enums & Classes
+
     public enum GameStateEnum
     {
         Menu,
@@ -18,13 +20,20 @@ public class GameState : Singleton<GameState>
         Lose
     }
 
+    [System.Serializable]
+    public class GameStateEventHookups
+    {
+        public UnityEvent OnGameOver;
+        public UnityEvent OnGameStart;
+        public UnityEvent OnGamePaused;
+        public UnityEvent OnGameResumed;
+    }
+
+    #endregion
+
     public GameStateEnum State;
     public GameOverStates GameOverState = GameOverStates.Win;
-
-    public UnityEvent OnGameOver;
-    public UnityEvent OnGameStart;
-    public UnityEvent OnGamePaused;
-    public UnityEvent OnGameResumed;
+    public GameStateEventHookups EventHookups;
 
     private float oldTimeScale = -1;
 
@@ -40,7 +49,7 @@ public class GameState : Singleton<GameState>
         State = GameStateEnum.Pause;
         Debug.Log("PauseGame");
 
-        OnGamePaused.Invoke();
+        EventHookups.OnGamePaused.Invoke();
     }
 
     public void ResumeGame()
@@ -50,7 +59,7 @@ public class GameState : Singleton<GameState>
         Debug.Log("ResumeGame");
 
         // Call other functions
-        OnGameResumed.Invoke();
+        EventHookups.OnGameResumed.Invoke();
     }
 
     public void StartGame()
@@ -58,7 +67,7 @@ public class GameState : Singleton<GameState>
         State = GameStateEnum.Play;
         Debug.Log("StartGame");
 
-        OnGameStart.Invoke();
+        EventHookups.OnGameStart.Invoke();
     }
 
     public void GameOver()
@@ -66,6 +75,6 @@ public class GameState : Singleton<GameState>
         State = GameStateEnum.Menu;
         Debug.Log("GameOver");
 
-        OnGameOver.Invoke();
+        EventHookups.OnGameOver.Invoke();
     }
 }
