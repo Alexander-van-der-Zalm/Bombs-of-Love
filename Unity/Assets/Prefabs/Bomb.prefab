@@ -143,7 +143,7 @@ MonoBehaviour:
   BaseRange: 1
   BaseDamage: 1
   DetonateTime: 3
-  BombFX: {fileID: 8300000, guid: 7b4e4f59034a6e14388de2c90b5441f8, type: 3}
+  BombFX: {fileID: 8300000, guid: deaa661f9a1bb5d4b85da03fb92127f9, type: 3}
   DestroyOnDetonate: 1
 --- !u!212 &21214102
 SpriteRenderer:

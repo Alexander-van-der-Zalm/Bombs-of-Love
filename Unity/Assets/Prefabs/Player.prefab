@@ -185,6 +185,7 @@ MonoBehaviour:
   Lives: 3
   spawn: {fileID: 0}
   InfiniteLives: 0
+  OnDeathFX: {fileID: 8300000, guid: 6f2ab05b6a087464bb8a35884159e3c1, type: 3}
 --- !u!114 &11469626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bomb: {fileID: 11452432, guid: 0a99356b60f501846a4ab66e86133754, type: 2}
+  bombDropFX: {fileID: 8300000, guid: 0d72a5ed8e4816b4ea20e68b8110956f, type: 3}
   AvailableBombs: 1
   MaxBombs: 1
   BonusRange: 0

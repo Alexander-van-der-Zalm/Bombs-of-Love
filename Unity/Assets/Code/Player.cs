@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public int Lives = 3;
     public PlayerSpawner spawn;
     public bool InfiniteLives = false;
+    public AudioClip OnDeathFX;
 
     private Health health;
     private PlayerAnimationHandler animationHandler;
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
         Debug.Log("Death");
         Lives--;
         animationHandler.Die();
+        AudioSource.PlayClipAtPoint(OnDeathFX, transform.position);
 
         // Stop old invulner
         inv.InvulnerableReset();

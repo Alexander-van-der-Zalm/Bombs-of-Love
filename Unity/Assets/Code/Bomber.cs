@@ -5,6 +5,8 @@ public class Bomber : MonoBehaviour
 {
     //public GameObject BombGO;
     public Bomb bomb;
+    public AudioClip bombDropFX;
+
     public int AvailableBombs = 2;
     public int MaxBombs = 2;
 
@@ -18,12 +20,6 @@ public class Bomber : MonoBehaviour
     {
         AvailableBombs = MaxBombs;
     }
-
-    //public void SetBomb(Bomb newBomb)
-    //{
-    //    bomb = newBomb;
-    //    //BombGO = newBomb.gameObject;
-    //}
 
     public void DropBomb(Grid grid, Vector3 loc)
     {
@@ -56,6 +52,7 @@ public class Bomber : MonoBehaviour
         // Detonate bombs
         Bomb newBomb = droppedBomb.GetComponent<Bomb>();
         newBomb.Detonate(grid,this, gridCoord, BonusRange,BonusDamage);
+        AudioSource.PlayClipAtPoint(bombDropFX, transform.position);
 
         // One less bomb available
         AvailableBombs--;
