@@ -7,6 +7,8 @@ using System.Collections;
 
 public class GameLogic : Singleton<GameLogic>
 {
+    #region Fields
+
     public List<Player> Players;
 
     public Player Winner;
@@ -14,11 +16,19 @@ public class GameLogic : Singleton<GameLogic>
 
     private GameTimer timer;
 
+    #endregion
+
+    #region Awake
+
     public void Awake()
     {
         instance = this;
         //GameState.Instance.EventHookups.OnGameStart.AddListener(NewRound);
     }
+
+    #endregion
+
+    #region CheckGameOver
 
     public void CheckForGameOver()
     {
@@ -33,32 +43,52 @@ public class GameLogic : Singleton<GameLogic>
         {
             Winner = Players.Where(p => p.Lives > 0).First();
             GameState.Instance.GameOverState = GameState.GameOverStates.Win;
-            GameState.Instance.GameOver();
+            RoundFinished();
             return;
         }
         if (playerAlive == 0)
         {
             GameState.Instance.GameOverState = GameState.GameOverStates.Draw;
-            GameState.Instance.GameOver();
+            RoundFinished();
+            return;
+        }
+        if (GameTimer.Instance.CurrentTime >= 0)
+        {
+            //if (Rules.SuddenDeathOnTimeUp)
+            //{
+            //    StartSuddenDeath();
+            //    return;
+            //}
+
+            if (Rules.LoseOnTimeUp)
+                GameState.Instance.GameOverState = GameState.GameOverStates.Lose;
+            else
+                GameState.Instance.GameOverState = GameState.GameOverStates.Draw;
+            RoundFinished();
             return;
         }
     }
 
+    #endregion
+
+    #region RoundFinished
+
     public void RoundFinished()
     {
-        if (Rules.LoseOnTimeUp)
-            GameState.Instance.GameOverState = GameState.GameOverStates.Lose;
-        else
-            GameState.Instance.GameOverState = GameState.GameOverStates.Draw;
-        
-        //if (Rules.SuddenDeathOnTimeUp)
-        //{
-        //    StartSuddenDeath();
-        //    return;
-        //}
+        StartCoroutine(RoundFinishedCR());
+    }
+
+    private IEnumerator RoundFinishedCR()
+    {
+        GameState.Instance.State = GameState.GameStateEnum.Pause;
+        yield return new WaitForSeconds(4.0f);
 
         GameState.Instance.GameOver();
     }
+
+    #endregion
+
+    #region New Round
 
     public void NewRound()
     {
@@ -77,7 +107,7 @@ public class GameLogic : Singleton<GameLogic>
         GameState.Instance.State = GameState.GameStateEnum.Pause;
         Debug.Log("GL - StartCOuntDown ");
 
-        yield return GameTimer.Instance.Timer(4.0f, "START IN ");
+        yield return GameTimer.Instance.Timer(4.0f, true, "START IN ");
 
         GameState.Instance.State = GameState.GameStateEnum.Play;
 
@@ -85,4 +115,6 @@ public class GameLogic : Singleton<GameLogic>
 
         GameTimer.Instance.StartRound();
     }
+
+    #endregion
 }

@@ -20,16 +20,6 @@ public class GameTimer : Singleton<GameTimer>
         GameState.Instance.EventHookups.OnGameOver.AddListener(StopRound);
     }
 
-    //public void StartRoundCountDown(float countdown = 3.0f)
-    //{
-    //    StartCoroutine(StartRoundCountDownCR(countdown));
-    //}
-
-    //private IEnumerator StartRoundCountDownCR(float countDown = 3.0f)
-    //{
-    //    yield return StartCoroutine(Timer(countDown));
-    //}
-
     public void StartRound()
     {
         Debug.Log("StartRound");
@@ -43,13 +33,14 @@ public class GameTimer : Singleton<GameTimer>
         StopAllCoroutines();
     }
 
-    public IEnumerator Timer(float timerStartValue, string timerText = "TIME ")
+    public IEnumerator Timer(float timerStartValue, bool IgnorePause = false, string timerText = "TIME ")
     {
         text = timerText;
         CurrentTime = timerStartValue;
         while (CurrentTime > 0)
         {
-            CurrentTime -= Time.deltaTime;
+            if(IgnorePause || GameState.Instance.State != GameState.GameStateEnum.Pause)
+                CurrentTime -= Time.deltaTime;
             yield return null;
         }
     }
@@ -65,10 +56,5 @@ public class GameTimer : Singleton<GameTimer>
     public void Update()
     {
         TimerUI.text = text + (int)CurrentTime;
-        //if(CurrentTime < 10.0f)
-        //{
-        //    float alpha = (CurrentTime - (int)CurrentTime)
-        //    TimerUI.Col
-        //}
     }
 }
