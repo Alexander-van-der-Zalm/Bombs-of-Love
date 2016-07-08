@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
         bomber = GetComponent<Bomber>();
         inv = GetComponent<Invulnerability>();
 
+        // Add self to GameLogic
+        GameLogic.Instance.Players.Add(this);
+
         Respawn(false,false);
     }
 
@@ -54,8 +57,8 @@ public class Player : MonoBehaviour
         // Respawn if there are still lives left
         if (Lives > 0 || InfiniteLives)
             StartCoroutine(WaitForRespawn());
-        //else
-        //    GameOver(); ??
+        else
+            GameLogic.Instance.CheckForGameOver();
     }
 
     #endregion

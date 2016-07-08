@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameTimer : MonoBehaviour
+public class GameTimer : Singleton<GameTimer>
 {
     public float RoundTime = 59.0f;
     public float CurrentTime = -1;
@@ -10,7 +11,6 @@ public class GameTimer : MonoBehaviour
     public float StartTimerAlpha = 10.0f;
     [Range(1,5)]
     public int PulsesPerSecond = 2;
-    //private GameLogic logic;
 
     // Use this for initialization
     void Start()
@@ -22,7 +22,7 @@ public class GameTimer : MonoBehaviour
     {
         StartCoroutine(Timer());
         // Subscribe to GameOver
-        //logic.GameOver += StopRound();
+        GameState.Instance.OnGameOver.AddListener(StopRound);
     }
 
     public void StopRound()
@@ -39,8 +39,9 @@ public class GameTimer : MonoBehaviour
             CurrentTime -= Time.deltaTime;
             yield return null;
         }
+
         // Speak to gamelogic for game finished
-        //logic.GameOver();
+        GameLogic.Instance.CheckForGameOver();
     }
 
     public void Update()

@@ -41,7 +41,7 @@ public class InputHandler : MonoBehaviour
         float hor = 0;
         float ver = 0;
 
-        if (!health.IsDead)
+        if (!health.IsDead && GameState.Instance.State == GameState.GameStateEnum.Play)
         {
             if (Input.GetKey(Up))
                 ver++;
