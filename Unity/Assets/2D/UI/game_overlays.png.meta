@@ -1,9 +1,40 @@
 fileFormatVersion: 2
 guid: d93a0d23bb7606044b8f87229ba2e06b
-timeCreated: 1467985589
+timeCreated: 1467988549
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: sp_UI_parallax_left
+    21300002: sp_UI_parallax_right
+    21300004: sp_UI_parallax_mid
+    21300006: sp_UI_pane_left
+    21300008: sp_UI_pane_right
+    21300010: sp_UI_border_left_spacer
+    21300012: sp_UI_border_right_spacer
+    21300014: sp_UI_border_line_right
+    21300016: sp_UI_border_line_left
+    21300018: sp_UI_border_top_left
+    21300020: sp_UI_border_top_right
+    21300022: sp_UI_pause_pause
+    21300024: sp_UI_pause_resume
+    21300026: sp_UI_pause_settings
+    21300028: sp_UI_pause_restart
+    21300030: sp_UI_pause_exit
+    21300032: sp_UI_border_top_left_side
+    21300034: sp_UI_border_bottom_left_side
+    21300036: sp_UI_border_top_right_side
+    21300038: sp_UI_border_bottom_right_side
+    21300040: sp_UI_border_bottom_left
+    21300042: sp_UI_border_bottom_right
+    21300044: sp_UI_panel_top_left
+    21300046: sp_UI_panel_top_right
+    21300048: sp_UI_panel_left
+    21300050: sp_UI_panel_middle
+    21300052: sp_UI_panel_top
+    21300054: sp_UI_panel_right
+    21300056: sp_UI_panel_bottom_left
+    21300058: sp_UI_panel_bottom
+    21300060: sp_UI_panel_bottom_right
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,11 +57,11 @@ TextureImporter:
   cubemapConvolutionSteps: 7
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
+  textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
-    aniso: -1
+    filterMode: 0
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
@@ -38,18 +69,359 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 30
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: sp_UI_parallax_left
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 191
+        width: 147
+        height: 25
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_parallax_right
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 166
+        width: 116
+        height: 25
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_parallax_mid
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 166
+        width: 48
+        height: 25
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_pane_left
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 141
+        width: 70
+        height: 25
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_pane_right
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 141
+        width: 70
+        height: 25
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_left_spacer
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 142
+        width: 24
+        height: 24
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_right_spacer
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 119
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_line_right
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 119
+        width: 24
+        height: 1
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_line_left
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 119
+        width: 24
+        height: 1
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_top_left
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 123
+        width: 70
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_top_right
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 123
+        width: 70
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_pause_pause
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 100
+        width: 83
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_pause_resume
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 45
+        width: 72
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_pause_settings
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 30
+        width: 96
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_pause_restart
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 16
+        width: 84
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_pause_exit
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 2
+        width: 47
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_top_left_side
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 97
+        width: 24
+        height: 26
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_bottom_left_side
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 74
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_top_right_side
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 98
+        width: 24
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_bottom_right_side
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 74
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_bottom_left
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 61
+        width: 70
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_border_bottom_right
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 61
+        width: 70
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_panel_top_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 39
+        width: 21
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_panel_top_right
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 39
+        width: 19
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_panel_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 20
+        width: 21
+        height: 19
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_panel_middle
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 20
+        width: 20
+        height: 19
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_panel_top
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 39
+        width: 20
+        height: 21
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_panel_right
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 20
+        width: 19
+        height: 19
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_panel_bottom_left
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 0
+        width: 21
+        height: 20
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_panel_bottom
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 0
+        width: 20
+        height: 20
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_UI_panel_bottom_right
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 19
+        height: 20
+      alignment: 6
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     outline: []
   spritePackingTag: 
   userData: 
