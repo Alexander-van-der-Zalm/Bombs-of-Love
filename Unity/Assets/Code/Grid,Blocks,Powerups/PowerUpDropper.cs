@@ -18,6 +18,7 @@ public class PowerUpDropper : MonoBehaviour
     public void OnDestroy()
     {
         if (isApplicationQuitting) return;
+        if (GameState.Instance.State != GameState.GameStateEnum.Play) return;
 
         List<PowerUpDropChance> dropped = new List<PowerUpDropChance>();
         foreach (PowerUpDropChance potentialDrop in PowerUps)

@@ -64,6 +64,13 @@ public class Grid : MonoBehaviour
     public void Awake()
     {
         RestoreReferences();
+
+        if(GameLogic.Instance.Rules.RandomBlockStart)
+        {
+            GameState.Instance.EventHookups.OnGameOver.AddListener(GenerateBlocks);
+            GenerateBlocks();
+        }
+            
     }
 
     #endregion
