@@ -16,3 +16,7 @@ MonoBehaviour:
   LoseOnTimeUp: 0
   SuddenDeathOnTimeUp: 0
   RandomBlockStart: 0
+  LoseUpgradesOnNewRound: 1
+  StartBombs: 1
+  StartBonusRange: 0
+  StartBonusDamage: 0

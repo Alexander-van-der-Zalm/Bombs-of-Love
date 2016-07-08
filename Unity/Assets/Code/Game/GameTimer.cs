@@ -16,7 +16,6 @@ public class GameTimer : Singleton<GameTimer>
     // Use this for initialization
     void Start()
     {
-        //GameState.Instance.EventHookups.OnGameStart.AddListener(StartRound);
         GameState.Instance.EventHookups.OnGameOver.AddListener(StopRound);
     }
 
@@ -50,7 +49,7 @@ public class GameTimer : Singleton<GameTimer>
         yield return StartCoroutine(Timer(GameLogic.Instance.Rules.RoundTime));
 
         // Speak to gamelogic for round finished
-        GameLogic.Instance.RoundFinished();
+        GameLogic.Instance.CheckForGameOver();
     }
 
     public void Update()
