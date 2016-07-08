@@ -35,8 +35,12 @@ public class Player : MonoBehaviour
 
         // Add self to GameLogic
         GameLogic.Instance.Players.Add(this);
+        GameState.Instance.EventHookups.OnGameStart.AddListener(SpawnPlayer);
+    }
 
-        Respawn(false,false);
+    public void SpawnPlayer()
+    {
+        Respawn(false, false);
     }
 
     #endregion

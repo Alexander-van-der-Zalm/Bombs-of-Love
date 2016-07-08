@@ -11,5 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc935a8ee76bbd4588c66dc70d9f809, type: 3}
   m_Name: Versus
   m_EditorClassIdentifier: 
+  Lives: 1
+  RoundTime: 10
   LoseOnTimeUp: 0
   SuddenDeathOnTimeUp: 0
+  RandomBlockStart: 0

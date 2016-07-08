@@ -54,7 +54,8 @@ public class GameState : Singleton<GameState>
 
     public void ResumeGame()
     {
-        Time.timeScale = oldTimeScale;
+        if(oldTimeScale >= 0)
+            Time.timeScale = oldTimeScale;
         State = GameStateEnum.Play;
         Debug.Log("ResumeGame");
 
@@ -76,5 +77,19 @@ public class GameState : Singleton<GameState>
         Debug.Log("GameOver");
 
         EventHookups.OnGameOver.Invoke();
+
+        switch(GameOverState)
+        {
+            default:
+            case GameOverStates.Win:
+                GameMenu.Instance.GameWon();
+                return;
+            case GameOverStates.Draw:
+                GameMenu.Instance.GameDraw();
+                return;
+            case GameOverStates.Lose:
+                GameMenu.Instance.GameLost();
+                return;
+        }
     }
 }
