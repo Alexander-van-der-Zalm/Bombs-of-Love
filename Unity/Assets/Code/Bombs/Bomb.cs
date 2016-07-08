@@ -45,6 +45,8 @@ public class Bomb : MonoBehaviour
         anim = GetComponent<Animator>();
         collider.enabled = true;
         //grid = Fin
+
+        GameState.Instance.EventHookups.OnGameOver.AddListener(CleanUp);
     }
 
     #endregion

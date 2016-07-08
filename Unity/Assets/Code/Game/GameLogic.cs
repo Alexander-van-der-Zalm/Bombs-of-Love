@@ -52,7 +52,7 @@ public class GameLogic : Singleton<GameLogic>
             RoundFinished();
             return;
         }
-        if (GameTimer.Instance.CurrentTime >= 0)
+        if (GameTimer.Instance.CurrentTime <= 0)
         {
             //if (Rules.SuddenDeathOnTimeUp)
             //{
@@ -81,12 +81,30 @@ public class GameLogic : Singleton<GameLogic>
     private IEnumerator RoundFinishedCR()
     {
         GameState.Instance.State = GameState.GameStateEnum.Pause;
-        yield return new WaitForSeconds(4.0f);
+        yield return new WaitForSeconds(3.0f);
+        // Audio for finished
+        Debug.Log("RoundFinishedCR");
+        //// Cleanup old stuff
+        //DeleteAll(typeof(Bomb));
+        //DeleteAll(typeof(Explosion));
+        //DeleteAll(typeof(PowerUp));
 
         GameState.Instance.GameOver();
     }
 
     #endregion
+
+    private void DeleteAll(Type type)
+    {
+        UnityEngine.Object[] objs = GameObject.FindObjectsOfType(type);
+        int objsCount = objs.Length;
+        for(int i = 0; i < objsCount; i++)
+        {
+            GameObject.Destroy(objs[i]);
+        }
+    }
+
+    
 
     #region New Round
 
@@ -108,11 +126,9 @@ public class GameLogic : Singleton<GameLogic>
         Debug.Log("GL - StartCOuntDown ");
 
         yield return GameTimer.Instance.Timer(4.0f, true, "START IN ");
+        // Audio For Start
 
         GameState.Instance.State = GameState.GameStateEnum.Play;
-
-        Debug.Log("GL - StartRoun ");
-
         GameTimer.Instance.StartRound();
     }
 

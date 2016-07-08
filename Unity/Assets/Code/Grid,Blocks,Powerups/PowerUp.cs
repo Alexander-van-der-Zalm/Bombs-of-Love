@@ -14,6 +14,11 @@ public class PowerUp : MonoBehaviour
     public PowerUpTypes Type;
     public AudioClip PickUpSound;
 
+    public void Awake()
+    {
+        GameState.Instance.EventHookups.OnGameOver.AddListener(CleanUp);
+    }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         // Only players can pick up power ups
