@@ -8,7 +8,8 @@ public class PowerUp : MonoBehaviour
     {
         BombRange,
         MoreBombs,
-        ExtraLife
+        ExtraLife,
+        ExtraTime
     }
 
     public PowerUpTypes Type;
@@ -50,6 +51,9 @@ public class PowerUp : MonoBehaviour
                 return;
             case PowerUpTypes.ExtraLife:
                 player.Lives++;
+                return;
+            case PowerUpTypes.ExtraTime:
+                GameTimer.Instance.CurrentTime += GameLogic.Instance.Rules.ExtraTimePowerUp;
                 return;
         }
     }
