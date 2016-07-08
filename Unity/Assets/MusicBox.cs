@@ -33,6 +33,7 @@ public class MusicBox : MonoBehaviour
             return;
         }
         Play(newRandom);
+        // Use clip length coroutine to max the loops
     }
 
 }
