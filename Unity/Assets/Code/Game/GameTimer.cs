@@ -7,6 +7,7 @@ public class GameTimer : Singleton<GameTimer>
 {
     public float CurrentTime = -1;
     public Text TimerUI;
+    public Text PopupUI;
     public float StartTimerAlpha = 10.0f;
     [Range(1,5)]
     public int PulsesPerSecond = 2;
@@ -23,6 +24,7 @@ public class GameTimer : Singleton<GameTimer>
     {
         Debug.Log("StartRound");
         text = "TIME ";
+        TimerUI.gameObject.SetActive(true);
         StartCoroutine(RoundTimer());
     }
 
@@ -32,7 +34,27 @@ public class GameTimer : Singleton<GameTimer>
         StopAllCoroutines();
     }
 
-    public IEnumerator Timer(float timerStartValue, bool IgnorePause = false, string timerText = "TIME ")
+    public IEnumerator NewRoundCountDown(float timerStartValue, float waitWithFadeOut)
+    {
+        Debug.Log("WFFFFF");
+        PopupUI.gameObject.SetActive(true);
+
+        // Set the round time
+        text = "TIME ";
+        CurrentTime = GameLogic.Instance.Rules.RoundTime;
+
+        float curTime = timerStartValue;
+        while (curTime >= 1)
+        {
+            curTime -= Time.deltaTime;
+            PopupUI.text = ((int)curTime).ToString();
+            yield return null;
+        }
+        PopupUI.text = "START";
+        
+    }
+
+    private IEnumerator RoundTimerStart(float timerStartValue, bool IgnorePause = false, string timerText = "TIME ")
     {
         text = timerText;
         CurrentTime = timerStartValue;
@@ -46,7 +68,7 @@ public class GameTimer : Singleton<GameTimer>
 
     private IEnumerator RoundTimer()
     {
-        yield return StartCoroutine(Timer(GameLogic.Instance.Rules.RoundTime));
+        yield return StartCoroutine(RoundTimerStart(GameLogic.Instance.Rules.RoundTime));
 
         // Speak to gamelogic for round finished
         GameLogic.Instance.CheckForGameOver();

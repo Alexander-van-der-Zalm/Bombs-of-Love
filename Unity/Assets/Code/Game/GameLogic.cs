@@ -81,30 +81,18 @@ public class GameLogic : Singleton<GameLogic>
     private IEnumerator RoundFinishedCR()
     {
         GameState.Instance.State = GameState.GameStateEnum.Pause;
+        GameTimer.Instance.PopupUI.text = "GAME OVER";
+        GameTimer.Instance.PopupUI.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(3.0f);
         // Audio for finished
         Debug.Log("RoundFinishedCR");
-        //// Cleanup old stuff
-        //DeleteAll(typeof(Bomb));
-        //DeleteAll(typeof(Explosion));
-        //DeleteAll(typeof(PowerUp));
+        GameTimer.Instance.PopupUI.gameObject.SetActive(false);
 
         GameState.Instance.GameOver();
     }
 
     #endregion
-
-    private void DeleteAll(Type type)
-    {
-        UnityEngine.Object[] objs = GameObject.FindObjectsOfType(type);
-        int objsCount = objs.Length;
-        for(int i = 0; i < objsCount; i++)
-        {
-            GameObject.Destroy(objs[i]);
-        }
-    }
-
-    
 
     #region New Round
 
@@ -125,11 +113,15 @@ public class GameLogic : Singleton<GameLogic>
         GameState.Instance.State = GameState.GameStateEnum.Pause;
         Debug.Log("GL - StartCOuntDown ");
 
-        yield return GameTimer.Instance.Timer(4.0f, true, "START IN ");
+        yield return StartCoroutine(GameTimer.Instance.NewRoundCountDown(4.0f,1.0f));
         // Audio For Start
 
         GameState.Instance.State = GameState.GameStateEnum.Play;
         GameTimer.Instance.StartRound();
+
+        yield return new WaitForSeconds(1.0f);
+        //FadeOut
+        GameTimer.Instance.PopupUI.gameObject.SetActive(false);
     }
 
     #endregion
