@@ -71,6 +71,202 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: 
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0.15, y: 0.15, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: 0.15, y: 0.15, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.16666667
+        value: {x: 0.183, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.25
+        value: {x: 0.183, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 0.33333334
+        value: {x: 0.21310976, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: Infinity, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 0.41666666
+        value: {x: 0.21310976, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: Infinity, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 0.5
+        value: {x: 0.15, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: Infinity, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 0.9166667
+        value: {x: 0.15, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: Infinity, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1
+        value: {x: 0.183, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: Infinity, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.0833334
+        value: {x: 0.183, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: Infinity, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.1666666
+        value: {x: 0.15, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: Infinity, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.25
+        value: {x: 0.15, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: Infinity, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.3333334
+        value: {x: 0.183, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: Infinity, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 0.15, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: Infinity, z: 0}
+        outSlope: {x: Infinity, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5833334
+        value: {x: 0.15, y: 0.15, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: eyes/BlobSmall_sprite_eye_R
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.9166667
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: 0, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1
+        value: {x: 0, y: -0.04542683, z: 0}
+        inSlope: {x: 0, y: Infinity, z: 0}
+        outSlope: {x: 0, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.0833334
+        value: {x: 0, y: -0.04542683, z: 0}
+        inSlope: {x: 0, y: Infinity, z: 0}
+        outSlope: {x: 0, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.1666666
+        value: {x: 0, y: 0.16200417, z: 0}
+        inSlope: {x: 0, y: Infinity, z: 0}
+        outSlope: {x: 0, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.25
+        value: {x: 0, y: 0.16200417, z: 0}
+        inSlope: {x: 0, y: Infinity, z: 0}
+        outSlope: {x: 0, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.3333334
+        value: {x: 0, y: -0.1, z: 0}
+        inSlope: {x: 0, y: Infinity, z: 0}
+        outSlope: {x: 0, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.4166666
+        value: {x: 0, y: -0.100502536, z: 0}
+        inSlope: {x: 0, y: Infinity, z: 0}
+        outSlope: {x: 0, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: Infinity, z: 0}
+        outSlope: {x: 0, y: Infinity, z: 0}
+        tangentMode: 0
+      - time: 1.5833334
+        value: {x: 0, y: 0, z: 0}
+        inSlope: {x: 0, y: Infinity, z: 0}
+        outSlope: {x: 0, y: 0.07787456, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: eyes
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: {x: -0.183, y: 0.15, z: 0}
+        inSlope: {x: 0, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.083333336
+        value: {x: -0.183, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.33333334
+        value: {x: -0.2151399, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.41666666
+        value: {x: -0.2151399, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 0.5
+        value: {x: -0.183, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1.0833334
+        value: {x: -0.183, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1.1666666
+        value: {x: -0.11786314, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1.25
+        value: {x: -0.11786314, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: Infinity, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1.3333334
+        value: {x: -0.183, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      - time: 1.5833334
+        value: {x: -0.183, y: 0.15, z: 0}
+        inSlope: {x: Infinity, y: 0, z: 0}
+        outSlope: {x: 0, y: 0, z: 0}
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    path: eyes/BlobSmall_sprite_eye_L
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves:
@@ -109,6 +305,24 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - path: 0
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 1864237778
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2803512470
+      attribute: 1
+      script: {fileID: 0}
+      classID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - path: 2500935601
       attribute: 1
       script: {fileID: 0}
       classID: 4
@@ -251,6 +465,336 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
     path: 
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.15
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.083333336
+        value: 0.15
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 0.16666667
+        value: 0.183
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 0.25
+        value: 0.183
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 0.33333334
+        value: 0.21310976
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 0.41666666
+        value: 0.21310976
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 0.5
+        value: 0.15
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 0.9166667
+        value: 0.15
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1
+        value: 0.183
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.0833334
+        value: 0.183
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.1666666
+        value: 0.15
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.25
+        value: 0.15
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.3333334
+        value: 0.183
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.5
+        value: 0.15
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.5833334
+        value: 0.15
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: eyes/BlobSmall_sprite_eye_R
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.15
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.25
+        value: 0.15
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.5833334
+        value: 0.15
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 1
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: eyes/BlobSmall_sprite_eye_R
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.5833334
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: eyes/BlobSmall_sprite_eye_R
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.5833334
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: eyes
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 0.9166667
+        value: 0
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1
+        value: -0.04542683
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.0833334
+        value: -0.04542683
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.1666666
+        value: 0.16200417
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.25
+        value: 0.16200417
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.3333334
+        value: -0.1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.4166666
+        value: -0.100502536
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.5
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.5833334
+        value: 0
+        inSlope: Infinity
+        outSlope: 0.07787456
+        tangentMode: 1
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: eyes
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.5833334
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: eyes
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: -0.183
+        inSlope: 0
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 0.083333336
+        value: -0.183
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 0.33333334
+        value: -0.2151399
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 0.41666666
+        value: -0.2151399
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 0.5
+        value: -0.183
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.0833334
+        value: -0.183
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.1666666
+        value: -0.11786314
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.25
+        value: -0.11786314
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 1
+      - time: 1.3333334
+        value: -0.183
+        inSlope: Infinity
+        outSlope: 0
+        tangentMode: 1
+      - time: 1.5833334
+        value: -0.183
+        inSlope: Infinity
+        outSlope: 0
+        tangentMode: 1
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.x
+    path: eyes/BlobSmall_sprite_eye_L
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0.15
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.5833334
+        value: 0.15
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.y
+    path: eyes/BlobSmall_sprite_eye_L
+    classID: 4
+    script: {fileID: 0}
+  - curve:
+      serializedVersion: 2
+      m_Curve:
+      - time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      - time: 1.5833334
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 10
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_LocalPosition.z
+    path: eyes/BlobSmall_sprite_eye_L
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves: []

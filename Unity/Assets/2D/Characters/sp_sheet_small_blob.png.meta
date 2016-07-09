@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 668c2013e156ba6478859b922c76b774
-timeCreated: 1468058490
+timeCreated: 1468062730
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -9,6 +9,10 @@ TextureImporter:
     21300004: sp_sheet_small_blob_2
     21300006: sp_sheet_small_blob_3
     21300008: sp_sheet_small_blob_4
+    21300010: sp_sheet_small_blob_eye_1
+    21300012: sp_sheet_small_blob_eye_2
+    21300014: sp_sheet_small_blob_eye_3
+    21300016: sp_sheet_small_blob_eye_large
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -108,6 +112,50 @@ TextureImporter:
         height: 30
       alignment: 7
       pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_sheet_small_blob_eye_1
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 26
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_sheet_small_blob_eye_2
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 22
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_sheet_small_blob_eye_3
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 18
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: sp_sheet_small_blob_eye_large
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 25
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
     outline: []
