@@ -112,12 +112,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef55796c5b77c142b9b14deb8bae1b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileWidth: 1
-  TileHeight: 1
-  DrawLinesInEditor: 1
+  LevelData: {fileID: 11400000, guid: c00e0e09647a1584e93968b0d4deb8ce, type: 2}
+  SpawnObjectKeyCode: 97
   drawer:
+    DrawLinesInEditor: 1
     GridColor: {r: 0.5808823, g: 0.35878024, b: 0.35878024, a: 1}
     SelectedColor: {r: 0, g: 1, b: 0, a: 1}
+    HoverColor: {r: 0, g: 0, b: 1, a: 1}
+  SelectedGridCoord: {x: 19, y: 2}
+  ObjectToSpawn: {fileID: 0}
 --- !u!4 &738299265
 Transform:
   m_ObjectHideFlags: 0

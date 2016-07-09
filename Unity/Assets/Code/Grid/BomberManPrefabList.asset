@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b08251e00586ee4983c2e90046f4224, type: 3}
+  m_Name: BomberManPrefabList
+  m_EditorClassIdentifier: 
+  GridLayers: []
+  PrefabList:
+  - Prefab: {fileID: 198226, guid: 0bf8e58a3be6c22499d792ef69cc1134, type: 2}
+    GridLayer: 0
+    TileOffsetX: 0
+    TileOffsetY: 0
+    Traversable: 0
+  - Prefab: {fileID: 196590, guid: 209dbe04ed30d6d429951ac9997d483d, type: 2}
+    GridLayer: 0
+    TileOffsetX: 0
+    TileOffsetY: 0
+    Traversable: 0
+  - Prefab: {fileID: 136316, guid: df081fb85aba61a45a5b1a5f61cf48c7, type: 2}
+    GridLayer: 0
+    TileOffsetX: 0
+    TileOffsetY: 0
+    Traversable: 0
+  - Prefab: {fileID: 104530, guid: d811d19c2d928764fa828117c901558a, type: 2}
+    GridLayer: 2
+    TileOffsetX: 0
+    TileOffsetY: 0
+    Traversable: 0
