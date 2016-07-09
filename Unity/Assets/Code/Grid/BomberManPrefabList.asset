@@ -11,25 +11,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b08251e00586ee4983c2e90046f4224, type: 3}
   m_Name: BomberManPrefabList
   m_EditorClassIdentifier: 
-  GridLayers: []
+  GridLayers:
+  - Layer: 0
+    Name: Tile
+    AllowMultiplePerCoord: 0
+  - Layer: 1
+    Name: Blocks
+    AllowMultiplePerCoord: 0
+  - Layer: 2
+    Name: Objects
+    AllowMultiplePerCoord: 1
+  - Layer: 3
+    Name: Actors
+    AllowMultiplePerCoord: 0
+  - Layer: 4
+    Name: Spawns
+    AllowMultiplePerCoord: 1
+  - Layer: 5
+    Name: Triggers
+    AllowMultiplePerCoord: 1
   PrefabList:
   - Prefab: {fileID: 198226, guid: 0bf8e58a3be6c22499d792ef69cc1134, type: 2}
     GridLayer: 0
-    TileOffsetX: 0
+    TileOffsetX: 0.5
     TileOffsetY: 0
-    Traversable: 0
+    Traversable: 1
   - Prefab: {fileID: 196590, guid: 209dbe04ed30d6d429951ac9997d483d, type: 2}
     GridLayer: 0
-    TileOffsetX: 0
+    TileOffsetX: 0.5
     TileOffsetY: 0
     Traversable: 0
   - Prefab: {fileID: 136316, guid: df081fb85aba61a45a5b1a5f61cf48c7, type: 2}
     GridLayer: 0
-    TileOffsetX: 0
+    TileOffsetX: 0.5
     TileOffsetY: 0
     Traversable: 0
   - Prefab: {fileID: 104530, guid: d811d19c2d928764fa828117c901558a, type: 2}
-    GridLayer: 2
-    TileOffsetX: 0
+    GridLayer: 1
+    TileOffsetX: 0.5
     TileOffsetY: 0
     Traversable: 0

@@ -31,25 +31,26 @@ public class GridPrefabListEditor : Editor
                 serializedObject.FindProperty("GridLayers"),
                 true, true, true, true);
 
-        int lW = 20;
+        int lW1 = 20;
+        int lW2 = 15;
         list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
         {
             var element = list.serializedProperty.GetArrayElementAtIndex(index);
             rect.y += 2;
             EditorGUI.PropertyField(
-                new Rect(rect.x, rect.y, lW, EditorGUIUtility.singleLineHeight),
+                new Rect(rect.x, rect.y, lW1, EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("Layer"), GUIContent.none);
             EditorGUI.PropertyField(
-                new Rect(rect.x + 1 * lW, rect.y, rect.width -1 * lW, EditorGUIUtility.singleLineHeight),
+                new Rect(rect.x + 1 * lW1, rect.y, rect.width -1 * lW1 - 1 * lW2 , EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("Name"), GUIContent.none);
             EditorGUI.PropertyField(
-                new Rect(rect.x + rect.width - 1 * lW, rect.y, lW, EditorGUIUtility.singleLineHeight),
-                element.FindPropertyRelative("MaxInstancesPerCoord"), GUIContent.none);
+                new Rect(rect.x + 2 + rect.width - 1 * lW2, rect.y, lW2, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("AllowMultiplePerCoord"), GUIContent.none);
             
         };
         list.drawHeaderCallback = (Rect rect) =>
         {
-            EditorGUI.LabelField(rect, "LayerList - Index - Name - MaxPerCoord");
+            EditorGUI.LabelField(rect, "LayerList - Index - Name - AllowMultiplePerCoord");
         };
         list.onReorderCallback = (ReorderableList l) =>
         {
@@ -80,29 +81,37 @@ public class GridPrefabListEditor : Editor
 
     public ReorderableList InitializePrefabList()
     {
+        //public GameObject Prefab;
+        //public int GridLayer;
+        //public float TileOffsetX;
+        //public float TileOffsetY;
+        //public bool Traversable;
+
         ReorderableList list = new ReorderableList(serializedObject,
                 serializedObject.FindProperty("PrefabList"),
                 true, true, true, true);
 
-        int lW = 20;
+        int lW1 = 20;
+        int lW2 = 30;
+        int lW3 = 15;
         list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
         {
             var element = list.serializedProperty.GetArrayElementAtIndex(index);
             rect.y += 2;
             EditorGUI.PropertyField(
-                new Rect(rect.x, rect.y, rect.width - 4 * lW, EditorGUIUtility.singleLineHeight),
+                new Rect(rect.x, rect.y, rect.width - lW1 - 2 * lW2 - lW3, EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("Prefab"), GUIContent.none);
             EditorGUI.PropertyField(
-                new Rect(rect.x + rect.width - 4 * lW, rect.y, lW, EditorGUIUtility.singleLineHeight),
+                new Rect(rect.x + rect.width - lW1 - 2 * lW2 - lW3, rect.y, lW1, EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("GridLayer"), GUIContent.none);
             EditorGUI.PropertyField(
-                new Rect(rect.x + rect.width - 3 * lW, rect.y, lW, EditorGUIUtility.singleLineHeight),
+                new Rect(rect.x + 2 + rect.width - 2 * lW2 - lW3, rect.y, lW2, EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("TileOffsetX"), GUIContent.none);
             EditorGUI.PropertyField(
-                new Rect(rect.x + rect.width - 2 * lW, rect.y, lW, EditorGUIUtility.singleLineHeight),
+                new Rect(rect.x + rect.width - lW2 - lW3, rect.y, lW2, EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("TileOffsetY"), GUIContent.none);
             EditorGUI.PropertyField(
-                new Rect(rect.x + rect.width - 1 * lW, rect.y, lW, EditorGUIUtility.singleLineHeight),
+                new Rect(rect.x + rect.width - 1 * lW3 +2, rect.y, lW3, EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("Traversable"), GUIContent.none);
         };
         list.drawHeaderCallback = (Rect rect) =>
@@ -118,11 +127,7 @@ public class GridPrefabListEditor : Editor
         return list;
     }
 
-    //public GameObject Prefab;
-    //public int GridLayer;
-    //public float TileOffsetX;
-    //public float TileOffsetY;
-    //public bool Traversable;
+
     public override void OnInspectorGUI()
     {
         serializedObject.Update();

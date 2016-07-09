@@ -13,7 +13,7 @@ public class GridLayer
     [ReadOnly]
     public int Layer = 0;
     public string Name = "Tile";
-    public int MaxInstancesPerCoord = 1;
+    public bool AllowMultiplePerCoord = true;
 }
 
 [System.Serializable]
