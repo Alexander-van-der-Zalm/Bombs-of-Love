@@ -58,7 +58,7 @@ public class InputHandler : MonoBehaviour
     // Actions
     void Update()
     {
-        if (Input.GetKeyUp(DropBomb))
+        if (!health.IsDead && GameState.Instance.State == GameState.GameStateEnum.Play && Input.GetKeyUp(DropBomb))
             bomber.DropBomb(grid, transform.position);
     }
 }

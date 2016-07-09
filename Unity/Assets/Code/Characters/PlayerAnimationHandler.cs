@@ -23,6 +23,8 @@ public class PlayerAnimationHandler : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         physics = GetComponent<MovementPhysics>();
         health = GetComponent<Health>();
+
+        GameState.Instance.EventHookups.OnGameOver.AddListener(Respawn);
     }
 	
 	// Update is called once per frame

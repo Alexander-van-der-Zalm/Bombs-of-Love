@@ -38,6 +38,7 @@ public class Explosion : MonoBehaviour
     public void Awake()
     {
         anim = GetComponent<Animator>();
+        GameState.Instance.EventHookups.OnGameOver.AddListener(CleanUp);
     }
 
     #endregion

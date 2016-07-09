@@ -6,7 +6,7 @@ using System;
 
 public class PowerUpDropper : MonoBehaviour
 {
-    public List<PowerUpDropChance> PowerUps;
+    //public List<PowerUpDropChance> PowerUps;
 
     private bool isApplicationQuitting = false;
 
@@ -18,9 +18,10 @@ public class PowerUpDropper : MonoBehaviour
     public void OnDestroy()
     {
         if (isApplicationQuitting) return;
+        if (GameState.Instance.State != GameState.GameStateEnum.Play) return;
 
         List<PowerUpDropChance> dropped = new List<PowerUpDropChance>();
-        foreach (PowerUpDropChance potentialDrop in PowerUps)
+        foreach (PowerUpDropChance potentialDrop in GameLogic.Instance.Rules.PowerUps)
         {
             if (UnityEngine.Random.Range(0.0f, 1.0f) <= potentialDrop.DropChance)
             {

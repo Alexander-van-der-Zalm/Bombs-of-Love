@@ -45,6 +45,8 @@ public class Bomb : MonoBehaviour
         anim = GetComponent<Animator>();
         collider.enabled = true;
         //grid = Fin
+
+        GameState.Instance.EventHookups.OnGameOver.AddListener(CleanUp);
     }
 
     #endregion
@@ -92,8 +94,10 @@ public class Bomb : MonoBehaviour
         {
             Debug.Log("Still have explosions: " + explosionAmount);
             return;
-
         }
+
+        if (GameState.Instance.State != GameState.GameStateEnum.Play)
+            return;
 
         #region Set vars & check vars
 

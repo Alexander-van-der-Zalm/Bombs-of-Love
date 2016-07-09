@@ -35,8 +35,19 @@ public class Player : MonoBehaviour
 
         // Add self to GameLogic
         GameLogic.Instance.Players.Add(this);
+        GameState.Instance.EventHookups.OnGameStart.AddListener(PlayerStartSpawn);
+    }
 
-        Respawn(false,false);
+    public void PlayerStartSpawn()
+    {
+        Respawn(false, false);
+        if(GameLogic.Instance.Rules.LoseUpgradesOnNewRound)
+        {
+            bomber.BonusDamage = GameLogic.Instance.Rules.StartBonusDamage;
+            bomber.BonusRange = GameLogic.Instance.Rules.StartBonusRange;
+            bomber.MaxBombs = GameLogic.Instance.Rules.StartBombs;
+            bomber.AvailableBombs = bomber.MaxBombs;
+        }
     }
 
     #endregion

@@ -11,5 +11,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc935a8ee76bbd4588c66dc70d9f809, type: 3}
   m_Name: Versus
   m_EditorClassIdentifier: 
+  Lives: 1
+  RoundTime: 60
   LoseOnTimeUp: 0
   SuddenDeathOnTimeUp: 0
+  RandomBlockStart: 1
+  LoseUpgradesOnNewRound: 1
+  StartBombs: 1
+  StartBonusRange: 0
+  StartBonusDamage: 0
+  ExtraTimePowerUp: 5
+  PowerUps:
+  - PowerUp: {fileID: 11445600, guid: fa4268676903d124f8fa9c802f30b423, type: 2}
+    DropChance: 0.05
+    PriorityOnDrop: 6
+    DropPriority: 4.818879
+  - PowerUp: {fileID: 11468416, guid: 507a06433d73dc247a940a95bf473e5f, type: 2}
+    DropChance: 0.05
+    PriorityOnDrop: 5
+    DropPriority: 3.9858503
+  - PowerUp: {fileID: 11444252, guid: 9f300f8147b618a4ba3cf87d94b30d90, type: 2}
+    DropChance: 0.1
+    PriorityOnDrop: 1
+    DropPriority: 0.024902105
+  - PowerUp: {fileID: 11499384, guid: a649182a941f8514097ae5be0d01a164, type: 2}
+    DropChance: 0.1
+    PriorityOnDrop: 1
+    DropPriority: 0.03924012
