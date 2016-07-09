@@ -36,8 +36,9 @@ public class GridPrefabListDrawer : PropertyDrawer
     {
         Init(prop);
         EditorGUI.PropertyField(new Rect(pos.x, pos.y + sy, pos.width, EditorGUIUtility.singleLineHeight), prop);
-        prefabList.DoList(new Rect(pos.x,pos.y+ sy*2 + EditorGUIUtility.singleLineHeight, pos.width, prefabList.GetHeight()));
-        layerList.DoList((new Rect(pos.x, pos.y+ sy *2+ EditorGUIUtility.singleLineHeight + prefabList.GetHeight(), pos.width, layerList.GetHeight())));
+        layerList.DoList((new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight, pos.width, layerList.GetHeight())));
+        prefabList.DoList(new Rect(pos.x,pos.y+ sy*2 + EditorGUIUtility.singleLineHeight + layerList.GetHeight(), pos.width, prefabList.GetHeight()));
+        
     }
 
 }

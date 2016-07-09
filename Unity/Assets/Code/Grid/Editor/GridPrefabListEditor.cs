@@ -9,6 +9,7 @@ public class GridPrefabListEditor : Editor
 {
     private ReorderableList prefabList;
     private ReorderableList layerList;
+    private GridPrefabList gpl;
 
     private void OnEnable()
     {
@@ -20,10 +21,12 @@ public class GridPrefabListEditor : Editor
     {
         prefabList = InitializePrefabList(serializedObject);
         layerList = InitializeLayerList(serializedObject);
+        gpl = target as GridPrefabList;
     }
 
     public static ReorderableList InitializeLayerList(SerializedObject serializedObject)
     {
+        
         //public int Layer = 0;
         //public string Name = "Tile";
         //public int MaxInstancesPerCoord = 1;
@@ -79,8 +82,57 @@ public class GridPrefabListEditor : Editor
         }
     }
 
-    public static ReorderableList MakePrefabListFancy(ReorderableList list)
+    //public static ReorderableList MakePrefabListFancy(ReorderableList list)
+    //{
+    //    int lW1 = 20;
+    //    int lW2 = 30;
+    //    int lW3 = 15;
+    //    list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
+    //    {
+    //        var element = list.serializedProperty.GetArrayElementAtIndex(index);
+    //        rect.y += 2;
+    //        EditorGUI.PropertyField(
+    //            new Rect(rect.x, rect.y, rect.width - lW1 - 2 * lW2 - lW3, EditorGUIUtility.singleLineHeight),
+    //            element.FindPropertyRelative("Prefab"), GUIContent.none);
+    //        EditorGUI.PropertyField(
+    //            new Rect(rect.x + rect.width - lW1 - 2 * lW2 - lW3, rect.y, lW1, EditorGUIUtility.singleLineHeight),
+    //            element.FindPropertyRelative("GridLayer"), GUIContent.none);
+    //        EditorGUI.PropertyField(
+    //            new Rect(rect.x + 2 + rect.width - 2 * lW2 - lW3, rect.y, lW2, EditorGUIUtility.singleLineHeight),
+    //            element.FindPropertyRelative("TileOffsetX"), GUIContent.none);
+    //        EditorGUI.PropertyField(
+    //            new Rect(rect.x + rect.width - lW2 - lW3, rect.y, lW2, EditorGUIUtility.singleLineHeight),
+    //            element.FindPropertyRelative("TileOffsetY"), GUIContent.none);
+    //        EditorGUI.PropertyField(
+    //            new Rect(rect.x + rect.width - 1 * lW3 + 2, rect.y, lW3, EditorGUIUtility.singleLineHeight),
+    //            element.FindPropertyRelative("Traversable"), GUIContent.none);
+    //    };
+    //    list.drawHeaderCallback = (Rect rect) =>
+    //    {
+    //        EditorGUI.LabelField(rect, "Prefab List - layer - x,y offset - traversable");
+    //    };
+    //    list.onSelectCallback = (ReorderableList l) =>
+    //    {
+    //        var prefab = l.serializedProperty.GetArrayElementAtIndex(l.index).FindPropertyRelative("Prefab").objectReferenceValue as GameObject;
+    //        if (prefab)
+    //            EditorGUIUtility.PingObject(prefab.gameObject);
+
+    //    };
+    //    return list;
+    //}
+
+    public static ReorderableList InitializePrefabList(SerializedObject serializedObject)
     {
+        //public GameObject Prefab;
+        //public int GridLayer;
+        //public float TileOffsetX;
+        //public float TileOffsetY;
+        //public bool Traversable;
+
+        ReorderableList list = new ReorderableList(serializedObject,
+                serializedObject.FindProperty("PrefabList"),
+                true, true, true, true);
+
         int lW1 = 20;
         int lW2 = 30;
         int lW3 = 15;
@@ -112,25 +164,12 @@ public class GridPrefabListEditor : Editor
         {
             var prefab = l.serializedProperty.GetArrayElementAtIndex(l.index).FindPropertyRelative("Prefab").objectReferenceValue as GameObject;
             if (prefab)
+            {
                 EditorGUIUtility.PingObject(prefab.gameObject);
+                (serializedObject.targetObject as GridPrefabList).SelectedObject = prefab.gameObject;
+            }
         };
-        return list;
-    }
 
-    public static ReorderableList InitializePrefabList(SerializedObject serializedObject)
-    {
-        //public GameObject Prefab;
-        //public int GridLayer;
-        //public float TileOffsetX;
-        //public float TileOffsetY;
-        //public bool Traversable;
-
-        ReorderableList list = new ReorderableList(serializedObject,
-                serializedObject.FindProperty("PrefabList"),
-                true, true, true, true);
-
-        list = MakePrefabListFancy(list);
-        
         return list;
     }
 

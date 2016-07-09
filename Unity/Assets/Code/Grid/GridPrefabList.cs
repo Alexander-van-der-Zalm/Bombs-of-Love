@@ -5,6 +5,8 @@ public class GridPrefabList : ScriptableObject
 {
     public List<GridLayer> GridLayers;
     public List<GridPrefab> PrefabList;
+    [HideInInspector]
+    public GameObject SelectedObject;
 }
 
 [System.Serializable]

@@ -41,13 +41,14 @@ MonoBehaviour:
     TileOffsetX: 0.5
     TileOffsetY: 0
     Traversable: 0
-  - Prefab: {fileID: 136316, guid: df081fb85aba61a45a5b1a5f61cf48c7, type: 2}
-    GridLayer: 0
-    TileOffsetX: 0.5
-    TileOffsetY: 0
-    Traversable: 0
   - Prefab: {fileID: 104530, guid: d811d19c2d928764fa828117c901558a, type: 2}
     GridLayer: 1
     TileOffsetX: 0.5
     TileOffsetY: 0
     Traversable: 0
+  - Prefab: {fileID: 136316, guid: df081fb85aba61a45a5b1a5f61cf48c7, type: 2}
+    GridLayer: 0
+    TileOffsetX: 0.5
+    TileOffsetY: 0
+    Traversable: 0
+  SelectedObject: {fileID: 198226, guid: 0bf8e58a3be6c22499d792ef69cc1134, type: 2}
