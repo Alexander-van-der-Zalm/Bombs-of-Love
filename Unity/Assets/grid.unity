@@ -119,8 +119,8 @@ MonoBehaviour:
     GridColor: {r: 0.5808823, g: 0.35878024, b: 0.35878024, a: 1}
     SelectedColor: {r: 0, g: 1, b: 0, a: 1}
     HoverColor: {r: 0, g: 0, b: 1, a: 1}
-  SelectedGridCoord: {x: 19, y: 2}
-  ObjectToSpawn: {fileID: 0}
+  SelectedGridCoord: {x: 37, y: 2}
+  ObjectToSpawn: {fileID: 104530, guid: d811d19c2d928764fa828117c901558a, type: 2}
 --- !u!4 &738299265
 Transform:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1115150521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 2.58, y: -2.53, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []

@@ -42,8 +42,15 @@ public class Grid : MonoBehaviour
         if (SelectedGridCoord == LastSpawnedGridCoord && ObjectToSpawn == LastObjectSpawned)
             return;
 
-        Debug.Log("SpawnObject @ " + SelectedGridCoord);
+        Vector3 pos = GetGridWorldPos(SelectedGridCoord);
 
+        Debug.Log("SpawnObject: " + ObjectToSpawn.name + " @ " + SelectedGridCoord + " - " + pos);
+
+        GameObject.Instantiate(ObjectToSpawn, pos, Quaternion.identity);
+
+        Debug.Log("Register to leveldata plz");
+
+        LastObjectSpawned = ObjectToSpawn;
         LastSpawnedGridCoord = SelectedGridCoord;
     }
 

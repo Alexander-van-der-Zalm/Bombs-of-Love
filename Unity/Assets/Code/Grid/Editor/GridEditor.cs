@@ -32,15 +32,6 @@ public class GridEditor : Editor
                 grid.SelectedGridCoord = grid.GetSceneMouseGridCoord();
         }
 
-        //if (Event.current.type == EventType.KeyDown && Event.current.keyCode == grid.SpawnObjectKeyCode)
-        //{
-        //    SpawnKeyDown = true;
-        //}
-
-        //if (Event.current.type == EventType.KeyUp && Event.current.keyCode == grid.SpawnObjectKeyCode)
-        //{
-        //    SpawnKeyDown = false;
-        //}
         if(Event.current.keyCode == grid.SpawnObjectKeyCode)
         {
             //Debug.Log("KeyCode: " + Event.current.keyCode);
@@ -55,8 +46,11 @@ public class GridEditor : Editor
             HandleUtility.AddDefaultControl(controlID);
 
         //// Spawn selecte object on mouseclick
-        //if (Event.current.type == EventType.MouseDown)
-        //    Debug.Log("SpawnObject");
+        if (Event.current.type == EventType.MouseUp)
+        {
+            grid.SpawnObject();
+            SceneView.RepaintAll();
+        }
     }
 
     
