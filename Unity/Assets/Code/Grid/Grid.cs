@@ -16,9 +16,9 @@ public class Grid : MonoBehaviour
 
     public GridLineDrawer drawer;
 
-    //[HideInInspector]
+    [ReadOnly]
     public Vector2 SelectedGridCoord;
-    //[HideInInspector]
+    [ReadOnly]
     public GameObject ObjectToSpawn;
     [HideInInspector]
     public GridPrefab SelectedGridPrefab;
@@ -47,10 +47,14 @@ public class Grid : MonoBehaviour
         Vector3 pos = GetGridWorldPos(SelectedGridCoord);
 
         Debug.Log("SpawnObject: " + ObjectToSpawn.name + " @ " + SelectedGridCoord + " - " + pos);
+        // Move Instantiating to gridData?
+        GridDataElement el = new GridDataElement(SelectedGridPrefab, (int)SelectedGridCoord.x, (int)SelectedGridCoord.y);
 
-        //GridDataElement el = new GridDataElement(new GridPrefab() { ObjectToSpawn, (int)SelectedGridCoord.x, (int)SelectedGridCoord.y);
-        GameObject.Instantiate(ObjectToSpawn, pos, Quaternion.identity);
+        // Check GridElement on prefabs...
+        
+        //el.Instance = GameObject.Instantiate(ObjectToSpawn, pos, Quaternion.identity) as GameObject;
 
+        LevelData.SafeAdd(el);
         Debug.Log("Register to leveldata plz");
 
         LastObjectSpawned = ObjectToSpawn;

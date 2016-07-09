@@ -119,8 +119,14 @@ MonoBehaviour:
     GridColor: {r: 0.5808823, g: 0.35878024, b: 0.35878024, a: 1}
     SelectedColor: {r: 0, g: 1, b: 0, a: 1}
     HoverColor: {r: 0, g: 0, b: 1, a: 1}
-  SelectedGridCoord: {x: 37, y: 5}
-  ObjectToSpawn: {fileID: 104530, guid: d811d19c2d928764fa828117c901558a, type: 2}
+  SelectedGridCoord: {x: 38, y: -12}
+  ObjectToSpawn: {fileID: 136316, guid: df081fb85aba61a45a5b1a5f61cf48c7, type: 2}
+  SelectedGridPrefab:
+    Prefab: {fileID: 136316, guid: df081fb85aba61a45a5b1a5f61cf48c7, type: 2}
+    GridLayer: 0
+    TileOffsetX: 0.5
+    TileOffsetY: 0
+    Traversable: 0
 --- !u!4 &738299265
 Transform:
   m_ObjectHideFlags: 0

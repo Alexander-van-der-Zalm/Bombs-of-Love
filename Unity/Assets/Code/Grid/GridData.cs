@@ -151,7 +151,8 @@ public class GridData : ScriptableObject
 
     public void SafeAdd(GridDataElement newElement)
     {
-
+        Debug.Log("TODO Safe check @ GridDate.SafeAdd()");
+        GridDataList.Add(newElement);
     }
 
     public void SafeRemove(GridDataElement element)
