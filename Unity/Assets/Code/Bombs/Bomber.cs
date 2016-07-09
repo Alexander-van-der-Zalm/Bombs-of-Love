@@ -21,7 +21,7 @@ public class Bomber : MonoBehaviour
         AvailableBombs = MaxBombs;
     }
 
-    public void DropBomb(Grid grid, Vector3 loc)
+    public void DropBomb(BMGrid grid, Vector3 loc)
     {
         // Check if enough bombs are available
         if (AvailableBombs <= 0)
@@ -46,7 +46,7 @@ public class Bomber : MonoBehaviour
         //Debug.Log("Drop bomb on loc: " + gridCoord);
 
         // Spawn a bomb on the grid middle location
-        loc = grid.GetGridWorldPos(gridCoord, Grid.SnapSpotHor.Mid);
+        loc = grid.GetGridWorldPos(gridCoord, BMGrid.SnapSpotHor.Mid);
         GameObject droppedBomb = GameObject.Instantiate(bomb.gameObject, loc, Quaternion.identity) as GameObject;
 
         // Detonate bombs

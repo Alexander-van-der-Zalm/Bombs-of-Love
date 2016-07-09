@@ -2,14 +2,14 @@
 using UnityEditor;
 using NUnit.Framework;
 
-[CustomEditor(typeof(Grid))]
+[CustomEditor(typeof(BMGrid))]
 public class GridEditor :Editor
 {
-    Grid grid;
+    BMGrid grid;
 
     void OnEnable()
     {
-        grid = (Grid)target;
+        grid = (BMGrid)target;
     }
 
     public override void OnInspectorGUI()
@@ -20,7 +20,7 @@ public class GridEditor :Editor
         if (GUILayout.Button("Generate Blocks"))
             grid.GenerateBlocks();
         if (GUILayout.Button("Destroy Grid"))
-            Grid.DeleteChildren(grid.transform);
+            BMGrid.DeleteChildren(grid.transform);
         if (GUILayout.Button("Debug Grid"))
             grid.DebugArray();
         if (GUILayout.Button("Restore Grid"))

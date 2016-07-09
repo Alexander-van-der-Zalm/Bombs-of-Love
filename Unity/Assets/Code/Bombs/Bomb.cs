@@ -25,7 +25,7 @@ public class Bomb : MonoBehaviour
     private int range = 0;
     private int damage = 0;
     private float detonateTime = 0;
-    private Grid grid = null;
+    private BMGrid grid = null;
     private bool exploded = false;
 
     private Bomber bomber = null;
@@ -53,7 +53,7 @@ public class Bomb : MonoBehaviour
 
     #region Detonate prep
 
-    public void Detonate(Grid grid, Bomber bomber, Vector2 gridCoord, int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
+    public void Detonate(BMGrid grid, Bomber bomber, Vector2 gridCoord, int extraRange = 0, int extraDamage = 0, float DetonateOverride = -1)
     {
         // Set variables
         bombGridCoord = gridCoord;
@@ -109,7 +109,7 @@ public class Bomb : MonoBehaviour
 
         // Some checks for when not spawned by a bomber
         if (grid == null)
-            grid = FindObjectOfType(typeof(Grid)) as Grid;
+            grid = FindObjectOfType(typeof(BMGrid)) as BMGrid;
         if (damage == 0)
             damage = BaseDamage;
         if (range == 0)
@@ -119,7 +119,7 @@ public class Bomb : MonoBehaviour
 
         #region Spawn explosions
         // Center pos
-        Vector2 gridCoord = grid.GetGridCoordinates(transform.position, Grid.SnapSpotVer.Mid,Grid.SnapSpotHor.Left); //bombGridCoord; grid.GetGridCoordinates(transform.position);
+        Vector2 gridCoord = grid.GetGridCoordinates(transform.position, BMGrid.SnapSpotVer.Mid,BMGrid.SnapSpotHor.Left); //bombGridCoord; grid.GetGridCoordinates(transform.position);
         if (Spawn(ExplosionPrefab, grid, gridCoord, Explosion.ExplosionRotation.Center, Explosion.ExplosionSection.Center))
         {
             // Spawn in four directions if initial blas is succesfull
@@ -164,7 +164,7 @@ public class Bomb : MonoBehaviour
 
     #region Spawn Explosion
 
-    private bool Spawn(Explosion explosion, Grid grid, Vector2 gridPos, Explosion.ExplosionRotation rotation, Explosion.ExplosionSection type)
+    private bool Spawn(Explosion explosion, BMGrid grid, Vector2 gridPos, Explosion.ExplosionRotation rotation, Explosion.ExplosionSection type)
     {
         // Out of grid range
         if (gridPos.x < 0 || gridPos.y < 0 || gridPos.x >= grid.GridWidth || gridPos.y >= grid.GridHeight)
@@ -175,8 +175,8 @@ public class Bomb : MonoBehaviour
 
         // Check if Legal - Take into account grid types
         // Not a floor
-        GridElement element = grid.GetGridElement((int)gridPos.x, (int)gridPos.y);
-        if (element.Type != GridElement.GridType.Floor)
+        BMGridElement element = grid.GetGridElement((int)gridPos.x, (int)gridPos.y);
+        if (element.Type != BMGridElement.GridType.Floor)
         {
             // Not legal
             //Debug.Log("Explosion grid location not legal " + element.Type + " pos: " + gridPos.x + " - " + gridPos.y);
@@ -184,11 +184,11 @@ public class Bomb : MonoBehaviour
         }
 
         // Transform to worldpos
-        Vector3 worldPos = grid.GetGridWorldPos((int)gridPos.x, (int)gridPos.y) + new Vector3(Grid.TileWidth / 2, 0);
+        Vector3 worldPos = grid.GetGridWorldPos((int)gridPos.x, (int)gridPos.y) + new Vector3(BMGrid.TileWidth / 2, 0);
 
         // A block is a special case where it cannot continue afterwards, but still spawn an explosion
-        GridElement block = grid.GetBlockElement((int)gridPos.x, (int)gridPos.y);
-        if (block != null && block.Type == GridElement.GridType.Block)
+        BMGridElement block = grid.GetBlockElement((int)gridPos.x, (int)gridPos.y);
+        if (block != null && block.Type == BMGridElement.GridType.Block)
         {
             // Trigger block destroy
             //Debug.Log("Destroy Block plz");

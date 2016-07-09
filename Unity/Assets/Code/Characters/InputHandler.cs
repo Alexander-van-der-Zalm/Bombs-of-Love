@@ -18,7 +18,7 @@ public class InputHandler : MonoBehaviour
 
     private MovementPhysics physics;
     private Bomber bomber;
-    private Grid grid;
+    private BMGrid grid;
     private Health health;
     //private GamePadState prevState;
     //private GamePadState state;
@@ -28,7 +28,7 @@ public class InputHandler : MonoBehaviour
     {
         physics = GetComponent<MovementPhysics>();
         bomber = GetComponent<Bomber>();
-        grid = GameObject.FindObjectOfType<Grid>();
+        grid = GameObject.FindObjectOfType<BMGrid>();
         health = GetComponent<Health>();
     }
 	

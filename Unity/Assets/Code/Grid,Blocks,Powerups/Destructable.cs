@@ -4,7 +4,7 @@ using System;
 
 public class Destructable : MonoBehaviour
 {
-    public Grid RegisteredGrid;
+    public BMGrid RegisteredGrid;
     public AudioClip DestructionSoundFX;
     public float MaxRandomAudioOffset = 0.15f;
 
@@ -56,7 +56,7 @@ public class Destructable : MonoBehaviour
 
         // unregister from grid
         if (RegisteredGrid != null)
-            RegisteredGrid.RemoveMe(GetComponent<GridElement>());
+            RegisteredGrid.RemoveMe(GetComponent<BMGridElement>());
 
         // delete
         GameObject.Destroy(this.gameObject);

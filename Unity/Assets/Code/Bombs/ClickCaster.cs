@@ -8,13 +8,13 @@ public class ClickCaster : MonoBehaviour
     public Text DebugText;
 
     private Bomber bomber;
-    private Grid grid;
+    private BMGrid grid;
     private Player[] players;
 
     public void Start()
     {
         bomber = GetComponent<Bomber>();
-        grid = FindObjectOfType<Grid>();
+        grid = FindObjectOfType<BMGrid>();
         players = FindObjectsOfType<Player>();
     }
 

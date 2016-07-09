@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 
 [ExecuteInEditMode]
-public class Grid : MonoBehaviour
+public class BMGrid : MonoBehaviour
 {
     #region Enums 
 
@@ -38,10 +38,10 @@ public class Grid : MonoBehaviour
     public static float TileHeight = 1.0f;
 
     [SerializeField]
-    public Array2D<GridElement> levelArray;
+    public Array2D<BMGridElement> levelArray;
 
     [SerializeField]
-    public Array2D<GridElement> blockArray;
+    public Array2D<BMGridElement> blockArray;
 
     public int GridHeight { get { return 2 + rows * 2 + 1; } }
     public int GridWidth { get { return 2 + columns * 2 + 1; } }
@@ -51,7 +51,7 @@ public class Grid : MonoBehaviour
     [SerializeField]
     private GameObject blockContainer;
 
-    internal void RemoveMe(GridElement el)
+    internal void RemoveMe(BMGridElement el)
     {
         if (levelArray[el.x, el.y] == el) levelArray[el.x, el.y] = null;
         if (blockArray[el.x, el.y] == el) blockArray[el.x, el.y] = null;
@@ -86,7 +86,7 @@ public class Grid : MonoBehaviour
         int height = 2 + rows * 2 + 1; // 2 rows of walls + 2 per row + 1 to finish
         int width = 2 + columns * 2 + 1;
 
-        levelArray = new Array2D<GridElement>(width, height);
+        levelArray = new Array2D<BMGridElement>(width, height);
         levelContainer = newContainer("levelContainer");
 
         #region Walls
@@ -127,7 +127,7 @@ public class Grid : MonoBehaviour
     {
         RestoreReferences();
 
-        blockArray = new Array2D<GridElement>(GridWidth, GridHeight);
+        blockArray = new Array2D<BMGridElement>(GridWidth, GridHeight);
 
         Block.GetComponent<Destructable>().RegisteredGrid = this;
 
@@ -141,8 +141,8 @@ public class Grid : MonoBehaviour
         for (int y = 0; y < GridHeight; y++)
             for (int x = 0; x < GridWidth; x++)
             {
-                GridElement el = levelArray[x, y];
-                if (el.Type == GridElement.GridType.Floor 
+                BMGridElement el = levelArray[x, y];
+                if (el.Type == BMGridElement.GridType.Floor 
                     && UnityEngine.Random.Range(0f, 1.0f) <= BlockChance)
                 {
                     Create(x, y, Block, blockArray, blockContainer, "blockContainer");
@@ -162,7 +162,7 @@ public class Grid : MonoBehaviour
         Create((int)g.x, (int)g.y, Block, blockArray, blockContainer, "blockContainer");
     }
 
-    private void DestroyFromGridWithNeighbors(Array2D<GridElement> array, int x, int y)
+    private void DestroyFromGridWithNeighbors(Array2D<BMGridElement> array, int x, int y)
     {
         DestroyFromGridIfExisting(array, x, y);
         DestroyFromGridIfExisting(array, x + 1, y);
@@ -171,7 +171,7 @@ public class Grid : MonoBehaviour
         DestroyFromGridIfExisting(array, x, y - 1);
     }
 
-    private void DestroyFromGridIfExisting(Array2D<GridElement> array, int x, int y)
+    private void DestroyFromGridIfExisting(Array2D<BMGridElement> array, int x, int y)
     {
         if (x < 0 || y < 0 || x >= array.Width || y >= array.Height)
             return;
@@ -198,12 +198,12 @@ public class Grid : MonoBehaviour
             blockArray = RestoreArray(blockArray, blockContainer);
     }
 
-    private Array2D<GridElement> RestoreArray(Array2D<GridElement> array, GameObject container)
+    private Array2D<BMGridElement> RestoreArray(Array2D<BMGridElement> array, GameObject container)
     {
-        array = new Array2D<GridElement>(GridWidth, GridHeight);
+        array = new Array2D<BMGridElement>(GridWidth, GridHeight);
 
-        List<GridElement> elements = container.transform.GetComponentsInChildren<GridElement>().ToList();
-        foreach (GridElement el in elements)
+        List<BMGridElement> elements = container.transform.GetComponentsInChildren<BMGridElement>().ToList();
+        foreach (BMGridElement el in elements)
         {
             array[el.x, el.y] = el;
             //Debug.Log(el.name + " x " + el.x + " y " + el.y);
@@ -229,11 +229,11 @@ public class Grid : MonoBehaviour
 
     #region Create & Destroy
 
-    private void Create(int x, int y, GameObject obj, Array2D<GridElement> array, GameObject container, string containerName)
+    private void Create(int x, int y, GameObject obj, Array2D<BMGridElement> array, GameObject container, string containerName)
     {
         Vector3 pos = new Vector3(x * TileWidth, y * TileHeight) + transform.position;
         GameObject newObj = GameObject.Instantiate(obj, pos, Quaternion.identity) as GameObject;
-        array[x, y] = newObj.GetComponent<GridElement>();
+        array[x, y] = newObj.GetComponent<BMGridElement>();
         array[x, y].x = x; //dunno if this is needed
         array[x, y].y = y;
         array[x, y].ParentGrid = this;
@@ -342,23 +342,23 @@ public class Grid : MonoBehaviour
 
     #region Element
 
-    public GridElement GetGridElementFromWorld(Vector3 worldPos)
+    public BMGridElement GetGridElementFromWorld(Vector3 worldPos)
     {
         Vector2 p = GetGridCoordinates(worldPos);
         return levelArray[(int)p.x, (int)p.y];
     }
 
-    public GridElement GetGridElement(Vector2 gridCoord)
+    public BMGridElement GetGridElement(Vector2 gridCoord)
     {
         return levelArray[(int)gridCoord.x, (int)gridCoord.y];
     }
 
-    public GridElement GetGridElement(int x, int y)
+    public BMGridElement GetGridElement(int x, int y)
     {
         return levelArray[x, y];
     }
 
-    public GridElement GetBlockElement(int x, int y)
+    public BMGridElement GetBlockElement(int x, int y)
     {
         return blockArray[x, y];
     }
@@ -370,7 +370,7 @@ public class Grid : MonoBehaviour
 
     public bool LegalBombLocation(int x, int y)
     {
-        return levelArray[x, y].Type == GridElement.GridType.Floor && (blockArray[x, y] == null || blockArray[x, y].Type != GridElement.GridType.Block);
+        return levelArray[x, y].Type == BMGridElement.GridType.Floor && (blockArray[x, y] == null || blockArray[x, y].Type != BMGridElement.GridType.Block);
     }
 
     #endregion

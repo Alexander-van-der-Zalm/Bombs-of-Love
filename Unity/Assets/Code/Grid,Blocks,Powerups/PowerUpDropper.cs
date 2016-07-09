@@ -37,7 +37,7 @@ public class PowerUpDropper : MonoBehaviour
     private void CreatePowerUp(PowerUpDropChance pow)
     {
         Debug.Log("Dropped:" + pow.PowerUp.name);
-        GameObject.Instantiate(pow.PowerUp.gameObject, transform.position + new Vector3(Grid.TileWidth * 0.5f, 0.15f), Quaternion.identity);
+        GameObject.Instantiate(pow.PowerUp.gameObject, transform.position + new Vector3(BMGrid.TileWidth * 0.5f, 0.15f), Quaternion.identity);
     }
 }
 

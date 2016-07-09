@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GridElement : MonoBehaviour
+public class BMGridElement : MonoBehaviour
 {
     public enum GridType
     {
@@ -12,5 +12,5 @@ public class GridElement : MonoBehaviour
 
     public GridType Type;
     public int x, y;
-    public Grid ParentGrid;
+    public BMGrid ParentGrid;
 }

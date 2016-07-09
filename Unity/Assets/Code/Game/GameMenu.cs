@@ -49,13 +49,19 @@ public class GameMenu : Singleton<GameMenu>
     public void Awake()
     {
         Splash();
+        //Debug.Log("Awake");
     }
 
     #endregion
 
+    public void OnDisable()
+    {
+        HideAllMenu();
+    }
+
     private void SetActive(GameObject newMenu)
     {
-        if(CurrentMenu!=null)
+        if (CurrentMenu != null)
             CurrentMenu.SetActive(false);
 
         CurrentMenu = newMenu;
@@ -67,6 +73,25 @@ public class GameMenu : Singleton<GameMenu>
     public void HideMenu()
     {
         CurrentMenu.SetActive(false);
+    }
+
+    private void hideMenu(GameObject obj)
+    {
+        if (obj != null)
+            obj.SetActive(false);
+    }
+
+    public void HideAllMenu()
+    {
+        hideMenu(MenuObjects.Splash);
+        hideMenu(MenuObjects.StartMenu);
+        hideMenu(MenuObjects.LevelSelect);
+        hideMenu(MenuObjects.StartGameMenu);
+        hideMenu(MenuObjects.Controls);
+        hideMenu(MenuObjects.Settings);
+        hideMenu(MenuObjects.GameWon);
+        hideMenu(MenuObjects.GameDraw);
+        hideMenu(MenuObjects.GameLost);
     }
 
     public void Splash()
