@@ -3,7 +3,7 @@ using UnityEditor;
 using NUnit.Framework;
 
 [CustomEditor(typeof(BMGrid))]
-public class GridEditor :Editor
+public class BMGridEditor :Editor
 {
     BMGrid grid;
 
