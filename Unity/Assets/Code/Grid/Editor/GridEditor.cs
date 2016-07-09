@@ -16,8 +16,6 @@ public class GridEditor : Editor
 
     public override void OnInspectorGUI()
     {
-
-
         base.OnInspectorGUI();
     }
 
@@ -50,7 +48,7 @@ public class GridEditor : Editor
             SceneView.RepaintAll();
         }
 
-
+        grid.ObjectToSpawn = grid.LevelData.PrefabList.SelectedObject;
         // Keep this object selected
         int controlID = GUIUtility.GetControlID(FocusType.Native);
         if (Event.current.type == EventType.layout)
