@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[CreateAssetMenu]
 public class ShakeRecipe : ScriptableObject
 {
     public string Name = "Default";
