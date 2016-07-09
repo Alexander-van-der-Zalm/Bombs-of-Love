@@ -8,6 +8,8 @@ using System;
 /// </summary>
 public class GridData : ScriptableObject
 {
+    #region Fields
+
     public float TileWidth = 1.0f;
     public float TileHeight = 1.0f;
 
@@ -25,6 +27,8 @@ public class GridData : ScriptableObject
     public List<GridDataElement>[,,] GridRuntimeArray;
     private int minX, minY, maxX, maxY;
     private int layerMin, layerMax;
+
+    #endregion
 
     #region GetSet
 
@@ -64,11 +68,17 @@ public class GridData : ScriptableObject
 
     #endregion
 
+    #region Awake
+
     public void Awake()
     {
         // Create RuntimeArray
         Initialize();
     }
+
+    #endregion
+
+    #region Init Array
 
     public void Initialize()
     {
@@ -134,4 +144,20 @@ public class GridData : ScriptableObject
             GridRuntimeArray[el.Prefab.GridLayer, el.X, el.Y].Add(el);
         }
     }
+
+    #endregion
+
+    #region Safe Add & Remove
+
+    public void SafeAdd(GridDataElement newElement)
+    {
+
+    }
+
+    public void SafeRemove(GridDataElement element)
+    {
+
+    }
+
+    #endregion
 }

@@ -5,5 +5,10 @@ using System.Collections;
 public class GridElement : MonoBehaviour
 {
     public GridDataElement Data;
+    public Grid ParentGrid;
 
+    public void SnapMeToGrid()
+    {
+
+    }
 }
