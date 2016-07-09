@@ -20,6 +20,8 @@ public class Grid : MonoBehaviour
     public Vector2 SelectedGridCoord;
     //[HideInInspector]
     public GameObject ObjectToSpawn;
+    [HideInInspector]
+    public GridPrefab SelectedGridPrefab;
 
     private Vector2 LastSpawnedGridCoord;
     private GameObject LastObjectSpawned;
@@ -46,6 +48,7 @@ public class Grid : MonoBehaviour
 
         Debug.Log("SpawnObject: " + ObjectToSpawn.name + " @ " + SelectedGridCoord + " - " + pos);
 
+        //GridDataElement el = new GridDataElement(new GridPrefab() { ObjectToSpawn, (int)SelectedGridCoord.x, (int)SelectedGridCoord.y);
         GameObject.Instantiate(ObjectToSpawn, pos, Quaternion.identity);
 
         Debug.Log("Register to leveldata plz");

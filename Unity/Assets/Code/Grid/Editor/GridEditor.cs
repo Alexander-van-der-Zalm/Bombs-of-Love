@@ -40,6 +40,8 @@ public class GridEditor : Editor
         }
 
         grid.ObjectToSpawn = grid.LevelData.PrefabList.SelectedObject;
+        grid.SelectedGridPrefab = grid.LevelData.PrefabList.SelectedGridPrefab;
+
         // Keep this object selected
         int controlID = GUIUtility.GetControlID(FocusType.Native);
         if (Event.current.type == EventType.layout)

@@ -8,7 +8,6 @@ public class GridPrefabListDrawer : PropertyDrawer
 {
     private ReorderableList prefabList;
     private ReorderableList layerList;
-    private GridPrefabList gpl;
     private SerializedObject so;
 
     private int sy = 5;
