@@ -2,27 +2,50 @@
 using System.Collections;
 using System;
 
-//[ExecuteInEditMode]
 public class Grid : MonoBehaviour
 {
     #region Fields
 
-    public float TileWidth = 1.0f;
-    public float TileHeight = 1.0f;
+    public GridData LevelData;
 
-    
+    public float TileWidth { get { return LevelData != null ? LevelData.TileWidth : 1.0f; } }
+    public float TileHeight { get { return LevelData != null ? LevelData.TileHeight : 1.0f; } }
+
+    public KeyCode SpawnObjectKeyCode = KeyCode.A;
     //public bool DrawLinesInGame = true; // IMPLEMENT PLX
+
+    public GridLineDrawer drawer;
+
+    //[HideInInspector]
+    public Vector2 SelectedGridCoord;
+    //[HideInInspector]
+    public GameObject ObjectToSpawn;
+
+    private Vector2 LastSpawnedGridCoord;
+    private GameObject LastObjectSpawned;
 
     #endregion
 
-    public GridLineDrawer drawer;
-    public Vector2 SelectedGridCoord;
+    public void Update()
+    {
+        Debug.Log("Update");
+        if (SelectedGridCoord != LastSpawnedGridCoord && Input.GetKey(SpawnObjectKeyCode))
+        {
+            Debug.Log("SpawnObject @ " + SelectedGridCoord);
+            LastSpawnedGridCoord = SelectedGridCoord;
+        }
 
-    //public void Update()
-    //{
-    //    if (Event.current.type == EventType.MouseMove)
-    //        SceneView.RepaintAll();
-    //}
+    }
+
+    public void SpawnObject()
+    {
+        if (SelectedGridCoord == LastSpawnedGridCoord && ObjectToSpawn == LastObjectSpawned)
+            return;
+
+        Debug.Log("SpawnObject @ " + SelectedGridCoord);
+
+        LastSpawnedGridCoord = SelectedGridCoord;
+    }
 
     #region Gizmos
 
@@ -54,6 +77,11 @@ public class Grid : MonoBehaviour
 
     #region Get
 
+    public Vector2 GetSceneMouseGridCoord()
+    {
+        return GetGridCoord(UnityEditor.HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin);
+    }
+
     public Vector2 GetGridCoord(Vector3 worldPos)
     {
         return new Vector2(Mathf.Floor(worldPos.x / TileWidth), Mathf.Floor(worldPos.y / TileHeight));
@@ -71,6 +99,8 @@ public class Grid : MonoBehaviour
 
     #endregion
 }
+
+#region Grid Drawer
 
 [System.Serializable]
 public class GridLineDrawer
@@ -182,3 +212,5 @@ public class GridLineDrawer
 
     }
 }
+
+#endregion
