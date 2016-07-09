@@ -18,11 +18,11 @@ public class GridPrefabListEditor : Editor
 
     public void InitializeLists()
     {
-        prefabList = InitializePrefabList();
-        layerList = InitializeLayerList();
+        prefabList = InitializePrefabList(serializedObject);
+        layerList = InitializeLayerList(serializedObject);
     }
 
-    private ReorderableList InitializeLayerList()
+    public static ReorderableList InitializeLayerList(SerializedObject serializedObject)
     {
         //public int Layer = 0;
         //public string Name = "Tile";
@@ -71,7 +71,7 @@ public class GridPrefabListEditor : Editor
         return list;
     }
 
-    private void SortLayerList(ReorderableList l)
+    private static void SortLayerList(ReorderableList l)
     {
         for (int i = 0; i < l.count; i++)
         {
@@ -79,18 +79,8 @@ public class GridPrefabListEditor : Editor
         }
     }
 
-    public ReorderableList InitializePrefabList()
+    public static ReorderableList MakePrefabListFancy(ReorderableList list)
     {
-        //public GameObject Prefab;
-        //public int GridLayer;
-        //public float TileOffsetX;
-        //public float TileOffsetY;
-        //public bool Traversable;
-
-        ReorderableList list = new ReorderableList(serializedObject,
-                serializedObject.FindProperty("PrefabList"),
-                true, true, true, true);
-
         int lW1 = 20;
         int lW2 = 30;
         int lW3 = 15;
@@ -111,7 +101,7 @@ public class GridPrefabListEditor : Editor
                 new Rect(rect.x + rect.width - lW2 - lW3, rect.y, lW2, EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("TileOffsetY"), GUIContent.none);
             EditorGUI.PropertyField(
-                new Rect(rect.x + rect.width - 1 * lW3 +2, rect.y, lW3, EditorGUIUtility.singleLineHeight),
+                new Rect(rect.x + rect.width - 1 * lW3 + 2, rect.y, lW3, EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("Traversable"), GUIContent.none);
         };
         list.drawHeaderCallback = (Rect rect) =>
@@ -124,6 +114,23 @@ public class GridPrefabListEditor : Editor
             if (prefab)
                 EditorGUIUtility.PingObject(prefab.gameObject);
         };
+        return list;
+    }
+
+    public static ReorderableList InitializePrefabList(SerializedObject serializedObject)
+    {
+        //public GameObject Prefab;
+        //public int GridLayer;
+        //public float TileOffsetX;
+        //public float TileOffsetY;
+        //public bool Traversable;
+
+        ReorderableList list = new ReorderableList(serializedObject,
+                serializedObject.FindProperty("PrefabList"),
+                true, true, true, true);
+
+        list = MakePrefabListFancy(list);
+        
         return list;
     }
 
