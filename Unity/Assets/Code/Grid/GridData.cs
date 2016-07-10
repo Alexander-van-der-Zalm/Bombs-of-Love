@@ -192,8 +192,9 @@ public class GridData : ScriptableObject
     public bool SafeAdd(GridDataElement el, bool replace = true)
     {
         // Check if the layer allows it
-        if (CheckValidLayer(el.Prefab.GridLayer))
+        if (!CheckValidLayer(el.Prefab.GridLayer))
             return false;
+            
 
         #region Layer,Coord check & Replace
 
@@ -266,9 +267,25 @@ public class GridData : ScriptableObject
         throw new System.NotImplementedException();
     }
 
-    private GameObject FastIniatiate(GridDataElement newElement, Grid grid)
+    private GameObject FastIniatiate(GridDataElement el, Grid grid)
     {
-        return null;
+        Vector3 pos = grid.GetGridWorldPos(new Vector2(el.X,el.Y));
+        GameObject go = GameObject.Instantiate(el.Prefab.Prefab, pos, Quaternion.identity) as GameObject;
+
+        // Set to layerParent
+        grid.CreateUpdateLayerContainers();
+        GameObject layer = grid.LayerContainers.Where(c => c.Layer.LayerIndex == el.Prefab.GridLayer).First().GO;
+        go.transform.parent = layer.transform;
+
+        // Set GridElementInstance
+        el.Instance = go.GetComponent< GridElementInstance>();
+        if (el.Instance == null)
+            el.Instance = go.AddComponent<GridElementInstance>();
+
+        el.Instance.ParentGrid = grid;
+        el.Instance.Data = el;
+
+        return go;
     }
 
     public bool SafeRemove(GridDataElement element)

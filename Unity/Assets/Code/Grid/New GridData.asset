@@ -15,5 +15,5 @@ MonoBehaviour:
   TileHeight: 1
   PrefabList: {fileID: 11400000, guid: 45481bb8205acdf45babd139e28fb962, type: 2}
   GridSaveData: []
-  m_Changes: 0
+  m_Changes: 23
   m_ArrayInitOnChanges: -1

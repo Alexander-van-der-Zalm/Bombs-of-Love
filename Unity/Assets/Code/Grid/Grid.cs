@@ -54,7 +54,7 @@ public class Grid : MonoBehaviour
         Debug.Log("SpawnObject: " + ObjectToSpawn.name + " @ " + SelectedGridCoord + " - " + pos);
         // Move Instantiating to gridData?
         GridDataElement el = new GridDataElement(SelectedGridPrefab, (int)SelectedGridCoord.x, (int)SelectedGridCoord.y);
-
+        Debug.Log(el.X + " " + el.Y);
         // Check GridElement on prefabs...
         
         //el.Instance = GameObject.Instantiate(ObjectToSpawn, pos, Quaternion.identity) as GameObject;
