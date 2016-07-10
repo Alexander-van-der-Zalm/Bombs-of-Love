@@ -73,6 +73,7 @@ public class Grid : MonoBehaviour
         if (LayerContainers == null)
             LayerContainers = new List<GridLayerContainer>();
 
+        List<int> hashes = new List<int>();
         // Check if it needs a new container
         foreach(GridLayer layer in LevelData.PrefabList.GridLayers)
         {
@@ -80,7 +81,7 @@ public class Grid : MonoBehaviour
             Debug.Log(layer.Name + " hash " + layer.Hash);
             if (layer.Hash < 0)
                 layer.Hash = layer.GetHashCode();
-            
+            hashes.Add(layer.Hash);
             // Check if reference is lost
             if (container == null)
             {
@@ -110,16 +111,25 @@ public class Grid : MonoBehaviour
         for(int i = containerAmount-1; i > -1; i--)
         { 
             GridLayerContainer container = LayerContainers[i]; 
-                // Remove if there is no more gameObject
+            // Remove if there is no more gameObject
             if (container.GO == null)
             {
-                LayerContainers.Remove(container);  
+                LayerContainers.Remove(container);
+                container = null;
             }
             else
             {
                 container.GO.name = container.Layer.Name;
                 container.GO.transform.SetSiblingIndex(container.Layer.LayerIndex);
             }
+            // Check if there is no more layer
+            if(!hashes.Contains(container.Layer.Hash))
+            {
+                GameObject.DestroyImmediate(container.GO);
+                LayerContainers.Remove(container);
+                container = null;
+            }
+                
         }
         AssetDatabase.SaveAssets(); 
     }

@@ -37,9 +37,9 @@ MonoBehaviour:
     AllowMultiplePerCoord: 1
     Hash: 1431103040
   - LayerIndex: 6
-    Name: Snorremans asdf
+    Name: Triggers2
     AllowMultiplePerCoord: 1
-    Hash: 484486976
+    Hash: 1795941952
   PrefabList:
   - Prefab: {fileID: 198226, guid: 0bf8e58a3be6c22499d792ef69cc1134, type: 2}
     GridLayer: 0

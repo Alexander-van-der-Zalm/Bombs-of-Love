@@ -78,6 +78,7 @@ public class GridPrefabListEditor : Editor
             var index = l.serializedProperty.arraySize;
             l.serializedProperty.arraySize++;
             l.index = index;
+            l.serializedProperty.GetArrayElementAtIndex(index).FindPropertyRelative("Hash").intValue = -1;
             SortLayerList(l);
         };
         return list;
