@@ -142,7 +142,7 @@ public class GridData : ScriptableObject
 
     #region Init Array
 
-    public void InitGridRuntimeArray()
+    private void InitGridRuntimeArray()
     {
         Debug.Log("Initializing Runtime Grid Array");
 
@@ -252,19 +252,19 @@ public class GridData : ScriptableObject
         #endregion
 
         Debug.Log("Element ADDED @ " + el.X + " " + el.Y);
-        AddElement(el);
+        AddElementToSaveData(el);
         return true;
     }
 
     #region GridSaveData replace, add, remove
 
-    private void AddElement(GridDataElement el)
+    private void AddElementToSaveData(GridDataElement el)
     {
         m_Changes++;
         GridSaveData.Add(el);
     }
     
-    private bool RemoveElement(GridDataElement el)
+    private bool RemoveElementFromSaveData(GridDataElement el)
     {
         if(GridSaveData.Contains(el))
         {
@@ -280,9 +280,8 @@ public class GridData : ScriptableObject
     {
         // Find old, Remove old, Add new
         GridDataElement old = GridSaveData.Where(e => e.Prefab.GridLayer == el.Prefab.GridLayer && e.X == el.X && e.Y == el.Y).First();
-        GameObject.DestroyImmediate(old.Instance.gameObject);
-        RemoveElement(old);
-        AddElement(el);
+        DeleteAndRemoveFromData(old);
+        AddElementToSaveData(el);
     }
 
     #endregion
@@ -303,11 +302,15 @@ public class GridData : ScriptableObject
 
         Debug.Log("Element REMOVED @ " + element.X + " " + element.Y);
 
-        GameObject.DestroyImmediate(element.Instance.gameObject);
-        RemoveElement(element);
+        DeleteAndRemoveFromData(element);
         return true;
     }
 
+    private void DeleteAndRemoveFromData(GridDataElement element)
+    {
+        GameObject.DestroyImmediate(element.Instance.gameObject);
+        RemoveElementFromSaveData(element);
+    }
 
     #endregion
 
@@ -340,17 +343,35 @@ public class GridData : ScriptableObject
 
     public void InstantiateAll(Grid grid)
     {
-        throw new System.NotImplementedException();
+        foreach (GridDataElement el in GridSaveData)
+        {
+            FastIniatiate(el, grid);
+        }
     }
 
-    public void DestroyAllInstances(Grid grid)
+    public void DeleteRuntime(Grid grid)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("DeleteRuntime");
+        int amount = GridSaveData.Count;
+        for (int i = amount - 1; i >= 0; i--)
+        {
+            GridDataElement el = GridSaveData[i];
+            GameObject.DestroyImmediate(el.Instance.gameObject);
+        }
     }
 
-    public void ClearEverything(Grid grid)
+    public void DeleteAll(Grid grid)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("DeleteRuntime");
+        int amount = GridSaveData.Count;
+        for (int i = amount - 1; i >= 0; i--)
+        {
+            GridDataElement el = GridSaveData[i];
+            DeleteAndRemoveFromData(el);
+        }
+        m_GridRuntimeArray = null;
+        m_Changes = 0;
+        m_ArrayInitOnChanges = -1;
     }
 
     #endregion

@@ -18,8 +18,15 @@ public class GridEditor : Editor
         base.OnInspectorGUI();
         if (GUILayout.Button("Update Layers"))
             grid.CreateUpdateLayerContainers();
-        //if (GUILayout.Button("Instantiate All"))
-        //    grid.CreateUpdateLayerContainers();
+        if (GUILayout.Button("Instantiate All"))
+            grid.InstantiateAll();
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Delete ALL"))
+            grid.DeleteAll();
+        if (GUILayout.Button("Delete Runtime"))
+            grid.DeleteRuntime();
+        GUILayout.EndHorizontal();
+        
 
         grid.SelectedGridPrefab = grid.GridLevelData.PrefabList.SelectedGridPrefab;
         if (grid.SelectedGridPrefab != null)

@@ -52,6 +52,8 @@ public class Grid : MonoBehaviour
 
     }
 
+    #region Single Create & Delete
+
     public void SpawnObject()
     {
         if (SelectedGridCoord == m_LastSpawnedGridCoord && ObjectToSpawn == m_LastObjectSpawned && GridLevelData.ChangeLog == m_lastSpawnChangeLog)
@@ -111,12 +113,32 @@ public class Grid : MonoBehaviour
         foreach (GridDataElement el in elements)
         {
             GridLevelData.SafeRemove(el);
-            
         }
 
         m_lastClearAllOnSelectedGridCoord = SelectedGridCoord;
         m_lastDeleteAllChangeLog = GridLevelData.ChangeLog;
     }
+
+    #endregion
+
+    #region Instantiate All & Delete All
+
+    public void InstantiateAll()
+    {
+        GridLevelData.InstantiateAll(this);
+    }
+
+    public void DeleteRuntime()
+    {
+        GridLevelData.DeleteRuntime(this);
+    }
+
+    public void DeleteAll()
+    {
+        GridLevelData.DeleteAll(this);
+    }
+
+    #endregion
 
     #region Create/Update Layer Containers
 
