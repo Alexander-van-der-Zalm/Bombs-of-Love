@@ -13,7 +13,7 @@ public class GridPrefabListDrawer : PropertyDrawer
 
     private int sy = 5;
 
-    private GridPrefabListEditor editor;
+    //private GridPrefabListEditor editor;
 
     private void Init(SerializedProperty prop)
     {
@@ -23,14 +23,14 @@ public class GridPrefabListDrawer : PropertyDrawer
         if (gpl == null)
             gpl = prop.objectReferenceValue as GridPrefabList;
 
-        if(editor == null)
-            editor = Editor.CreateEditor(prop.objectReferenceValue) as GridPrefabListEditor;
+        //if(editor == null)
+        //    editor = Editor.CreateEditor(prop.objectReferenceValue) as GridPrefabListEditor;
 
         if (prefabList == null)
-            prefabList = editor.InitializePrefabList(so);
+            prefabList = InitializePrefabList(so);
             
         if (layerList == null)
-            layerList = editor.InitializeLayerList(so);
+            layerList = InitializeLayerList(so);
     }
 
     public override float GetPropertyHeight(SerializedProperty prop, GUIContent label)
@@ -43,16 +43,130 @@ public class GridPrefabListDrawer : PropertyDrawer
     public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
     {
         Init(prop);
-        so = new SerializedObject(prop.objectReferenceValue);
-        so.Update();
+        //so = new SerializedObject(prop.objectReferenceValue);
+        //so.Update();
+        EditorGUI.BeginChangeCheck();
         
         EditorGUI.PropertyField(new Rect(pos.x, pos.y + sy, pos.width, EditorGUIUtility.singleLineHeight), prop);
         layerList.DoList((new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight, pos.width, layerList.GetHeight())));
         prefabList.DoList(new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight + layerList.GetHeight(), pos.width, prefabList.GetHeight()));
-
         EditorGUI.PropertyField(new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight + layerList.GetHeight() + prefabList.GetHeight(), pos.width, EditorGUIUtility.singleLineHeight), so.FindProperty("SelectedIndex"));
 
-        so.ApplyModifiedProperties();
+        if (EditorGUI.EndChangeCheck())
+            so.ApplyModifiedProperties();
+
+    }
+
+
+    public ReorderableList InitializeLayerList(SerializedObject serializedObject)
+    {
+
+        //public int Layer = 0;
+        //public string Name = "Tile";
+        //public int MaxInstancesPerCoord = 1;
+        ReorderableList list = new ReorderableList(serializedObject,
+                serializedObject.FindProperty("GridLayers"),
+                true, true, true, true);
+
+        int lW1 = 20;
+        int lW2 = 15;
+        list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
+        {
+            var element = list.serializedProperty.GetArrayElementAtIndex(index);
+            rect.y += 2;
+            EditorGUI.PropertyField(
+                new Rect(rect.x, rect.y, lW1, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("LayerIndex"), GUIContent.none);
+            EditorGUI.PropertyField(
+                new Rect(rect.x + 1 * lW1, rect.y, rect.width - 1 * lW1 - 1 * lW2, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("Name"), GUIContent.none);
+            EditorGUI.PropertyField(
+                new Rect(rect.x + 2 + rect.width - 1 * lW2, rect.y, lW2, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("AllowMultiplePerCoord"), GUIContent.none);
+
+        };
+        list.drawHeaderCallback = (Rect rect) =>
+        {
+            EditorGUI.LabelField(rect, "LayerList - Index - Name - AllowMultiplePerCoord");
+        };
+        list.onReorderCallback = (ReorderableList l) =>
+        {
+            SortLayerList(l);
+        };
+        list.onRemoveCallback = (ReorderableList l) =>
+        {
+            ReorderableList.defaultBehaviours.DoRemoveButton(l);
+            SortLayerList(l);
+        };
+        list.onAddCallback = (ReorderableList l) =>
+        {
+            var index = l.serializedProperty.arraySize;
+            l.serializedProperty.arraySize++;
+            l.index = index;
+            SortLayerList(l);
+        };
+        return list;
+    }
+
+    private void SortLayerList(ReorderableList l)
+    {
+        for (int i = 0; i < l.count; i++)
+        {
+            l.serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("LayerIndex").intValue = i;
+        }
+    }
+
+    public ReorderableList InitializePrefabList(SerializedObject serializedObject)
+    {
+        //public GameObject Prefab;
+        //public int GridLayer;
+        //public float TileOffsetX;
+        //public float TileOffsetY;
+        //public bool Traversable;
+
+        ReorderableList list = new ReorderableList(serializedObject,
+                serializedObject.FindProperty("PrefabList"),
+                true, true, true, true);
+
+        int lW1 = 20;
+        int lW2 = 30;
+        int lW3 = 15;
+        list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
+        {
+            var element = list.serializedProperty.GetArrayElementAtIndex(index);
+            rect.y += 2;
+            EditorGUI.PropertyField(
+                new Rect(rect.x, rect.y, rect.width - lW1 - 2 * lW2 - lW3, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("Prefab"), GUIContent.none);
+            EditorGUI.PropertyField(
+                new Rect(rect.x + rect.width - lW1 - 2 * lW2 - lW3, rect.y, lW1, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("GridLayer"), GUIContent.none);
+            EditorGUI.PropertyField(
+                new Rect(rect.x + 2 + rect.width - 2 * lW2 - lW3, rect.y, lW2, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("TileOffsetX"), GUIContent.none);
+            EditorGUI.PropertyField(
+                new Rect(rect.x + rect.width - lW2 - lW3, rect.y, lW2, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("TileOffsetY"), GUIContent.none);
+            EditorGUI.PropertyField(
+                new Rect(rect.x + rect.width - 1 * lW3 + 2, rect.y, lW3, EditorGUIUtility.singleLineHeight),
+                element.FindPropertyRelative("Traversable"), GUIContent.none);
+        };
+        list.drawHeaderCallback = (Rect rect) =>
+        {
+            EditorGUI.LabelField(rect, "Prefab List - layer - x,y offset - traversable");
+        };
+        list.onSelectCallback = (ReorderableList l) =>
+        {
+            Debug.Log(l.index);
+            GridPrefabList gpl = serializedObject.targetObject as GridPrefabList;
+            gpl.SelectedIndex = l.index;
+            if (gpl.PrefabList[l.index].Prefab != null)
+            {
+                EditorGUIUtility.PingObject(gpl.PrefabList[l.index].Prefab);
+            }
+        };
+
+        return list;
     }
 }
 

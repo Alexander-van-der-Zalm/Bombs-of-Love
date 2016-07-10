@@ -6,11 +6,10 @@ using NUnit.Framework;
 public class GridEditor : Editor
 {
     private Grid grid;
-    private bool SpawnKeyDown = false;
 
     public void Awake()
     {
-        Debug.Log("Awake");
+        //Debug.Log("Awake");
         grid = Selection.activeGameObject.GetComponent<Grid>();
     }
 

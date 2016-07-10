@@ -76,6 +76,12 @@ public class Grid : MonoBehaviour
         foreach(GridLayer layer in LevelData.PrefabList.GridLayers)
         {
             GridLayerContainer container = LayerContainers.Where(lc => lc.Layer == layer).FirstOrDefault();
+            // If container with empty go
+            if(container != null && container.GO == null)
+            {
+                LayerContainers.Remove(container);
+                container = null;
+            }
             // If no container yet
             if (container == null)
             {
