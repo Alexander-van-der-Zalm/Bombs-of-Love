@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 /// <summary>
 /// This is all the data that describes a level
@@ -23,9 +24,9 @@ public class GridData : ScriptableObject
     /// <summary>
     /// Lives Runtime
     /// </summary>
-    [HideInInspector]
-    public List<GridDataElement>[,,] GridRuntimeArray;
-
+    [SerializeField, HideInInspector]
+    
+    private List<GridDataElement>[,,] m_GridRuntimeArray;
     private int m_minX, m_minY, m_maxX, m_maxY;
     private int m_LayerMin, m_LayerMax;
 
@@ -34,21 +35,44 @@ public class GridData : ScriptableObject
     [SerializeField, ReadOnly]
     private int m_ArrayInitOnChanges = -1;
 
-    private bool m_ArraySynced { get { return GridRuntimeArray != null && m_Changes == m_ArrayInitOnChanges; } }
+    private bool m_ArraySynced { get { return m_GridRuntimeArray != null && m_Changes == m_ArrayInitOnChanges; } }
 
     #endregion
 
     #region GetSet
 
-    public GridDataElement this[int layer, int x, int y] { get { return this[layer, x, y, 0]; } }// Check out of bounds
-    public GridDataElement this[int layer, int x, int y, int nr] { get { return CheckInArrayBounds(layer,x,y,nr) ? GridRuntimeArray[layer, x, y][nr] : null; } }
+
+
+    public List<GridDataElement> this[int layer, int x, int y]
+    {
+        get { return CheckInArrayBounds(layer, x, y) ? GridRuntimeArray(layer, x, y) : null; }
+        private set { if (CheckInArrayBounds(layer, x, y)) SetGridRuntimeArray(layer, x, y, value); }
+    }// Check out of bounds
+    
+    //public List<GridDataElement> this[int layer, int x, int y, int nr] { get { return CheckInArrayBounds(layer,x,y,nr) ? GridRuntimeArray(layer, x, y)[nr] : null; } }
     public int Layers { get { return m_LayerMax - m_LayerMin + 1; } }
     public int GridWidth { get { return m_maxX - m_minX + 1; } }
     public int GridHeight { get { return m_maxY - m_minY + 1; } }
 
-    private bool CheckInArrayBounds(int layer, int x, int y, int nr)
+    private List<GridDataElement> GridRuntimeArray(int layer, int x, int y)
     {
-        if(GridRuntimeArray == null)
+        return m_GridRuntimeArray[layer - m_LayerMin, x - m_minX, y - m_minY];
+    }
+
+    private void SetGridRuntimeArray(int layer, int x, int y, List<GridDataElement> p)
+    {
+        m_GridRuntimeArray[layer - m_LayerMin, x - m_minX, y - m_minY] = p;
+    }
+
+    // ########## REMOVE ############
+    public List<GridDataElement> GetListAtCoord(int layer, int x, int y)
+    {
+        return CheckInArrayBounds(layer, x, y) ? GridRuntimeArray(layer, x, y) : null;
+    }
+
+    private bool CheckInArrayBounds(int layer, int x, int y)
+    {
+        if(m_GridRuntimeArray == null || !m_ArraySynced)
         {
             InitGridRuntimeArray();
         }
@@ -63,11 +87,11 @@ public class GridData : ScriptableObject
             Debug.LogError("Layer out of Range");
             return false;
         }
-        if(nr >= GridRuntimeArray[layer, x, y].Count)
-        {
-            Debug.LogError("Nr out of Range");
-            return false;
-        }
+        //if(nr >= GridRuntimeArray(layer, x, y).Count)
+        //{
+        //    Debug.LogError("Nr out of Range");
+        //    return false;
+        //}
 
         return true;
     }
@@ -161,7 +185,7 @@ public class GridData : ScriptableObject
             {
                 if (layer.LayerIndex < m_LayerMin)
                     m_LayerMin = layer.LayerIndex;
-                if (layer.LayerIndex < m_LayerMax)
+                if (layer.LayerIndex > m_LayerMax)
                     m_LayerMax = layer.LayerIndex;
             }
         }
@@ -170,20 +194,26 @@ public class GridData : ScriptableObject
             m_LayerMin = 0;
             m_LayerMax = 0;
         }
+
         #endregion
+
+
+        Debug.Log(string.Format("x {0} {1} y {2} {3} layer {4} {5}",m_minX,m_maxX,m_minY,m_maxY,m_LayerMin,m_LayerMax));
 
         // Initialize array
         m_ArrayInitOnChanges = m_Changes;
-        GridRuntimeArray = new List<GridDataElement>[Layers, GridWidth, GridHeight];
+        m_GridRuntimeArray = new List<GridDataElement>[Layers, GridWidth, GridHeight];
 
         foreach (GridDataElement el in GridSaveData)
         {
-            if (GridRuntimeArray[el.Prefab.GridLayer, el.X, el.Y] == null)
-                GridRuntimeArray[el.Prefab.GridLayer, el.X, el.Y] = new List<GridDataElement>();
+            if (GridRuntimeArray(el.Prefab.GridLayer, el.X, el.Y) == null)
+                this[el.Prefab.GridLayer, el.X, el.Y] = new List<GridDataElement>();
 
-            GridRuntimeArray[el.Prefab.GridLayer, el.X, el.Y].Add(el);
+            GridRuntimeArray(el.Prefab.GridLayer, el.X, el.Y).Add(el);
         }
     }
+
+    
 
     #endregion
 
@@ -200,9 +230,9 @@ public class GridData : ScriptableObject
 
         // If there is already something there on this layer
         bool alreadyObjectOnGridLayerCoord;// = true;
-        if(m_ArraySynced)
-            alreadyObjectOnGridLayerCoord = GridRuntimeArray[el.Prefab.GridLayer, el.X, el.Y].Count() > 0;
-        else
+        //if(m_ArraySynced)
+        //    alreadyObjectOnGridLayerCoord = GridRuntimeArray[el.Prefab.GridLayer, el.X, el.Y].Count() > 0;
+        //else
             alreadyObjectOnGridLayerCoord = GridSaveData.Where(e => e.Prefab.GridLayer == el.Prefab.GridLayer && e.X == el.X && e.Y == el.Y).Count() > 0;
 
         if (alreadyObjectOnGridLayerCoord && !PrefabList.GridLayers[el.Prefab.GridLayer].AllowMultiplePerCoord)
@@ -210,7 +240,7 @@ public class GridData : ScriptableObject
             if(replace)
             {
                 ReplaceElement(el);
-                Debug.Log("Element safely replaced");
+                Debug.Log("Element REPLACED @ " + el.X + " " + el.Y);
                 return true;
             }
             Debug.Log("Element already exists not allowed to replace");
@@ -219,7 +249,7 @@ public class GridData : ScriptableObject
 
         #endregion
 
-        Debug.Log("Element safely added");
+        Debug.Log("Element ADDED @ " + el.X + " " + el.Y);
         AddElement(el);
         return true;
     }
@@ -262,10 +292,22 @@ public class GridData : ScriptableObject
         return FastIniatiate(newElement, grid);
     }
 
-    public void InstantiateAll(Grid grid)
+    public bool SafeRemove(GridDataElement element)
     {
-        throw new System.NotImplementedException();
+        // Todo Checks
+        if (!GridSaveData.Contains(element))
+            return false;
+
+        Debug.Log("Element REMOVED @ " + element.X + " " + element.Y);
+
+        GameObject.DestroyImmediate(element.Instance.gameObject);
+        RemoveElement(element);
+        return true;
     }
+
+    #endregion
+
+    #region Instantiate
 
     private GameObject FastIniatiate(GridDataElement el, Grid grid)
     {
@@ -277,7 +319,7 @@ public class GridData : ScriptableObject
         GameObject layer = grid.LayerContainers.Where(c => c.Layer.LayerIndex == el.Prefab.GridLayer).First().GO;
         go.transform.parent = layer.transform;
 
-        // Set GridElementInstance
+        // Set GridElementInstance 
         el.Instance = go.GetComponent< GridElementInstance>();
         if (el.Instance == null)
             el.Instance = go.AddComponent<GridElementInstance>();
@@ -288,13 +330,23 @@ public class GridData : ScriptableObject
         return go;
     }
 
-    public bool SafeRemove(GridDataElement element)
-    {
-        // Todo Checks
-        //return false;
+    #endregion
 
-        return RemoveElement(element);
-        //return true;
+    #region Instantiate All & Destroy All
+
+    public void InstantiateAll(Grid grid)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void DestroyAllInstances(Grid grid)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void ClearEverything(Grid grid)
+    {
+        throw new System.NotImplementedException();
     }
 
     #endregion

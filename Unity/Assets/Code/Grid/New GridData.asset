@@ -14,6 +14,15 @@ MonoBehaviour:
   TileWidth: 1
   TileHeight: 1
   PrefabList: {fileID: 11400000, guid: 45481bb8205acdf45babd139e28fb962, type: 2}
-  GridSaveData: []
-  m_Changes: 23
-  m_ArrayInitOnChanges: -1
+  GridSaveData:
+  - Prefab:
+      Prefab: {fileID: 198226, guid: 0bf8e58a3be6c22499d792ef69cc1134, type: 2}
+      GridLayer: 0
+      TileOffsetX: 0
+      TileOffsetY: 0
+      Traversable: 1
+    Instance: {fileID: 0}
+    X: 15
+    Y: -2
+  m_Changes: 158
+  m_ArrayInitOnChanges: 157

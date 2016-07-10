@@ -21,7 +21,7 @@ public class GridEditor : Editor
         //if (GUILayout.Button("Instantiate All"))
         //    grid.CreateUpdateLayerContainers();
 
-        grid.SelectedGridPrefab = grid.LevelData.PrefabList.SelectedGridPrefab;
+        grid.SelectedGridPrefab = grid.GridLevelData.PrefabList.SelectedGridPrefab;
         if (grid.SelectedGridPrefab != null)
             grid.ObjectToSpawn = grid.SelectedGridPrefab.Prefab;
     }
@@ -45,10 +45,22 @@ public class GridEditor : Editor
             grid.SpawnObject();
             SceneView.RepaintAll();
         }
+        if (Event.current.keyCode == grid.DeleteAllKeyCode)
+        {
+            //Debug.Log("KeyCode: " + Event.current.keyCode);
+            grid.ClearAllOnSelectedGridCoord();
+            SceneView.RepaintAll();
+        }
+        if (Event.current.keyCode == grid.DeleteLayerKeyCode)
+        {
+            //Debug.Log("KeyCode: " + Event.current.keyCode);
+            grid.ClearOnSelectedLayerAndGridCoord();
+            SceneView.RepaintAll();
+        }
 
         //GridPrefabListEditor e = Editor.CreateEditor(grid.LevelData.PrefabList) as GridPrefabListEditor;
         //Debug.Log(e.SelectedGridPrefab);
-        
+
 
         // Keep this object selected
         int controlID = GUIUtility.GetControlID(FocusType.Native);

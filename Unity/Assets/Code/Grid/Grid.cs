@@ -9,12 +9,14 @@ public class Grid : MonoBehaviour
 {
     #region Fields
 
-    public GridData LevelData;
+    public GridData GridLevelData;
 
-    public float TileWidth { get { return LevelData != null ? LevelData.TileWidth : 1.0f; } }
-    public float TileHeight { get { return LevelData != null ? LevelData.TileHeight : 1.0f; } }
+    public float TileWidth { get { return GridLevelData != null ? GridLevelData.TileWidth : 1.0f; } }
+    public float TileHeight { get { return GridLevelData != null ? GridLevelData.TileHeight : 1.0f; } }
 
     public KeyCode SpawnObjectKeyCode = KeyCode.A;
+    public KeyCode DeleteLayerKeyCode = KeyCode.Backspace;
+    public KeyCode DeleteAllKeyCode = KeyCode.Delete;
     //public bool DrawLinesInGame = true; // IMPLEMENT PLX
 
     public GridLineDrawer drawer;
@@ -54,16 +56,40 @@ public class Grid : MonoBehaviour
         Debug.Log("SpawnObject: " + ObjectToSpawn.name + " @ " + SelectedGridCoord + " - " + pos);
         // Move Instantiating to gridData?
         GridDataElement el = new GridDataElement(SelectedGridPrefab, (int)SelectedGridCoord.x, (int)SelectedGridCoord.y);
-        Debug.Log(el.X + " " + el.Y);
         // Check GridElement on prefabs...
         
         //el.Instance = GameObject.Instantiate(ObjectToSpawn, pos, Quaternion.identity) as GameObject;
 
-        LevelData.SafeAddAndInstantiate(el,this);
+        GridLevelData.SafeAddAndInstantiate(el,this);
         //Debug.Log("Register to leveldata plz");
 
         m_LastObjectSpawned = ObjectToSpawn;
         m_LastSpawnedGridCoord = SelectedGridCoord;
+    }
+
+    public void ClearOnSelectedLayerAndGridCoord()
+    {
+        List<GridDataElement> elements = GridLevelData[GridLevelData.PrefabList.SelectedLayerIndex, (int)SelectedGridCoord.x, (int)SelectedGridCoord.y];
+        if(elements != null)
+            Debug.Log("ClearOnSelectedLayerAndGridCoord " + elements.Count);
+
+        if (elements == null)
+            return;
+
+        foreach (GridDataElement el in elements)
+        {
+            GridLevelData.SafeRemove(el);
+        }
+    }
+
+    public void ClearAllOnSelectedGridCoord()
+    {
+        List<GridDataElement> elements = GridLevelData.GridSaveData.Where(e => e.X == (int)SelectedGridCoord.x && e.Y == (int)SelectedGridCoord.y).ToList();
+        Debug.Log("ClearAllOnSelectedGridCoord " + elements.Count);
+        foreach (GridDataElement el in elements)
+        {
+            GridLevelData.SafeRemove(el);
+        }
     }
 
     #region Create/Update Layer Containers
@@ -75,7 +101,7 @@ public class Grid : MonoBehaviour
 
         List<int> hashes = new List<int>();
         // Check if it needs a new container
-        foreach(GridLayer layer in LevelData.PrefabList.GridLayers)
+        foreach(GridLayer layer in GridLevelData.PrefabList.GridLayers)
         {
             GridLayerContainer container = LayerContainers.Where(lc => lc.Layer == layer).FirstOrDefault();
             //Debug.Log(layer.Name + " hash " + layer.Hash);
@@ -188,6 +214,7 @@ public class Grid : MonoBehaviour
 
     #endregion
 }
+
 
 [System.Serializable]
 public class GridLayerContainer
