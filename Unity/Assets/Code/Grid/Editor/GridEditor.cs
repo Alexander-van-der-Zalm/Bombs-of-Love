@@ -21,6 +21,10 @@ public class GridEditor : Editor
         //    grid.CreateUpdateLayerContainers();
         //if (GUILayout.Button("Instantiate All"))
         //    grid.CreateUpdateLayerContainers();
+
+        grid.SelectedGridPrefab = grid.LevelData.PrefabList.SelectedGridPrefab;
+        if (grid.SelectedGridPrefab != null)
+            grid.ObjectToSpawn = grid.SelectedGridPrefab.Prefab;
     }
 
     public void OnSceneGUI()
@@ -43,8 +47,9 @@ public class GridEditor : Editor
             SceneView.RepaintAll();
         }
 
-        grid.ObjectToSpawn = grid.LevelData.PrefabList.SelectedObject;
-        grid.SelectedGridPrefab = grid.LevelData.PrefabList.SelectedGridPrefab;
+        //GridPrefabListEditor e = Editor.CreateEditor(grid.LevelData.PrefabList) as GridPrefabListEditor;
+        //Debug.Log(e.SelectedGridPrefab);
+        
 
         // Keep this object selected
         int controlID = GUIUtility.GetControlID(FocusType.Native);

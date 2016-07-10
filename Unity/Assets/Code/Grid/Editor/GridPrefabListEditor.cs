@@ -141,13 +141,15 @@ public class GridPrefabListEditor : Editor
         return list;
     }
 
-
     public override void OnInspectorGUI()
     {
-        //serializedObject.Update();
+        serializedObject.Update();
         layerList.DoLayoutList();
         prefabList.DoLayoutList();
-        //serializedObject.ApplyModifiedProperties();
+        serializedObject.ApplyModifiedProperties();
+
+       // Debug.Log(SelectedGridPrefab.Prefab.name);
+        //gpl.SelectedGridPrefab = SelectedGridPrefab;
     }
 
     //public override void OnInspectorGUI()
