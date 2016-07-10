@@ -269,7 +269,7 @@ public class GridData : ScriptableObject
 
     private GameObject FastIniatiate(GridDataElement el, Grid grid)
     {
-        Vector3 pos = grid.GetGridWorldPos(new Vector2(el.X,el.Y));
+        Vector3 pos = grid.GetGridWorldPos(new Vector2(el.X,el.Y), el.Prefab.TileOffsetX, el.Prefab.TileOffsetY);
         GameObject go = GameObject.Instantiate(el.Prefab.Prefab, pos, Quaternion.identity) as GameObject;
 
         // Set to layerParent

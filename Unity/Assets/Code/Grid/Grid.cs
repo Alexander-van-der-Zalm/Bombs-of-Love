@@ -78,7 +78,7 @@ public class Grid : MonoBehaviour
         foreach(GridLayer layer in LevelData.PrefabList.GridLayers)
         {
             GridLayerContainer container = LayerContainers.Where(lc => lc.Layer == layer).FirstOrDefault();
-            Debug.Log(layer.Name + " hash " + layer.Hash);
+            //Debug.Log(layer.Name + " hash " + layer.Hash);
             if (layer.Hash < 0)
                 layer.Hash = layer.GetHashCode();
             hashes.Add(layer.Hash);
@@ -181,9 +181,9 @@ public class Grid : MonoBehaviour
         return GetGridWorldPos(GetGridCoord(worldPos)) + new Vector3(tileXOffset * TileWidth, tileYOffset * TileHeight);
     }
 
-    public Vector3 GetGridWorldPos(Vector2 gridCoord)
+    public Vector3 GetGridWorldPos(Vector2 gridCoord, float tileXOffset = 0, float tileYOffset = 0)
     {
-        return new Vector3(gridCoord.x * TileWidth, gridCoord.y * TileHeight);
+        return new Vector3(gridCoord.x * TileWidth, gridCoord.y * TileHeight) + new Vector3(tileXOffset * TileWidth, tileYOffset * TileHeight);
     }
 
     #endregion
