@@ -6,9 +6,11 @@ public class GridPrefabList : ScriptableObject
     public List<GridLayer> GridLayers;
     public List<GridPrefab> PrefabList;
 
-    public GridPrefab SelectedGridPrefab { get { return PrefabList[SelectedIndex]; } }
+    public GridPrefab SelectedGridPrefab { get { return PrefabList[(int)Mathf.Max(0,SelectedPrefabIndex)]; } }
     [ReadOnly]
-    public int SelectedIndex;
+    public int SelectedPrefabIndex;
+    [ReadOnly]
+    public int SelectedLayerIndex;
 }
 
 [System.Serializable]

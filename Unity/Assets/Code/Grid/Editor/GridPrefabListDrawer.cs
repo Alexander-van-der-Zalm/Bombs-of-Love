@@ -12,7 +12,10 @@ public class GridPrefabListDrawer : PropertyDrawer
     private GridPrefabList gpl;
 
     private int sy = 5;
-
+    [SerializeField]
+    private int prefabIndex = -1;
+    [SerializeField]
+    private int layerIndex = -1;
     //private GridPrefabListEditor editor;
 
     private void Init(SerializedProperty prop)
@@ -37,7 +40,7 @@ public class GridPrefabListDrawer : PropertyDrawer
     {
         Init(prop);
 
-        return prefabList.GetHeight() + layerList.GetHeight() + 2* EditorGUIUtility.singleLineHeight + sy * 2;
+        return prefabList.GetHeight() + layerList.GetHeight() + 3* EditorGUIUtility.singleLineHeight + sy * 2;
     }
 
     public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
@@ -50,11 +53,18 @@ public class GridPrefabListDrawer : PropertyDrawer
         EditorGUI.PropertyField(new Rect(pos.x, pos.y + sy, pos.width, EditorGUIUtility.singleLineHeight), prop);
         layerList.DoList((new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight, pos.width, layerList.GetHeight())));
         prefabList.DoList(new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight + layerList.GetHeight(), pos.width, prefabList.GetHeight()));
-        EditorGUI.PropertyField(new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight + layerList.GetHeight() + prefabList.GetHeight(), pos.width, EditorGUIUtility.singleLineHeight), so.FindProperty("SelectedIndex"));
+        EditorGUI.PropertyField(new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight + layerList.GetHeight() + prefabList.GetHeight(), pos.width, EditorGUIUtility.singleLineHeight), so.FindProperty("SelectedPrefabIndex"));
+        EditorGUI.PropertyField(new Rect(pos.x, pos.y + sy * 2 + 2 * EditorGUIUtility.singleLineHeight + layerList.GetHeight() + prefabList.GetHeight(), pos.width, EditorGUIUtility.singleLineHeight), so.FindProperty("SelectedLayerIndex"));
 
         if (EditorGUI.EndChangeCheck())
             so.ApplyModifiedProperties();
 
+        //if(prefabIndex >= 0)
+        //    prefabIndex
+        
+        //prefabList.
+        prefabList.index = gpl.SelectedPrefabIndex;
+        layerList.index = gpl.SelectedLayerIndex;
     }
 
 
@@ -105,6 +115,12 @@ public class GridPrefabListDrawer : PropertyDrawer
             l.index = index;
             l.serializedProperty.GetArrayElementAtIndex(index).FindPropertyRelative("Hash").intValue = -1;
             SortLayerList(l);
+        };
+        list.onSelectCallback = (ReorderableList l) =>
+        {
+            GridPrefabList gpl = serializedObject.targetObject as GridPrefabList;
+            gpl.SelectedLayerIndex = l.index;
+            gpl.SelectedPrefabIndex = -1;
         };
         return list;
     }
@@ -158,9 +174,9 @@ public class GridPrefabListDrawer : PropertyDrawer
         };
         list.onSelectCallback = (ReorderableList l) =>
         {
-            Debug.Log(l.index);
             GridPrefabList gpl = serializedObject.targetObject as GridPrefabList;
-            gpl.SelectedIndex = l.index;
+            gpl.SelectedPrefabIndex = l.index;
+            gpl.SelectedLayerIndex = gpl.PrefabList[l.index].GridLayer;
             if (gpl.PrefabList[l.index].Prefab != null)
             {
                 EditorGUIUtility.PingObject(gpl.PrefabList[l.index].Prefab);

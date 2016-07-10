@@ -133,9 +133,8 @@ public class GridPrefabListEditor : Editor
         };
         list.onSelectCallback = (ReorderableList l) =>
         {
-        //var go = l.serializedProperty.GetArrayElementAtIndex(l.index).FindPropertyRelative("Prefab").objectReferenceValue as GameObject;
-        GridPrefabList gpl = serializedObject.targetObject as GridPrefabList;
-            gpl.SelectedIndex = l.index;
+            //var go = l.serializedProperty.GetArrayElementAtIndex(l.index).FindPropertyRelative("Prefab").objectReferenceValue as GameObject;
+            GridPrefabList gpl = serializedObject.targetObject as GridPrefabList;
             if (gpl.PrefabList[l.index].Prefab != null)
             {
                 EditorGUIUtility.PingObject(gpl.PrefabList[l.index].Prefab);

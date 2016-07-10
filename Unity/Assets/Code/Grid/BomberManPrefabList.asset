@@ -62,4 +62,5 @@ MonoBehaviour:
     TileOffsetX: 0.5
     TileOffsetY: 0
     Traversable: 0
-  SelectedIndex: 0
+  SelectedPrefabIndex: 0
+  SelectedLayerIndex: 3
