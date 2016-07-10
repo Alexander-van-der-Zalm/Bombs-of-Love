@@ -87,6 +87,7 @@ public class GameLogic : Singleton<GameLogic>
         GameTimer.Instance.PopupUI.text = "GAME OVER";
         GameTimer.Instance.PopupUI.gameObject.SetActive(true);
         AudioSource.PlayClipAtPoint(GameOverAnnouncer, transform.position);
+
         yield return new WaitForSeconds(3.0f);
         // Audio for finished
         Debug.Log("RoundFinishedCR");
