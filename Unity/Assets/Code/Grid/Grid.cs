@@ -81,9 +81,9 @@ public class Grid : MonoBehaviour
 
         List<GridDataElement> elements = GridLevelData[GridLevelData.PrefabList.SelectedLayerIndex, (int)SelectedGridCoord.x, (int)SelectedGridCoord.y];
         if(elements != null)
-            Debug.Log("ClearOnSelectedLayerAndGridCoord " + elements.Count);
+            Debug.Log("ClearOnSelectedLayerAndGridCoord amount:" + elements.Count);
 
-        if (elements == null)
+        if (elements == null || elements.Count == 0)
             return;
 
         foreach (GridDataElement el in elements)
@@ -101,11 +101,17 @@ public class Grid : MonoBehaviour
             return;
 
         List<GridDataElement> elements = GridLevelData.GridSaveData.Where(e => e.X == (int)SelectedGridCoord.x && e.Y == (int)SelectedGridCoord.y).ToList();
-        
+
+        if (elements == null || elements.Count == 0)
+            return;
+
+        if (elements != null)
+            Debug.Log("ClearAllOnSelectedGridCoord @ " + elements.Count);
+
         foreach (GridDataElement el in elements)
         {
             GridLevelData.SafeRemove(el);
-            Debug.Log("ClearAllOnSelectedGridCoord @ " + el.X + " " + el.Y);
+            
         }
 
         m_lastClearAllOnSelectedGridCoord = SelectedGridCoord;

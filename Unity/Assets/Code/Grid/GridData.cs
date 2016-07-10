@@ -280,6 +280,7 @@ public class GridData : ScriptableObject
     {
         // Find old, Remove old, Add new
         GridDataElement old = GridSaveData.Where(e => e.Prefab.GridLayer == el.Prefab.GridLayer && e.X == el.X && e.Y == el.Y).First();
+        GameObject.DestroyImmediate(old.Instance.gameObject);
         RemoveElement(old);
         AddElement(el);
     }
@@ -306,6 +307,7 @@ public class GridData : ScriptableObject
         RemoveElement(element);
         return true;
     }
+
 
     #endregion
 
