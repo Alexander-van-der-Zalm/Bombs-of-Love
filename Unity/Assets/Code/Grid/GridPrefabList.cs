@@ -9,7 +9,7 @@ public class GridPrefabList : ScriptableObject
     //public GameObject SelectedObject;
     //[HideInInspector]
     public GridPrefab SelectedGridPrefab { get { return PrefabList[SelectedIndex]; } }
-    //[ReadOnly]
+    [ReadOnly]
     public int SelectedIndex;
 }
 
