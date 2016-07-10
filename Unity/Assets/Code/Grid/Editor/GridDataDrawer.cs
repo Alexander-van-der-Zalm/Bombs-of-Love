@@ -6,13 +6,13 @@ using System.Collections;
 [CustomPropertyDrawer(typeof(GridData))]
 public class GridDataDrawer : PropertyDrawer
 {
-    private SerializedObject so;
+    //private SerializedObject so;
 
-    private void Init(SerializedProperty prop)
-    {
-        if (so == null)
-            so = new SerializedObject(prop.objectReferenceValue);
-    }
+    //private void Init(SerializedProperty prop)
+    //{
+    //    if (so == null)
+    //        so = new SerializedObject(prop.objectReferenceValue);
+    //}
 
     //public override float GetPropertyHeight(SerializedProperty prop, GUIContent label)
     //{
@@ -28,7 +28,7 @@ public class GridDataDrawer : PropertyDrawer
 
     public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
     {
-        Init(prop);
+        //Init(prop);
         EditorGUI.PropertyField(new Rect(pos.x, pos.y + 5 ,pos.width,EditorGUIUtility.singleLineHeight), prop);
 
         Editor ed = Editor.CreateEditor(prop.objectReferenceValue);

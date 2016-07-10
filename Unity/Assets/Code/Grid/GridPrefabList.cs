@@ -15,7 +15,7 @@ public class GridPrefabList : ScriptableObject
 public class GridLayer
 {
     [ReadOnly]
-    public int Layer = 0;
+    public int LayerIndex = 0;
     public string Name = "Tile";
     public bool AllowMultiplePerCoord = true;
 }

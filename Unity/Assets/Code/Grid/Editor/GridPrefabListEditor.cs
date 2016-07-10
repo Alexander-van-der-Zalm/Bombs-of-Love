@@ -42,7 +42,7 @@ public class GridPrefabListEditor : Editor
             rect.y += 2;
             EditorGUI.PropertyField(
                 new Rect(rect.x, rect.y, lW1, EditorGUIUtility.singleLineHeight),
-                element.FindPropertyRelative("Layer"), GUIContent.none);
+                element.FindPropertyRelative("LayerIndex"), GUIContent.none);
             EditorGUI.PropertyField(
                 new Rect(rect.x + 1 * lW1, rect.y, rect.width -1 * lW1 - 1 * lW2 , EditorGUIUtility.singleLineHeight),
                 element.FindPropertyRelative("Name"), GUIContent.none);
@@ -78,7 +78,7 @@ public class GridPrefabListEditor : Editor
     {
         for (int i = 0; i < l.count; i++)
         {
-            l.serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("Layer").intValue = i;
+            l.serializedProperty.GetArrayElementAtIndex(i).FindPropertyRelative("LayerIndex").intValue = i;
         }
     }
 

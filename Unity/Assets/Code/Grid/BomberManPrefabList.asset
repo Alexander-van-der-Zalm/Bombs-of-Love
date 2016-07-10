@@ -12,22 +12,22 @@ MonoBehaviour:
   m_Name: BomberManPrefabList
   m_EditorClassIdentifier: 
   GridLayers:
-  - Layer: 0
+  - LayerIndex: 0
     Name: Tile
     AllowMultiplePerCoord: 0
-  - Layer: 1
+  - LayerIndex: 1
     Name: Blocks
     AllowMultiplePerCoord: 0
-  - Layer: 2
+  - LayerIndex: 2
     Name: Objects
     AllowMultiplePerCoord: 1
-  - Layer: 3
+  - LayerIndex: 3
     Name: Actors
     AllowMultiplePerCoord: 0
-  - Layer: 4
+  - LayerIndex: 4
     Name: Spawns
     AllowMultiplePerCoord: 1
-  - Layer: 5
+  - LayerIndex: 5
     Name: Triggers
     AllowMultiplePerCoord: 1
   PrefabList:
@@ -52,3 +52,9 @@ MonoBehaviour:
     TileOffsetY: 0
     Traversable: 0
   SelectedObject: {fileID: 198226, guid: 0bf8e58a3be6c22499d792ef69cc1134, type: 2}
+  SelectedGridPrefab:
+    Prefab: {fileID: 0}
+    GridLayer: 0
+    TileOffsetX: 0
+    TileOffsetY: 0
+    Traversable: 0

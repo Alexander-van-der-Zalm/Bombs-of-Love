@@ -17,6 +17,10 @@ public class GridEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        //if (GUILayout.Button("Update Layers"))
+        //    grid.CreateUpdateLayerContainers();
+        //if (GUILayout.Button("Instantiate All"))
+        //    grid.CreateUpdateLayerContainers();
     }
 
     public void OnSceneGUI()

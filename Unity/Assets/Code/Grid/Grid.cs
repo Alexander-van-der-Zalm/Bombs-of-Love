@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class Grid : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class Grid : MonoBehaviour
 
     public GridLineDrawer drawer;
 
+    public List<GridLayerContainer> LayerContainers;
+
     [ReadOnly]
     public Vector2 SelectedGridCoord;
     [ReadOnly]
@@ -23,25 +27,25 @@ public class Grid : MonoBehaviour
     [HideInInspector]
     public GridPrefab SelectedGridPrefab;
 
-    private Vector2 LastSpawnedGridCoord;
-    private GameObject LastObjectSpawned;
+    private Vector2 m_LastSpawnedGridCoord;
+    private GameObject m_LastObjectSpawned;
 
     #endregion
 
     public void Update()
     {
         Debug.Log("Update");
-        if (SelectedGridCoord != LastSpawnedGridCoord && Input.GetKey(SpawnObjectKeyCode))
+        if (SelectedGridCoord != m_LastSpawnedGridCoord && Input.GetKey(SpawnObjectKeyCode))
         {
             Debug.Log("SpawnObject @ " + SelectedGridCoord);
-            LastSpawnedGridCoord = SelectedGridCoord;
+            m_LastSpawnedGridCoord = SelectedGridCoord;
         }
 
     }
 
     public void SpawnObject()
     {
-        if (SelectedGridCoord == LastSpawnedGridCoord && ObjectToSpawn == LastObjectSpawned)
+        if (SelectedGridCoord == m_LastSpawnedGridCoord && ObjectToSpawn == m_LastObjectSpawned)
             return;
 
         Vector3 pos = GetGridWorldPos(SelectedGridCoord);
@@ -54,12 +58,42 @@ public class Grid : MonoBehaviour
         
         //el.Instance = GameObject.Instantiate(ObjectToSpawn, pos, Quaternion.identity) as GameObject;
 
-        LevelData.SafeAdd(el);
-        Debug.Log("Register to leveldata plz");
+        LevelData.SafeAddAndInstantiate(el,this);
+        //Debug.Log("Register to leveldata plz");
 
-        LastObjectSpawned = ObjectToSpawn;
-        LastSpawnedGridCoord = SelectedGridCoord;
+        m_LastObjectSpawned = ObjectToSpawn;
+        m_LastSpawnedGridCoord = SelectedGridCoord;
     }
+
+    #region Create/Update Layer Containers
+
+    public void CreateUpdateLayerContainers()
+    {
+        if (LayerContainers == null)
+            LayerContainers = new List<GridLayerContainer>();
+
+        // Check if it needs a new container
+        foreach(GridLayer layer in LevelData.PrefabList.GridLayers)
+        {
+            GridLayerContainer container = LayerContainers.Where(lc => lc.Layer == layer).First();
+            // If no container yet
+            if (container == null)
+            {
+                GameObject go = new GameObject(layer.Name);
+                go.transform.parent = this.transform;
+                container = new GridLayerContainer() { Layer = layer, GO = go };
+                LayerContainers.Add(container);
+            }
+        }
+        // Update all containers
+        foreach (GridLayerContainer container in LayerContainers)
+        {
+            container.GO.name = container.Layer.Name;
+            container.GO.transform.SetSiblingIndex(container.Layer.LayerIndex);
+        }
+    }
+
+    #endregion
 
     #region Gizmos
 
@@ -112,6 +146,13 @@ public class Grid : MonoBehaviour
     }
 
     #endregion
+}
+
+[System.Serializable]
+public class GridLayerContainer
+{
+    public GameObject GO;
+    public GridLayer Layer;
 }
 
 #region Grid Drawer
