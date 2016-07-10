@@ -7,13 +7,15 @@ using System;
 [CustomEditor(typeof(GridPrefabList))]
 public class GridPrefabListEditor : Editor
 {
+    public GridPrefab SelectedGridPrefab;
+
     private ReorderableList prefabList;
     private ReorderableList layerList;
     private GridPrefabList gpl;
 
     private void OnEnable()
     {
-        Debug.Log("Enable");
+        //Debug.Log("Enable");
         InitializeLists();
     }
 
@@ -24,7 +26,7 @@ public class GridPrefabListEditor : Editor
         gpl = target as GridPrefabList;
     }
 
-    public static ReorderableList InitializeLayerList(SerializedObject serializedObject)
+    public ReorderableList InitializeLayerList(SerializedObject serializedObject)
     {
         
         //public int Layer = 0;
@@ -74,7 +76,7 @@ public class GridPrefabListEditor : Editor
         return list;
     }
 
-    private static void SortLayerList(ReorderableList l)
+    private void SortLayerList(ReorderableList l)
     {
         for (int i = 0; i < l.count; i++)
         {
@@ -82,46 +84,7 @@ public class GridPrefabListEditor : Editor
         }
     }
 
-    //public static ReorderableList MakePrefabListFancy(ReorderableList list)
-    //{
-    //    int lW1 = 20;
-    //    int lW2 = 30;
-    //    int lW3 = 15;
-    //    list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
-    //    {
-    //        var element = list.serializedProperty.GetArrayElementAtIndex(index);
-    //        rect.y += 2;
-    //        EditorGUI.PropertyField(
-    //            new Rect(rect.x, rect.y, rect.width - lW1 - 2 * lW2 - lW3, EditorGUIUtility.singleLineHeight),
-    //            element.FindPropertyRelative("Prefab"), GUIContent.none);
-    //        EditorGUI.PropertyField(
-    //            new Rect(rect.x + rect.width - lW1 - 2 * lW2 - lW3, rect.y, lW1, EditorGUIUtility.singleLineHeight),
-    //            element.FindPropertyRelative("GridLayer"), GUIContent.none);
-    //        EditorGUI.PropertyField(
-    //            new Rect(rect.x + 2 + rect.width - 2 * lW2 - lW3, rect.y, lW2, EditorGUIUtility.singleLineHeight),
-    //            element.FindPropertyRelative("TileOffsetX"), GUIContent.none);
-    //        EditorGUI.PropertyField(
-    //            new Rect(rect.x + rect.width - lW2 - lW3, rect.y, lW2, EditorGUIUtility.singleLineHeight),
-    //            element.FindPropertyRelative("TileOffsetY"), GUIContent.none);
-    //        EditorGUI.PropertyField(
-    //            new Rect(rect.x + rect.width - 1 * lW3 + 2, rect.y, lW3, EditorGUIUtility.singleLineHeight),
-    //            element.FindPropertyRelative("Traversable"), GUIContent.none);
-    //    };
-    //    list.drawHeaderCallback = (Rect rect) =>
-    //    {
-    //        EditorGUI.LabelField(rect, "Prefab List - layer - x,y offset - traversable");
-    //    };
-    //    list.onSelectCallback = (ReorderableList l) =>
-    //    {
-    //        var prefab = l.serializedProperty.GetArrayElementAtIndex(l.index).FindPropertyRelative("Prefab").objectReferenceValue as GameObject;
-    //        if (prefab)
-    //            EditorGUIUtility.PingObject(prefab.gameObject);
-
-    //    };
-    //    return list;
-    //}
-
-    public static ReorderableList InitializePrefabList(SerializedObject serializedObject)
+    public ReorderableList InitializePrefabList(SerializedObject serializedObject)
     {
         //public GameObject Prefab;
         //public int GridLayer;
@@ -162,13 +125,16 @@ public class GridPrefabListEditor : Editor
         };
         list.onSelectCallback = (ReorderableList l) =>
         {
+            //ReorderableList.defaultBehaviours.
             //var go = l.serializedProperty.GetArrayElementAtIndex(l.index).FindPropertyRelative("Prefab").objectReferenceValue as GameObject;
             GridPrefabList gpl = serializedObject.targetObject as GridPrefabList;
-            gpl.SelectedGridPrefab = gpl.PrefabList[l.index];
-            gpl.SelectedObject = gpl.SelectedGridPrefab.Prefab;
-            if (gpl.SelectedObject != null)
+            SelectedGridPrefab = gpl.PrefabList[l.index];
+            //gpl.SelectedGridPrefab = gpl.PrefabList[l.index];
+            //gpl.SelectedObject = gpl.SelectedGridPrefab.Prefab;
+
+            if (SelectedGridPrefab.Prefab != null)
             {
-                EditorGUIUtility.PingObject(gpl.SelectedObject);
+                EditorGUIUtility.PingObject(SelectedGridPrefab.Prefab);
             }
         };
 
@@ -178,10 +144,10 @@ public class GridPrefabListEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        serializedObject.Update();
+        //serializedObject.Update();
         layerList.DoLayoutList();
         prefabList.DoLayoutList();
-        serializedObject.ApplyModifiedProperties();
+        //serializedObject.ApplyModifiedProperties();
     }
 
     //public override void OnInspectorGUI()

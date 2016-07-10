@@ -25,16 +25,26 @@ public class GridPrefabListDrawer : PropertyDrawer
 
     private int sy = 5;
 
+    private GridPrefabListEditor editor;
+
     private void Init(SerializedProperty prop)
     {
         if (so == null)
             so = new SerializedObject(prop.objectReferenceValue);
 
+        //if(editor == null)
+            editor = Editor.CreateEditor(prop.objectReferenceValue) as GridPrefabListEditor;
+
         if (prefabList == null)
-            prefabList = GridPrefabListEditor.InitializePrefabList(so);
+            prefabList = editor.InitializePrefabList(so);
 
         if (layerList == null)
-            layerList = GridPrefabListEditor.InitializeLayerList(so);
+            layerList = editor.InitializeLayerList(so);
+        //if (prefabList == null)
+        //    prefabList = GridPrefabListEditor.InitializePrefabList(so);
+
+        //if (layerList == null)
+        //    layerList = GridPrefabListEditor.InitializeLayerList(so);
     }
 
     public override float GetPropertyHeight(SerializedProperty prop, GUIContent label)
@@ -46,12 +56,12 @@ public class GridPrefabListDrawer : PropertyDrawer
 
     public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
     {
-        so.Update();
+        //so.Update();
         Init(prop);
         EditorGUI.PropertyField(new Rect(pos.x, pos.y + sy, pos.width, EditorGUIUtility.singleLineHeight), prop);
         layerList.DoList((new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight, pos.width, layerList.GetHeight())));
         prefabList.DoList(new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight + layerList.GetHeight(), pos.width, prefabList.GetHeight()));
-        so.ApplyModifiedProperties();
+        //so.ApplyModifiedProperties();
     }
 
 }
