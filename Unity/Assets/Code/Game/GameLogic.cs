@@ -14,6 +14,9 @@ public class GameLogic : Singleton<GameLogic>
     public Player Winner;
     public LevelRules Rules;
 
+    public AudioClip StartAnnouncer;
+    public AudioClip GameOverAnnouncer;
+
     private GameTimer timer;
 
     #endregion
@@ -83,7 +86,7 @@ public class GameLogic : Singleton<GameLogic>
         GameState.Instance.State = GameState.GameStateEnum.Pause;
         GameTimer.Instance.PopupUI.text = "GAME OVER";
         GameTimer.Instance.PopupUI.gameObject.SetActive(true);
-
+        AudioSource.PlayClipAtPoint(GameOverAnnouncer, transform.position);
         yield return new WaitForSeconds(3.0f);
         // Audio for finished
         Debug.Log("RoundFinishedCR");
@@ -118,7 +121,7 @@ public class GameLogic : Singleton<GameLogic>
 
         GameState.Instance.State = GameState.GameStateEnum.Play;
         GameTimer.Instance.StartRound();
-
+        AudioSource.PlayClipAtPoint(StartAnnouncer, transform.position);
         yield return new WaitForSeconds(1.0f);
         //FadeOut
         GameTimer.Instance.PopupUI.gameObject.SetActive(false);

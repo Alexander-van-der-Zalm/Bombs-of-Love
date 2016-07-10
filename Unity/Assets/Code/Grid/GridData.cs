@@ -7,6 +7,7 @@ using System;
 /// <summary>
 /// This is all the data that describes a level
 /// </summary>
+[CreateAssetMenu]
 public class GridData : ScriptableObject
 {
     #region Fields

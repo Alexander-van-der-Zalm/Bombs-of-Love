@@ -25,7 +25,7 @@ MonoBehaviour:
   - PowerUp: {fileID: 11445600, guid: fa4268676903d124f8fa9c802f30b423, type: 2}
     DropChance: 0.075
     PriorityOnDrop: 1
-    DropPriority: 4.818879
+    DropPriority: 0.4013657
   - PowerUp: {fileID: 11468416, guid: 507a06433d73dc247a940a95bf473e5f, type: 2}
     DropChance: 0.05
     PriorityOnDrop: 5
@@ -33,8 +33,8 @@ MonoBehaviour:
   - PowerUp: {fileID: 11444252, guid: 9f300f8147b618a4ba3cf87d94b30d90, type: 2}
     DropChance: 0.1
     PriorityOnDrop: 4
-    DropPriority: 0.024902105
+    DropPriority: 2.769599
   - PowerUp: {fileID: 11499384, guid: a649182a941f8514097ae5be0d01a164, type: 2}
     DropChance: 0.075
     PriorityOnDrop: 1
-    DropPriority: 0.03924012
+    DropPriority: 0.49242944

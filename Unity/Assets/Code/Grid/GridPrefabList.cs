@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+[CreateAssetMenu]
 public class GridPrefabList : ScriptableObject
 {
     public List<GridLayer> GridLayers;
