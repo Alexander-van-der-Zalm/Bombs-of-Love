@@ -5,9 +5,7 @@ public class GridPrefabList : ScriptableObject
 {
     public List<GridLayer> GridLayers;
     public List<GridPrefab> PrefabList;
-    //[HideInInspector]
-    //public GameObject SelectedObject;
-    //[HideInInspector]
+
     public GridPrefab SelectedGridPrefab { get { return PrefabList[SelectedIndex]; } }
     [ReadOnly]
     public int SelectedIndex;
@@ -20,6 +18,9 @@ public class GridLayer
     public int LayerIndex = 0;
     public string Name = "Tile";
     public bool AllowMultiplePerCoord = true;
+    [ReadOnly]
+    public int Hash = -1;
+
 }
 
 [System.Serializable]

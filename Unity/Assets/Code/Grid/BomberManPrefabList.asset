@@ -15,24 +15,31 @@ MonoBehaviour:
   - LayerIndex: 0
     Name: Tile
     AllowMultiplePerCoord: 0
+    Hash: 805664896
   - LayerIndex: 1
     Name: Blocks
     AllowMultiplePerCoord: 0
+    Hash: 1789745984
   - LayerIndex: 2
     Name: Objects
     AllowMultiplePerCoord: 1
+    Hash: 843129920
   - LayerIndex: 3
     Name: Actors
     AllowMultiplePerCoord: 0
+    Hash: 761939264
   - LayerIndex: 4
     Name: Spawns
     AllowMultiplePerCoord: 1
+    Hash: 447021952
   - LayerIndex: 5
     Name: Triggers
     AllowMultiplePerCoord: 1
+    Hash: 1431103040
   - LayerIndex: 6
-    Name: Test
+    Name: Snorremans asdf
     AllowMultiplePerCoord: 1
+    Hash: 484486976
   PrefabList:
   - Prefab: {fileID: 198226, guid: 0bf8e58a3be6c22499d792ef69cc1134, type: 2}
     GridLayer: 0
@@ -59,5 +66,4 @@ MonoBehaviour:
     TileOffsetX: 0
     TileOffsetY: 0
     Traversable: 0
-  SelectedIndex: 2
-  gpl: {fileID: 11400000}
+  SelectedIndex: 4

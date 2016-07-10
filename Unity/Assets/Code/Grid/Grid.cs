@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using UnityEditor;
 
 public class Grid : MonoBehaviour
 {
@@ -76,13 +77,26 @@ public class Grid : MonoBehaviour
         foreach(GridLayer layer in LevelData.PrefabList.GridLayers)
         {
             GridLayerContainer container = LayerContainers.Where(lc => lc.Layer == layer).FirstOrDefault();
+            Debug.Log(layer.Name + " hash " + layer.Hash);
+            if (layer.Hash < 0)
+                layer.Hash = layer.GetHashCode();
+            
+            // Check if reference is lost
+            if (container == null)
+            {
+                container = LayerContainers.Where(lc => lc.Layer.Hash == layer.Hash).FirstOrDefault();
+                if (container != null)
+                    container.Layer = layer;
+            }
+
             // If container with empty go
-            if(container != null && container.GO == null)
+            if (container != null && container.GO == null) 
             {
                 LayerContainers.Remove(container);
                 container = null;
             }
-            // If no container yet
+
+            // If no container yet 
             if (container == null)
             {
                 GameObject go = new GameObject(layer.Name);
@@ -92,11 +106,22 @@ public class Grid : MonoBehaviour
             }
         }
         // Update all containers
-        foreach (GridLayerContainer container in LayerContainers)
-        {
-            container.GO.name = container.Layer.Name;
-            container.GO.transform.SetSiblingIndex(container.Layer.LayerIndex);
+        int containerAmount = LayerContainers.Count;
+        for(int i = containerAmount-1; i > -1; i--)
+        { 
+            GridLayerContainer container = LayerContainers[i]; 
+                // Remove if there is no more gameObject
+            if (container.GO == null)
+            {
+                LayerContainers.Remove(container);  
+            }
+            else
+            {
+                container.GO.name = container.Layer.Name;
+                container.GO.transform.SetSiblingIndex(container.Layer.LayerIndex);
+            }
         }
+        AssetDatabase.SaveAssets(); 
     }
 
     #endregion
