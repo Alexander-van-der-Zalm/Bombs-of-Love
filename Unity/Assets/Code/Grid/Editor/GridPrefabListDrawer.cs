@@ -6,19 +6,6 @@ using System.Collections.Generic;
 [CustomPropertyDrawer(typeof(GridPrefabList))]
 public class GridPrefabListDrawer : PropertyDrawer
 {
-    //public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    //{
-    //    return base.GetPropertyHeight(property, label) + 5;
-    //}
-
-    //public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
-    //{
-    //    EditorGUI.PropertyField(new Rect(pos.x, pos.y + 5, pos.width, EditorGUIUtility.singleLineHeight), prop);
-    //    Editor e = Editor.CreateEditor(prop.objectReferenceValue);//.DrawDefaultInspector();
-    //    e.DrawDefaultInspector();
-    //}
-    public GridPrefab SelectedGridPrefab;
-
     private ReorderableList prefabList;
     private ReorderableList layerList;
     private SerializedObject so;
@@ -36,36 +23,14 @@ public class GridPrefabListDrawer : PropertyDrawer
         if (gpl == null)
             gpl = prop.objectReferenceValue as GridPrefabList;
 
-        //if(editor == null)
-        editor = Editor.CreateEditor(prop.objectReferenceValue) as GridPrefabListEditor;
+        if(editor == null)
+            editor = Editor.CreateEditor(prop.objectReferenceValue) as GridPrefabListEditor;
 
         if (prefabList == null)
-        {
             prefabList = editor.InitializePrefabList(so);
-            prefabList.onSelectCallback = (ReorderableList l) =>
-            {
-                //ReorderableList.defaultBehaviours.
-                //var go = l.serializedProperty.GetArrayElementAtIndex(l.index).FindPropertyRelative("Prefab").objectReferenceValue as GameObject;
-                gpl.SelectedIndex = l.index;
-                SelectedGridPrefab = gpl.PrefabList[l.index];
-                //gpl.SelectedGridPrefab = gpl.PrefabList[l.index];
-                //gpl.SelectedObject = gpl.SelectedGridPrefab.Prefab;
-
-                //if (SelectedGridPrefab.Prefab != null)
-                //{
-                //    EditorGUIUtility.PingObject(SelectedGridPrefab.Prefab);
-                //}
-            };
-        }
             
-
         if (layerList == null)
             layerList = editor.InitializeLayerList(so);
-        //if (prefabList == null)
-        //    prefabList = GridPrefabListEditor.InitializePrefabList(so);
-
-        //if (layerList == null)
-        //    layerList = GridPrefabListEditor.InitializeLayerList(so);
     }
 
     public override float GetPropertyHeight(SerializedProperty prop, GUIContent label)
@@ -88,12 +53,6 @@ public class GridPrefabListDrawer : PropertyDrawer
         EditorGUI.PropertyField(new Rect(pos.x, pos.y + sy * 2 + EditorGUIUtility.singleLineHeight + layerList.GetHeight() + prefabList.GetHeight(), pos.width, EditorGUIUtility.singleLineHeight), so.FindProperty("SelectedIndex"));
 
         so.ApplyModifiedProperties();
-        //if (SelectedGridPrefab != null)
-        //    Debug.Log(SelectedGridPrefab.Prefab.name);
-        //gpl = so.targetObject as GridPrefabList;
-        
-        //gpl.SelectedGridPrefab = SelectedGridPrefab;
-        
     }
 }
 

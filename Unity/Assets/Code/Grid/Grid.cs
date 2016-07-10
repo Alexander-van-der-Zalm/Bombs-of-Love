@@ -75,7 +75,7 @@ public class Grid : MonoBehaviour
         // Check if it needs a new container
         foreach(GridLayer layer in LevelData.PrefabList.GridLayers)
         {
-            GridLayerContainer container = LayerContainers.Where(lc => lc.Layer == layer).First();
+            GridLayerContainer container = LayerContainers.Where(lc => lc.Layer == layer).FirstOrDefault();
             // If no container yet
             if (container == null)
             {
