@@ -16,7 +16,7 @@ public class Grid : MonoBehaviour
 
     public KeyCode SpawnObjectKeyCode = KeyCode.A;
     public KeyCode DeleteLayerKeyCode = KeyCode.Backspace;
-    public KeyCode DeleteAllKeyCode = KeyCode.Delete;
+    public KeyCode DeleteAllKeyCode = KeyCode.D;
     //public bool DrawLinesInGame = true; // IMPLEMENT PLX
 
     public GridLineDrawer drawer;
@@ -32,6 +32,12 @@ public class Grid : MonoBehaviour
 
     private Vector2 m_LastSpawnedGridCoord;
     private GameObject m_LastObjectSpawned;
+    private Vector2 m_lastClearOnSelectedLayerAndGridCoord;
+    private Vector2 m_lastClearAllOnSelectedGridCoord;
+    private int m_lastDeleteChangeLog;
+    private int m_lastDeleteAllChangeLog;
+    private int m_lastSpawnChangeLog;
+    
 
     #endregion
 
@@ -48,7 +54,7 @@ public class Grid : MonoBehaviour
 
     public void SpawnObject()
     {
-        if (SelectedGridCoord == m_LastSpawnedGridCoord && ObjectToSpawn == m_LastObjectSpawned)
+        if (SelectedGridCoord == m_LastSpawnedGridCoord && ObjectToSpawn == m_LastObjectSpawned && GridLevelData.ChangeLog == m_lastSpawnChangeLog)
             return;
 
         Vector3 pos = GetGridWorldPos(SelectedGridCoord);
@@ -65,10 +71,14 @@ public class Grid : MonoBehaviour
 
         m_LastObjectSpawned = ObjectToSpawn;
         m_LastSpawnedGridCoord = SelectedGridCoord;
+        m_lastSpawnChangeLog = GridLevelData.ChangeLog;
     }
 
     public void ClearOnSelectedLayerAndGridCoord()
     {
+        if (SelectedGridCoord == m_lastClearOnSelectedLayerAndGridCoord && GridLevelData.ChangeLog == m_lastDeleteChangeLog)
+            return;
+
         List<GridDataElement> elements = GridLevelData[GridLevelData.PrefabList.SelectedLayerIndex, (int)SelectedGridCoord.x, (int)SelectedGridCoord.y];
         if(elements != null)
             Debug.Log("ClearOnSelectedLayerAndGridCoord " + elements.Count);
@@ -80,16 +90,26 @@ public class Grid : MonoBehaviour
         {
             GridLevelData.SafeRemove(el);
         }
+
+        m_lastClearOnSelectedLayerAndGridCoord = SelectedGridCoord;
+        m_lastDeleteChangeLog = GridLevelData.ChangeLog;
     }
 
     public void ClearAllOnSelectedGridCoord()
     {
+        if (SelectedGridCoord == m_lastClearAllOnSelectedGridCoord && GridLevelData.ChangeLog == m_lastDeleteAllChangeLog)
+            return;
+
         List<GridDataElement> elements = GridLevelData.GridSaveData.Where(e => e.X == (int)SelectedGridCoord.x && e.Y == (int)SelectedGridCoord.y).ToList();
-        Debug.Log("ClearAllOnSelectedGridCoord " + elements.Count);
+        
         foreach (GridDataElement el in elements)
         {
             GridLevelData.SafeRemove(el);
+            Debug.Log("ClearAllOnSelectedGridCoord @ " + el.X + " " + el.Y);
         }
+
+        m_lastClearAllOnSelectedGridCoord = SelectedGridCoord;
+        m_lastDeleteAllChangeLog = GridLevelData.ChangeLog;
     }
 
     #region Create/Update Layer Containers

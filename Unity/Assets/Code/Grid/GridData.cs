@@ -54,6 +54,8 @@ public class GridData : ScriptableObject
     public int GridWidth { get { return m_maxX - m_minX + 1; } }
     public int GridHeight { get { return m_maxY - m_minY + 1; } }
 
+    public int ChangeLog { get { return m_Changes; } }
+
     private List<GridDataElement> GridRuntimeArray(int layer, int x, int y)
     {
         return m_GridRuntimeArray[layer - m_LayerMin, x - m_minX, y - m_minY];

@@ -58,9 +58,9 @@ MonoBehaviour:
     TileOffsetY: 0
     Traversable: 0
   - Prefab: {fileID: 135214, guid: b1360a6611649af40a1e8fe8e3f71ef4, type: 2}
-    GridLayer: 3
+    GridLayer: 4
     TileOffsetX: 0.5
     TileOffsetY: 0
     Traversable: 0
-  SelectedPrefabIndex: 0
-  SelectedLayerIndex: 3
+  SelectedPrefabIndex: -1
+  SelectedLayerIndex: 0
