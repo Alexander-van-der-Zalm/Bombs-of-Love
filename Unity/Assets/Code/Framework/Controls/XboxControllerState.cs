@@ -7,7 +7,7 @@ using XInputDotNetPure;
 
 public enum XboxButton
 {
-    A, B, X, Y, Up,Down,Left,Right, RightShoulder, LeftShoulder, LeftStick, RightStick, Back, Start, Guide
+    A, B, X, Y, Up,Down,Left,Right, RightShoulder, LeftShoulder, LeftStick, RightStick, Back, Start, Guide, None
 }
 
 public enum XboxAxis
@@ -118,7 +118,6 @@ public class XboxControllerState : Singleton<XboxControllerState>
     {
         switch (button)
         {
-            default:
             case XboxButton.A:
                 return state.Buttons.A == ButtonState.Pressed;
             case XboxButton.B:
@@ -149,6 +148,9 @@ public class XboxControllerState : Singleton<XboxControllerState>
                 return state.DPad.Left == ButtonState.Pressed;
             case XboxButton.Right:
                 return state.DPad.Right == ButtonState.Pressed;
+
+            default:
+                return false;
         }
     }
 

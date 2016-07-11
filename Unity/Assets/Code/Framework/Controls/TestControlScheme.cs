@@ -12,10 +12,12 @@ public class TestControlScheme : MonoBehaviour
     {
         //Jump.Update
         Horizontal = Axis.Default(AxisKey.HorVert.Horizontal);
+        Jump = Action.Create("A", XboxButton.A);
     }
 
     public void Update()
     {
-        Debug.Log(Horizontal.Value());
+        Debug.Log(Jump.IsDown());
+
     }
 }

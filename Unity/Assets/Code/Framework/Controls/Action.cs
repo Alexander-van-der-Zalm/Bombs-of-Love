@@ -4,98 +4,116 @@ using System.Collections.Generic;
 using XInputDotNetPure;
 
 [System.Serializable]
-public class Action// : Control 
+public class Action
 {
-    [SerializeField]
+    #region Fields
+
     public string Name;
-
-    [SerializeField,HideInInspector]
-    protected ControlScheme scheme;
+    public List<ActionKey> Keys;
 
     [SerializeField]
-    public List<ControlKey> Keys;// = new List<ControlKey>();
+    private ControlType m_LastInputType = ControlType.PC;
+    [SerializeField]
+    private PlayerIndex m_XboxPlayer;
 
-    public Action(ControlScheme scheme, string name = "defaultAction")//:base(scheme, name)
+    //[SerializeField,HideInInspector]
+    //protected ControlScheme scheme;
+
+    public ControlType LastInputType { get { return m_LastInputType; } }
+
+    #endregion
+
+    #region CTor
+
+    public Action(PlayerIndex plyr = PlayerIndex.One, string name = "defaultAction")
     {
-        Keys = new List<ControlKey>();
+        Keys = new List<ActionKey>();
 
-        this.scheme = scheme;
+        //this.scheme = scheme;
         this.Name = name;
+        this.m_XboxPlayer = plyr;
     }
+
+    #endregion
+
+    #region Down, Pressed, Released
 
     public bool IsDown()
     {
-        foreach (ControlKey key in Keys)
+        foreach (ActionKey key in Keys)
         {
-            if (key.CurState)
-                return true;
+            if (key.IsDown(m_XboxPlayer))
+                return TrueAndSetInputType(key);
         }
         return false;
     }
-
-    private bool IsCKDown(ControlKey key)
-    {
-        bool down = false;
-        
-        switch (key.Type)
-        {
-            case ControlType.PC:
-                if (Input.GetKey(ControlHelper.ReturnKeyCode(key.KeyValue)))
-                    return true;
-                break;
-            case ControlType.Xbox:
-                if (scheme == null)
-                {
-                    if (XboxControllerState.ButtonDown(ControlHelper.ReturnXboxButton(key.KeyValue), XboxControllerState.GetFirstConnected()))
-                        return true;
-                }
-                else if (XboxControllerState.ButtonDown(ControlHelper.ReturnXboxButton(key.KeyValue), (PlayerIndex)scheme.controllerID))
-                    return true;
-                break;
-            default:
-                Debug.LogError("Action: KeyType not recognized. Please implement the inputType");
-                break;
-        }
-
-        if (down)
-            scheme.InputType = key.Type;
-            
-        return down;
-    }
-
     public bool IsPressed()
     {
-        foreach (ControlKey key in Keys)
+        foreach (ActionKey key in Keys)
         {
-            if (key.CurState && !key.LastState)
-                return true;
+            if (key.IsPressed(m_XboxPlayer))
+                return TrueAndSetInputType(key);
         }
         return false;
     }
 
     public bool IsReleased()
     {
-        foreach (ControlKey key in Keys)
+        foreach (ActionKey key in Keys)
         {
-            if (!key.CurState && key.LastState)
-                return true;
+            if (key.IsReleased(m_XboxPlayer))
+                return TrueAndSetInputType(key);
         }
         return false;
     }
 
-    public void Update(ControlScheme inputScheme = null)
+    private bool TrueAndSetInputType(ActionKey key)
     {
-        if (scheme == null && inputScheme != null)
-            scheme = inputScheme;
-
-        foreach (ControlKey key in Keys)
-        {
-            key.LastState   = key.CurState;
-            key.CurState    = IsCKDown(key);
-            
-            if(key.LastState && scheme != null)
-                scheme.InputType = key.Type;
-        }
+        m_LastInputType = key.Type;
+        return true;
     }
 
+    #endregion
+
+    #region Creates
+
+    public void AddXboxButton(XboxButton btn)
+    {
+        Keys.Add(ActionKey.XboxButton(btn));
+    }
+
+    public void AddXboxButton(string btn)
+    {
+        Keys.Add(ActionKey.XboxButton(btn));
+    }
+
+    public void AddPCKey(KeyCode kc)
+    {
+        Keys.Add(ActionKey.PCKey(kc));
+    }
+
+    public void AddPCKey(string kc)
+    {
+        Keys.Add(ActionKey.PCKey(kc));
+    }
+
+    public static Action Create(string pc, XboxButton xb = XboxButton.None, PlayerIndex index = PlayerIndex.One, string name = "")
+    {
+        Action ac = new Action(index, name);
+        ac.AddPCKey(pc);
+        if (xb != XboxButton.None)
+            ac.AddXboxButton(xb);
+        return ac;
+    }
+
+    public static Action Create(KeyCode pc, XboxButton xb = XboxButton.None, PlayerIndex index = PlayerIndex.One, string name = "")
+    {
+        Action ac = new Action(index, name);
+        ac.AddPCKey(pc);
+        if(xb != XboxButton.None)
+            ac.AddXboxButton(xb);
+        return ac;
+    }
+
+    #endregion
 }

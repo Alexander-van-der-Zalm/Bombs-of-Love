@@ -6,16 +6,19 @@ using XInputDotNetPure;
 [System.Serializable]
 public class Axis //: Control
 {
+    #region Fields
+
     public string Name;
-    
     public List<AxisKey> AxisKeys;
 
     [SerializeField]
     private int lastAxis;
-
     [SerializeField]
     private ControlType lastInputType = ControlType.PC;
+    [SerializeField]
     private int xbox;
+
+    #endregion
 
     public Axis(int xbox = 0, string name = "defaultAxis")
     {
@@ -43,6 +46,8 @@ public class Axis //: Control
         lastAxis = curAxis;
         return value;
     }
+
+    #region Creates
 
     public void XboxAxis(XboxAxis axis)
     {
@@ -99,5 +104,7 @@ public class Axis //: Control
 
         return ax;
     }
+
+    #endregion
 }
 

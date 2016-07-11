@@ -15,7 +15,6 @@ public enum ControlType
     Xbox
 }
 
-// Needs custom inspector
 [System.Serializable]
 public class ControlKey 
 {
@@ -34,29 +33,55 @@ public class ControlKey
         Type = type;
         KeyValue = value;
 
-        //Set selectedIndex
-        if (Type == ControlType.PC)
-            selectedIndex = Enum.GetNames(typeof(KeyCode)).ToList().FindIndex(e => e == KeyValue);
-        else
-            selectedIndex = Enum.GetNames(typeof(XboxButton)).ToList().FindIndex(e => e == KeyValue);
+        ////Set selectedIndex
+        //if (Type == ControlType.PC)
+        //    selectedIndex = Enum.GetNames(typeof(KeyCode)).ToList().FindIndex(e => e == KeyValue);
+        //else
+        //    selectedIndex = Enum.GetNames(typeof(XboxButton)).ToList().FindIndex(e => e == KeyValue);
     }
 
-    public ControlKey()
+    public bool IsDown()
     {
-        selectedIndex = 0;
+
     }
+
+    public bool IsPressed()
+    {
+
+    }
+
+    public bool IsReleased()
+    {
+
+    }
+
+    #region Creates
 
     public static ControlKey XboxButton(XboxButton btn)
     {
-        return new ControlKey(ControlType.Xbox, btn.ToString());
+        return XboxButton(btn.ToString());
+    }
+
+    public static ControlKey XboxButton(string btn)
+    {
+        return new ControlKey(ControlType.Xbox, btn);
     }
 
     public static ControlKey PCKey(KeyCode kc)
     {
-        return new ControlKey(ControlType.PC, kc.ToString());
+        return PCKey(kc.ToString());
     }
 
-    #if UNITY_EDITOR
+    public static ControlKey PCKey(string kc)
+    {
+        return new ControlKey(ControlType.PC, kc);
+    }
+
+    #endregion
+
+    #region GUI
+
+#if UNITY_EDITOR
 
     public static void OnGui(Rect pos, SerializedProperty prop)
     {
@@ -110,5 +135,7 @@ public class ControlKey
         selectedIndex = EditorGUILayout.Popup(selectedIndex, ControlHelper.XboxAxixOptions, GUILayout.Width(80.0f));
     }
 
-    #endif
+#endif
+
+    #endregion
 }

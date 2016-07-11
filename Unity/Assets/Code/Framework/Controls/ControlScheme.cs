@@ -23,10 +23,11 @@ public class ControlScheme:ScriptableObject
     #region Fields
 
     public string Name;
-    public int controllerID = 1;
-    public int playerID = 1;
+    //public int controllerID = 1;
+    //public int playerID = 1;
+    public PlayerIndex Player;
 
-    public UpdateTypeE UpdateType = UpdateTypeE.FixedUpdate;
+    //public UpdateTypeE UpdateType = UpdateTypeE.FixedUpdate;
 
     public ControlType InputType = ControlType.PC;
 
@@ -44,7 +45,7 @@ public class ControlScheme:ScriptableObject
 
     #endregion
 
-    public static ControlScheme CreateDefaultScheme<T>(ControlScheme controlScheme, UpdateTypeE updateType = UpdateTypeE.FixedUpdate, bool xboxLeftStick = true, bool xboxDPad = true, bool arrows = true, bool wasd = true) where T : struct, IConvertible
+    public static ControlScheme CreateDefaultScheme<T>(ControlScheme controlScheme, bool xboxLeftStick = true, bool xboxDPad = true, bool arrows = true, bool wasd = true) where T : struct, IConvertible
     {
         if (!typeof(T).IsEnum)
         {
@@ -52,7 +53,7 @@ public class ControlScheme:ScriptableObject
         }
 
         controlScheme.Name = typeof(T).ToString();
-        controlScheme.UpdateType = updateType;
+        //controlScheme.UpdateType = updateType;
         controlScheme.SetActionsFromEnum<T>();
 
         //controlScheme.Horizontal = new Axis(controlScheme, "Horizontal");
@@ -100,17 +101,7 @@ public class ControlScheme:ScriptableObject
 
         for (int i = 0; i < names.Length; i++)
         {
-            Actions.Add(new Action(this, names[i]));
+            Actions.Add(new Action(Player, names[i]));
         }
-    }
-
-    public void Update()
-    {
-        foreach (Action action in Actions)
-        {
-            action.Update(this);
-        }
-    }
-
-    
+    }    
 }
