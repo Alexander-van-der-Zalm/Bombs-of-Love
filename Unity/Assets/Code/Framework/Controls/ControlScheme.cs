@@ -55,8 +55,8 @@ public class ControlScheme:ScriptableObject
         controlScheme.UpdateType = updateType;
         controlScheme.SetActionsFromEnum<T>();
 
-        controlScheme.Horizontal = new Axis(controlScheme, "Horizontal");
-        controlScheme.Vertical = new Axis(controlScheme, "Vertical");
+        //controlScheme.Horizontal = new Axis(controlScheme, "Horizontal");
+        //controlScheme.Vertical = new Axis(controlScheme, "Vertical");
 
         if (xboxLeftStick)
         {
