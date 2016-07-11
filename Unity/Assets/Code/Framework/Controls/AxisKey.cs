@@ -11,17 +11,15 @@ using UnityEditor;
 #endif
 
 
-
+public enum DirectionInput
+{
+    Horizontal,
+    Vertical
+}
 
 [System.Serializable]
 public class AxisKey
 {
-   public enum AxisKeyType
-    {
-        PC,
-        Dpad,
-        Axis
-    }
     #region Fields
 
     public AxisKeyType Type;
@@ -37,17 +35,12 @@ public class AxisKey
 
     #region Enums
 
-    public enum HorVert
+    public enum AxisKeyType
     {
-        Horizontal,
-        Vertical
+        PC,
+        Dpad,
+        Axis
     }
-
-    //public enum XboxAxisType
-    //{
-    //    dpad,
-    //    axis
-    //}
 
     #endregion
 
@@ -64,12 +57,12 @@ public class AxisKey
         return ak;
     }
 
-    public static AxisKey XboxDpad(HorVert horintalOrVertical)
+    public static AxisKey XboxDpad(DirectionInput horintalOrVertical)
     {
         AxisKey ak = new AxisKey();
         ak.Type = AxisKeyType.Dpad;
 
-        if (horintalOrVertical == HorVert.Horizontal)
+        if (horintalOrVertical == DirectionInput.Horizontal)
         {
             ak.keys.Add(XboxButton.Left.ToString());
             ak.keys.Add(XboxButton.Right.ToString());
