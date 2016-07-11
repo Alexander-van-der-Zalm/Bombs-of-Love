@@ -3,5 +3,11 @@ using System.Collections;
 
 public class TestControlScheme : MonoBehaviour
 {
-    public ControlScheme Scheme;
+    public Action Jump;
+    public Action DropBomb;
+
+    public void Awake()
+    {
+        //Jump.Update
+    }
 }

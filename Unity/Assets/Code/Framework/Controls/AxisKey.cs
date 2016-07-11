@@ -27,7 +27,6 @@ public class AxisKey
     public AxisKeyType Type;
     public List<string> keys = new List<string>();
     //public XboxAxisType xboxAxisType;
-    //private HorVert horVert;
 
     [SerializeField,HideInInspector]
     private int selectedIndex1;
@@ -58,7 +57,6 @@ public class AxisKey
     {
         AxisKey ak = new AxisKey();
         ak.Type = AxisKeyType.Axis;
-        //ak.xboxAxisType = XboxAxisType.axis;
         ak.keys.Add(axis);
 
         //ak.changed();
@@ -70,7 +68,6 @@ public class AxisKey
     {
         AxisKey ak = new AxisKey();
         ak.Type = AxisKeyType.Dpad;
-        //ak.xboxAxisType = XboxAxisType.dpad;
 
         if (horintalOrVertical == HorVert.Horizontal)
         {
@@ -88,17 +85,22 @@ public class AxisKey
         return ak;
     }
 
-    public static AxisKey PC(KeyCode neg, KeyCode pos)
+    public static AxisKey PC(string neg, string pos)
     {
         AxisKey ak = new AxisKey();
         ak.Type = AxisKeyType.PC;
 
-        ak.keys.Add(neg.ToString());
-        ak.keys.Add(pos.ToString());
+        ak.keys.Add(neg);
+        ak.keys.Add(pos);
 
         //ak.changed();
 
         return ak;
+    }
+
+    public static AxisKey PC(KeyCode neg, KeyCode pos)
+    {
+        return PC(neg.ToString(), pos.ToString());
     }
 
     #endregion

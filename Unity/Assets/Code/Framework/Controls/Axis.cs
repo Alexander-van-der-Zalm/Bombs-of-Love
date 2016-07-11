@@ -6,24 +6,21 @@ using XInputDotNetPure;
 [System.Serializable]
 public class Axis //: Control
 {
-    [SerializeField]
     public string Name;
-
-    [SerializeField, HideInInspector]
-    protected ControlScheme scheme;
     
-    [SerializeField]
     public List<AxisKey> AxisKeys;
 
     [SerializeField]
     private int lastAxis;
 
-    public Axis(ControlScheme scheme, string name = "defaultAxis")
-        //: base(scheme, name)
+    [SerializeField]
+    private ControlType lastInputType = ControlType.PC;
+    private int xbox;
+
+    public Axis(int xbox = 0, string name = "defaultAxis")
     {
         AxisKeys = new List<AxisKey>();
-
-        this.scheme = scheme;
+        this.xbox = 0;
         this.Name = name;
     }
 
@@ -35,12 +32,12 @@ public class Axis //: Control
         // Handles priority on last active 
         for(int i = 0; i < AxisKeys.Count; i++)
         {
-            float v = AxisKeys[i].Value(scheme.controllerID);
+            float v = AxisKeys[i].Value(xbox);
             if (v != 0 && (value == 0 || (value != 0 && lastAxis == i)))
             {
                 value = v;
                 curAxis = i;
-                scheme.InputType = ControlHelper.AxisKeyToControl(AxisKeys[i].Type);
+                lastInputType = ControlHelper.AxisKeyToControl(AxisKeys[i].Type);
             } 
         }
         lastAxis = curAxis;
