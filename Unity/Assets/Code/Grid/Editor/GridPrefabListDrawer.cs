@@ -12,10 +12,10 @@ public class GridPrefabListDrawer : PropertyDrawer
     private GridPrefabList gpl;
 
     private int sy = 5;
-    [SerializeField]
-    private int prefabIndex = -1;
-    [SerializeField]
-    private int layerIndex = -1;
+    //[SerializeField]
+    //private int prefabIndex = -1;
+    //[SerializeField]
+    //private int layerIndex = -1;
     //private GridPrefabListEditor editor;
 
     private void Init(SerializedProperty prop)
