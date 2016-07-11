@@ -41,6 +41,11 @@ public class ControlKey
             selectedIndex = Enum.GetNames(typeof(XboxButton)).ToList().FindIndex(e => e == KeyValue);
     }
 
+    public ControlKey()
+    {
+        selectedIndex = 0;
+    }
+
     public static ControlKey XboxButton(XboxButton btn)
     {
         return new ControlKey(ControlType.Xbox, btn.ToString());
@@ -52,6 +57,30 @@ public class ControlKey
     }
 
     #if UNITY_EDITOR
+
+    public static void OnGui(Rect pos, SerializedProperty prop)
+    {
+
+        //Type = (ControlType)EditorGUI.EnumPopup(new Rect(pos.x,pos.y,70,EditorGUIUtility.singleLineHeight),Type);
+        EditorGUI.PropertyField(new Rect(pos.x, pos.y, 70, EditorGUIUtility.singleLineHeight), prop.serializedObject.FindProperty("Type"));
+        //switch (Type)
+        //{
+            //case ControlType.PC:
+            //    selectedIndex = //EditorGUILayout.Popup(selectedIndex, ControlHelper.KeyCodeOptions, GUILayout.Width(80.0f + 10 * EditorGUI.indentLevel));
+            //    if (selectedIndex >= ControlHelper.KeyCodeOptions.Length)
+            //        selectedIndex = 0;
+            //    KeyValue = ControlHelper.KeyCodeOptions[selectedIndex];
+
+            //    break;
+
+            //case ControlType.Xbox:
+            //    selectedIndex = EditorGUILayout.Popup(selectedIndex, ControlHelper.XboxButtonOptions, GUILayout.Width(60.0f + 10 * EditorGUI.indentLevel));
+            //    if (selectedIndex >= ControlHelper.XboxButtonOptions.Length)
+            //        selectedIndex = 0;
+            //    KeyValue = ControlHelper.XboxButtonOptions[selectedIndex];
+            //    break;
+        //}
+    }
 
     public void OnGui()
     {

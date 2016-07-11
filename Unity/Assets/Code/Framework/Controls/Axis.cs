@@ -9,7 +9,7 @@ public class Axis //: Control
     [SerializeField]
     public string Name;
 
-    [SerializeField]
+    [SerializeField, HideInInspector]
     protected ControlScheme scheme;
     
     [SerializeField]

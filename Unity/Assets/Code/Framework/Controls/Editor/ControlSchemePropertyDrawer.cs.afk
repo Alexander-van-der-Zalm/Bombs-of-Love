@@ -1,0 +1,95 @@
+﻿using UnityEngine;
+using UnityEditor;
+using UnityEditorInternal;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+
+[CustomPropertyDrawer(typeof(ControlScheme))]
+public class ControlSchemePropertyDrawer : PropertyDrawer
+{
+    private class ActionKey
+    {
+        public enum ReturnType
+        {
+            Float, // uses an axis
+            Bool // uses an action
+        }
+        public string Action;
+        public string Key;
+    }
+
+    private ControlScheme scheme;
+    private ReorderableList horAxis, verAxis;
+    private List<ReorderableList> actions;
+
+
+
+    private void Init(SerializedProperty prop)
+    {
+        if (scheme == null)
+            scheme = prop.objectReferenceValue as ControlScheme;
+        if (scheme == null)
+            scheme = prop.serializedObject.targetObject as ControlScheme;
+        if (scheme == null)
+            return;
+        if (actions == null)
+        {
+            actions = new List<ReorderableList>();
+            for (int i = 0; scheme.Actions != null && i < scheme.Actions.Count; i++)
+            {
+                actions.Add(new ReorderableList(scheme.Actions[i].Keys, typeof(ControlKey), true, true, true, true));
+               // ActionList(actions[i]);
+
+            }
+        }
+
+
+
+    }
+
+    //private void ActionList(ReorderableList list)
+    //{
+    //    list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
+    //    {
+    //        var element = list.serializedProperty.GetArrayElementAtIndex(index);
+    //        ControlKey.OnGui(rect, element);
+    //    };
+
+    //    //return list;
+    //}
+
+    public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
+    {
+        Init(prop);
+
+        EditorGUI.PropertyField(new Rect(pos.x, pos.y, pos.width, EditorGUIUtility.singleLineHeight), prop);
+        pos.y += EditorGUIUtility.singleLineHeight;
+        for (int i = 0; scheme.Actions != null && i < scheme.Actions.Count; i++)
+        {
+            actions[i].DoList(new Rect(pos.x, pos.y, pos.width, listHeight(actions[i])));
+            pos.y += listHeight(actions[i]);
+        }
+    }
+
+    #region Height
+
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        float height = 3 * EditorGUIUtility.singleLineHeight;
+
+        for (int i = 0; actions != null && i < actions.Count; i++)
+            height += listHeight(actions[i]);
+
+        return height + listHeight(horAxis) + listHeight(verAxis);
+    }
+
+    private float listHeight(ReorderableList l)
+    {
+        if (l != null)
+            return l.GetHeight();
+        return 0;
+    }
+
+    #endregion
+}
