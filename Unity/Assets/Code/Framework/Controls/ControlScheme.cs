@@ -66,8 +66,8 @@ public class ControlScheme:ScriptableObject
         }
         if (xboxDPad)
         {
-            controlScheme.Horizontal.AxisKeys.Add(AxisKey.XboxDpad(AxisKey.DirectionInput.Horizontal));
-            controlScheme.Vertical.AxisKeys.Add(AxisKey.XboxDpad(AxisKey.DirectionInput.Vertical));
+            controlScheme.Horizontal.AxisKeys.Add(AxisKey.XboxDpad(DirectionInput.Horizontal));
+            controlScheme.Vertical.AxisKeys.Add(AxisKey.XboxDpad(DirectionInput.Vertical));
         }
         if (wasd)
         {

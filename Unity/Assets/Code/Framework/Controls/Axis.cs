@@ -59,7 +59,7 @@ public class Axis //: Control
         AxisKeys.Add(AxisKey.XboxAxis(axis));
     }
 
-    public void XboxDpad(AxisKey.DirectionInput horizontalOrVertical)
+    public void XboxDpad(DirectionInput horizontalOrVertical)
     {
         AxisKeys.Add(AxisKey.XboxDpad(horizontalOrVertical));
     }
@@ -81,22 +81,22 @@ public class Axis //: Control
     /// <param name="xbox"></param>
     /// <param name="name"></param>
     /// <returns></returns>
-    public static Axis Default(AxisKey.DirectionInput horintalOrVertical, int xbox = 0, string name = "")
+    public static Axis Default(DirectionInput horintalOrVertical, int xbox = 0, string name = "")
     {
         Axis ax = new Axis(xbox, name);
         switch(horintalOrVertical)
         {
-            case AxisKey.DirectionInput.Horizontal:
+            case DirectionInput.Horizontal:
                 ax.PC("D", "A");
                 ax.PC(KeyCode.RightArrow, KeyCode.LeftArrow);
                 ax.XboxAxis(global::XboxAxis.LeftX);
-                ax.XboxDpad(AxisKey.DirectionInput.Horizontal);
+                ax.XboxDpad(DirectionInput.Horizontal);
                 break;
-            case AxisKey.DirectionInput.Vertical:
+            case DirectionInput.Vertical:
                 ax.PC("W", "S");
                 ax.PC(KeyCode.UpArrow, KeyCode.DownArrow);
                 ax.XboxAxis(global::XboxAxis.LeftY);
-                ax.XboxDpad(AxisKey.DirectionInput.Vertical);
+                ax.XboxDpad(DirectionInput.Vertical);
                 break;
             default:
                 break;
