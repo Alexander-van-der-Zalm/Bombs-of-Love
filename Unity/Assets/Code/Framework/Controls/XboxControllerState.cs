@@ -26,7 +26,7 @@ public class XboxControllerState : Singleton<XboxControllerState>
 
     public void Awake()
     { 
-        Debug.Log("Awake");
+        //Debug.Log("Awake");
         CurrentState = new GamePadState[4];
         LastState = new GamePadState[4];
     }

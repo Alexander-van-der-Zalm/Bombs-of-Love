@@ -14,6 +14,7 @@ public class ActionKey
     #region Fields
 
     public ControlType Type;
+    [ReadOnly]
     public string KeyValue;
 
     #endregion

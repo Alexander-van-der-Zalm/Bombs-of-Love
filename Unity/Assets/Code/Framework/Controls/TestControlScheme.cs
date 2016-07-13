@@ -7,6 +7,7 @@ public class TestControlScheme : MonoBehaviour
     public Action DropBomb;
 
     public Axis Horizontal;
+    public ActionKey Key;
 
     public void Awake()
     {

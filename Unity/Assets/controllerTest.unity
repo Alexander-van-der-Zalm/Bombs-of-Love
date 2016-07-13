@@ -133,7 +133,11 @@ MonoBehaviour:
     m_XboxPlayer: 0
   DropBomb:
     Name: 
-    Keys: []
+    Keys:
+    - Type: 0
+      KeyValue: Slash
+    - Type: 1
+      KeyValue: 
     m_LastInputType: 0
     m_XboxPlayer: 0
   Horizontal:
