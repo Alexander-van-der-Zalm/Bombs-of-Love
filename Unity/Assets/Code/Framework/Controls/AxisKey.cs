@@ -23,7 +23,7 @@ public class AxisKey
     #region Fields
 
     public AxisKeyType Type;
-    public List<string> keys = new List<string>();
+    public string[] keys;
     //public XboxAxisType xboxAxisType;
 
     [SerializeField,HideInInspector]
@@ -32,6 +32,11 @@ public class AxisKey
     private int selectedIndex2;
 
     #endregion
+
+    public AxisKey()
+    {
+        keys = new string[2];
+    }
 
     #region Enums
 
@@ -46,11 +51,11 @@ public class AxisKey
 
     #region Creates
 
-    public static AxisKey XboxAxis(string axis)
+    public static AxisKey XboxAxis(XboxAxis axis)
     {
         AxisKey ak = new AxisKey();
         ak.Type = AxisKeyType.Axis;
-        ak.keys.Add(axis);
+        ak.keys[0] = axis.ToString();
 
         //ak.changed();
 
@@ -64,13 +69,13 @@ public class AxisKey
 
         if (horintalOrVertical == DirectionInput.Horizontal)
         {
-            ak.keys.Add(XboxButton.Left.ToString());
-            ak.keys.Add(XboxButton.Right.ToString());
+            ak.keys[0] = XboxButton.Left.ToString();
+            ak.keys[1] = XboxButton.Right.ToString();
         }
         else
         {
-            ak.keys.Add(XboxButton.Down.ToString());
-            ak.keys.Add(XboxButton.Up.ToString());
+            ak.keys[0] = XboxButton.Down.ToString();
+            ak.keys[1] = XboxButton.Up.ToString();
         }
 
         //ak.changed();
@@ -83,8 +88,8 @@ public class AxisKey
         AxisKey ak = new AxisKey();
         ak.Type = AxisKeyType.PC;
 
-        ak.keys.Add(neg);
-        ak.keys.Add(pos);
+        ak.keys[0] = neg;
+        ak.keys[1] = pos;
 
         //ak.changed();
 
@@ -100,7 +105,7 @@ public class AxisKey
 
     #region Value
 
-    public float Value(int xboxController)
+    public float Value(PlayerIndex xboxController = PlayerIndex.One)
     {
         float v = 0;
         switch (Type)
@@ -113,13 +118,13 @@ public class AxisKey
                 break;
 
             case AxisKeyType.Axis:
-                v = XboxControllerState.Axis(ControlHelper.ReturnXboxAxis(keys[0]), (PlayerIndex)xboxController);
+                v = XboxControllerState.Axis(ControlHelper.ReturnXboxAxis(keys[0]), xboxController);
                 break;
 
             case AxisKeyType.Dpad:
-                if (XboxControllerState.ButtonDown(ControlHelper.ReturnXboxButton(keys[0]), (PlayerIndex)xboxController))
+                if (XboxControllerState.ButtonDown(ControlHelper.ReturnXboxButton(keys[0]), xboxController))
                     v--;
-                if (XboxControllerState.ButtonDown(ControlHelper.ReturnXboxButton(keys[1]), (PlayerIndex)xboxController))
+                if (XboxControllerState.ButtonDown(ControlHelper.ReturnXboxButton(keys[1]), xboxController))
                     v++;
                 break;
 

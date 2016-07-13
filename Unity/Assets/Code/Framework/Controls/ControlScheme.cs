@@ -61,8 +61,8 @@ public class ControlScheme:ScriptableObject
 
         if (xboxLeftStick)
         {
-            controlScheme.Horizontal.AxisKeys.Add(AxisKey.XboxAxis(XboxAxis.LeftX.ToString()));
-            controlScheme.Vertical.AxisKeys.Add(AxisKey.XboxAxis(XboxAxis.LeftY.ToString()));
+            controlScheme.Horizontal.AxisKeys.Add(AxisKey.XboxAxis(XboxAxis.LeftX));
+            controlScheme.Vertical.AxisKeys.Add(AxisKey.XboxAxis(XboxAxis.LeftY));
         }
         if (xboxDPad)
         {

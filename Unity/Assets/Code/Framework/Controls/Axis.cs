@@ -16,11 +16,11 @@ public class Axis //: Control
     [SerializeField]
     private ControlType lastInputType = ControlType.PC;
     [SerializeField]
-    private int xbox;
+    private PlayerIndex xbox;
 
     #endregion
 
-    public Axis(int xbox = 0, string name = "defaultAxis")
+    public Axis(PlayerIndex xbox = PlayerIndex.One, string name = "defaultAxis")
     {
         AxisKeys = new List<AxisKey>();
         this.xbox = 0;
@@ -51,13 +51,13 @@ public class Axis //: Control
 
     public void XboxAxis(XboxAxis axis)
     {
-        XboxAxis(axis.ToString());
-    }
-
-    public void XboxAxis(string axis)
-    {
         AxisKeys.Add(AxisKey.XboxAxis(axis));
     }
+
+    //public void XboxAxis(string axis)
+    //{
+    //    AxisKeys.Add(AxisKey.XboxAxis(axis));
+    //}
 
     public void XboxDpad(DirectionInput horizontalOrVertical)
     {
@@ -81,7 +81,7 @@ public class Axis //: Control
     /// <param name="xbox"></param>
     /// <param name="name"></param>
     /// <returns></returns>
-    public static Axis Default(DirectionInput horintalOrVertical, int xbox = 0, string name = "")
+    public static Axis Default(DirectionInput horintalOrVertical, PlayerIndex xbox = PlayerIndex.One, string name = "")
     {
         Axis ax = new Axis(xbox, name);
         switch(horintalOrVertical)
