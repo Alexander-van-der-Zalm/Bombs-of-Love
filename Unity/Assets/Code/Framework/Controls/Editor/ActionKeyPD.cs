@@ -74,18 +74,25 @@ public class ActionKeyPD : PropertyDrawer
             // Check if it is a valid input
             if (EditorGUI.EndChangeCheck())
             {
-                if(!Enum.IsDefined(typeof(KeyCode), m_IncompleteKeyCode))
+                // Check if to Upper works
+                if (Enum.IsDefined(typeof(KeyCode), m_IncompleteKeyCode.ToUpper()))
                 {
-                    Debug.Log("Not correct");
+                    m_IncompleteKeyCode = m_IncompleteKeyCode.ToUpper();
                 }
-                else
+
+                // Check if it is correct
+                if (Enum.IsDefined(typeof(KeyCode), m_IncompleteKeyCode))
                 {
                     kp.stringValue = m_IncompleteKeyCode;
                     m_KeyCode = ControlHelper.ReturnKeyCode(m_IncompleteKeyCode);
                 }
+                //else
+                //{
+                    
+                //}
             }
         }
-        else
+        else // XBOX
         {
             // When just switched from type or new
             if (kp.stringValue == "")
@@ -98,6 +105,7 @@ public class ActionKeyPD : PropertyDrawer
                 m_XboxEnum = ControlHelper.ReturnXboxButton(kp.stringValue);
             }
 
+            // Xbox enum
             EditorGUI.BeginChangeCheck();
             m_XboxEnum = (XboxButton)EditorGUI.EnumPopup(xboxEnumRext, m_XboxEnum);
             if (EditorGUI.EndChangeCheck())
@@ -107,6 +115,5 @@ public class ActionKeyPD : PropertyDrawer
         // Set indent back to what it was
         EditorGUI.indentLevel = indent;
         //EditorGUI.EndProperty();
-
     }
 }
