@@ -6,34 +6,25 @@ using System;
 [CustomPropertyDrawer(typeof(ActionKey))]
 public class ActionKeyPD : PropertyDrawer
 {
-    private int m_TypeIndex = 0;
-    private int m_ValueIndex = 0;
-
     [SerializeField]
     private XboxButton m_XboxEnum;
     [SerializeField]
     private KeyCode m_KeyCode;
     [SerializeField]
-    private string IncompleteKeyCode;
-    [SerializeField]
-    private string lastValidKeyCode;
+    private string m_IncompleteKeyCode;
 
     public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
     {
-        EditorGUI.BeginProperty(pos, GUIContent.none, prop);
+        //EditorGUI.BeginProperty(pos, GUIContent.none, prop);
 
         SerializedProperty tp = prop.FindPropertyRelative("Type");
         SerializedProperty kp = prop.FindPropertyRelative("KeyValue");
         
-        //PrivateVarsCheck()
-
-
         // Prefix Label
         pos = EditorGUI.PrefixLabel(pos, GUIUtility.GetControlID(FocusType.Passive), label);
 
         // Don't make child fields be indented
         var indent = EditorGUI.indentLevel;
-        Debug.Log(EditorGUI.indentLevel);
         EditorGUI.indentLevel = 0;
 
         float splitWidth = (pos.width - 45 - 3)/3;
@@ -46,50 +37,76 @@ public class ActionKeyPD : PropertyDrawer
         Rect xboxEnumRext   = new Rect(pos.x + 45 + 3 + splitWidth      , pos.y, 2 * splitWidth, EditorGUIUtility.singleLineHeight);
 
         // Draw
+        EditorGUI.BeginChangeCheck();
         EditorGUI.PropertyField(typeRect, tp, GUIContent.none);
+        if(EditorGUI.EndChangeCheck())
+        {
+            kp.stringValue = "";// Switched type
+        }
         ControlType type = (ControlType)Enum.Parse(typeof(ControlType), tp.enumNames[tp.enumValueIndex], true);
-        //switch(tp.En)
+        
         if (type == ControlType.PC)
         {
+            // If just switched type
+            if (kp.stringValue == "")
+            {
+                kp.stringValue = ((KeyCode)0).ToString();
+            }
+            // If just loaded
+            if (m_KeyCode.ToString() != kp.stringValue)
+            {
+                m_KeyCode = ControlHelper.ReturnKeyCode(kp.stringValue);
+                m_IncompleteKeyCode = kp.stringValue;
+            }
+           
+            // Enum change check & resolve
             EditorGUI.BeginChangeCheck();
             m_KeyCode = (KeyCode)EditorGUI.EnumPopup(enumRect, m_KeyCode);
             if (EditorGUI.EndChangeCheck())
-                SetKeyCodeValueProperty(kp, m_KeyCode.ToString());
+            {
+                kp.stringValue = m_KeyCode.ToString();
+                m_IncompleteKeyCode = kp.stringValue;
+            }
 
+            // Text field change check & resolve
             EditorGUI.BeginChangeCheck();
-            IncompleteKeyCode = EditorGUI.TextField(textRect, IncompleteKeyCode);
-
+            m_IncompleteKeyCode = EditorGUI.TextField(textRect, m_IncompleteKeyCode);
             // Check if it is a valid input
             if (EditorGUI.EndChangeCheck())
             {
-                if(!Enum.IsDefined(typeof(KeyCode), IncompleteKeyCode))
+                if(!Enum.IsDefined(typeof(KeyCode), m_IncompleteKeyCode))
                 {
                     Debug.Log("Not correct");
                 }
                 else
                 {
-                    SetKeyCodeValueProperty(kp, IncompleteKeyCode);
-                    m_KeyCode = ControlHelper.ReturnKeyCode(IncompleteKeyCode);
+                    kp.stringValue = m_IncompleteKeyCode;
+                    m_KeyCode = ControlHelper.ReturnKeyCode(m_IncompleteKeyCode);
                 }
             }
         }
         else
         {
+            // When just switched from type or new
+            if (kp.stringValue == "")
+            {
+                kp.stringValue = ((XboxButton)0).ToString();
+            }
+            // If just loaded
+            if (m_XboxEnum.ToString() != kp.stringValue)
+            {
+                m_XboxEnum = ControlHelper.ReturnXboxButton(kp.stringValue);
+            }
+
             EditorGUI.BeginChangeCheck();
             m_XboxEnum = (XboxButton)EditorGUI.EnumPopup(xboxEnumRext, m_XboxEnum);
             if (EditorGUI.EndChangeCheck())
-                SetKeyCodeValueProperty(kp, m_XboxEnum.ToString());
+                kp.stringValue = m_XboxEnum.ToString();
         }
         EditorGUI.PropertyField(valueRect, kp, GUIContent.none);
         // Set indent back to what it was
         EditorGUI.indentLevel = indent;
-        EditorGUI.EndProperty();
+        //EditorGUI.EndProperty();
 
-    }
-
-    private void SetKeyCodeValueProperty(SerializedProperty kp, string value)
-    {
-        kp.stringValue = value;
-        lastValidKeyCode = value;
     }
 }
