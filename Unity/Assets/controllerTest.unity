@@ -134,18 +134,31 @@ MonoBehaviour:
   DropBomb:
     Name: 
     Keys:
-    - Type: 0
-      KeyValue: Slash
     - Type: 1
-      KeyValue: 
-    m_LastInputType: 0
+      KeyValue: A
+    - Type: 1
+      KeyValue: A
+    - Type: 0
+      KeyValue: None
+    m_LastInputType: 1
     m_XboxPlayer: 0
   Horizontal:
     Name: 
-    AxisKeys: []
+    AxisKeys:
+    - Type: 2
+      keys:
+      - A
+      - LeftX
+    - Type: 0
+      keys:
+      - X
+      - LeftX
     lastAxis: 0
     lastInputType: 0
     xbox: 0
+  Key:
+    Type: 0
+    KeyValue: Minus
 --- !u!114 &1052037701
 MonoBehaviour:
   m_ObjectHideFlags: 0

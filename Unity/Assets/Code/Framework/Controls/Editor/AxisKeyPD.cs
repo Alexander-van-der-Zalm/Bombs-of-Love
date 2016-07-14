@@ -37,8 +37,10 @@ public class AxisKeyPD : PropertyDrawer
 
     public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
     {
-        // Draw prefix label
-        pos = EditorGUI.PrefixLabel(pos, GUIUtility.GetControlID(FocusType.Passive), label);
+        // Draw prefix label - if not a list item
+        bool listItem = label.text.Contains("Element");
+        if (!listItem)
+            pos = EditorGUI.PrefixLabel(pos, GUIUtility.GetControlID(FocusType.Passive), label);
 
         // Get relevant properties
         SerializedProperty keys = prop.FindPropertyRelative("keys");
@@ -48,18 +50,21 @@ public class AxisKeyPD : PropertyDrawer
 
         Init(keys);
 
+
         var indent = EditorGUI.indentLevel;
-        EditorGUI.indentLevel = 0;
+        if(!listItem)
+            EditorGUI.indentLevel = 0;
         EditorGUI.PropertyField(new Rect(pos.x,pos.y,pos.width,EditorGUIUtility.singleLineHeight), type,GUIContent.none);
-        EditorGUI.indentLevel = indent;
+        if(!listItem)
+            EditorGUI.indentLevel = indent;
 
 
         pos.y += EditorGUIUtility.singleLineHeight;
         if (k0 != null)
-            m_KCNeg.OnGUI(pos, k0, "+");
+            m_KCNeg.OnGUI(pos, k0, "+", !listItem);
         pos.y += EditorGUIUtility.singleLineHeight;
         if (k1 != null) 
-            m_XAPos.OnGUI(pos, k1, "-");
+            m_XAPos.OnGUI(pos, k1, "-", !listItem);
 
     }
 }

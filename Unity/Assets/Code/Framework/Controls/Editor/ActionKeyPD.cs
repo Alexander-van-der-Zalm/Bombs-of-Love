@@ -13,14 +13,12 @@ public class KeyCodeEditorGUI
     [SerializeField]
     private string m_IncompleteKeyCode;
 
-    [SerializeField]
-    private bool m_Changed;
-
-    public void OnGUI(Rect pos, SerializedProperty keyString, string label)
+    public void OnGUI(Rect pos, SerializedProperty keyString, string label, bool IgnoreIndent = true)
     {
         // Don't make child fields be indented
         var indent = EditorGUI.indentLevel;
-        EditorGUI.indentLevel = 0;
+        if(IgnoreIndent)
+            EditorGUI.indentLevel = 0;
 
         float splitWidth = (pos.width - 3) / 3;
 
@@ -73,7 +71,8 @@ public class KeyCodeEditorGUI
         EditorGUI.PropertyField(valueRect, keyString, GUIContent.none);
 
         // Set indent back to what it was
-        EditorGUI.indentLevel = indent;
+        if (IgnoreIndent)
+            EditorGUI.indentLevel = indent;
     }
 }
 
@@ -83,11 +82,12 @@ public class XboxAxisEnumEditorGUI
     [SerializeField]
     private XboxAxis m_Enum;
 
-    public void OnGUI(Rect pos, SerializedProperty kp, string label)
+    public void OnGUI(Rect pos, SerializedProperty kp, string label, bool IgnoreIndent = true)
     {
         // Don't make child fields be indented
         var indent = EditorGUI.indentLevel;
-        EditorGUI.indentLevel = 0;
+        if (IgnoreIndent)
+            EditorGUI.indentLevel = 0;
 
         float splitWidth = (pos.width - 1) / 3;
 
@@ -116,7 +116,8 @@ public class XboxAxisEnumEditorGUI
         EditorGUI.PropertyField(valueRect, kp, GUIContent.none);
 
         // Set indent back to what it was
-        EditorGUI.indentLevel = indent;
+        if (IgnoreIndent)
+            EditorGUI.indentLevel = indent;
     }
 }
 
@@ -136,9 +137,10 @@ public class ActionKeyPD : PropertyDrawer
     {
         SerializedProperty tp = prop.FindPropertyRelative("Type");
         SerializedProperty kp = prop.FindPropertyRelative("KeyValue");
-        
+
         // Prefix Label
-        pos = EditorGUI.PrefixLabel(pos, GUIUtility.GetControlID(FocusType.Passive), label);
+        if (!label.text.Contains("Element"))
+            pos = EditorGUI.PrefixLabel(pos, GUIUtility.GetControlID(FocusType.Passive), label);
 
         // Don't make child fields be indented
         var indent = EditorGUI.indentLevel;

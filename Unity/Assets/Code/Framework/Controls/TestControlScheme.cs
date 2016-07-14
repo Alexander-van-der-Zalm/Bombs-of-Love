@@ -8,6 +8,9 @@ public class TestControlScheme : MonoBehaviour
 
     public Axis Horizontal;
     public ActionKey Key;
+    public AxisKey axis;
+
+    public Vector3 V3;
 
     public void Awake()
     {

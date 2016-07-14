@@ -12,43 +12,37 @@ MonoBehaviour:
   m_Name: P1
   m_EditorClassIdentifier: 
   Name: 
-  controllerID: 1
-  playerID: 1
-  UpdateType: 1
+  Player: 0
   InputType: 0
   Horizontal:
     Name: 
     AxisKeys: []
     lastAxis: 0
     lastInputType: 0
+    xbox: 0
   Vertical:
     Name: 
     AxisKeys: []
     lastAxis: 0
     lastInputType: 0
+    xbox: 0
   Actions:
   - Name: 
-    scheme: {fileID: 0}
     Keys:
     - Type: 0
-      KeyValue: 
-      LastState: 0
-      CurState: 0
-      selectedIndex: 0
+      KeyValue: None
     - Type: 0
-      KeyValue: 
-      LastState: 0
-      CurState: 0
-      selectedIndex: 0
+      KeyValue: None
     - Type: 0
-      KeyValue: 
-      LastState: 0
-      CurState: 0
-      selectedIndex: 0
+      KeyValue: None
+    m_LastInputType: 0
+    m_XboxPlayer: 0
   - Name: 
-    scheme: {fileID: 0}
     Keys: []
+    m_LastInputType: 0
+    m_XboxPlayer: 0
   - Name: 
-    scheme: {fileID: 0}
     Keys: []
+    m_LastInputType: 0
+    m_XboxPlayer: 0
   AnalogActions: []
