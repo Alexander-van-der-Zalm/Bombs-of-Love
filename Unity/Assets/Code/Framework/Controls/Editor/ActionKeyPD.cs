@@ -3,6 +3,125 @@ using UnityEditor;
 using System.Collections;
 using System;
 
+#region Interfaces & Classes
+
+[System.Serializable]
+public class KeyCodeEditorGUI
+{
+    [SerializeField]
+    private KeyCode m_KeyCode;
+    [SerializeField]
+    private string m_IncompleteKeyCode;
+
+    [SerializeField]
+    private bool m_Changed;
+
+    public void OnGUI(Rect pos, SerializedProperty keyString, string label)
+    {
+        // Don't make child fields be indented
+        var indent = EditorGUI.indentLevel;
+        EditorGUI.indentLevel = 0;
+
+        float splitWidth = (pos.width - 3) / 3;
+
+        // Make Rects
+        Rect valueRect = new Rect(pos.x, pos.y, splitWidth, EditorGUIUtility.singleLineHeight);
+        Rect textRect = new Rect(pos.x + 1 + splitWidth, pos.y, splitWidth, EditorGUIUtility.singleLineHeight);
+        Rect enumRect = new Rect(pos.x + 2 + 2 * splitWidth, pos.y, splitWidth, EditorGUIUtility.singleLineHeight);
+
+        // If just switched type or new
+        if (keyString.stringValue == "")
+        {
+            keyString.stringValue = ((KeyCode)0).ToString();
+        }
+        // If just (re)loaded
+        if (m_KeyCode.ToString() != keyString.stringValue)
+        {
+            m_KeyCode = ControlHelper.ReturnKeyCode(keyString.stringValue);
+            m_IncompleteKeyCode = keyString.stringValue;
+        }
+
+        // Enum change check & resolve
+        EditorGUI.BeginChangeCheck();
+        m_KeyCode = (KeyCode)EditorGUI.EnumPopup(enumRect, m_KeyCode);
+        if (EditorGUI.EndChangeCheck())
+        {
+            keyString.stringValue = m_KeyCode.ToString();
+            m_IncompleteKeyCode = keyString.stringValue;
+        }
+
+        // Text field change check & resolve
+        EditorGUI.BeginChangeCheck();
+        m_IncompleteKeyCode = EditorGUI.TextField(textRect, m_IncompleteKeyCode);
+        // Check if it is a valid input
+        if (EditorGUI.EndChangeCheck())
+        {
+            // Check if to Upper works
+            if (Enum.IsDefined(typeof(KeyCode), m_IncompleteKeyCode.ToUpper()))
+            {
+                m_IncompleteKeyCode = m_IncompleteKeyCode.ToUpper();
+            }
+
+            // Check if it is correct
+            if (Enum.IsDefined(typeof(KeyCode), m_IncompleteKeyCode))
+            {
+                keyString.stringValue = m_IncompleteKeyCode;
+                m_KeyCode = ControlHelper.ReturnKeyCode(m_IncompleteKeyCode);
+            }
+        }
+
+        EditorGUI.PropertyField(valueRect, keyString, GUIContent.none);
+
+        // Set indent back to what it was
+        EditorGUI.indentLevel = indent;
+    }
+}
+
+[System.Serializable]
+public class XboxAxisEnumEditorGUI
+{
+    [SerializeField]
+    private XboxAxis m_Enum;
+
+    public void OnGUI(Rect pos, SerializedProperty kp, string label)
+    {
+        // Don't make child fields be indented
+        var indent = EditorGUI.indentLevel;
+        EditorGUI.indentLevel = 0;
+
+        float splitWidth = (pos.width - 1) / 3;
+
+        Rect valueRect = new Rect(pos.x, pos.y, splitWidth, EditorGUIUtility.singleLineHeight);
+        Rect xboxEnumRext = new Rect(pos.x + 1 + splitWidth, pos.y, 2 * splitWidth, EditorGUIUtility.singleLineHeight);
+
+        // When just switched from type, new or input is invalid
+        if (kp.stringValue == "" || !Enum.IsDefined(typeof(XboxAxis),kp.stringValue))//Enum.Parse(typeof(XboxAxis),kp.stringValue)))
+        {
+            kp.stringValue = ((XboxAxis)0).ToString();
+        }
+
+        // If just loaded
+        if (m_Enum.ToString() != kp.stringValue)
+        {
+            m_Enum = ControlHelper.ReturnXboxAxis(kp.stringValue);
+        }
+
+        // Xbox enum
+        EditorGUI.BeginChangeCheck();
+        m_Enum = (XboxAxis)EditorGUI.EnumPopup(xboxEnumRext, m_Enum);
+        if (EditorGUI.EndChangeCheck())
+            kp.stringValue = m_Enum.ToString();
+
+
+        EditorGUI.PropertyField(valueRect, kp, GUIContent.none);
+
+        // Set indent back to what it was
+        EditorGUI.indentLevel = indent;
+    }
+}
+
+#endregion
+
 [CustomPropertyDrawer(typeof(ActionKey))]
 public class ActionKeyPD : PropertyDrawer
 {
@@ -15,8 +134,6 @@ public class ActionKeyPD : PropertyDrawer
 
     public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
     {
-        //EditorGUI.BeginProperty(pos, GUIContent.none, prop);
-
         SerializedProperty tp = prop.FindPropertyRelative("Type");
         SerializedProperty kp = prop.FindPropertyRelative("KeyValue");
         
@@ -86,10 +203,6 @@ public class ActionKeyPD : PropertyDrawer
                     kp.stringValue = m_IncompleteKeyCode;
                     m_KeyCode = ControlHelper.ReturnKeyCode(m_IncompleteKeyCode);
                 }
-                //else
-                //{
-                    
-                //}
             }
         }
         else // XBOX
@@ -112,8 +225,8 @@ public class ActionKeyPD : PropertyDrawer
                 kp.stringValue = m_XboxEnum.ToString();
         }
         EditorGUI.PropertyField(valueRect, kp, GUIContent.none);
+        
         // Set indent back to what it was
         EditorGUI.indentLevel = indent;
-        //EditorGUI.EndProperty();
     }
 }

@@ -20,24 +20,6 @@ public enum DirectionInput
 [System.Serializable]
 public class AxisKey
 {
-    #region Fields
-
-    public AxisKeyType Type;
-    public string[] keys;
-    //public XboxAxisType xboxAxisType;
-
-    [SerializeField,HideInInspector]
-    private int selectedIndex1;
-    [SerializeField, HideInInspector]
-    private int selectedIndex2;
-
-    #endregion
-
-    public AxisKey()
-    {
-        keys = new string[2];
-    }
-
     #region Enums
 
     public enum AxisKeyType
@@ -48,6 +30,24 @@ public class AxisKey
     }
 
     #endregion
+
+    #region Fields
+
+    public AxisKeyType Type;
+    [ReadOnly]
+    public string[] keys;
+
+    //[SerializeField,HideInInspector]
+    //private int selectedIndex1;
+    //[SerializeField, HideInInspector]
+    //private int selectedIndex2;
+
+    #endregion
+
+    public AxisKey()
+    {
+        keys = new string[2];
+    }
 
     #region Creates
 

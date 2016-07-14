@@ -11,7 +11,7 @@ public class Action
     public string Name;
     public List<ActionKey> Keys;
 
-    [SerializeField]
+    [SerializeField, ReadOnly]
     private ControlType m_LastInputType = ControlType.PC;
     [SerializeField]
     private PlayerIndex m_XboxPlayer;

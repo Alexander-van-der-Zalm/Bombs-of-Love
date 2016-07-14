@@ -46,6 +46,7 @@ public class ControlHelper
             Debug.LogError("String "+ value+ " is not contained in enumtype:"+  typeof(T).ToString());
         return en;
     }
+
     [SerializeField]
     private static string[] keyCodeOptions;
     public static string[] KeyCodeOptions { get { return keyCodeOptions != null ? keyCodeOptions : keyCodeOptions = Enum.GetNames(typeof(KeyCode)); } }

@@ -13,7 +13,7 @@ public class Axis //: Control
 
     [SerializeField]
     private int lastAxis;
-    [SerializeField]
+    [SerializeField,ReadOnly]
     private ControlType lastInputType = ControlType.PC;
     [SerializeField]
     private PlayerIndex xbox;
