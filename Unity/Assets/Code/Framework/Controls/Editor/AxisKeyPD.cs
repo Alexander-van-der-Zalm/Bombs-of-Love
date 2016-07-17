@@ -7,7 +7,8 @@ using System;
 public class AxisKeyPD : PropertyDrawer
 {
     KeyCodeEditorGUI m_KCNeg, m_KCPos;
-    XboxAxisEnumEditorGUI m_XANeg, m_XAPos;
+    EnumEditorGUI<XboxAxis> m_XANeg, m_XAPos;
+    EnumEditorGUI<XboxDPad> m_XDNeg, m_XDPos;
 
     private void Init(SerializedProperty keys)
     {
@@ -26,9 +27,14 @@ public class AxisKeyPD : PropertyDrawer
             m_KCPos = new KeyCodeEditorGUI();
 
         if (m_XANeg == null)
-            m_XANeg = new XboxAxisEnumEditorGUI();
+            m_XANeg = new EnumEditorGUI<XboxAxis>();
         if (m_XAPos == null)
-            m_XAPos = new XboxAxisEnumEditorGUI();
+            m_XAPos = new EnumEditorGUI<XboxAxis>();
+
+        if (m_XDNeg == null)
+            m_XDNeg = new EnumEditorGUI<XboxDPad>();
+        if (m_XDPos == null)
+            m_XDPos = new EnumEditorGUI<XboxDPad>();
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
@@ -67,21 +73,22 @@ public class AxisKeyPD : PropertyDrawer
         if (k0 != null)
         {
             if (type == AxisKey.AxisKeyType.Axis)
-                m_XANeg.OnGUI(pos, k0, "+", !listItem);
+                m_XAPos.OnGUI(pos, k0, "", !listItem);
             else if (type == AxisKey.AxisKeyType.PC)
-                m_KCNeg.OnGUI(pos, k0, "+", !listItem);
-            //else
-
+                m_KCPos.OnGUI(pos, k0, "+", !listItem);
+            else
+                m_XDPos.OnGUI(pos, k0, "+", !listItem);
         }
         pos.y += EditorGUIUtility.singleLineHeight;
-        if (k1 != null)
+        if (k0 != null)
         {
-            if (type == AxisKey.AxisKeyType.Axis)
-                m_XAPos.OnGUI(pos, k1, "-", !listItem);
-            else if (type == AxisKey.AxisKeyType.PC)
-                m_KCPos.OnGUI(pos, k0, "-", !listItem);
+            if (type == AxisKey.AxisKeyType.PC)
+                m_KCNeg.OnGUI(pos, k0, "-", !listItem);
+            else if (type == AxisKey.AxisKeyType.Dpad)
+                m_XDNeg.OnGUI(pos, k0, "-", !listItem);
+
         }
-            
+
 
     }
 }

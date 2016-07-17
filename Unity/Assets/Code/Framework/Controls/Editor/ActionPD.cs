@@ -14,13 +14,13 @@ public class ActionPD : PropertyDrawer
     {
         if (list == null)
         {
-            Debug.Log(label.text);
+            //Debug.Log(label.text);
             list = new ReorderableList(prop.serializedObject, prop.FindPropertyRelative("Keys"), true, true, true, true);
             list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
             {
                 var element = list.serializedProperty.GetArrayElementAtIndex(index);
                 EditorGUI.PropertyField(rect, element);
-                Debug.Log(element.propertyPath);
+                //Debug.Log(element.propertyPath);
             };
             list.drawHeaderCallback = (Rect rect) =>
             {

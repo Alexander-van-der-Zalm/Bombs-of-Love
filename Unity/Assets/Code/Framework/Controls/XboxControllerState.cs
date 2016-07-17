@@ -15,6 +15,11 @@ public enum XboxAxis
     LeftX,LeftY,RightX,RightY,LeftTrigger,RightTrigger
 }
 
+public enum XboxDPad
+{
+    Up, Down, Left, Right
+}
+
 #endregion
 
 public class XboxControllerState : Singleton<XboxControllerState>

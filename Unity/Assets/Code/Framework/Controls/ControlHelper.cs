@@ -39,7 +39,7 @@ public class ControlHelper
         return ParseEnum<KeyCode>(str);
     }
 
-    private static T ParseEnum<T>(string value)
+    public static T ParseEnum<T>(string value) where T : struct, IConvertible, IComparable, IFormattable
     {
         T en = (T)Enum.Parse(typeof(T), value, true);
         if (!Enum.IsDefined(typeof(T), en))
