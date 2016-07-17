@@ -40,8 +40,8 @@ public class AxisKeyPD : PropertyDrawer
         SerializedProperty tp = prop.FindPropertyRelative("Type");
         AxisKey.AxisKeyType type = (AxisKey.AxisKeyType)Enum.Parse(typeof(AxisKey.AxisKeyType), tp.enumNames[tp.enumValueIndex], true);
         if(type == AxisKey.AxisKeyType.Axis)
-            return EditorGUIUtility.singleLineHeight * 2;
-        return EditorGUIUtility.singleLineHeight *3;
+            return EditorGUIUtility.singleLineHeight * 1 +2;
+        return EditorGUIUtility.singleLineHeight *2 +2;
     }
 
     public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
@@ -62,14 +62,15 @@ public class AxisKeyPD : PropertyDrawer
         var indent = EditorGUI.indentLevel;
         if(!listItem)
             EditorGUI.indentLevel = 0;
-        EditorGUI.PropertyField(new Rect(pos.x,pos.y,pos.width,EditorGUIUtility.singleLineHeight), tp,GUIContent.none);
+        EditorGUI.PropertyField(new Rect(pos.x,pos.y,45,EditorGUIUtility.singleLineHeight), tp,GUIContent.none);
         if(!listItem)
             EditorGUI.indentLevel = indent;
 
         AxisKey.AxisKeyType type = (AxisKey.AxisKeyType)Enum.Parse(typeof(AxisKey.AxisKeyType), tp.enumNames[tp.enumValueIndex], true);
 
         
-        pos.y += EditorGUIUtility.singleLineHeight;
+        pos.x += 45;
+        pos.width -= 45;
         if (k0 != null)
         {
             if (type == AxisKey.AxisKeyType.Axis)
