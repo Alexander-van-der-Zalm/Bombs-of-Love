@@ -28,7 +28,7 @@ public class KeyCodeEditorGUI
         Rect enumRect = new Rect(pos.x + 2 + 2 * splitWidth, pos.y, splitWidth, EditorGUIUtility.singleLineHeight);
 
         // If just switched type or new
-        if (keyString.stringValue == "")
+        if (keyString.stringValue == "" || !Enum.IsDefined(typeof(KeyCode), keyString.stringValue))
         {
             keyString.stringValue = ((KeyCode)0).ToString();
         }

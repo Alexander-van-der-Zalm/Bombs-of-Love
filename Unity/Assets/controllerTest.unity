@@ -128,7 +128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Jump:
     Name: 
-    Keys: []
+    Keys:
+    - Type: 0
+      KeyValue: None
     m_LastInputType: 0
     m_XboxPlayer: 0
   DropBomb:
@@ -147,7 +149,7 @@ MonoBehaviour:
     AxisKeys:
     - Type: 2
       keys:
-      - A
+      - LeftX
       - LeftX
     - Type: 0
       keys:
@@ -158,7 +160,13 @@ MonoBehaviour:
     xbox: 0
   Key:
     Type: 0
-    KeyValue: Minus
+    KeyValue: None
+  axis:
+    Type: 0
+    keys:
+    - None
+    - LeftX
+  V3: {x: 0, y: 0, z: 0}
 --- !u!114 &1052037701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,3 +266,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &1940252541
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1940252543}
+  - 114: {fileID: 1940252542}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1940252542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1940252541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5756264113f2954409b9ef209c1d016c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  l2:
+  - L: 01000000
+    L2:
+      L: 00000000
+--- !u!4 &1940252543
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1940252541}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.0349717, y: -0.53306204, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2

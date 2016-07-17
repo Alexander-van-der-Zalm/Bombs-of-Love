@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
+using System;
 
 [CustomPropertyDrawer(typeof(AxisKey))]
 public class AxisKeyPD : PropertyDrawer
@@ -44,27 +45,43 @@ public class AxisKeyPD : PropertyDrawer
 
         // Get relevant properties
         SerializedProperty keys = prop.FindPropertyRelative("keys");
-        SerializedProperty type = prop.FindPropertyRelative("Type");
+        SerializedProperty tp = prop.FindPropertyRelative("Type");
         SerializedProperty k0 = keys.GetArrayElementAtIndex(0);
         SerializedProperty k1 = keys.GetArrayElementAtIndex(1);
 
         Init(keys);
 
+        
 
         var indent = EditorGUI.indentLevel;
         if(!listItem)
             EditorGUI.indentLevel = 0;
-        EditorGUI.PropertyField(new Rect(pos.x,pos.y,pos.width,EditorGUIUtility.singleLineHeight), type,GUIContent.none);
+        EditorGUI.PropertyField(new Rect(pos.x,pos.y,pos.width,EditorGUIUtility.singleLineHeight), tp,GUIContent.none);
         if(!listItem)
             EditorGUI.indentLevel = indent;
 
+        AxisKey.AxisKeyType type = (AxisKey.AxisKeyType)Enum.Parse(typeof(AxisKey.AxisKeyType), tp.enumNames[tp.enumValueIndex], true);
 
+        
         pos.y += EditorGUIUtility.singleLineHeight;
         if (k0 != null)
-            m_KCNeg.OnGUI(pos, k0, "+", !listItem);
+        {
+            if (type == AxisKey.AxisKeyType.Axis)
+                m_XANeg.OnGUI(pos, k0, "+", !listItem);
+            else if (type == AxisKey.AxisKeyType.PC)
+                m_KCNeg.OnGUI(pos, k0, "+", !listItem);
+            //else
+
+        }
         pos.y += EditorGUIUtility.singleLineHeight;
-        if (k1 != null) 
-            m_XAPos.OnGUI(pos, k1, "-", !listItem);
+        if (k1 != null)
+        {
+            if (type == AxisKey.AxisKeyType.Axis)
+                m_XAPos.OnGUI(pos, k1, "-", !listItem);
+            else if (type == AxisKey.AxisKeyType.PC)
+                m_KCPos.OnGUI(pos, k0, "-", !listItem);
+        }
+            
 
     }
 }
