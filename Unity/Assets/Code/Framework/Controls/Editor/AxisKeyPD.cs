@@ -80,12 +80,12 @@ public class AxisKeyPD : PropertyDrawer
                 m_XDpadPos.OnGUI(pos, k0, "+", !listItem);
         }
         pos.y += EditorGUIUtility.singleLineHeight;
-        if (k0 != null)
+        if (k1 != null)
         {
             if (type == AxisKey.AxisKeyType.PC)
-                m_KCNeg.OnGUI(pos, k0, "-", !listItem);
+                m_KCNeg.OnGUI(pos, k1, "-", !listItem);
             else if (type == AxisKey.AxisKeyType.Dpad)
-                m_XDpadNeg.OnGUI(pos, k0, "-", !listItem);
+                m_XDpadNeg.OnGUI(pos, k1, "-", !listItem);
         }
     }
 }
