@@ -25,10 +25,9 @@ public class AxisPD : PropertyDrawer
             };
             list.drawHeaderCallback = (Rect rect) =>
             {
-                Debug.Log(label.text.ToString());
                 EditorGUI.LabelField(rect, "Axis - " + headerLabel);
             };
-            //list.elementHeight = EditorGUIUtility.singleLineHeight * 2 + 2;
+            list.elementHeight = EditorGUIUtility.singleLineHeight + 2;
             list.elementHeightCallback = (index) =>
              {
                  var element = list.serializedProperty.GetArrayElementAtIndex(index);
@@ -41,13 +40,28 @@ public class AxisPD : PropertyDrawer
     {
         Init(prop, label);
 
-        return EditorGUIUtility.singleLineHeight *1 + list.GetHeight();
+        return EditorGUIUtility.singleLineHeight * 2 + list.GetHeight();
     }
 
     public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
     {
         Init(prop, label);
-        Debug.Log(label.text.ToString());
         list.DoList(pos);
+        pos.y += list.GetHeight();
+
+        //SerializedObject so = prop.
+        Axis ax = fieldInfo.GetValue(prop.serializedObject.targetObject) as Axis;// prop as System.Object as Axis;
+        //prop.serializedObject.F
+        if (GUI.Button(new Rect(pos.x, pos.y, pos.width / 2, EditorGUIUtility.singleLineHeight), "Default Horizontal"))
+        {
+            ax.AxisKeys = new System.Collections.Generic.List<AxisKey>();
+            ax.DefaultInput(DirectionInput.Horizontal);
+        }
+        pos.x += pos.width / 2;
+        if (GUI.Button(new Rect(pos.x, pos.y, pos.width / 2, EditorGUIUtility.singleLineHeight), "Default Vertical"))
+        {
+            ax.AxisKeys = new System.Collections.Generic.List<AxisKey>();
+            ax.DefaultInput(DirectionInput.Vertical);
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using XInputDotNetPure;
 
 [System.Serializable]
-public class Axis //: Control
+public class Axis //: UnityEngine.Object
 {
     #region Fields
 
@@ -74,6 +74,27 @@ public class Axis //: Control
         AxisKeys.Add(AxisKey.PC(neg, pos));
     }
 
+    public void DefaultInput(DirectionInput horintalOrVertical, PlayerIndex xbox = PlayerIndex.One, string name = "")
+    {
+        switch (horintalOrVertical)
+        {
+            case DirectionInput.Horizontal:
+                PC("A", "D");
+                PC(KeyCode.LeftArrow, KeyCode.RightArrow);
+                XboxAxis(global::XboxAxis.LeftX);
+                XboxDpad(DirectionInput.Horizontal);
+                break;
+            case DirectionInput.Vertical:
+                PC("W", "S");
+                PC(KeyCode.UpArrow, KeyCode.DownArrow);
+                XboxAxis(global::XboxAxis.LeftY);
+                XboxDpad(DirectionInput.Vertical);
+                break;
+            default:
+                break;
+        }
+    }
+
     /// <summary>
     /// Setup wasd, arrows, dpad, thumbstick
     /// </summary>
@@ -84,26 +105,11 @@ public class Axis //: Control
     public static Axis Default(DirectionInput horintalOrVertical, PlayerIndex xbox = PlayerIndex.One, string name = "")
     {
         Axis ax = new Axis(xbox, name);
-        switch(horintalOrVertical)
-        {
-            case DirectionInput.Horizontal:
-                ax.PC("D", "A");
-                ax.PC(KeyCode.RightArrow, KeyCode.LeftArrow);
-                ax.XboxAxis(global::XboxAxis.LeftX);
-                ax.XboxDpad(DirectionInput.Horizontal);
-                break;
-            case DirectionInput.Vertical:
-                ax.PC("W", "S");
-                ax.PC(KeyCode.UpArrow, KeyCode.DownArrow);
-                ax.XboxAxis(global::XboxAxis.LeftY);
-                ax.XboxDpad(DirectionInput.Vertical);
-                break;
-            default:
-                break;
-        }
-
+        ax.DefaultInput(horintalOrVertical, xbox, name);
         return ax;
     }
+
+
 
     #endregion
 }
