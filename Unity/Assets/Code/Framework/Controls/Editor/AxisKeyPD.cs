@@ -7,8 +7,8 @@ using System;
 public class AxisKeyPD : PropertyDrawer
 {
     KeyCodeEditorGUI m_KCNeg, m_KCPos;
-    EnumEditorGUI<XboxAxis> m_XANeg, m_XAPos;
-    EnumEditorGUI<XboxDPad> m_XDNeg, m_XDPos;
+    EnumEditorGUI<XboxAxis> m_XboxAxis;
+    EnumEditorGUI<XboxDPad> m_XDpadNeg, m_XDpadPos;
 
     private void Init(SerializedProperty keys)
     {
@@ -26,19 +26,21 @@ public class AxisKeyPD : PropertyDrawer
         if (m_KCPos == null)
             m_KCPos = new KeyCodeEditorGUI();
 
-        if (m_XANeg == null)
-            m_XANeg = new EnumEditorGUI<XboxAxis>();
-        if (m_XAPos == null)
-            m_XAPos = new EnumEditorGUI<XboxAxis>();
+        if (m_XboxAxis == null)
+            m_XboxAxis = new EnumEditorGUI<XboxAxis>();
 
-        if (m_XDNeg == null)
-            m_XDNeg = new EnumEditorGUI<XboxDPad>();
-        if (m_XDPos == null)
-            m_XDPos = new EnumEditorGUI<XboxDPad>();
+        if (m_XDpadNeg == null)
+            m_XDpadNeg = new EnumEditorGUI<XboxDPad>();
+        if (m_XDpadPos == null)
+            m_XDpadPos = new EnumEditorGUI<XboxDPad>();
     }
 
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    public override float GetPropertyHeight(SerializedProperty prop, GUIContent label)
     {
+        SerializedProperty tp = prop.FindPropertyRelative("Type");
+        AxisKey.AxisKeyType type = (AxisKey.AxisKeyType)Enum.Parse(typeof(AxisKey.AxisKeyType), tp.enumNames[tp.enumValueIndex], true);
+        if(type == AxisKey.AxisKeyType.Axis)
+            return EditorGUIUtility.singleLineHeight * 2;
         return EditorGUIUtility.singleLineHeight *3;
     }
 
@@ -57,8 +59,6 @@ public class AxisKeyPD : PropertyDrawer
 
         Init(keys);
 
-        
-
         var indent = EditorGUI.indentLevel;
         if(!listItem)
             EditorGUI.indentLevel = 0;
@@ -73,11 +73,11 @@ public class AxisKeyPD : PropertyDrawer
         if (k0 != null)
         {
             if (type == AxisKey.AxisKeyType.Axis)
-                m_XAPos.OnGUI(pos, k0, "", !listItem);
+                m_XboxAxis.OnGUI(pos, k0, "", !listItem);
             else if (type == AxisKey.AxisKeyType.PC)
                 m_KCPos.OnGUI(pos, k0, "+", !listItem);
             else
-                m_XDPos.OnGUI(pos, k0, "+", !listItem);
+                m_XDpadPos.OnGUI(pos, k0, "+", !listItem);
         }
         pos.y += EditorGUIUtility.singleLineHeight;
         if (k0 != null)
@@ -85,10 +85,7 @@ public class AxisKeyPD : PropertyDrawer
             if (type == AxisKey.AxisKeyType.PC)
                 m_KCNeg.OnGUI(pos, k0, "-", !listItem);
             else if (type == AxisKey.AxisKeyType.Dpad)
-                m_XDNeg.OnGUI(pos, k0, "-", !listItem);
-
+                m_XDpadNeg.OnGUI(pos, k0, "-", !listItem);
         }
-
-
     }
 }

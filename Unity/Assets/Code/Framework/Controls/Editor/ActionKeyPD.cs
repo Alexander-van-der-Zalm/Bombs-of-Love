@@ -77,51 +77,6 @@ public class KeyCodeEditorGUI
 }
 
 [System.Serializable]
-public class XboxAxisEnumEditorGUI
-{
-    [SerializeField]
-    private XboxAxis m_Enum;
-
-    public void OnGUI(Rect pos, SerializedProperty kp, string label, bool IgnoreIndent = true)
-    {
-        // Don't make child fields be indented
-        var indent = EditorGUI.indentLevel;
-        if (IgnoreIndent)
-            EditorGUI.indentLevel = 0;
-
-        float splitWidth = (pos.width - 1) / 3;
-
-        Rect valueRect = new Rect(pos.x, pos.y, splitWidth, EditorGUIUtility.singleLineHeight);
-        Rect xboxEnumRext = new Rect(pos.x + 1 + splitWidth, pos.y, 2 * splitWidth, EditorGUIUtility.singleLineHeight);
-
-        // When just switched from type, new or input is invalid
-        if (kp.stringValue == "" || !Enum.IsDefined(typeof(XboxAxis),kp.stringValue))//Enum.Parse(typeof(XboxAxis),kp.stringValue)))
-        {
-            kp.stringValue = ((XboxAxis)0).ToString();
-        }
-
-        // If just loaded
-        if (m_Enum.ToString() != kp.stringValue)
-        {
-            m_Enum = ControlHelper.ReturnXboxAxis(kp.stringValue);
-        }
-
-        // Xbox enum
-        EditorGUI.BeginChangeCheck();
-        m_Enum = (XboxAxis)EditorGUI.EnumPopup(xboxEnumRext, m_Enum);
-        if (EditorGUI.EndChangeCheck())
-            kp.stringValue = m_Enum.ToString();
-
-
-        EditorGUI.PropertyField(valueRect, kp, GUIContent.none);
-
-        // Set indent back to what it was
-        if (IgnoreIndent)
-            EditorGUI.indentLevel = indent;
-    }
-}
-
-[System.Serializable]
 public class EnumEditorGUI<T> where T : struct, IConvertible, IComparable, IFormattable
 {
     [SerializeField]

@@ -6,24 +6,34 @@ using System.Collections;
 [CustomPropertyDrawer(typeof(Axis))]
 public class AxisPD : PropertyDrawer
 {
+    [SerializeField]
     private ReorderableList list;
+    [SerializeField]
+    private string headerLabel;
 
     private void Init(SerializedProperty prop, GUIContent label)
     {
         if (list == null)
         {
+            headerLabel = label.text; // Save right label
+
             list = new ReorderableList(prop.serializedObject, prop.FindPropertyRelative("AxisKeys"), true, true, true, true);
             list.drawElementCallback = (Rect rect, int index, bool isActive, bool isFocused) =>
             {
                 var element = list.serializedProperty.GetArrayElementAtIndex(index);
                 EditorGUI.PropertyField(rect, element);
-                //Debug.Log(element.propertyPath);
             };
             list.drawHeaderCallback = (Rect rect) =>
             {
-                EditorGUI.LabelField(rect, "Axis - " + label.text);
+                Debug.Log(label.text.ToString());
+                EditorGUI.LabelField(rect, "Axis - " + headerLabel);
             };
-            list.elementHeight = EditorGUIUtility.singleLineHeight * 3 + 2;
+            //list.elementHeight = EditorGUIUtility.singleLineHeight * 2 + 2;
+            list.elementHeightCallback = (index) =>
+             {
+                 var element = list.serializedProperty.GetArrayElementAtIndex(index);
+                 return EditorGUI.GetPropertyHeight(element) + 2;
+             };
         }
     }
 
@@ -31,12 +41,13 @@ public class AxisPD : PropertyDrawer
     {
         Init(prop, label);
 
-        return EditorGUIUtility.singleLineHeight *6 + list.GetHeight();
+        return EditorGUIUtility.singleLineHeight *1 + list.GetHeight();
     }
 
     public override void OnGUI(Rect pos, SerializedProperty prop, GUIContent label)
     {
         Init(prop, label);
+        Debug.Log(label.text.ToString());
         list.DoList(pos);
     }
 }
