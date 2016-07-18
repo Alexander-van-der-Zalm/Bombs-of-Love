@@ -5,9 +5,9 @@ using System.Linq;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class Astar : IPathFinder
+public class Astar
 {
-    public List<Node> FindPath(Node start, Node goal)
+    public static List<Node> FindPath(Node start, Node goal)
     {
         List<Node> OpenList = new List<Node>();
         List<Node> ClosedList = new List<Node>();
@@ -59,18 +59,19 @@ public class Astar : IPathFinder
         return new List<Node>();
     }
 
-    private float HeuristicScore(Node a, Node b)
+    private static float HeuristicScore(Node a, Node b)
     {
-        return DistanceBetween(a, b);
+        Vector2 d = a.Pos - b.Pos;
+        return Mathf.Abs(d.x) + Mathf.Abs(d.y);
     }
 
-    private float DistanceBetween(Node a, Node b)
+    private static float DistanceBetween(Node a, Node b)
     {
         // Could be optimized probably
         return Mathf.Abs((a.Pos - b.Pos).magnitude);
     }
 
-    private List<Node> ReturnPath(Node start, Node goal)
+    private static List<Node> ReturnPath(Node start, Node goal)
     {
         List<Node> path = new List<Node>();
         

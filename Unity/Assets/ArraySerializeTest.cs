@@ -6,6 +6,10 @@ public class ArraySerializeTest : MonoBehaviour {
 
     public List<List<int>> listTest;
     public List<IntList> l2;
+    //public List2DNode Test;
+    public List<ListNode> Test2;
+
+    public ListNode Testoor;
    // public UDictionaryStringBool dic;
 }
 

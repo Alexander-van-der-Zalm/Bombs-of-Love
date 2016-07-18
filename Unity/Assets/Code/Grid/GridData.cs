@@ -22,7 +22,7 @@ public class GridData : ScriptableObject
     /// </summary>
     public List<GridDataElement> GridSaveData;
 
-    //public List
+    public List<ListNode> Node2DList;
 
     /// <summary>
     /// Lives Runtime
@@ -43,8 +43,6 @@ public class GridData : ScriptableObject
     #endregion
 
     #region GetSet
-
-
 
     public List<GridDataElement> this[int layer, int x, int y]
     {
