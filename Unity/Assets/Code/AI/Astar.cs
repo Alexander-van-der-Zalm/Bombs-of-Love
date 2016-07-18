@@ -80,7 +80,7 @@ public class Astar
 
         // 
         Node current = goal;
-        while (current.CameFrom != start)
+        while (current != start)
         {
             path.Insert(1, current);
             current = current.CameFrom;
