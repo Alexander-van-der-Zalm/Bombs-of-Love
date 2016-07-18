@@ -23,16 +23,22 @@ public class PathFinderTester : MonoBehaviour
     private void INit()
     {
         Nodes.CreateNodesGrid(Width, Height, Diagonals);
-        Nodes[1, 1].Traversable = false;
-        Nodes[2, 1].Traversable = false;
-        Nodes[3, 1].Traversable = false;
-        Nodes[4, 1].Traversable = false;
-        Nodes[0, 3].Traversable = false;
-        Nodes[1, 3].Traversable = false;
-        Nodes[2, 3].Traversable = false;
-        Nodes[3, 3].Traversable = false;
-        Nodes[4, 3].Traversable = false;
-        Nodes[5, 3].Traversable = false;
+
+        for (int y = 0; Nodes != null && y < Nodes.Height; y++)
+            for (int x = 0; x < Nodes.Width; x++)
+            {
+                Nodes[x, y].Traversable = Random.Range(0,1.0f)>0.4f;
+
+            }
+        //Nodes[2, 1].Traversable = false;
+        //Nodes[3, 1].Traversable = false;
+        //Nodes[4, 1].Traversable = false;
+        //Nodes[0, 3].Traversable = false;
+        //Nodes[1, 3].Traversable = false;
+        //Nodes[2, 3].Traversable = false;
+        //Nodes[3, 3].Traversable = false;
+        //Nodes[4, 3].Traversable = false;
+        //Nodes[5, 3].Traversable = false;
 
         oldDiagonals = Diagonals;
     }
