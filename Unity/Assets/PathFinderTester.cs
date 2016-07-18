@@ -8,6 +8,8 @@ public class PathFinderTester : MonoBehaviour
     public List2DNode Nodes;
     public List<Node> Path;
 
+    public Transform StartTr, GoalTr;
+
     public GridLineDrawer drawer;
     public Vector2 Start, Goal;
     public bool Diagonals = true;
@@ -45,7 +47,11 @@ public class PathFinderTester : MonoBehaviour
 
     public void Update()
     {
-        if(Diagonals != oldDiagonals)
+        if (StartTr != null)
+            Start = new Vector2((int)StartTr.position.x, (int)StartTr.position.y);
+        if (GoalTr != null)
+            Goal = new Vector2((int)GoalTr.position.x, (int)GoalTr.position.y);
+        if (Diagonals != oldDiagonals)
         {
             INit();
             Path = Astar.FindPath(Nodes[Start], Nodes[Goal]);
@@ -65,7 +71,12 @@ public class PathFinderTester : MonoBehaviour
         Vector2 offset = new Vector2(0.5f, 0.5f);
         Gizmos.DrawWireSphere(Start + offset, 0.5f);
         Gizmos.DrawWireSphere(Goal + offset, 0.5f);
-       
+
+        if (StartTr != null)
+            Start = new Vector2((int)StartTr.position.x, (int)StartTr.position.y);
+        if (GoalTr != null)
+            Goal = new Vector2((int)GoalTr.position.x, (int)GoalTr.position.y);
+
         // Draw Grid
         if (drawer.DrawLinesInEditor)
         {
