@@ -1,23 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+[CreateAssetMenu]
 public class GridPrefabList : ScriptableObject
 {
     public List<GridLayer> GridLayers;
     public List<GridPrefab> PrefabList;
-    [HideInInspector]
-    public GameObject SelectedObject;
-    [HideInInspector]
-    public GridPrefab SelectedGridPrefab;
+
+    public GridPrefab SelectedGridPrefab { get { return PrefabList[(int)Mathf.Max(0,SelectedPrefabIndex)]; } }
+    [ReadOnly]
+    public int SelectedPrefabIndex;
+    [ReadOnly]
+    public int SelectedLayerIndex;
 }
 
 [System.Serializable]
 public class GridLayer
 {
     [ReadOnly]
-    public int Layer = 0;
+    public int LayerIndex = 0;
     public string Name = "Tile";
     public bool AllowMultiplePerCoord = true;
+    [ReadOnly]
+    public int Hash = -1;
+
 }
 
 [System.Serializable]

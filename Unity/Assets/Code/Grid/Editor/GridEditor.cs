@@ -6,17 +6,31 @@ using NUnit.Framework;
 public class GridEditor : Editor
 {
     private Grid grid;
-    private bool SpawnKeyDown = false;
 
     public void Awake()
     {
-        Debug.Log("Awake");
+        //Debug.Log("Awake");
         grid = Selection.activeGameObject.GetComponent<Grid>();
     }
 
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        if (GUILayout.Button("Update Layers"))
+            grid.CreateUpdateLayerContainers();
+        if (GUILayout.Button("Instantiate All"))
+            grid.InstantiateAll();
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Delete ALL"))
+            grid.DeleteAll();
+        if (GUILayout.Button("Delete Runtime"))
+            grid.DeleteRuntime();
+        GUILayout.EndHorizontal();
+        
+
+        grid.SelectedGridPrefab = grid.GridLevelData.PrefabList.SelectedGridPrefab;
+        if (grid.SelectedGridPrefab != null)
+            grid.ObjectToSpawn = grid.SelectedGridPrefab.Prefab;
     }
 
     public void OnSceneGUI()
@@ -38,9 +52,22 @@ public class GridEditor : Editor
             grid.SpawnObject();
             SceneView.RepaintAll();
         }
+        if (Event.current.keyCode == grid.DeleteAllKeyCode)
+        {
+            //Debug.Log("KeyCode: " + Event.current.keyCode);
+            grid.ClearAllOnSelectedGridCoord();
+            SceneView.RepaintAll();
+        }
+        if (Event.current.keyCode == grid.DeleteLayerKeyCode)
+        {
+            //Debug.Log("KeyCode: " + Event.current.keyCode);
+            grid.ClearOnSelectedLayerAndGridCoord();
+            SceneView.RepaintAll();
+        }
 
-        grid.ObjectToSpawn = grid.LevelData.PrefabList.SelectedObject;
-        grid.SelectedGridPrefab = grid.LevelData.PrefabList.SelectedGridPrefab;
+        //GridPrefabListEditor e = Editor.CreateEditor(grid.LevelData.PrefabList) as GridPrefabListEditor;
+        //Debug.Log(e.SelectedGridPrefab);
+
 
         // Keep this object selected
         int controlID = GUIUtility.GetControlID(FocusType.Native);

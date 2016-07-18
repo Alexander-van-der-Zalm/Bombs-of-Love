@@ -12,43 +12,55 @@ MonoBehaviour:
   m_Name: BomberManPrefabList
   m_EditorClassIdentifier: 
   GridLayers:
-  - Layer: 0
+  - LayerIndex: 0
     Name: Tile
     AllowMultiplePerCoord: 0
-  - Layer: 1
+    Hash: 805664896
+  - LayerIndex: 1
     Name: Blocks
     AllowMultiplePerCoord: 0
-  - Layer: 2
+    Hash: 1789745984
+  - LayerIndex: 2
     Name: Objects
     AllowMultiplePerCoord: 1
-  - Layer: 3
+    Hash: 843129920
+  - LayerIndex: 3
     Name: Actors
     AllowMultiplePerCoord: 0
-  - Layer: 4
+    Hash: 761939264
+  - LayerIndex: 4
     Name: Spawns
     AllowMultiplePerCoord: 1
-  - Layer: 5
+    Hash: 447021952
+  - LayerIndex: 5
     Name: Triggers
     AllowMultiplePerCoord: 1
+    Hash: 1431103040
   PrefabList:
   - Prefab: {fileID: 198226, guid: 0bf8e58a3be6c22499d792ef69cc1134, type: 2}
     GridLayer: 0
-    TileOffsetX: 0.5
+    TileOffsetX: 0
     TileOffsetY: 0
     Traversable: 1
+  - Prefab: {fileID: 136316, guid: df081fb85aba61a45a5b1a5f61cf48c7, type: 2}
+    GridLayer: 0
+    TileOffsetX: 0
+    TileOffsetY: 0
+    Traversable: 0
   - Prefab: {fileID: 196590, guid: 209dbe04ed30d6d429951ac9997d483d, type: 2}
     GridLayer: 0
-    TileOffsetX: 0.5
+    TileOffsetX: 0
     TileOffsetY: 0
     Traversable: 0
   - Prefab: {fileID: 104530, guid: d811d19c2d928764fa828117c901558a, type: 2}
     GridLayer: 1
+    TileOffsetX: 0
+    TileOffsetY: 0
+    Traversable: 0
+  - Prefab: {fileID: 135214, guid: b1360a6611649af40a1e8fe8e3f71ef4, type: 2}
+    GridLayer: 3
     TileOffsetX: 0.5
     TileOffsetY: 0
     Traversable: 0
-  - Prefab: {fileID: 136316, guid: df081fb85aba61a45a5b1a5f61cf48c7, type: 2}
-    GridLayer: 0
-    TileOffsetX: 0.5
-    TileOffsetY: 0
-    Traversable: 0
-  SelectedObject: {fileID: 198226, guid: 0bf8e58a3be6c22499d792ef69cc1134, type: 2}
+  SelectedPrefabIndex: 4
+  SelectedLayerIndex: 3

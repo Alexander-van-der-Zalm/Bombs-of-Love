@@ -1,20 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
+using System.Linq;
+using UnityEditor;
 
 public class Grid : MonoBehaviour
 {
     #region Fields
 
-    public GridData LevelData;
+    public GridData GridLevelData;
 
-    public float TileWidth { get { return LevelData != null ? LevelData.TileWidth : 1.0f; } }
-    public float TileHeight { get { return LevelData != null ? LevelData.TileHeight : 1.0f; } }
+    public float TileWidth { get { return GridLevelData != null ? GridLevelData.TileWidth : 1.0f; } }
+    public float TileHeight { get { return GridLevelData != null ? GridLevelData.TileHeight : 1.0f; } }
 
     public KeyCode SpawnObjectKeyCode = KeyCode.A;
+    public KeyCode DeleteLayerKeyCode = KeyCode.Backspace;
+    public KeyCode DeleteAllKeyCode = KeyCode.D;
     //public bool DrawLinesInGame = true; // IMPLEMENT PLX
 
     public GridLineDrawer drawer;
+
+    public List<GridLayerContainer> LayerContainers;
 
     [ReadOnly]
     public Vector2 SelectedGridCoord;
@@ -23,25 +30,33 @@ public class Grid : MonoBehaviour
     [HideInInspector]
     public GridPrefab SelectedGridPrefab;
 
-    private Vector2 LastSpawnedGridCoord;
-    private GameObject LastObjectSpawned;
+    private Vector2 m_LastSpawnedGridCoord;
+    private GameObject m_LastObjectSpawned;
+    private Vector2 m_lastClearOnSelectedLayerAndGridCoord;
+    private Vector2 m_lastClearAllOnSelectedGridCoord;
+    private int m_lastDeleteChangeLog;
+    private int m_lastDeleteAllChangeLog;
+    private int m_lastSpawnChangeLog;
+    
 
     #endregion
 
     public void Update()
     {
         Debug.Log("Update");
-        if (SelectedGridCoord != LastSpawnedGridCoord && Input.GetKey(SpawnObjectKeyCode))
+        if (SelectedGridCoord != m_LastSpawnedGridCoord && Input.GetKey(SpawnObjectKeyCode))
         {
             Debug.Log("SpawnObject @ " + SelectedGridCoord);
-            LastSpawnedGridCoord = SelectedGridCoord;
+            m_LastSpawnedGridCoord = SelectedGridCoord;
         }
 
     }
 
+    #region Single Create & Delete
+
     public void SpawnObject()
     {
-        if (SelectedGridCoord == LastSpawnedGridCoord && ObjectToSpawn == LastObjectSpawned)
+        if (SelectedGridCoord == m_LastSpawnedGridCoord && ObjectToSpawn == m_LastObjectSpawned && GridLevelData.ChangeLog == m_lastSpawnChangeLog)
             return;
 
         Vector3 pos = GetGridWorldPos(SelectedGridCoord);
@@ -49,17 +64,151 @@ public class Grid : MonoBehaviour
         Debug.Log("SpawnObject: " + ObjectToSpawn.name + " @ " + SelectedGridCoord + " - " + pos);
         // Move Instantiating to gridData?
         GridDataElement el = new GridDataElement(SelectedGridPrefab, (int)SelectedGridCoord.x, (int)SelectedGridCoord.y);
-
         // Check GridElement on prefabs...
         
         //el.Instance = GameObject.Instantiate(ObjectToSpawn, pos, Quaternion.identity) as GameObject;
 
-        LevelData.SafeAdd(el);
-        Debug.Log("Register to leveldata plz");
+        GridLevelData.SafeAddAndInstantiate(el,this);
+        //Debug.Log("Register to leveldata plz");
 
-        LastObjectSpawned = ObjectToSpawn;
-        LastSpawnedGridCoord = SelectedGridCoord;
+        m_LastObjectSpawned = ObjectToSpawn;
+        m_LastSpawnedGridCoord = SelectedGridCoord;
+        m_lastSpawnChangeLog = GridLevelData.ChangeLog;
     }
+
+    public void ClearOnSelectedLayerAndGridCoord()
+    {
+        if (SelectedGridCoord == m_lastClearOnSelectedLayerAndGridCoord && GridLevelData.ChangeLog == m_lastDeleteChangeLog)
+            return;
+
+        List<GridDataElement> elements = GridLevelData[GridLevelData.PrefabList.SelectedLayerIndex, (int)SelectedGridCoord.x, (int)SelectedGridCoord.y];
+        if(elements != null)
+            Debug.Log("ClearOnSelectedLayerAndGridCoord amount:" + elements.Count);
+
+        if (elements == null || elements.Count == 0)
+            return;
+
+        foreach (GridDataElement el in elements)
+        {
+            GridLevelData.SafeRemove(el);
+        }
+
+        m_lastClearOnSelectedLayerAndGridCoord = SelectedGridCoord;
+        m_lastDeleteChangeLog = GridLevelData.ChangeLog;
+    }
+
+    public void ClearAllOnSelectedGridCoord()
+    {
+        if (SelectedGridCoord == m_lastClearAllOnSelectedGridCoord && GridLevelData.ChangeLog == m_lastDeleteAllChangeLog)
+            return;
+
+        List<GridDataElement> elements = GridLevelData.GridSaveData.Where(e => e.X == (int)SelectedGridCoord.x && e.Y == (int)SelectedGridCoord.y).ToList();
+
+        if (elements == null || elements.Count == 0)
+            return;
+
+        if (elements != null)
+            Debug.Log("ClearAllOnSelectedGridCoord @ " + elements.Count);
+
+        foreach (GridDataElement el in elements)
+        {
+            GridLevelData.SafeRemove(el);
+        }
+
+        m_lastClearAllOnSelectedGridCoord = SelectedGridCoord;
+        m_lastDeleteAllChangeLog = GridLevelData.ChangeLog;
+    }
+
+    #endregion
+
+    #region Instantiate All & Delete All
+
+    public void InstantiateAll()
+    {
+        GridLevelData.InstantiateAll(this);
+    }
+
+    public void DeleteRuntime()
+    {
+        GridLevelData.DeleteRuntime(this);
+    }
+
+    public void DeleteAll()
+    {
+        GridLevelData.DeleteAll(this);
+    }
+
+    #endregion
+
+    #region Create/Update Layer Containers
+
+    public void CreateUpdateLayerContainers()
+    {
+        if (LayerContainers == null)
+            LayerContainers = new List<GridLayerContainer>();
+
+        List<int> hashes = new List<int>();
+        // Check if it needs a new container
+        foreach(GridLayer layer in GridLevelData.PrefabList.GridLayers)
+        {
+            GridLayerContainer container = LayerContainers.Where(lc => lc.Layer == layer).FirstOrDefault();
+            //Debug.Log(layer.Name + " hash " + layer.Hash);
+            if (layer.Hash < 0)
+                layer.Hash = layer.GetHashCode();
+            hashes.Add(layer.Hash);
+            // Check if reference is lost
+            if (container == null)
+            {
+                container = LayerContainers.Where(lc => lc.Layer.Hash == layer.Hash).FirstOrDefault();
+                if (container != null)
+                    container.Layer = layer;
+            }
+
+            // If container with empty go
+            if (container != null && container.GO == null) 
+            {
+                LayerContainers.Remove(container);
+                container = null;
+            }
+
+            // If no container yet 
+            if (container == null)
+            {
+                GameObject go = new GameObject(layer.Name);
+                go.transform.parent = this.transform;
+                container = new GridLayerContainer() { Layer = layer, GO = go };
+                LayerContainers.Add(container);
+            }
+        }
+        // Update all containers
+        int containerAmount = LayerContainers.Count;
+        for(int i = containerAmount-1; i > -1; i--)
+        { 
+            GridLayerContainer container = LayerContainers[i]; 
+            // Remove if there is no more gameObject
+            if (container.GO == null)
+            {
+                LayerContainers.Remove(container);
+                container = null;
+            }
+            else
+            {
+                container.GO.name = container.Layer.Name;
+                container.GO.transform.SetSiblingIndex(container.Layer.LayerIndex);
+            }
+            // Check if there is no more layer
+            if(!hashes.Contains(container.Layer.Hash))
+            {
+                GameObject.DestroyImmediate(container.GO);
+                LayerContainers.Remove(container);
+                container = null;
+            }
+                
+        }
+        AssetDatabase.SaveAssets(); 
+    }
+
+    #endregion
 
     #region Gizmos
 
@@ -106,12 +255,20 @@ public class Grid : MonoBehaviour
         return GetGridWorldPos(GetGridCoord(worldPos)) + new Vector3(tileXOffset * TileWidth, tileYOffset * TileHeight);
     }
 
-    public Vector3 GetGridWorldPos(Vector2 gridCoord)
+    public Vector3 GetGridWorldPos(Vector2 gridCoord, float tileXOffset = 0, float tileYOffset = 0)
     {
-        return new Vector3(gridCoord.x * TileWidth, gridCoord.y * TileHeight);
+        return new Vector3(gridCoord.x * TileWidth, gridCoord.y * TileHeight) + new Vector3(tileXOffset * TileWidth, tileYOffset * TileHeight);
     }
 
     #endregion
+}
+
+
+[System.Serializable]
+public class GridLayerContainer
+{
+    public GameObject GO;
+    public GridLayer Layer;
 }
 
 #region Grid Drawer
