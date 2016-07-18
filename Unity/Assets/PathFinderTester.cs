@@ -16,6 +16,16 @@ public class PathFinderTester : MonoBehaviour
     public void Awake()
     {
         Nodes.CreateNodesGrid(Width, Height, null);
+        Nodes[1, 1].Traversable = false;
+        Nodes[2, 1].Traversable = false;
+        Nodes[3, 1].Traversable = false;
+        Nodes[4, 1].Traversable = false;
+        Nodes[0, 3].Traversable = false;
+        Nodes[1, 3].Traversable = false;
+        Nodes[2, 3].Traversable = false;
+        Nodes[3, 3].Traversable = false;
+        Nodes[4, 3].Traversable = false;
+        Nodes[5, 3].Traversable = false;
     }
 
 
@@ -48,5 +58,12 @@ public class PathFinderTester : MonoBehaviour
         {
             Gizmos.DrawLine(Path[i].Pos + offset, Path[i + 1].Pos + offset);
         }
+        // Draw blocks
+        for (int y = 0; Nodes != null && y < Nodes.Height; y++)
+            for (int x = 0; x < Nodes.Width; x++)
+            {
+                if (!Nodes[x, y].Traversable)
+                    Gizmos.DrawCube(Nodes[x, y].Pos + offset, new Vector3(0.8f, 0.8f, 0.8f));
+            }
     }
 }

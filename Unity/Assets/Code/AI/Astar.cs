@@ -40,7 +40,7 @@ public class Astar
 
             foreach(Node n in current.Neighbors)
             {
-                if (ClosedList.Contains(n))
+                if (ClosedList.Contains(n) || !n.Traversable)
                     continue; // Already evaluated
 
                 float nGscore = current.GScore + DistanceBetween(current, n);
@@ -78,7 +78,7 @@ public class Astar
         // Add the startnode at pos 0
         path.Add(start);
 
-        // 
+        // wait till current = start (already added :3)
         Node current = goal;
         while (current != start)
         {

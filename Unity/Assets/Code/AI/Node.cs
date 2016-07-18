@@ -48,7 +48,8 @@ public class List2DNode
     public Node this[Vector2 p] { get { return this[(int)p.x, (int)p.y]; } set { this[(int)p.x, (int)p.y] = value; } }
 
     public List<ListNode> NodesList;
-
+    public int Height { get; private set; }
+    public int Width { get; private set; }
     private bool OutOfBounds(int x, int y)
     {
         return x < 0 || y < 0 || NodesList == null || y >= NodesList.Count || NodesList[y].Nodes == null || x >= NodesList[y].Nodes.Count;
@@ -56,6 +57,9 @@ public class List2DNode
 
     public void CreateNodesGrid(int width, int height, List<Node> inputList)
     {
+        Height = height;
+        Width = width;
+
         NodesList = new List<ListNode>();
         for (int y = 0; y < height; y++)
         {
