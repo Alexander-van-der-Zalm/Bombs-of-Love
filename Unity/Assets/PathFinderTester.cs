@@ -71,6 +71,10 @@ public class PathFinderTester : MonoBehaviour
         {
             Gizmos.DrawLine(Path[i].Pos + offset, Path[i + 1].Pos + offset);
         }
+        foreach(Node n in Path)
+        {
+            Gizmos.DrawSphere(n.Pos + offset, 0.1f);
+        }
         // Draw blocks
         for (int y = 0; Nodes != null && y < Nodes.Height; y++)
             for (int x = 0; x < Nodes.Width; x++)

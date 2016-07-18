@@ -124,6 +124,7 @@ MonoBehaviour:
     HoverColor: {r: 0, g: 0, b: 1, a: 1}
   Start: {x: 0, y: 0}
   Goal: {x: 3, y: 6}
+  Diagonals: 0
 --- !u!4 &664373236
 Transform:
   m_ObjectHideFlags: 0

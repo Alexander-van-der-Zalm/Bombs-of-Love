@@ -86,6 +86,23 @@ public class Astar
             current = current.CameFrom;
         }
 
+        return CleanPath(path);
+    }
+
+    private static List<Node> CleanPath(List<Node> path)
+    {
+        int count = path.Count;
+        for (int i = count-2; i > 0; i--)
+        {
+            Vector2 backDir = path[i].Pos - path[i - 1].Pos;
+            Vector2 forwardDir = path[i+1].Pos - path[i].Pos;
+
+            // Check back & front and if it matches direction, remove it
+            if(backDir.normalized == forwardDir.normalized)
+            {
+                path.RemoveAt(i);
+            }
+        }
         return path;
     }
 }
