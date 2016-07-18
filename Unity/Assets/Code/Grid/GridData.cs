@@ -22,16 +22,18 @@ public class GridData : ScriptableObject
     /// </summary>
     public List<GridDataElement> GridSaveData;
 
+    //public List
+
     /// <summary>
     /// Lives Runtime
     /// </summary>
     [SerializeField, HideInInspector]
-    
     private List<GridDataElement>[,,] m_GridRuntimeArray;
+
     private int m_minX, m_minY, m_maxX, m_maxY;
     private int m_LayerMin, m_LayerMax;
 
-    [SerializeField,ReadOnly]
+    [SerializeField, ReadOnly]
     private int m_Changes = 0;
     [SerializeField, ReadOnly]
     private int m_ArrayInitOnChanges = -1;
