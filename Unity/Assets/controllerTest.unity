@@ -147,14 +147,22 @@ MonoBehaviour:
   Horizontal:
     Name: 
     AxisKeys:
+    - Type: 0
+      keys:
+      - A
+      - D
+    - Type: 0
+      keys:
+      - LeftArrow
+      - RightArrow
     - Type: 2
       keys:
       - LeftX
-      - LeftX
-    - Type: 0
+      - 
+    - Type: 1
       keys:
-      - X
-      - LeftX
+      - Left
+      - Right
     lastAxis: 0
     lastInputType: 0
     xbox: 0
@@ -165,7 +173,7 @@ MonoBehaviour:
     Type: 0
     keys:
     - None
-    - LeftX
+    - None
   V3: {x: 0, y: 0, z: 0}
 --- !u!114 &1052037701
 MonoBehaviour:
@@ -297,6 +305,9 @@ MonoBehaviour:
   - L: 01000000
     L2:
       L: 00000000
+  dic:
+    keys: []
+    values: 
 --- !u!4 &1940252543
 Transform:
   m_ObjectHideFlags: 0

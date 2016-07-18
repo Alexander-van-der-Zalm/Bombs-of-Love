@@ -18,6 +18,8 @@ public class Axis //: UnityEngine.Object
     [SerializeField]
     private PlayerIndex xbox;
 
+    public PlayerIndex PlayerIndex { get { return xbox; } set { xbox = value; } }
+
     #endregion
 
     public Axis(PlayerIndex xbox = PlayerIndex.One, string name = "defaultAxis")
@@ -53,11 +55,6 @@ public class Axis //: UnityEngine.Object
     {
         AxisKeys.Add(AxisKey.XboxAxis(axis));
     }
-
-    //public void XboxAxis(string axis)
-    //{
-    //    AxisKeys.Add(AxisKey.XboxAxis(axis));
-    //}
 
     public void XboxDpad(DirectionInput horizontalOrVertical)
     {

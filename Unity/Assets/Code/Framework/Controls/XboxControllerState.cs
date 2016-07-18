@@ -34,6 +34,13 @@ public class XboxControllerState : Singleton<XboxControllerState>
         //Debug.Log("Awake");
         CurrentState = new GamePadState[4];
         LastState = new GamePadState[4];
+
+        // Needed??
+        for (int i = 0; i < 4; i++)
+        {
+            LastState[i] = GamePad.GetState((PlayerIndex)i);
+            CurrentState[i] = GamePad.GetState((PlayerIndex)i);
+        }
     }
 
     #region Updates
@@ -106,18 +113,75 @@ public class XboxControllerState : Singleton<XboxControllerState>
 
     public static bool ButtonPressed(XboxButton button, PlayerIndex index)
     {
+        if (!Instance.CurrentState[(int)index].IsConnected)
+            return false;
         return !ButtonPressed(button, Instance.LastState[(int)index]) && ButtonPressed(button, Instance.CurrentState[(int)index]);
     }
 
     public static bool ButtonReleased(XboxButton button, PlayerIndex index)
     {
+        if (!Instance.CurrentState[(int)index].IsConnected)
+            return false;
         return ButtonPressed(button, Instance.LastState[(int)index]) && !ButtonPressed(button, Instance.CurrentState[(int)index]);
     }
 
     public static bool ButtonDown(XboxButton button, PlayerIndex index)
     {
+        if (!Instance.CurrentState[(int)index].IsConnected)
+            return false;
         return ButtonPressed(button, Instance.CurrentState[(int)index]);
     }
+
+    #region NewMethod??
+
+    private static bool ButtonDown(ButtonState btn)
+    {
+        return btn == ButtonState.Pressed;
+        
+    }
+
+    private static ButtonState GetButtonState(XboxButton button, GamePadState state)
+    {
+        switch (button)
+        {
+            case XboxButton.A:
+                return state.Buttons.A;
+            case XboxButton.B:
+                return state.Buttons.B;
+            case XboxButton.X:
+                return state.Buttons.X;
+            case XboxButton.Y:
+                return state.Buttons.Y;
+            case XboxButton.RightShoulder:
+                return state.Buttons.RightShoulder;
+            case XboxButton.LeftShoulder:
+                return state.Buttons.LeftShoulder;
+            case XboxButton.LeftStick:
+                return state.Buttons.LeftStick;
+            case XboxButton.RightStick:
+                return state.Buttons.RightStick;
+            case XboxButton.Back:
+                return state.Buttons.Back;
+            case XboxButton.Start:
+                return state.Buttons.Start;
+            case XboxButton.Guide:
+                return state.Buttons.Guide;
+            case XboxButton.Up:
+                return state.DPad.Up;
+            case XboxButton.Down:
+                return state.DPad.Down;
+            case XboxButton.Left:
+                return state.DPad.Left;
+            case XboxButton.Right:
+                return state.DPad.Right;
+
+            default:
+                Debug.LogError("No ButtonState found....");
+                return ButtonState.Pressed;
+        }
+    }
+
+    #endregion
 
     public static bool ButtonPressed(XboxButton button, GamePadState state)
     {

@@ -5,23 +5,14 @@ using XInputDotNetPure;
 [RequireComponent(typeof(MovementPhysics))]
 public class InputHandler : MonoBehaviour
 {
-    
-
-    public KeyCode Up = KeyCode.W;
-    public KeyCode Left = KeyCode.A;
-    public KeyCode Down = KeyCode.S;
-    public KeyCode Right = KeyCode.D;
-
-    public KeyCode DropBomb = KeyCode.Space;
-
-    //public PlayerIndex XboxControllerIndex;
+    public PlayerIndex PlayerIndex;
+    public Axis Horizontal, Vertical;
+    public Action DropBomb;
 
     private MovementPhysics physics;
     private Bomber bomber;
     private BMGrid grid;
     private Health health;
-    //private GamePadState prevState;
-    //private GamePadState state;
 
     // Use this for initialization
     void Start ()
@@ -30,6 +21,18 @@ public class InputHandler : MonoBehaviour
         bomber = GetComponent<Bomber>();
         grid = GameObject.FindObjectOfType<BMGrid>();
         health = GetComponent<Health>();
+
+        if (DropBomb == null)
+            DropBomb = Action.Create(KeyCode.Space, XboxButton.A, PlayerIndex);
+        if (Horizontal == null)
+            Horizontal = Axis.Default(DirectionInput.Horizontal, PlayerIndex);
+        if (Vertical == null)
+            Vertical = Axis.Default(DirectionInput.Vertical, PlayerIndex);
+
+        // Set XboxPlayerIndex
+        DropBomb.PlayerIndex = this.PlayerIndex;
+        Horizontal.PlayerIndex = this.PlayerIndex;
+        Vertical.PlayerIndex = this.PlayerIndex;
     }
 	
 	// Physics
@@ -43,14 +46,8 @@ public class InputHandler : MonoBehaviour
 
         if (!health.IsDead && GameState.Instance.State == GameState.GameStateEnum.Play)
         {
-            if (Input.GetKey(Up))
-                ver++;
-            if (Input.GetKey(Down))
-                ver--;
-            if (Input.GetKey(Left))
-                hor--;
-            if (Input.GetKey(Right))
-                hor++;
+            hor = Horizontal.Value();
+            ver = Vertical.Value();
         }
         physics.SetMovementInput(hor, ver);
     }
@@ -58,7 +55,7 @@ public class InputHandler : MonoBehaviour
     // Actions
     void Update()
     {
-        if (!health.IsDead && GameState.Instance.State == GameState.GameStateEnum.Play && Input.GetKeyUp(DropBomb))
+        if (!health.IsDead && GameState.Instance.State == GameState.GameStateEnum.Play && DropBomb.IsReleased())
             bomber.DropBomb(grid, transform.position);
     }
 }

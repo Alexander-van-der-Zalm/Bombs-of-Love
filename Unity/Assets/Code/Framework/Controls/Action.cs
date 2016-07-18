@@ -16,6 +16,7 @@ public class Action
     [SerializeField]
     private PlayerIndex m_XboxPlayer;
 
+    public PlayerIndex PlayerIndex { get { return m_XboxPlayer; } set { m_XboxPlayer = value; } }
     //[SerializeField,HideInInspector]
     //protected ControlScheme scheme;
 
