@@ -10,12 +10,19 @@ public class PathFinderTester : MonoBehaviour
 
     public GridLineDrawer drawer;
     public Vector2 Start, Goal;
+    public bool Diagonals = true;
+    private bool oldDiagonals = true;
 
     private Vector2 lastStart, lastGoal;
 
     public void Awake()
     {
-        Nodes.CreateNodesGrid(Width, Height, null);
+        INit();
+    }
+
+    private void INit()
+    {
+        Nodes.CreateNodesGrid(Width, Height, Diagonals);
         Nodes[1, 1].Traversable = false;
         Nodes[2, 1].Traversable = false;
         Nodes[3, 1].Traversable = false;
@@ -26,12 +33,18 @@ public class PathFinderTester : MonoBehaviour
         Nodes[3, 3].Traversable = false;
         Nodes[4, 3].Traversable = false;
         Nodes[5, 3].Traversable = false;
-    }
 
+        oldDiagonals = Diagonals;
+    }
 
     public void Update()
     {
-        if(lastStart != Start || lastGoal != Goal)
+        if(Diagonals != oldDiagonals)
+        {
+            INit();
+            Path = Astar.FindPath(Nodes[Start], Nodes[Goal]);
+        }
+        if (lastStart != Start || lastGoal != Goal)
         {
             Path = Astar.FindPath(Nodes[Start], Nodes[Goal]);
             lastGoal = Goal;
