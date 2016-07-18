@@ -15,7 +15,7 @@ public class TestControlScheme : MonoBehaviour
     public void Awake()
     {
         //Jump.Update
-        Horizontal = Axis.Default(DirectionInput.Horizontal);
+        //Horizontal = Axis.Default(DirectionInput.Horizontal);
         Jump = Action.Create("Space", XboxButton.A);
     }
 

@@ -85,8 +85,8 @@ public class Axis //: UnityEngine.Object
                 XboxDpad(DirectionInput.Horizontal);
                 break;
             case DirectionInput.Vertical:
-                PC("W", "S");
-                PC(KeyCode.UpArrow, KeyCode.DownArrow);
+                PC("S", "W");
+                PC(KeyCode.DownArrow, KeyCode.UpArrow);
                 XboxAxis(global::XboxAxis.LeftY);
                 XboxDpad(DirectionInput.Vertical);
                 break;
