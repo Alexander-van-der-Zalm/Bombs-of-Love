@@ -31,16 +31,16 @@ public class ControlScheme:ScriptableObject
 
     public ControlType InputType = ControlType.PC;
 
-    public Axis Horizontal;
-    public Axis Vertical;
+    public InputAxis Horizontal;
+    public InputAxis Vertical;
 
     [SerializeField]
-    public List<Action> Actions = new List<Action>();
+    public List<InputAction> Actions = new List<InputAction>();
 
-    public List<Axis> AnalogActions = new List<Axis>();
+    public List<InputAxis> AnalogActions = new List<InputAxis>();
 
-    public bool XboxSupport { get { return     Horizontal.AxisKeys.Any(k => ControlHelper.AxisKeyToControl(k.Type) == ControlType.Xbox) 
-                                            || Vertical.AxisKeys.Any(k => ControlHelper.AxisKeyToControl(k.Type) == ControlType.Xbox) 
+    public bool XboxSupport { get { return     Horizontal.AxisKeys.Any(k => InputHelper.AxisKeyToControl(k.Type) == ControlType.Xbox) 
+                                            || Vertical.AxisKeys.Any(k => InputHelper.AxisKeyToControl(k.Type) == ControlType.Xbox) 
                                             || Actions.Any(a => a.Keys.Any(k => k.Type == ControlType.Xbox)); } }
 
     #endregion
@@ -61,23 +61,23 @@ public class ControlScheme:ScriptableObject
 
         if (xboxLeftStick)
         {
-            controlScheme.Horizontal.AxisKeys.Add(AxisKey.XboxAxis(XboxAxis.LeftX));
-            controlScheme.Vertical.AxisKeys.Add(AxisKey.XboxAxis(XboxAxis.LeftY));
+            controlScheme.Horizontal.AxisKeys.Add(InputAxisKey.XboxAxis(XboxAxis.LeftX));
+            controlScheme.Vertical.AxisKeys.Add(InputAxisKey.XboxAxis(XboxAxis.LeftY));
         }
         if (xboxDPad)
         {
-            controlScheme.Horizontal.AxisKeys.Add(AxisKey.XboxDpad(DirectionInput.Horizontal));
-            controlScheme.Vertical.AxisKeys.Add(AxisKey.XboxDpad(DirectionInput.Vertical));
+            controlScheme.Horizontal.AxisKeys.Add(InputAxisKey.XboxDpad(DirectionInput.Horizontal));
+            controlScheme.Vertical.AxisKeys.Add(InputAxisKey.XboxDpad(DirectionInput.Vertical));
         }
         if (wasd)
         {
-            controlScheme.Horizontal.AxisKeys.Add(AxisKey.PC(KeyCode.A, KeyCode.D));
-            controlScheme.Vertical.AxisKeys.Add(AxisKey.PC(KeyCode.S, KeyCode.W));
+            controlScheme.Horizontal.AxisKeys.Add(InputAxisKey.PC(KeyCode.A, KeyCode.D));
+            controlScheme.Vertical.AxisKeys.Add(InputAxisKey.PC(KeyCode.S, KeyCode.W));
         }
         if (arrows)
         {
-            controlScheme.Horizontal.AxisKeys.Add(AxisKey.PC(KeyCode.LeftArrow, KeyCode.RightArrow));
-            controlScheme.Vertical.AxisKeys.Add(AxisKey.PC(KeyCode.DownArrow, KeyCode.UpArrow));
+            controlScheme.Horizontal.AxisKeys.Add(InputAxisKey.PC(KeyCode.LeftArrow, KeyCode.RightArrow));
+            controlScheme.Vertical.AxisKeys.Add(InputAxisKey.PC(KeyCode.DownArrow, KeyCode.UpArrow));
         }
 
         return controlScheme;
@@ -95,13 +95,13 @@ public class ControlScheme:ScriptableObject
             throw new ArgumentException("T must be an enumerated type");
         }
 
-        Actions = new List<Action>();
+        Actions = new List<InputAction>();
 
         string[] names = Enum.GetNames(type);
 
         for (int i = 0; i < names.Length; i++)
         {
-            Actions.Add(new Action(Player, names[i]));
+            Actions.Add(new InputAction(Player, names[i]));
         }
     }    
 }

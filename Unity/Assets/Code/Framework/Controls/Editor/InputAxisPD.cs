@@ -3,8 +3,8 @@ using UnityEditor;
 using UnityEditorInternal;
 using System.Collections;
 
-[CustomPropertyDrawer(typeof(Axis))]
-public class AxisPD : PropertyDrawer
+[CustomPropertyDrawer(typeof(InputAxis))]
+public class InputAxisPD : PropertyDrawer
 {
     [SerializeField]
     private ReorderableList list;
@@ -50,17 +50,17 @@ public class AxisPD : PropertyDrawer
         pos.y += list.GetHeight();
 
         //SerializedObject so = prop.
-        Axis ax = fieldInfo.GetValue(prop.serializedObject.targetObject) as Axis;// prop as System.Object as Axis;
+        InputAxis ax = fieldInfo.GetValue(prop.serializedObject.targetObject) as InputAxis;// prop as System.Object as Axis;
         //prop.serializedObject.F
         if (GUI.Button(new Rect(pos.x, pos.y, pos.width / 2, EditorGUIUtility.singleLineHeight), "Default Horizontal"))
         {
-            ax.AxisKeys = new System.Collections.Generic.List<AxisKey>();
+            ax.AxisKeys = new System.Collections.Generic.List<InputAxisKey>();
             ax.DefaultInput(DirectionInput.Horizontal);
         }
         pos.x += pos.width / 2;
         if (GUI.Button(new Rect(pos.x, pos.y, pos.width / 2, EditorGUIUtility.singleLineHeight), "Default Vertical"))
         {
-            ax.AxisKeys = new System.Collections.Generic.List<AxisKey>();
+            ax.AxisKeys = new System.Collections.Generic.List<InputAxisKey>();
             ax.DefaultInput(DirectionInput.Vertical);
         }
     }

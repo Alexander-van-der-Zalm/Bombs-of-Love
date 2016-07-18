@@ -35,7 +35,7 @@ public class KeyCodeEditorGUI
         // If just (re)loaded
         if (m_KeyCode.ToString() != keyString.stringValue)
         {
-            m_KeyCode = ControlHelper.ReturnKeyCode(keyString.stringValue);
+            m_KeyCode = InputHelper.ReturnKeyCode(keyString.stringValue);
             m_IncompleteKeyCode = keyString.stringValue;
         }
 
@@ -64,7 +64,7 @@ public class KeyCodeEditorGUI
             if (Enum.IsDefined(typeof(KeyCode), m_IncompleteKeyCode))
             {
                 keyString.stringValue = m_IncompleteKeyCode;
-                m_KeyCode = ControlHelper.ReturnKeyCode(m_IncompleteKeyCode);
+                m_KeyCode = InputHelper.ReturnKeyCode(m_IncompleteKeyCode);
             }
         }
 
@@ -103,7 +103,7 @@ public class EnumEditorGUI<T> where T : struct, IConvertible, IComparable, IForm
         // If just loaded
         if (m_Enum.ToString() != kp.stringValue)
         {
-            m_Enum = ControlHelper.ParseEnum<T>(kp.stringValue);
+            m_Enum = InputHelper.ParseEnum<T>(kp.stringValue);
         }
 
         // Xbox enum
@@ -112,7 +112,7 @@ public class EnumEditorGUI<T> where T : struct, IConvertible, IComparable, IForm
         
         if (EditorGUI.EndChangeCheck())
         {
-            m_Enum = ControlHelper.ParseEnum<T>(res.ToString());
+            m_Enum = InputHelper.ParseEnum<T>(res.ToString());
             kp.stringValue = m_Enum.ToString();
         }
             
@@ -128,8 +128,8 @@ public class EnumEditorGUI<T> where T : struct, IConvertible, IComparable, IForm
 
 #endregion
 
-[CustomPropertyDrawer(typeof(ActionKey))]
-public class ActionKeyPD : PropertyDrawer
+[CustomPropertyDrawer(typeof(InputActionKey))]
+public class InputActionKeyPD : PropertyDrawer
 {
     [SerializeField]
     private XboxButton m_XboxEnum;
@@ -179,7 +179,7 @@ public class ActionKeyPD : PropertyDrawer
             // If just loaded
             if (m_KeyCode.ToString() != kp.stringValue)
             {
-                m_KeyCode = ControlHelper.ReturnKeyCode(kp.stringValue);
+                m_KeyCode = InputHelper.ReturnKeyCode(kp.stringValue);
                 m_IncompleteKeyCode = kp.stringValue;
             }
            
@@ -208,7 +208,7 @@ public class ActionKeyPD : PropertyDrawer
                 if (Enum.IsDefined(typeof(KeyCode), m_IncompleteKeyCode))
                 {
                     kp.stringValue = m_IncompleteKeyCode;
-                    m_KeyCode = ControlHelper.ReturnKeyCode(m_IncompleteKeyCode);
+                    m_KeyCode = InputHelper.ReturnKeyCode(m_IncompleteKeyCode);
                 }
             }
         }
@@ -222,7 +222,7 @@ public class ActionKeyPD : PropertyDrawer
             // If just loaded
             if (m_XboxEnum.ToString() != kp.stringValue)
             {
-                m_XboxEnum = ControlHelper.ReturnXboxButton(kp.stringValue);
+                m_XboxEnum = InputHelper.ReturnXboxButton(kp.stringValue);
             }
 
             // Xbox enum

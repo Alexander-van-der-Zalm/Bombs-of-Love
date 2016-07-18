@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using XInputDotNetPure;
 
 [System.Serializable]
-public class Axis //: UnityEngine.Object
+public class InputAxis
 {
     #region Fields
 
     public string Name;
-    public List<AxisKey> AxisKeys;
+    public List<InputAxisKey> AxisKeys;
 
     [SerializeField]
     private int lastAxis;
@@ -22,9 +22,9 @@ public class Axis //: UnityEngine.Object
 
     #endregion
 
-    public Axis(PlayerIndex xbox = PlayerIndex.One, string name = "defaultAxis")
+    public InputAxis(PlayerIndex xbox = PlayerIndex.One, string name = "defaultAxis")
     {
-        AxisKeys = new List<AxisKey>();
+        AxisKeys = new List<InputAxisKey>();
         this.xbox = 0;
         this.Name = name;
     }
@@ -42,7 +42,7 @@ public class Axis //: UnityEngine.Object
             {
                 value = v;
                 curAxis = i;
-                lastInputType = ControlHelper.AxisKeyToControl(AxisKeys[i].Type);
+                lastInputType = InputHelper.AxisKeyToControl(AxisKeys[i].Type);
             } 
         }
         lastAxis = curAxis;
@@ -53,22 +53,22 @@ public class Axis //: UnityEngine.Object
 
     public void XboxAxis(XboxAxis axis)
     {
-        AxisKeys.Add(AxisKey.XboxAxis(axis));
+        AxisKeys.Add(InputAxisKey.XboxAxis(axis));
     }
 
     public void XboxDpad(DirectionInput horizontalOrVertical)
     {
-        AxisKeys.Add(AxisKey.XboxDpad(horizontalOrVertical));
+        AxisKeys.Add(InputAxisKey.XboxDpad(horizontalOrVertical));
     }
 
     public void PC(string neg, string pos)
     {
-        AxisKeys.Add(AxisKey.PC(neg,pos));
+        AxisKeys.Add(InputAxisKey.PC(neg,pos));
     }
 
     public void PC(KeyCode neg, KeyCode pos)
     {
-        AxisKeys.Add(AxisKey.PC(neg, pos));
+        AxisKeys.Add(InputAxisKey.PC(neg, pos));
     }
 
     public void DefaultInput(DirectionInput horintalOrVertical, PlayerIndex xbox = PlayerIndex.One, string name = "")
@@ -99,9 +99,9 @@ public class Axis //: UnityEngine.Object
     /// <param name="xbox"></param>
     /// <param name="name"></param>
     /// <returns></returns>
-    public static Axis Default(DirectionInput horintalOrVertical, PlayerIndex xbox = PlayerIndex.One, string name = "")
+    public static InputAxis Default(DirectionInput horintalOrVertical, PlayerIndex xbox = PlayerIndex.One, string name = "")
     {
-        Axis ax = new Axis(xbox, name);
+        InputAxis ax = new InputAxis(xbox, name);
         ax.DefaultInput(horintalOrVertical, xbox, name);
         return ax;
     }

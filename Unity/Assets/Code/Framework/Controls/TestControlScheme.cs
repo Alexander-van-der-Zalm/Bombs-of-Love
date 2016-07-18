@@ -3,12 +3,12 @@ using System.Collections;
 
 public class TestControlScheme : MonoBehaviour
 {
-    public Action Jump;
-    public Action DropBomb;
+    public InputAction Jump;
+    public InputAction DropBomb;
 
-    public Axis Horizontal;
-    public ActionKey Key;
-    public AxisKey axis;
+    public InputAxis Horizontal;
+    public InputActionKey Key;
+    public InputAxisKey axis;
 
     public Vector3 V3;
 
@@ -16,7 +16,7 @@ public class TestControlScheme : MonoBehaviour
     {
         //Jump.Update
         //Horizontal = Axis.Default(DirectionInput.Horizontal);
-        Jump = Action.Create("Space", XboxButton.A);
+        Jump = InputAction.Create("Space", XboxButton.A);
     }
 
     public void Update()

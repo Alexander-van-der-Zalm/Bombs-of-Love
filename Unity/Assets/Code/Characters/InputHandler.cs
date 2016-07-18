@@ -6,8 +6,8 @@ using XInputDotNetPure;
 public class InputHandler : MonoBehaviour
 {
     public PlayerIndex PlayerIndex;
-    public Axis Horizontal, Vertical;
-    public Action DropBomb;
+    public InputAxis Horizontal, Vertical;
+    public InputAction DropBomb;
 
     private MovementPhysics physics;
     private Bomber bomber;
@@ -23,11 +23,11 @@ public class InputHandler : MonoBehaviour
         health = GetComponent<Health>();
 
         if (DropBomb == null)
-            DropBomb = Action.Create(KeyCode.Space, XboxButton.A, PlayerIndex);
+            DropBomb = InputAction.Create(KeyCode.Space, XboxButton.A, PlayerIndex);
         if (Horizontal == null)
-            Horizontal = Axis.Default(DirectionInput.Horizontal, PlayerIndex);
+            Horizontal = InputAxis.Default(DirectionInput.Horizontal, PlayerIndex);
         if (Vertical == null)
-            Vertical = Axis.Default(DirectionInput.Vertical, PlayerIndex);
+            Vertical = InputAxis.Default(DirectionInput.Vertical, PlayerIndex);
 
         // Set XboxPlayerIndex
         DropBomb.PlayerIndex = this.PlayerIndex;

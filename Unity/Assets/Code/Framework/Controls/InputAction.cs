@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using XInputDotNetPure;
 
 [System.Serializable]
-public class Action
+public class InputAction
 {
     #region Fields
 
     public string Name;
-    public List<ActionKey> Keys;
+    public List<InputActionKey> Keys;
 
     [SerializeField, ReadOnly]
     private ControlType m_LastInputType = ControlType.PC;
@@ -26,9 +26,9 @@ public class Action
 
     #region CTor
 
-    public Action(PlayerIndex plyr = PlayerIndex.One, string name = "defaultAction")
+    public InputAction(PlayerIndex plyr = PlayerIndex.One, string name = "defaultAction")
     {
-        Keys = new List<ActionKey>();
+        Keys = new List<InputActionKey>();
 
         //this.scheme = scheme;
         this.Name = name;
@@ -41,7 +41,7 @@ public class Action
 
     public bool IsDown()
     {
-        foreach (ActionKey key in Keys)
+        foreach (InputActionKey key in Keys)
         {
             if (key.IsDown(m_XboxPlayer))
                 return TrueAndSetInputType(key);
@@ -50,7 +50,7 @@ public class Action
     }
     public bool IsPressed()
     {
-        foreach (ActionKey key in Keys)
+        foreach (InputActionKey key in Keys)
         {
             if (key.IsPressed(m_XboxPlayer))
                 return TrueAndSetInputType(key);
@@ -60,7 +60,7 @@ public class Action
 
     public bool IsReleased()
     {
-        foreach (ActionKey key in Keys)
+        foreach (InputActionKey key in Keys)
         {
             if (key.IsReleased(m_XboxPlayer))
                 return TrueAndSetInputType(key);
@@ -68,7 +68,7 @@ public class Action
         return false;
     }
 
-    private bool TrueAndSetInputType(ActionKey key)
+    private bool TrueAndSetInputType(InputActionKey key)
     {
         m_LastInputType = key.Type;
         return true;
@@ -80,36 +80,36 @@ public class Action
 
     public void AddXboxButton(XboxButton btn)
     {
-        Keys.Add(ActionKey.XboxButton(btn));
+        Keys.Add(InputActionKey.XboxButton(btn));
     }
 
     public void AddXboxButton(string btn)
     {
-        Keys.Add(ActionKey.XboxButton(btn));
+        Keys.Add(InputActionKey.XboxButton(btn));
     }
 
     public void AddPCKey(KeyCode kc)
     {
-        Keys.Add(ActionKey.PCKey(kc));
+        Keys.Add(InputActionKey.PCKey(kc));
     }
 
     public void AddPCKey(string kc)
     {
-        Keys.Add(ActionKey.PCKey(kc));
+        Keys.Add(InputActionKey.PCKey(kc));
     }
 
-    public static Action Create(string pc, XboxButton xb = XboxButton.None, PlayerIndex index = PlayerIndex.One, string name = "")
+    public static InputAction Create(string pc, XboxButton xb = XboxButton.None, PlayerIndex index = PlayerIndex.One, string name = "")
     {
-        Action ac = new Action(index, name);
+        InputAction ac = new InputAction(index, name);
         ac.AddPCKey(pc);
         if (xb != XboxButton.None)
             ac.AddXboxButton(xb);
         return ac;
     }
 
-    public static Action Create(KeyCode pc, XboxButton xb = XboxButton.None, PlayerIndex index = PlayerIndex.One, string name = "")
+    public static InputAction Create(KeyCode pc, XboxButton xb = XboxButton.None, PlayerIndex index = PlayerIndex.One, string name = "")
     {
-        Action ac = new Action(index, name);
+        InputAction ac = new InputAction(index, name);
         ac.AddPCKey(pc);
         if(xb != XboxButton.None)
             ac.AddXboxButton(xb);

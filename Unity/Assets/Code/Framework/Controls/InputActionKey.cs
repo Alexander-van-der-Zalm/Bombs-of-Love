@@ -9,7 +9,7 @@ public enum ControlType
 }
 
 [System.Serializable]
-public class ActionKey
+public class InputActionKey
 {
     #region Fields
 
@@ -19,7 +19,7 @@ public class ActionKey
 
     #endregion
 
-    public ActionKey(ControlType type = ControlType.PC, string value = "A")
+    public InputActionKey(ControlType type = ControlType.PC, string value = "A")
     {
         Type = type;
         KeyValue = value;
@@ -32,9 +32,9 @@ public class ActionKey
         switch (Type)
         {
             case ControlType.PC:
-                return Input.GetKey(ControlHelper.ReturnKeyCode(KeyValue));
+                return Input.GetKey(InputHelper.ReturnKeyCode(KeyValue));
             case ControlType.Xbox:
-                return XboxControllerState.ButtonDown(ControlHelper.ReturnXboxButton(KeyValue), xbox);
+                return XboxControllerState.ButtonDown(InputHelper.ReturnXboxButton(KeyValue), xbox);
             default:
                 return false;
         }
@@ -45,9 +45,9 @@ public class ActionKey
         switch (Type)
         {
             case ControlType.PC:
-                return Input.GetKeyDown(ControlHelper.ReturnKeyCode(KeyValue));
+                return Input.GetKeyDown(InputHelper.ReturnKeyCode(KeyValue));
             case ControlType.Xbox:
-                return XboxControllerState.ButtonPressed(ControlHelper.ReturnXboxButton(KeyValue), xbox);
+                return XboxControllerState.ButtonPressed(InputHelper.ReturnXboxButton(KeyValue), xbox);
             default:
                 return false;
         }
@@ -58,9 +58,9 @@ public class ActionKey
         switch (Type)
         {
             case ControlType.PC:
-                return Input.GetKeyUp(ControlHelper.ReturnKeyCode(KeyValue));
+                return Input.GetKeyUp(InputHelper.ReturnKeyCode(KeyValue));
             case ControlType.Xbox:
-                return XboxControllerState.ButtonReleased(ControlHelper.ReturnXboxButton(KeyValue), xbox);
+                return XboxControllerState.ButtonReleased(InputHelper.ReturnXboxButton(KeyValue), xbox);
             default:
                 return false;
         }
@@ -70,24 +70,24 @@ public class ActionKey
 
     #region Creates
 
-    public static ActionKey XboxButton(XboxButton btn)
+    public static InputActionKey XboxButton(XboxButton btn)
     {
         return XboxButton(btn.ToString());
     }
 
-    public static ActionKey XboxButton(string btn)
+    public static InputActionKey XboxButton(string btn)
     {
-        return new ActionKey(ControlType.Xbox, btn);
+        return new InputActionKey(ControlType.Xbox, btn);
     }
 
-    public static ActionKey PCKey(KeyCode kc)
+    public static InputActionKey PCKey(KeyCode kc)
     {
         return PCKey(kc.ToString());
     }
 
-    public static ActionKey PCKey(string kc)
+    public static InputActionKey PCKey(string kc)
     {
-        return new ActionKey(ControlType.PC, kc);
+        return new InputActionKey(ControlType.PC, kc);
     }
 
     #endregion

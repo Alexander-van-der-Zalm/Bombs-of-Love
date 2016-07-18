@@ -3,8 +3,8 @@ using UnityEditor;
 using System.Collections;
 using System;
 
-[CustomPropertyDrawer(typeof(AxisKey))]
-public class AxisKeyPD : PropertyDrawer
+[CustomPropertyDrawer(typeof(InputAxisKey))]
+public class InputAxisKeyPD : PropertyDrawer
 {
     KeyCodeEditorGUI m_KCNeg, m_KCPos;
     EnumEditorGUI<XboxAxis> m_XboxAxis;
@@ -38,8 +38,8 @@ public class AxisKeyPD : PropertyDrawer
     public override float GetPropertyHeight(SerializedProperty prop, GUIContent label)
     {
         SerializedProperty tp = prop.FindPropertyRelative("Type");
-        AxisKey.AxisKeyType type = (AxisKey.AxisKeyType)Enum.Parse(typeof(AxisKey.AxisKeyType), tp.enumNames[tp.enumValueIndex], true);
-        if(type == AxisKey.AxisKeyType.Axis)
+        InputAxisKey.AxisKeyType type = (InputAxisKey.AxisKeyType)Enum.Parse(typeof(InputAxisKey.AxisKeyType), tp.enumNames[tp.enumValueIndex], true);
+        if(type == InputAxisKey.AxisKeyType.Axis)
             return EditorGUIUtility.singleLineHeight * 1 +2;
         return EditorGUIUtility.singleLineHeight *2 +2;
     }
@@ -66,16 +66,16 @@ public class AxisKeyPD : PropertyDrawer
         if(!listItem)
             EditorGUI.indentLevel = indent;
 
-        AxisKey.AxisKeyType type = (AxisKey.AxisKeyType)Enum.Parse(typeof(AxisKey.AxisKeyType), tp.enumNames[tp.enumValueIndex], true);
+        InputAxisKey.AxisKeyType type = (InputAxisKey.AxisKeyType)Enum.Parse(typeof(InputAxisKey.AxisKeyType), tp.enumNames[tp.enumValueIndex], true);
 
         
         pos.x += 45;
         pos.width -= 45;
         if (k0 != null)
         {
-            if (type == AxisKey.AxisKeyType.Axis)
+            if (type == InputAxisKey.AxisKeyType.Axis)
                 m_XboxAxis.OnGUI(pos, k0, "", !listItem);
-            else if (type == AxisKey.AxisKeyType.PC)
+            else if (type == InputAxisKey.AxisKeyType.PC)
                 m_KCPos.OnGUI(pos, k0, "+", !listItem);
             else
                 m_XDpadPos.OnGUI(pos, k0, "+", !listItem);
@@ -83,9 +83,9 @@ public class AxisKeyPD : PropertyDrawer
         pos.y += EditorGUIUtility.singleLineHeight;
         if (k1 != null)
         {
-            if (type == AxisKey.AxisKeyType.PC)
+            if (type == InputAxisKey.AxisKeyType.PC)
                 m_KCNeg.OnGUI(pos, k1, "-", !listItem);
-            else if (type == AxisKey.AxisKeyType.Dpad)
+            else if (type == InputAxisKey.AxisKeyType.Dpad)
                 m_XDpadNeg.OnGUI(pos, k1, "-", !listItem);
         }
     }

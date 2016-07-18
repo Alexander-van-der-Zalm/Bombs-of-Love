@@ -18,7 +18,7 @@ public enum DirectionInput
 }
 
 [System.Serializable]
-public class AxisKey
+public class InputAxisKey
 {
     #region Enums
 
@@ -44,16 +44,16 @@ public class AxisKey
 
     #endregion
 
-    public AxisKey()
+    public InputAxisKey()
     {
         keys = new string[2];
     }
 
     #region Creates
 
-    public static AxisKey XboxAxis(XboxAxis axis)
+    public static InputAxisKey XboxAxis(XboxAxis axis)
     {
-        AxisKey ak = new AxisKey();
+        InputAxisKey ak = new InputAxisKey();
         ak.Type = AxisKeyType.Axis;
         ak.keys[0] = axis.ToString();
 
@@ -62,9 +62,9 @@ public class AxisKey
         return ak;
     }
 
-    public static AxisKey XboxDpad(DirectionInput horintalOrVertical)
+    public static InputAxisKey XboxDpad(DirectionInput horintalOrVertical)
     {
-        AxisKey ak = new AxisKey();
+        InputAxisKey ak = new InputAxisKey();
         ak.Type = AxisKeyType.Dpad;
 
         if (horintalOrVertical == DirectionInput.Horizontal)
@@ -83,9 +83,9 @@ public class AxisKey
         return ak;
     }
 
-    public static AxisKey PC(string neg, string pos)
+    public static InputAxisKey PC(string neg, string pos)
     {
-        AxisKey ak = new AxisKey();
+        InputAxisKey ak = new InputAxisKey();
         ak.Type = AxisKeyType.PC;
 
         ak.keys[0] = neg;
@@ -96,7 +96,7 @@ public class AxisKey
         return ak;
     }
 
-    public static AxisKey PC(KeyCode neg, KeyCode pos)
+    public static InputAxisKey PC(KeyCode neg, KeyCode pos)
     {
         return PC(neg.ToString(), pos.ToString());
     }
@@ -111,20 +111,20 @@ public class AxisKey
         switch (Type)
         {
             case AxisKeyType.PC:
-                if (Input.GetKey(ControlHelper.ReturnKeyCode(keys[0])))
+                if (Input.GetKey(InputHelper.ReturnKeyCode(keys[0])))
                     v--;
-                if (Input.GetKey(ControlHelper.ReturnKeyCode(keys[1])))
+                if (Input.GetKey(InputHelper.ReturnKeyCode(keys[1])))
                     v++;
                 break;
 
             case AxisKeyType.Axis:
-                v = XboxControllerState.Axis(ControlHelper.ReturnXboxAxis(keys[0]), xboxController);
+                v = XboxControllerState.Axis(InputHelper.ReturnXboxAxis(keys[0]), xboxController);
                 break;
 
             case AxisKeyType.Dpad:
-                if (XboxControllerState.ButtonDown(ControlHelper.ReturnXboxButton(keys[0]), xboxController))
+                if (XboxControllerState.ButtonDown(InputHelper.ReturnXboxButton(keys[0]), xboxController))
                     v--;
-                if (XboxControllerState.ButtonDown(ControlHelper.ReturnXboxButton(keys[1]), xboxController))
+                if (XboxControllerState.ButtonDown(InputHelper.ReturnXboxButton(keys[1]), xboxController))
                     v++;
                 break;
 
@@ -141,7 +141,7 @@ public class AxisKey
 
     public static void OnGui(Rect rect, SerializedProperty prop)
     {
-        AxisKey key = prop.objectReferenceValue as System.Object as AxisKey;
+        InputAxisKey key = prop.objectReferenceValue as System.Object as InputAxisKey;
         EditorGUI.IntField(rect, 100);
     }
     //public void OnGui()

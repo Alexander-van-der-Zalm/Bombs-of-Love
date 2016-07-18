@@ -3,7 +3,7 @@ using System.Collections;
 using XInputDotNetPure;
 using System;
 
-public class ControlHelper 
+public class InputHelper 
 {
     public static XboxButton ReturnXboxButton(string str)
     {
@@ -15,16 +15,16 @@ public class ControlHelper
         return ParseEnum<XboxAxis>(str);
     }
 
-    public static ControlType AxisKeyToControl(AxisKey.AxisKeyType key)
+    public static ControlType AxisKeyToControl(InputAxisKey.AxisKeyType key)
     {
         switch(key)
         {
             default:
-            case AxisKey.AxisKeyType.PC:
+            case InputAxisKey.AxisKeyType.PC:
                 return ControlType.PC;
-            case AxisKey.AxisKeyType.Axis:
+            case InputAxisKey.AxisKeyType.Axis:
                 return ControlType.Xbox;
-            case AxisKey.AxisKeyType.Dpad:
+            case InputAxisKey.AxisKeyType.Dpad:
                 return ControlType.Xbox;
         }
     }

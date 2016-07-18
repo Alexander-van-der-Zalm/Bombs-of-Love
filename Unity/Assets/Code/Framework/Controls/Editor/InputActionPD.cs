@@ -4,8 +4,8 @@ using UnityEditorInternal;
 
 using System.Collections;
 
-[CustomPropertyDrawer(typeof(Action))]
-public class ActionPD : PropertyDrawer
+[CustomPropertyDrawer(typeof(InputAction))]
+public class InputActionPD : PropertyDrawer
 {
     private ReorderableList list;
     private string ActionName;
