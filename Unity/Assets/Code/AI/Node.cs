@@ -55,7 +55,7 @@ public class List2DNode
         return x < 0 || y < 0 || NodesList == null || y >= NodesList.Count || NodesList[y].Nodes == null || x >= NodesList[y].Nodes.Count;
     }
 
-    public void CreateNodesGrid(int width, int height, List<Node> inputList)
+    public void CreateNodesGrid(int width, int height, bool diagonals = true, List<Node> inputList = null)
     {
         Height = height;
         Width = width;
@@ -84,10 +84,10 @@ public class List2DNode
             }
         }
 
-        AddGridNeighbors();
+        AddGridNeighbors(diagonals);
     }
 
-    public void AddGridNeighbors()
+    public void AddGridNeighbors(bool diagonals = true)
     {
         int width = NodesList[0].Nodes.Count;
         int height = NodesList.Count;
@@ -104,6 +104,9 @@ public class List2DNode
                         // Skip itself
                         if (x == 0 & y == 0)
                             continue;
+                        if (!diagonals && Mathf.Abs(x) + Mathf.Abs(y) == 2) // Skip diagonals if put on
+                            continue;
+
                         Vector2 pos = n.Pos + new Vector2(x, y);
                         Node newNeighbor = this[pos];
                         //if (n.Neighbors == null)

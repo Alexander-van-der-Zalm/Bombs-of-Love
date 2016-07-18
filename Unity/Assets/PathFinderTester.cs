@@ -10,12 +10,13 @@ public class PathFinderTester : MonoBehaviour
 
     public GridLineDrawer drawer;
     public Vector2 Start, Goal;
+    public bool Diagonals = true;
 
     private Vector2 lastStart, lastGoal;
 
     public void Awake()
     {
-        Nodes.CreateNodesGrid(Width, Height, null);
+        Nodes.CreateNodesGrid(Width, Height, Diagonals);
         Nodes[1, 1].Traversable = false;
         Nodes[2, 1].Traversable = false;
         Nodes[3, 1].Traversable = false;
