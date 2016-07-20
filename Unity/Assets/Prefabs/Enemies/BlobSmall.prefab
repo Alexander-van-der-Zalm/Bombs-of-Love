@@ -25,8 +25,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 405058}
   - 114: {fileID: 11415028}
-  - 114: {fileID: 11443912}
   - 50: {fileID: 5044732}
+  - 114: {fileID: 11474376}
+  - 114: {fileID: 11401074}
   m_Layer: 0
   m_Name: BlobSmall
   m_TagString: Untagged
@@ -105,7 +106,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.531, y: 1.298, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -215,6 +216,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11401074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 135214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5ae123c3ed8cbe479ae8128e66f71e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FollowPath: {fileID: 11474376}
+  Tester: {fileID: 0}
 --- !u!114 &11415028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -227,7 +241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1
---- !u!114 &11443912
+--- !u!114 &11474376
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -235,10 +249,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 135214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb196aa9ca16a794889e89040d944529, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f8a1edbe5c64614ebde0075fc60a09f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
+  PathOffset: {x: 0.5, y: 0.25}
+  CloseEnough: 0.1
 --- !u!212 &21201314
 SpriteRenderer:
   m_ObjectHideFlags: 1

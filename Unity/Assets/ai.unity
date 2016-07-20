@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  PathOffset: {x: 0.5, y: 0.1}
+  PathOffset: {x: 0.5, y: 0.25}
   CloseEnough: 0.1
 --- !u!114 &881027830
 MonoBehaviour:
