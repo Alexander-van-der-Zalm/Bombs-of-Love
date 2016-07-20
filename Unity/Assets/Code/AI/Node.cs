@@ -7,10 +7,10 @@ using System.Linq;
 public class Node
 {
     [System.NonSerialized]
-    public List<Node> Neighbors;// = null;
+    public List<Node> Neighbors;
 
     [System.NonSerialized]
-    public Node CameFrom = null;
+    public Node CameFrom;
     public float GScore;
     public float FScore;
     public bool Traversable = true;
@@ -42,20 +42,27 @@ public class ListNode
 }
 
 [System.Serializable]
-public class List2DNode
+public class NodeGrid
 {
+    #region Fields & Properties
+
     public Node this[int x,int y] { get { return OutOfBounds(x,y) ? null : NodesList[y][x]; } set { if(!OutOfBounds(x, y))NodesList[y][x] = value; } }
     public Node this[Vector2 p] { get { return this[(int)p.x, (int)p.y]; } set { this[(int)p.x, (int)p.y] = value; } }
 
     public List<ListNode> NodesList;
     public int Height { get; private set; }
     public int Width { get; private set; }
+
     private bool OutOfBounds(int x, int y)
     {
         return x < 0 || y < 0 || NodesList == null || y >= NodesList.Count || NodesList[y].Nodes == null || x >= NodesList[y].Nodes.Count;
     }
 
-    public void CreateNodesGrid(int width, int height, bool diagonals = true, List<Node> inputList = null)
+    #endregion
+
+    #region Ctor
+
+    public NodeGrid(int width, int height, List<Node> inputList = null, bool diagonals = true, bool removeUnreachableDiagonalNeighbors = true)
     {
         Height = height;
         Width = width;
@@ -84,18 +91,18 @@ public class List2DNode
             }
         }
 
-        AddGridNeighbors(diagonals);
+        CalculateGridNeighbors(diagonals, removeUnreachableDiagonalNeighbors);
     }
 
-    public void AddGridNeighbors(bool diagonals = true)
-    {
-        int width = NodesList[0].Nodes.Count;
-        int height = NodesList.Count;
+    #endregion
 
+    public void CalculateGridNeighbors(bool diagonals = true, bool removeUnreachableDiagonals = true)
+    {
         foreach(ListNode l in NodesList)
         {
             foreach(Node n in l.Nodes)
             {
+                n.Neighbors = new List<Node>();
                 for (int y = -1; y <= 1; y++)
                 {
                     for (int x = -1; x <= 1; x++)
@@ -104,15 +111,15 @@ public class List2DNode
                         // Skip itself
                         if (x == 0 & y == 0)
                             continue;
-                        if (!diagonals && Mathf.Abs(x) + Mathf.Abs(y) == 2) // Skip diagonals if put on
-                            continue;
+                        if(Mathf.Abs(x) + Mathf.Abs(y) == 2) // Diagonal node
+                        {
+                            if (!diagonals) // Skip diagonals if put off
+                                continue;
+                        }
+                        
 
                         Vector2 pos = n.Pos + new Vector2(x, y);
                         Node newNeighbor = this[pos];
-                        //if (n.Neighbors == null)
-                        //    n.Neighbors = new ListNode();//new List<Node>();
-                        if (n.Neighbors == null)
-                            n.Neighbors = new List<Node>();
 
                         if (newNeighbor != null)
                             n.Neighbors.Add(newNeighbor);
@@ -120,6 +127,36 @@ public class List2DNode
                 }
             }
         }
-        
+        if (diagonals && removeUnreachableDiagonals)
+        {
+            // Remove unreachable diagonal neighbors
+            foreach (ListNode l in NodesList)
+            foreach (Node n in l.Nodes)
+            {
+                for (int y = -1; y <= 1; y++)
+                for (int x = -1; x <= 1; x++)
+                {
+                    // Skip itself
+                    if (x == 0 & y == 0)
+                        continue;
+                    if (Mathf.Abs(x) + Mathf.Abs(y) != 2) // Skip non diagonals
+                        continue;
+
+                    //Check if both orthogonal neighbors are traversable
+                    Node n1 = this[n.Pos + new Vector2(0, y)];
+                    Node n2 = this[n.Pos + new Vector2(x, 0)];
+
+                    if ((n1 != null && n1.Traversable) || (n2!= null && n2.Traversable)) // Skip if one neighbor is traversable
+                        continue;
+
+                    Vector2 pos = n.Pos + new Vector2(x, y);
+                    Node newNeighbor = this[pos];
+
+                    if (newNeighbor != null)
+                        n.Neighbors.Remove(newNeighbor);
+                }
+            }
+        }
+
     }
 }

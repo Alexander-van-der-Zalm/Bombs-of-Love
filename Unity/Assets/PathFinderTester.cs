@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class PathFinderTester : MonoBehaviour
 {
     public int Width, Height;
-    public List2DNode Nodes;
+    public NodeGrid Nodes;
     public List<Node> Path;
 
     public Transform StartTr, GoalTr;
@@ -13,36 +13,39 @@ public class PathFinderTester : MonoBehaviour
     public GridLineDrawer drawer;
     public Vector2 Start, Goal;
     public bool Diagonals = true;
+    public bool RemoveUnreachableDiagonals = true;
     private bool oldDiagonals = true;
+    private bool removeUnreachableDiagonals = true;
+
+    public bool NewRandomGrid = true;
+    private bool oldNewRandomGrid = true;
 
     private Vector2 lastStart, lastGoal;
 
     public void Awake()
     {
-        INit();
+        RandomGrid();
     }
 
-    private void INit()
+    private void RecalculateNeighbors()
     {
-        Nodes.CreateNodesGrid(Width, Height, Diagonals);
+        Nodes.CalculateGridNeighbors(Diagonals, RemoveUnreachableDiagonals);
+
+        removeUnreachableDiagonals = RemoveUnreachableDiagonals;
+        oldDiagonals = Diagonals;
+    }
+
+    private void RandomGrid()
+    {
+        Nodes = new NodeGrid(Width, Height, null, Diagonals);
 
         for (int y = 0; Nodes != null && y < Nodes.Height; y++)
             for (int x = 0; x < Nodes.Width; x++)
             {
-                Nodes[x, y].Traversable = Random.Range(0,1.0f)>0.4f;
-
+                Nodes[x, y].Traversable = Random.Range(0, 1.0f) > 0.4f;
             }
-        //Nodes[2, 1].Traversable = false;
-        //Nodes[3, 1].Traversable = false;
-        //Nodes[4, 1].Traversable = false;
-        //Nodes[0, 3].Traversable = false;
-        //Nodes[1, 3].Traversable = false;
-        //Nodes[2, 3].Traversable = false;
-        //Nodes[3, 3].Traversable = false;
-        //Nodes[4, 3].Traversable = false;
-        //Nodes[5, 3].Traversable = false;
-
-        oldDiagonals = Diagonals;
+        oldNewRandomGrid = NewRandomGrid;
+        RecalculateNeighbors();
     }
 
     public void Update()
@@ -51,9 +54,16 @@ public class PathFinderTester : MonoBehaviour
             Start = new Vector2((int)StartTr.position.x, (int)StartTr.position.y);
         if (GoalTr != null)
             Goal = new Vector2((int)GoalTr.position.x, (int)GoalTr.position.y);
-        if (Diagonals != oldDiagonals)
+
+        if(NewRandomGrid != oldNewRandomGrid)
         {
-            INit();
+            RandomGrid();
+            Path = Astar.FindPath(Nodes[Start], Nodes[Goal]);
+        }
+
+        if (Diagonals != oldDiagonals || RemoveUnreachableDiagonals != removeUnreachableDiagonals)
+        {
+            RecalculateNeighbors();
             Path = Astar.FindPath(Nodes[Start], Nodes[Goal]);
         }
         if (lastStart != Start || lastGoal != Goal)
