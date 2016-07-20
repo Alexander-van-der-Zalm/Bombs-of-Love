@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class MovementPhysics : MonoBehaviour, IMovementPhysics
 {
@@ -40,5 +41,10 @@ public class MovementPhysics : MonoBehaviour, IMovementPhysics
     {
         InputHorizontal = hor;
         InputVertical = ver;
+    }
+
+    public float DistanceToStop()
+    {
+        return 0;
     }
 }
