@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MovementPhysics : MonoBehaviour
+public class MovementPhysics : MonoBehaviour, IMovementPhysics
 {
     #region Fields
 
