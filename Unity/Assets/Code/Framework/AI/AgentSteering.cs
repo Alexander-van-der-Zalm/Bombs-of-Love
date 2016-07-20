@@ -11,23 +11,38 @@ public class AgentSteering : MonoBehaviour
     private Transform tr;
 
     // Use this for initialization
-    void Start ()
+    void Start()
+    {
+        Init();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        UpdateSteering();
+
+    }
+
+
+    public virtual void Init()
     {
         Debug.Log("Start");
         movePhysics = GetComponent<IMovementPhysics>();
         tr = transform;
 
-        if(Target == null)
+        if (Target == null)
         {
             Target = new GameObject("AI target").transform;
         }
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+
+
+    public virtual void UpdateSteering()
     {
         Vector2 dir = Target.position - tr.position;
         dir.Normalize();
         movePhysics.SetMovementInput(dir.x, dir.y);
-	}
-}
+    }
+
+}	

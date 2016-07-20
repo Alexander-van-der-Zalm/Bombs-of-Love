@@ -9,6 +9,9 @@ public class Astar
 {
     public static List<Node> FindPath(Node start, Node goal)
     {
+        if (!start.Traversable)
+            return new List<Node>();
+
         List<Node> OpenList = new List<Node>();
         List<Node> ClosedList = new List<Node>();
 
