@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class Grid : MonoBehaviour
 {
@@ -205,11 +207,14 @@ public class Grid : MonoBehaviour
             }
                 
         }
-        AssetDatabase.SaveAssets(); 
+#if UNITY_EDITOR
+        AssetDatabase.SaveAssets();
+#endif
     }
 
     #endregion
 
+#if UNITY_EDITOR
     #region Gizmos
 
     public void OnDrawGizmos()
@@ -237,14 +242,15 @@ public class Grid : MonoBehaviour
     }
 
     #endregion
+#endif
 
     #region Get
-
+#if UNITY_EDITOR
     public Vector2 GetSceneMouseGridCoord()
     {
         return GetGridCoord(UnityEditor.HandleUtility.GUIPointToWorldRay(Event.current.mousePosition).origin);
     }
-
+#endif
     public Vector2 GetGridCoord(Vector3 worldPos)
     {
         return new Vector2(Mathf.Floor(worldPos.x / TileWidth), Mathf.Floor(worldPos.y / TileHeight));
