@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using XInputDotNetPure;
 
 //#if UNITY_EDITOR
 //using UnityEditor;
@@ -20,12 +19,12 @@ public class ControlScheme:ScriptableObject
         LateUpdate
     }
 
-    #region Fields
+#region Fields
 
     public string Name;
     //public int controllerID = 1;
     //public int playerID = 1;
-    public PlayerIndex Player;
+    public int Player;
 
     //public UpdateTypeE UpdateType = UpdateTypeE.FixedUpdate;
 
@@ -43,7 +42,7 @@ public class ControlScheme:ScriptableObject
                                             || Vertical.AxisKeys.Any(k => InputHelper.AxisKeyToControl(k.Type) == ControlType.Xbox) 
                                             || Actions.Any(a => a.Keys.Any(k => k.Type == ControlType.Xbox)); } }
 
-    #endregion
+#endregion
 
     public static ControlScheme CreateDefaultScheme<T>(ControlScheme controlScheme, bool xboxLeftStick = true, bool xboxDPad = true, bool arrows = true, bool wasd = true) where T : struct, IConvertible
     {

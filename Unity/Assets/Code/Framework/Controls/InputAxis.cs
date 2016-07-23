@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using XInputDotNetPure;
 
 [System.Serializable]
 public class InputAxis
@@ -16,13 +15,13 @@ public class InputAxis
     [SerializeField,ReadOnly]
     private ControlType lastInputType = ControlType.PC;
     [SerializeField]
-    private PlayerIndex xbox;
+    private int xbox;
 
-    public PlayerIndex PlayerIndex { get { return xbox; } set { xbox = value; } }
+    public int PlayerIndex { get { return xbox; } set { xbox = value; } }
 
     #endregion
 
-    public InputAxis(PlayerIndex xbox = PlayerIndex.One, string name = "defaultAxis")
+    public InputAxis(int xbox = 0, string name = "defaultAxis")
     {
         AxisKeys = new List<InputAxisKey>();
         this.xbox = 0;
@@ -45,6 +44,7 @@ public class InputAxis
                 lastInputType = InputHelper.AxisKeyToControl(AxisKeys[i].Type);
             } 
         }
+        //Debug.Log(AxisKeys[lastAxis]);
         lastAxis = curAxis;
         return value;
     }
@@ -71,7 +71,7 @@ public class InputAxis
         AxisKeys.Add(InputAxisKey.PC(neg, pos));
     }
 
-    public void DefaultInput(DirectionInput horintalOrVertical, PlayerIndex xbox = PlayerIndex.One, string name = "")
+    public void DefaultInput(DirectionInput horintalOrVertical, int xbox = 0, string name = "")
     {
         switch (horintalOrVertical)
         {
@@ -99,7 +99,7 @@ public class InputAxis
     /// <param name="xbox"></param>
     /// <param name="name"></param>
     /// <returns></returns>
-    public static InputAxis Default(DirectionInput horintalOrVertical, PlayerIndex xbox = PlayerIndex.One, string name = "")
+    public static InputAxis Default(DirectionInput horintalOrVertical, int xbox = 0, string name = "")
     {
         InputAxis ax = new InputAxis(xbox, name);
         ax.DefaultInput(horintalOrVertical, xbox, name);

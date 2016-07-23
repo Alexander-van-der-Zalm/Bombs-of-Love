@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+
+#if !UNITY_WEBGL
 using XInputDotNetPure;
+#endif
 
 [RequireComponent(typeof(MovementPhysics))]
 public class InputHandler : MonoBehaviour
 {
-    public PlayerIndex PlayerIndex;
+
+    public int PlayerIndex;
+
     public InputAxis Horizontal, Vertical;
     public InputAction DropBomb;
 
@@ -29,18 +34,16 @@ public class InputHandler : MonoBehaviour
         if (Vertical == null)
             Vertical = InputAxis.Default(DirectionInput.Vertical, PlayerIndex);
 
+
         // Set XboxPlayerIndex
         DropBomb.PlayerIndex = this.PlayerIndex;
         Horizontal.PlayerIndex = this.PlayerIndex;
         Vertical.PlayerIndex = this.PlayerIndex;
     }
-	
-	// Physics
-	void FixedUpdate ()
+    
+    // Physics
+    void FixedUpdate ()
     {
-        //prevState = state;
-        //state = GamePad.GetState(XboxControllerIndex);
-
         float hor = 0;
         float ver = 0;
 

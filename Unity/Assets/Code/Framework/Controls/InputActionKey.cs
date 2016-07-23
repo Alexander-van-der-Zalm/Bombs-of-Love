@@ -1,6 +1,13 @@
-﻿using UnityEngine;
+﻿#region Using
+
+using UnityEngine;
 using System.Collections;
+
+#if UNITY_STANDALONE || UNITY_EDITOR
 using XInputDotNetPure;
+#endif
+
+#endregion
 
 public enum ControlType
 {
@@ -27,40 +34,46 @@ public class InputActionKey
 
     #region Down,Pressed,Released
 
-    public bool IsDown(PlayerIndex xbox = PlayerIndex.One)
+    public bool IsDown(int xbox = 0)
     {
         switch (Type)
         {
             case ControlType.PC:
                 return Input.GetKey(InputHelper.ReturnKeyCode(KeyValue));
             case ControlType.Xbox:
-                return XboxControllerState.ButtonDown(InputHelper.ReturnXboxButton(KeyValue), xbox);
+#if UNITY_STANDALONE || UNITY_EDITOR
+                return XboxControllerState.ButtonDown(InputHelper.ReturnXboxButton(KeyValue), (PlayerIndex)xbox);
+#endif
             default:
                 return false;
         }
     }
 
-    public bool IsPressed(PlayerIndex xbox = PlayerIndex.One)
+    public bool IsPressed(int xbox = 0)
     {
         switch (Type)
         {
             case ControlType.PC:
                 return Input.GetKeyDown(InputHelper.ReturnKeyCode(KeyValue));
             case ControlType.Xbox:
-                return XboxControllerState.ButtonPressed(InputHelper.ReturnXboxButton(KeyValue), xbox);
+#if UNITY_STANDALONE || UNITY_EDITOR
+                return XboxControllerState.ButtonPressed(InputHelper.ReturnXboxButton(KeyValue), (PlayerIndex)xbox);
+#endif
             default:
                 return false;
         }
     }
 
-    public bool IsReleased(PlayerIndex xbox = PlayerIndex.One)
+    public bool IsReleased(int xbox = 0)
     {
         switch (Type)
         {
             case ControlType.PC:
                 return Input.GetKeyUp(InputHelper.ReturnKeyCode(KeyValue));
             case ControlType.Xbox:
-                return XboxControllerState.ButtonReleased(InputHelper.ReturnXboxButton(KeyValue), xbox);
+#if UNITY_STANDALONE || UNITY_EDITOR
+                return XboxControllerState.ButtonReleased(InputHelper.ReturnXboxButton(KeyValue), (PlayerIndex)xbox);
+#endif
             default:
                 return false;
         }
@@ -91,4 +104,9 @@ public class InputActionKey
     }
 
     #endregion
+
+    public override string ToString()
+    {
+        return Type.ToString() + " " + KeyValue;
+    }
 }

@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using XInputDotNetPure;
 
 [System.Serializable]
 public class InputAction
 {
-    #region Fields
+#region Fields
 
     public string Name;
     public List<InputActionKey> Keys;
@@ -14,19 +13,19 @@ public class InputAction
     [SerializeField, ReadOnly]
     private ControlType m_LastInputType = ControlType.PC;
     [SerializeField]
-    private PlayerIndex m_XboxPlayer;
+    private int m_XboxPlayer;
 
-    public PlayerIndex PlayerIndex { get { return m_XboxPlayer; } set { m_XboxPlayer = value; } }
+    public int PlayerIndex { get { return m_XboxPlayer; } set { m_XboxPlayer = value; } }
     //[SerializeField,HideInInspector]
     //protected ControlScheme scheme;
 
     public ControlType LastInputType { get { return m_LastInputType; } }
 
-    #endregion
+#endregion
 
-    #region CTor
+#region CTor
 
-    public InputAction(PlayerIndex plyr = PlayerIndex.One, string name = "defaultAction")
+    public InputAction(int plyr = 0, string name = "defaultAction")
     {
         Keys = new List<InputActionKey>();
 
@@ -35,9 +34,9 @@ public class InputAction
         this.m_XboxPlayer = plyr;
     }
 
-    #endregion
+#endregion
 
-    #region Down, Pressed, Released
+#region Down, Pressed, Released
 
     public bool IsDown()
     {
@@ -74,9 +73,9 @@ public class InputAction
         return true;
     }
 
-    #endregion
+#endregion
 
-    #region Creates
+#region Creates
 
     public void AddXboxButton(XboxButton btn)
     {
@@ -98,7 +97,7 @@ public class InputAction
         Keys.Add(InputActionKey.PCKey(kc));
     }
 
-    public static InputAction Create(string pc, XboxButton xb = XboxButton.None, PlayerIndex index = PlayerIndex.One, string name = "")
+    public static InputAction Create(string pc, XboxButton xb = XboxButton.None, int index = 0, string name = "")
     {
         InputAction ac = new InputAction(index, name);
         ac.AddPCKey(pc);
@@ -107,7 +106,7 @@ public class InputAction
         return ac;
     }
 
-    public static InputAction Create(KeyCode pc, XboxButton xb = XboxButton.None, PlayerIndex index = PlayerIndex.One, string name = "")
+    public static InputAction Create(KeyCode pc, XboxButton xb = XboxButton.None, int index = 0, string name = "")
     {
         InputAction ac = new InputAction(index, name);
         ac.AddPCKey(pc);
@@ -116,5 +115,5 @@ public class InputAction
         return ac;
     }
 
-    #endregion
+#endregion
 }

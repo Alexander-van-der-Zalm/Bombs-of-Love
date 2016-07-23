@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
+#if UNITY_STANDALONE || UNITY_EDITOR
 using XInputDotNetPure;
+#endif
 
 #region Enums
 
 public enum XboxButton
 {
-    A, B, X, Y, Up,Down,Left,Right, RightShoulder, LeftShoulder, LeftStick, RightStick, Back, Start, Guide, None
+    A, B, X, Y, Up, Down, Left, Right, RightShoulder, LeftShoulder, LeftStick, RightStick, Back, Start, Guide, None
 }
 
 public enum XboxAxis
 {
-    LeftX,LeftY,RightX,RightY,LeftTrigger,RightTrigger
+    LeftX, LeftY, RightX, RightY, LeftTrigger, RightTrigger
 }
 
 public enum XboxDPad
@@ -21,6 +24,10 @@ public enum XboxDPad
 }
 
 #endregion
+
+
+
+#if UNITY_STANDALONE || UNITY_EDITOR
 
 public class XboxControllerState : Singleton<XboxControllerState>
 {
@@ -181,7 +188,7 @@ public class XboxControllerState : Singleton<XboxControllerState>
         }
     }
 
-    #endregion
+#endregion
 
     public static bool ButtonPressed(XboxButton button, GamePadState state)
     {
@@ -235,3 +242,5 @@ public class XboxControllerState : Singleton<XboxControllerState>
         return PlayerIndex.One;
     }
 }
+
+#endif
