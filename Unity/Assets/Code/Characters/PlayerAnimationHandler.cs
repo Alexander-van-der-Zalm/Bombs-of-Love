@@ -39,8 +39,10 @@ public class PlayerAnimationHandler : MonoBehaviour
 
         if (physics.InputHor !=0 || physics.InputVer != 0)
         {
-            anim.SetFloat(facingH_X, physics.InputHor);
-            anim.SetFloat(facingH_Y, physics.InputVer);
+            Vector2 input = new Vector2(physics.InputHor, physics.InputVer);
+            input.Normalize();
+            anim.SetFloat(facingH_X, input.x);
+            anim.SetFloat(facingH_Y, input.y);
         }
     }
 
