@@ -30,23 +30,29 @@ public class InputAxis
 
     public float Value()
     {
-        float value = 0;
-        int curAxis = 0;
-
-        // Handles priority on last active 
-        for(int i = 0; i < AxisKeys.Count; i++)
+        // Check if the last active axis input is still active
+        float lastAxisValue = AxisKeys[lastAxis].Value(xbox);
+        if (lastAxisValue != 0)
+            return lastAxisValue;
+        
+        // Check for the rest of the axis for a new input
+        for (int i = 0; i < AxisKeys.Count; i++)
         {
-            float v = AxisKeys[i].Value(xbox);
-            if (v != 0 && (value == 0 || (value != 0 && lastAxis == i)))
+            if (i == lastAxis)
+                continue;
+
+            float currentValue = AxisKeys[i].Value(xbox);
+
+            if (currentValue != 0)
             {
-                value = v;
-                curAxis = i;
+                lastAxis = i;
                 lastInputType = InputHelper.AxisKeyToControl(AxisKeys[i].Type);
-            } 
+                return currentValue;
+            }
         }
-        //Debug.Log(AxisKeys[lastAxis]);
-        lastAxis = curAxis;
-        return value;
+
+        //Debug.Log(AxisKeys[lastAxis] + " " + value);
+        return 0;
     }
 
     #region Creates
